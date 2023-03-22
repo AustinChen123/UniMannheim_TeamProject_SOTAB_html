@@ -1,0 +1,1591 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>The WDC Schema.org Table Annotation Benchmark (SOTAB)</title>
+	<link rel='stylesheet' href='https://webdatacommons.org/style.css' type='text/css' media='screen' />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<style>
+		.tar {
+			text-align: right;
+		}
+
+		.rtable {
+			float: right;
+			padding-left: 10px;
+		}
+
+		.smalltable,
+		.smalltable TD,
+		.smalltable TH {
+			font-size: 9pt;
+		}
+
+		.tab {
+			overflow: hidden;
+			border: 1px solid #ccc;
+			background-color: #eaf3fa;
+			clear: both;
+			padding-left: 25px;
+			width: 650px;
+		}
+
+		.tab button {
+			background-color: inherit;
+			float: left;
+			border: none;
+			outline: none;
+			cursor: pointer;
+			padding: 15px 60px;
+			transition: 0.3s;
+		}
+
+		.tab button:hover {
+			background-color: #ddd;
+		}
+
+		.tab button.active {
+			background-color: #ccc;
+		}
+
+		.tabcontent {
+			display: none;
+			padding: 6px 12px;
+			border-top: none;
+			animation: fadeEffect 1s;
+			width: 500px
+		}
+
+		.table-wrapper {
+			position: relative;
+		}
+
+		.table-scroll {
+			height: 240px;
+			overflow: auto;
+			margin-top: -10px;
+		}
+
+		.show {
+			display: block;
+		}
+
+		.no-show {
+			display: none;
+		}
+
+		caption {
+			caption-side: top;
+			font-style: italic;
+		}
+
+		td[scope="mergedcol"] {
+			text-align: center;
+		}
+
+		tr.bordered {
+			border-bottom: 1px solid #000;
+		}
+
+		hr {
+			width: 50%;
+			margin: 20px 0;
+			/* This leaves 10px margin on left and right. If only right margin is needed try margin-right: 10px; */
+		}
+
+    .tg  {border-collapse:collapse;border-color:#ccc;border-spacing:0;}
+    .tg td{background-color:#fff;border-color:#ccc;border-style:solid;border-width:1px;color:#333;
+      font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;}
+    .tg th{background-color:#f0f0f0;border-color:#ccc;border-style:solid;border-width:1px;color:#333;
+      font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+    .tg .tg-lboi{border-color:inherit;text-align:left;vertical-align:middle}
+    .tg .tg-9wq8{border-color:inherit;text-align:center;vertical-align:middle}
+    .tg .tg-ixdq{border-color:inherit;font-weight:bold;position:-webkit-sticky;position:sticky;text-align:center;top:-1px;
+      vertical-align:middle;will-change:transform}
+    .tg .tg-mkpc{border-color:inherit;font-weight:bold;position:-webkit-sticky;position:sticky;text-align:left;top:-1px;
+      vertical-align:middle;will-change:transform}
+    .tg .tg-d459{background-color:#f9f9f9;border-color:inherit;text-align:left;vertical-align:middle}
+    .tg .tg-kyy7{background-color:#f9f9f9;border-color:inherit;text-align:center;vertical-align:middle}
+    .tg .tg-h2b0{background-color:#FFF;border-color:inherit;color:#333;text-align:center;vertical-align:middle}
+    .tg-sort-header::-moz-selection{background:0 0}
+    .tg-sort-header::selection{background:0 0}.tg-sort-header{cursor:pointer}
+    .tg-sort-header:after{content:'';float:right;margin-top:7px;border-width:0 5px 5px;border-style:solid;
+      border-color:#404040 transparent;visibility:hidden}
+    .tg-sort-header:hover:after{visibility:visible}
+    .tg-sort-asc:after,.tg-sort-asc:hover:after,.tg-sort-desc:after{visibility:visible;opacity:.4}
+    .tg-sort-desc:after{border-bottom:none;border-width:5px 5px 0}@media screen and (max-width: 767px) {.tg {width: auto !important;}.tg col {width: auto !important;}.tg-wrap {overflow-x: auto;-webkit-overflow-scrolling: touch;}}
+
+    .tg  {border-collapse:collapse;border-color:#ccc;border-spacing:0;}
+    .tg td{background-color:#fff;border-color:#ccc;border-style:solid;border-width:1px;color:#333;
+      font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;}
+    .tg th{background-color:#f0f0f0;border-color:#ccc;border-style:solid;border-width:1px;color:#333;
+      font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+    .tg .tg-lboi{border-color:inherit;text-align:left;vertical-align:middle}
+    .tg .tg-9wq8{border-color:inherit;text-align:center;vertical-align:middle}
+    .tg .tg-baqh{text-align:center;vertical-align:top}
+    .tg .tg-zyik{border-color:inherit;font-weight:bold;position:-webkit-sticky;position:sticky;text-align:center;top:-1px;
+      vertical-align:top;will-change:transform}
+    .tg .tg-ixdq{border-color:inherit;font-weight:bold;position:-webkit-sticky;position:sticky;text-align:center;top:-1px;
+      vertical-align:middle;will-change:transform}
+    .tg .tg-yy5h{background-color:#F0F0F0;border-color:inherit;font-weight:bold;text-align:center;vertical-align:middle}
+    .tg .tg-o939{background-color:#f0f0f0;border-color:inherit;font-weight:bold;text-align:center;vertical-align:middle}
+    .tg .tg-ufyq{background-color:#f0f0f0;font-weight:bold;text-align:center;vertical-align:top}
+    .tg .tg-asv9{background-color:#F0F0F0;border-color:inherit;font-weight:bold;text-align:center;vertical-align:top}
+    .tg .tg-d459{background-color:#f9f9f9;border-color:inherit;text-align:left;vertical-align:middle}
+    .tg .tg-dzk6{background-color:#f9f9f9;text-align:center;vertical-align:top}
+    .tg .tg-kyy7{background-color:#f9f9f9;border-color:inherit;text-align:center;vertical-align:middle}
+    .tg-sort-header::-moz-selection{background:0 0}
+    .tg-sort-header::selection{background:0 0}.tg-sort-header{cursor:pointer}
+    .tg-sort-header:after{content:'';float:right;margin-top:7px;border-width:0 5px 5px;border-style:solid;
+      border-color:#404040 transparent;visibility:hidden}
+    .tg-sort-header:hover:after{visibility:visible}
+    .tg-sort-asc:after,.tg-sort-asc:hover:after,.tg-sort-desc:after{visibility:visible;opacity:.4}
+    .tg-sort-desc:after{border-bottom:none;border-width:5px 5px 0}@media screen and (max-width: 767px) {.tg {width: auto !important;}.tg col {width: auto !important;}.tg-wrap {overflow-x: auto;-webkit-overflow-scrolling: touch;}}
+
+		.tg  {border-collapse:collapse;border-color:#ccc;border-spacing:0;display:inline-block;margin-right:50px;}
+    .tg td{background-color:#fff;border-color:#ccc;border-style:solid;border-width:1px;color:#333;
+      font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;}
+    .tg th{background-color:#f0f0f0;border-color:#ccc;border-style:solid;border-width:1px;color:#333;
+      font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+    .tg .tg-lboi{border-color:inherit;text-align:left;vertical-align:middle}
+    .tg .tg-pl4i{background-color:#f0f0f0;font-weight:bold;text-align:center;vertical-align:middle}
+    .tg .tg-j1i3{border-color:inherit;position:-webkit-sticky;position:sticky;text-align:left;top:-1px;vertical-align:top;
+      will-change:transform}
+    .tg .tg-9wq8{border-color:inherit;text-align:center;vertical-align:middle}
+    .tg .tg-ixdq{border-color:inherit;font-weight:bold;position:-webkit-sticky;position:sticky;text-align:center;top:-1px;
+      vertical-align:middle;will-change:transform}
+    .tg .tg-yy5h{background-color:#F0F0F0;border-color:inherit;font-weight:bold;text-align:center;vertical-align:middle}
+    .tg .tg-o939{background-color:#f0f0f0;border-color:inherit;font-weight:bold;text-align:center;vertical-align:middle}
+    .tg .tg-45e1{background-color:#f0f0f0;border-color:inherit;font-weight:bold;text-align:left;vertical-align:middle}
+    .tg .tg-nrix{text-align:center;vertical-align:middle}
+    .tg .tg-d459{background-color:#f9f9f9;border-color:inherit;text-align:left;vertical-align:middle}
+    .tg .tg-kyy7{background-color:#f9f9f9;border-color:inherit;text-align:center;vertical-align:middle}
+    .tg .tg-57iy{background-color:#f9f9f9;text-align:center;vertical-align:middle}
+    .tg-sort-header::-moz-selection{background:0 0}
+    .tg-sort-header::selection{background:0 0}.tg-sort-header{cursor:pointer}
+    .tg-sort-header:after{content:'';float:right;margin-top:7px;border-width:0 5px 5px;border-style:solid;
+      border-color:#404040 transparent;visibility:hidden}
+    .tg-sort-header:hover:after{visibility:visible}
+    .tg-sort-asc:after,.tg-sort-asc:hover:after,.tg-sort-desc:after{visibility:visible;opacity:.4}
+    .tg-sort-desc:after{border-bottom:none;border-width:5px 5px 0}@media screen and (max-width: 767px) {.tg {width: auto !important;}.tg col {width: auto !important;}.tg-wrap {overflow-x: auto;-webkit-overflow-scrolling: touch;}}
+				
+		@keyframes fadeEffect {
+			from {
+				opacity: 0;
+			}
+
+			to {
+				opacity: 1;
+			}
+		}
+	</style>
+	
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script type="text/javascript" src="../../jquery.toc.min.js"></script>
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-30248817-1']);
+		_gaq.push(['_trackPageview']);
+
+		(function () {
+			var ga = document.createElement('script');
+			ga.type = 'text/javascript';
+			ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0];
+			s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+	<script type="application/ld+json">
+		{
+			"@context": "http://schema.org/",
+			"@type": "Dataset",
+			"name": "Web Data Commons - Schema.org Table Corpus",
+			"description": "The product dataset consists of 20 million pairs of product offers referring to the same products. The offers were extracted from 43 thousand e-shops which provide schema.org annotations including some form of product ID such as a GTIN or MPN. We also created a gold standard by manually verifying 4400 pairs of offers belonging to four different product categories.",
+			"url": "http://webdatacommons.org/structureddata/schemaorgtables/index.html",
+			"keywords": [
+				"table corpus",
+				"product corpus",
+				"large scale",
+				"product matching",
+				"entity matching"
+			],
+			"creator": [
+				{
+					"@type": "Person",
+					"url": "https://www.uni-mannheim.de/dws/people/researchers/phd-students/ralph-peeters/"
+					"name": "Ralph Peeters"
+				},
+				{
+					"@type": "Person",
+					"url": "https://www.uni-mannheim.de/dws/people/professors/prof-dr-christian-bizer/",
+					"name": "Christian Bizer"
+				}
+			],
+			"distribution": [{
+				"@type": "DataDownload",
+				"fileFormat": [
+					"json"
+				],
+				//TODO: Change once final
+				"contentUrl": "http://webdatacommons.org/structureddata/sotab/index.html"
+			}],
+			"citation": [
+
+			]
+		}
+	</script>
+
+<script charset="utf-8">var TGSort=window.TGSort||function(n){"use strict";function r(n){return n?n.length:0}function t(n,t,e,o=0){for(e=r(n);o<e;++o)t(n[o],o)}function e(n){return n.split("").reverse().join("")}function o(n){var e=n[0];return t(n,function(n){for(;!n.startsWith(e);)e=e.substring(0,r(e)-1)}),r(e)}function u(n,r,e=[]){return t(n,function(n){r(n)&&e.push(n)}),e}var a=parseFloat;function i(n,r){return function(t){var e="";return t.replace(n,function(n,t,o){return e=t.replace(r,"")+"."+(o||"").substring(1)}),a(e)}}var s=i(/^(?:\s*)([+-]?(?:\d+)(?:,\d{3})*)(\.\d*)?$/g,/,/g),c=i(/^(?:\s*)([+-]?(?:\d+)(?:\.\d{3})*)(,\d*)?$/g,/\./g);function f(n){var t=a(n);return!isNaN(t)&&r(""+t)+1>=r(n)?t:NaN}function d(n){var e=[],o=n;return t([f,s,c],function(u){var a=[],i=[];t(n,function(n,r){r=u(n),a.push(r),r||i.push(n)}),r(i)<r(o)&&(o=i,e=a)}),r(u(o,function(n){return n==o[0]}))==r(o)?e:[]}function v(n){if("TABLE"==n.nodeName){for(var a=function(r){var e,o,u=[],a=[];return function n(r,e){e(r),t(r.childNodes,function(r){n(r,e)})}(n,function(n){"TR"==(o=n.nodeName)?(e=[],u.push(e),a.push(n)):"TD"!=o&&"TH"!=o||e.push(n)}),[u,a]}(),i=a[0],s=a[1],c=r(i),f=c>1&&r(i[0])<r(i[1])?1:0,v=f+1,p=i[f],h=r(p),l=[],g=[],N=[],m=v;m<c;++m){for(var T=0;T<h;++T){r(g)<h&&g.push([]);var C=i[m][T],L=C.textContent||C.innerText||"";g[T].push(L.trim())}N.push(m-v)}t(p,function(n,t){l[t]=0;var a=n.classList;a.add("tg-sort-header"),n.addEventListener("click",function(){var n=l[t];!function(){for(var n=0;n<h;++n){var r=p[n].classList;r.remove("tg-sort-asc"),r.remove("tg-sort-desc"),l[n]=0}}(),(n=1==n?-1:+!n)&&a.add(n>0?"tg-sort-asc":"tg-sort-desc"),l[t]=n;var i,f=g[t],m=function(r,t){return n*f[r].localeCompare(f[t])||n*(r-t)},T=function(n){var t=d(n);if(!r(t)){var u=o(n),a=o(n.map(e));t=d(n.map(function(n){return n.substring(u,r(n)-a)}))}return t}(f);(r(T)||r(T=r(u(i=f.map(Date.parse),isNaN))?[]:i))&&(m=function(r,t){var e=T[r],o=T[t],u=isNaN(e),a=isNaN(o);return u&&a?0:u?-n:a?n:e>o?n:e<o?-n:n*(r-t)});var C,L=N.slice();L.sort(m);for(var E=v;E<c;++E)(C=s[E].parentNode).removeChild(s[E]);for(E=v;E<c;++E)C.appendChild(s[v+L[E-v]])})})}}n.addEventListener("DOMContentLoaded",function(){for(var t=n.getElementsByClassName("tg"),e=0;e<r(t);++e)try{v(t[e])}catch(n){}})}(document)</script>
+				
+
+</head>
+
+<body>
+	<div id="logo" style="text-align:right; background-color: white;">&nbsp;&nbsp;<a
+			href="http://dws.informatik.uni-mannheim.de"><img src="../../images/ma-logo.gif"
+				alt="University of Mannheim - Logo"></a></div>
+	<div id="header">
+		<h1 style="font-size: 250%;"> Web Data Commons - Schema.org Table Annotation Benchmark </h1>
+	</div>
+	<div id="authors">
+    <a href="https://www.uni-mannheim.de/dws/people/researchers/phd-students/keti-korini/">Keti Korini</a><br>
+		<a href="https://www.uni-mannheim.de/dws/people/researchers/phd-students/ralph-peeters/">Ralph Peeters</a><br>
+		<a href="https://www.uni-mannheim.de/dws/people/professors/prof-dr-christian-bizer/">Christian Bizer</a><br />
+	</div>
+	<div id="content">
+		<p>
+			This page provides the <b>WDC Schema.org <a href="https://paperswithcode.com/task/table-annotation">Table Annotation</a> Benchmark</b> (SOTAB) for public download. SOTAB features two annotation tasks: Column Type Annotation and 
+      Columns Property Annotation. The goal of the <a href="https://paperswithcode.com/task/column-type-annotation">Column Type Annotation (CTA)</a> task is to annotate the columns of a table with 91 
+      <a href="https://schema.org/">Schema.org</a> types, such as telephone, duration, Place, or Organization. The goal of the <a href="https://paperswithcode.com/task/columns-property-annotation">Columns Property 
+      Annotation (CPA)</a> task is to annotate pairs of table columns with one out of 176 <a href="https://schema.org/">Schema.org</a> properties, such as gtin13, startDate, priceValidUntil, or recipeIngredient. 
+			The benchmark consists of <b>59,548 tables</b> annotated for CTA and <b>48,379 tables</b> annotated for CPA originating from <b> 74,215 </b> different websites. The tables are split into training-, validation- and test sets for both tasks. 
+      The tables cover 17 popular Schema.org types including Product, LocalBusiness, Event, and JobPosting. The tables originate from the <a href="http://webdatacommons.org/structureddata/schemaorgtables/">Schema.org Table Corpus</a>.
+	  </p>
+<h2 id="news">News</h2>
+		<ul>
+			<li><strong>2022-09-22:</strong> The WDC Schema.org Table Annotation Benchmark (SOTAB) is introduced in the paper: <a href="https://ceur-ws.org/Vol-3320/paper1.pdf">SOTAB: The WDC Schema.org Table Annotation Benchmark</a> [<a href="#toc12">1</a>]</li>
+      <li><strong>2022-10-25:</strong> The WDC Schema.org Table Annotation Benchmark (SOTAB) <a href="https://www.uni-mannheim.de/dws/news/sotab-wins-dataset-track-of-semtab-challenge-at-iswc-2022/">wins</a> the SemTab 2022 Dataset Track. </li>
+			<li><strong>2022-09-22:</strong> Initial version of the WDC Schema.org Table Annotation Benchmark (SOTAB) released.</li>
+		</ul>
+		<h2>Contents</h2>
+		<ul>
+			<li class="toc-h2 toc-active">
+				<a href="#toc1"> 1. Introduction</a>
+			</li>
+			<li class="toc-h2 toc-active">
+				<a href="#toc2"> 2. Schema.org Table Corpus</a>
+			</li>
+
+      <li class="toc-h2 toc-active">
+				<a href="#toc3"> 3. Table Selection</a>
+			</li>
+
+      <li class="toc-h2 toc-active">
+				<a href="#toc4"> 4. Label Sets for the CTA and CPA Task </a>
+			</li>
+
+      <li class="toc-h2 toc-active">
+				<a href="#toc5"> 5. Dataset Profiling </a>
+			</li>
+
+      <li class="toc-h2 toc-active">
+				<a href="#toc6"> 6. Testsets for Specific Challenges </a>
+			</li>
+
+      <li class="toc-h2 toc-active">
+				<a href="#toc7"> 7. Baselines </a>
+			</li>
+			
+			<li class="toc-h2 toc-active">
+				<a href="#toc8"> 8. Download </a>
+			</li>
+			<li class="toc-h2 toc-active">
+				<a href="#toc9"> 9. Other Table Annotation Benchmarks  </a>
+			<li class="toc-h2 toc-active">
+        <a href="#toc10"> 10. References </a>
+			</li>
+      <li class="toc-h2 toc-active">
+        <a href="#toc11"> 11. Feedback </a>
+			</li>
+		</ul>
+
+		
+
+
+
+<span id="toc1"></span>
+<h2>1. Introduction</h2>
+<p>
+  Understanding the semantics of table elements is a pre-requisite for many data integration and data discovery tasks such as knowledge base augmentation [<a href="#toc12">2</a>], schema matching [<a href="#toc13">3</a>] or dataset search.
+  <a href="https://paperswithcode.com/task/table-annotation">Table annotation</a> is the task of annotating a table with terms/concepts from knowledge graph, database schema or vocabulary. 
+  Table annotation consists of five different tasks: column type annotation (CTA), columns property annotation (CPA), cell entity annotation (CEA), row annotation, and table type detection. 
+  Table annotation has attracted <a href="https://paperswithcode.com/task/table-annotation">quite some attention in the research community</a> in recent years and there are active benchmarking campaigns on table annotation, such as <a href="https://www.cs.ox.ac.uk/isg/challenges/sem-tab/">SemTab</a>.
+  <span id="toc2"></span>
+</p>
+
+<p>
+  CTA is the task of annotating table columns with the type of entities described in the column, while CPA aims to annotate the relationship between the main column of a table (usually the leftmost) 
+  with another column in the table.
+  An example of CTA and CPA annotations is given in <i>Figure 1</i>. For the CTA task, the first column is annotated with the label <b>"Hotel/name"</b> as the column contains the names of hotels. Further CTA annotations are <b>"addressLocation", "addressLocality", "Country" and "currency"</b> For the CPA task
+  the relationship between the main column <b>"Hotel/name"</b> and the second column is annotated using <b>"streetAddress"</b> as the second column shows the address of the hotels in the first column.
+</p>
+
+<figure>
+  <img src="images/table_CTA_CPA.jpg" alt="Table Annotation Example">
+  <figcaption><b><a id="Fig1"></a>Figure 1:</b> Example of table annotation. The CTA labels are placed on the top of the columns, while the CPA labels are placed between the main column (leftmost column) and another column.</figcaption>
+</figure>
+
+
+<p>
+  In order to compare the performance of table annotation methods, benchmark datasets covering a wide range of topics are needed. The aim of SOTAB is to completement the set of publicly available table annotation benchmarks with a CTA and CPA benchmark covering various entity types of general interest, e.g. products, local business, job postings, and to provide training data from many independent data sources for these types in order to reflect the full heterogeneity of the values that are used to describe entities. 
+	The SOTAB benchmark is build using tables from the <a href="http://webdatacommons.org/structureddata/schemaorgtables/">Schema.org Table Corpus</a>.
+</p>
+
+<span id="toc2"></span>
+<h2>2. Schema.org Table Corpus </h2>
+<p>
+  Many websites annotate structured data within their HTML pages using Microdata or JSON-LD markup together with the schema.org vocabulary. The Web Data Commons project regularly extracts such data from the Common Crawl and provides it for public download.
+        The <a href="http://webdatacommons.org/structureddata/schemaorgtables/">Schema.org Table Corpus</a> was created using schema.org data from the December 2020 version of the <a href="http://webdatacommons.org/structureddata/2020-12/stats/schema_org_subsets.html">Web Data Commons Microdata and JSON-LD corpus</a>. The Schema.org Table Corpus consists of 4.2 million relational tables covering 43 schema.org classes.
+Each table in the Schema.org Table Corpus contains the descriptions of all entities of a specific Schema.org class that were extracted for a specific host, e.g. movie records from imdb.com or product records from ebay.com or rakuten.co.jp. 
+All extracted entities of one Schema.org class are collected per host and subsequently passed through a pipeline consisting of three steps, (i) Attribute extraction, (ii) Removal of listing pages and sparse entities, and (iii) content-based deduplication. 
+Following the cleansing steps, only attributes with a density of at least 25% are retained per table. For more information about these steps and the general Schema.org Table Corpus creation process, statistics files and download links, please visit the <a href="http://webdatacommons.org/structureddata/schemaorgtables/">Schema.org Table Corpus website</a>. 
+  
+</p>
+
+<span id="toc3"></span>
+<h2> 3. Table Selection </h2>
+<p>
+  For the creation of the SOTAB benchmark, the top100 and minimum3 sets of tables from the Schema.org Table Corpus were considered and tables belonging to the 17 classes with the most columns and tables. 
+  Three steps were taken to select tables for CTA and CPA tables in SOTAB: 
+  (i) Language Detection, (ii) Filtering based on number of columns, (iii) Finding challenging columns. These steps are explained more in detail below.
+</p>
+
+<p>
+  <b>(i) Language Detection: </b> The purpose of this step was to filter out tables and rows that were not in the English language. 
+  The <a href="https://fasttext.cc/docs/en/language-identification.html">FastText</a> language detection model was used for detecting the language of rows/tables. The <i>description</i> column
+  and <i>disambiguatingDescription</i> column were chosen to check the language of a table, as they are columns that contain longer textual values that can indicate the language used. If a table did
+  not have one of these columns the concatenation of all other columns was used to determine the language. Tables and rows where the model was at least 50% confident that the language is English are kept and the rest are discarded.
+</p>
+
+<p>
+  <b>(ii) Filtering out small tables: </b> In the second step, tables that had less than 10 rows and less than 3 columns were filtered out. 
+</p>
+
+<p>
+  <b>(iii) Filtering out infrequent columns: </b> In order to ensure that a fair minimum amount of training data is available for each CTA and CPA label, columns having a label that appears less than 50 times in the complete corpus are filtered out. 
+</p>
+
+<span id="toc4"></span>
+<h2> 4. Label Sets for the CTA and CPA Task</h2>
+
+<p>
+  Within the Schema.org Table Corpus, table columns are labeled with the terms from the Schema.org vocabulary that were used to annotate the respective HTML pages from which the data was extracted. 
+  The Schema.org vocabulary definition speficies for each Schema.org property the data- and entity types which should be used for representing the values of the property. 
+  See for example the Schema.org page for the <a href="https://schema.org/LocalBusiness">LocalBusiness type</a> where the second column of the table contains the expected types for the properties defined in the first column. 
+  We directly use the Schema.org terms that are used as colum headers in a table as CPA labels. We derive the CTA label for a column from its CPA label using the Schema.org vocabulary definition.
+  <i>Table 1</i> contains examples of CPA and CTA labels that we use for tables describing products, events and recipes.
+  <br/>  
+  As some Schema.org properties can have multiple Schema.org types, a manual selection was done to choose the most 
+  general type for annotation. In some cases, we keep as CTA labels Schema.org properties with the purpose of including more fine-grained 
+  labels. An example is the column named pricecurrency, where its corresponding Schema.org property <i>priceCurrency</i> is expected to 
+  be of type <i>Text</i>. In this case we annotate the column pricecurrency for the CTA task as <i>currency</i>, which describes the semantics 
+  of this column better than the more general type <i>Text</i>. In other cases additionally, we create some labels with the same purpose. 
+  An example is for the column named isbn, its Schema.org property <i>isbn</i> is expected to be of type <i>Text</i>. We annotate this column 
+  with a new label that we call <i>IdentifierAT</i> (AT standing for Additional Type) as we believe it is benefitial for systems to be able 
+  to distinguish identifiers from simple text.
+</p>
+
+<p>
+  The final label space contains <b>91 CTA labels</b> and <b>176 CPA labels</b> covering more than 17 Schema.org types.
+  For the full set of column names and their statistics, as well as the label space for CTA and CPA, a file is provided 
+  for <a href="https://data.dws.informatik.uni-mannheim.de/structureddata/sotab/CPA and CTA Labels.xlsx">download</a>.
+</p>
+
+<p>
+  <table>
+    <caption> Table 1: Columns' CTA and CPA labels of 3 Schema.org table types</caption>
+    <thead>
+      <th class="tg-mkpc">Table Type</th>
+      <th class="tg-mkpc">CPA label</th>
+      <th class="tg-mkpc">CTA label</th>
+
+      <th class="tg-mkpc" style="border-left: 1px solid #ccc;">Table Type</th>
+      <th class="tg-mkpc">CPA label</th>
+      <th class="tg-mkpc">CTA label</th>
+
+      <th class="tg-mkpc" style="border-left: 1px solid #ccc;">Table Type</th>
+      <th class="tg-mkpc">CPA label</th>
+      <th class="tg-mkpc">CTA label</th>
+    </thead>
+    <tbody>
+      <tr>
+        <td rowspan="5" > <i>Product</i> </td>
+        <td>offers</td>
+        <td>Offer</td>
+
+        <td rowspan="5" style="border-left: 1px solid #ccc;"> <i>Event</i> </td>
+        <td> location </td>
+        <td> Place </td>
+
+        <td rowspan="5" style="border-left: 1px solid #ccc;"> <i>Recipe</i> </td>
+        <td> cookTime </td>
+        <td> Duration </td>
+
+      </tr>
+      <tr>
+        <td> priceCurrency </td>
+        <td> currency </td>
+
+        <td> description </td>
+        <td> Text </td>
+
+        <td> recipeIngredient </td>
+        <td> Text </td>
+
+      </tr><tr>
+        <td> price </td>
+        <td> price </td>
+
+        <td> eventStatus </td>
+        <td> EventStatusType </td>
+
+        <td> prepTime </td>
+        <td> Duration </td>
+
+      </tr><tr>
+        <td> priceValidUntil </td>
+        <td> Date </td>
+
+        <td> duration </td>
+        <td> Duration </td>
+
+        <td> calories </td>
+        <td> Energy </td>
+
+      </tr><tr>
+        <td> sku </td>
+        <td> IdentifierAT </td>
+
+        <td> email </td>
+        <td> email </td>
+
+        <td> fatContent </td>
+        <td> Mass </td>
+
+      </tr>
+    </tbody>
+  </table>
+</p>
+
+
+<span id="toc5"></span>
+<h2> 5. Dataset Profiling</h2>
+<p>
+  The SOTAB benchmark provides CTA annotations for <b>162,351 columns</b> from <b> 59,548 tables</b> and CPA annotations for <b>174,998 column pairs</b> from <b>48,379</b> tables. The tables are distributed across 17 Schema.org types, like 
+  <i>Product</i>, <i>Event</i> and <i>Place</i>. The tables do not include any metadata, i.e. no table headers 
+  and no table captions are available. The benchmark includes columns with textual, numerical and dateTime column values. The CPA and CTA tables are split with a 80:10:10 ration into fixed
+  training, validation and testing splits. In addition, we offer a smaller subset of the training set to help with the comparison of how models perform with different numbers of examples.     
+<em>Table 2</em> gives an overview of the number of tables and columns per type and overview of the number of tables and columns per type and the median number of annotations (labels) for CTA and CPA for each of the splits.
+</p> 
+			 
+<div class="tg-wrap"><table id="tg-tKOYO" class="tg">
+<caption>Table 2: Number of tables, rows and median rows per table for CPA and CTA tables</caption>
+<thead>
+  <tr>
+    <th class="tg-j1i3"></th>
+    <th class="tg-ixdq" colspan="11">Column Type Annotation</th>
+    <th class="tg-ixdq" colspan="11">Columns Property Annotation</th>
+  </tr>
+  <tr>
+    <th class="tg-j1i3"></th>
+    <th class="tg-ixdq" colspan="3">Overall</th>
+    <th class="tg-ixdq" colspan="2">Training Set</th>
+    <th class="tg-ixdq" colspan="2">Small Training Set</th>
+    <th class="tg-ixdq" colspan="2">Validation Set</th>
+    <th class="tg-ixdq" colspan="2">Test Set</th>
+
+    <th class="tg-ixdq" colspan="3">Overall</th>
+    <th class="tg-ixdq" colspan="2">Training Set</th>
+    <th class="tg-ixdq" colspan="2">Small Training Set</th>
+    <th class="tg-ixdq" colspan="2">Validation Set</th>
+    <th class="tg-ixdq" colspan="2">Test Set</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="tg-45e1">Schema.org Type</td>
+    <td class="tg-o939"># tables</td>
+    <td class="tg-o939"># columns</td>
+    <td class="tg-o939">median rows/cols</td>
+    <td class="tg-o939"># tables</td>
+    <td class="tg-o939"># columns</td>
+    <td class="tg-o939"># tables</td>
+    <td class="tg-o939"># columns</td>
+    <td class="tg-o939"># tables</td>
+    <td class="tg-o939"># columns</td>
+    <td class="tg-o939"># tables</td>
+    <td class="tg-o939"># columns</td>
+
+    <td class="tg-o939"># tables</td>
+    <td class="tg-o939"># columns</td>
+    <td class="tg-o939">median rows/cols</td>
+    <td class="tg-o939"># tables</td>
+    <td class="tg-o939"># columns</td>
+    <td class="tg-o939"># tables</td>
+    <td class="tg-o939"># columns</td>
+    <td class="tg-o939"># tables</td>
+    <td class="tg-o939"># columns</td>
+    <td class="tg-o939"># tables</td>
+    <td class="tg-o939"># columns</td>
+  </tr>
+  <tr>
+    <td class="tg-lboi">Overall</td>
+    <td class="tg-9wq8"> 59,548 </td>
+    <td class="tg-9wq8"> 162,351 </td>
+    <td class="tg-9wq8"> 33/7 </td>
+    <td class="tg-9wq8"> 46,790 </td>
+    <td class="tg-9wq8"> 130,471 </td>
+    <td class="tg-9wq8"> 11,517 </td>
+    <td class="tg-9wq8"> 33,004 </td>
+    <td class="tg-9wq8"> 5,732 </td>
+    <td class="tg-9wq8"> 16,840 </td>
+    <td class="tg-9wq8"> 7,026 </td>
+    <td class="tg-9wq8"> 15,040 </td>
+
+    <td class="tg-9wq8"> 48,379 </td>
+    <td class="tg-9wq8"> 174,998 </td>
+    <td class="tg-9wq8"> 42/8 </td>
+    <td class="tg-9wq8"> 37,128 </td>
+    <td class="tg-9wq8"> 134,425 </td>
+    <td class="tg-9wq8"> 9,435 </td>
+    <td class="tg-9wq8"> 33,643 </td>
+    <td class="tg-9wq8"> 4,771 </td>
+    <td class="tg-9wq8"> 17,417 </td>
+    <td class="tg-9wq8"> 6,480 </td>
+    <td class="tg-9wq8"> 23,156 </td>
+  </tr>
+  <tr>
+    <td class="tg-lboi">Product</td>
+    <td class="tg-9wq8"> 12,534 </td>
+    <td class="tg-9wq8"> 30,856 </td>
+    <td class="tg-9wq8"> 40/8 </td>
+    <td class="tg-9wq8"> 10,403 </td>
+    <td class="tg-9wq8"> 25,353 </td>
+    <td class="tg-9wq8"> 2,037 </td>
+    <td class="tg-9wq8"> 5,211 </td>
+    <td class="tg-9wq8"> 857 </td>
+    <td class="tg-9wq8"> 2,507 </td>
+    <td class="tg-9wq8"> 1,274 </td>
+    <td class="tg-9wq8"> 2,996 </td>
+
+    <td class="tg-9wq8"> 16,032 </td>
+    <td class="tg-9wq8"> 36,464 </td>
+    <td class="tg-9wq8"> 65/10 </td>
+    <td class="tg-9wq8"> 12,668 </td>
+    <td class="tg-9wq8"> 29,149 </td>
+    <td class="tg-9wq8"> 3,075 </td>
+    <td class="tg-9wq8"> 6,378 </td>
+    <td class="tg-9wq8"> 1,476 </td>
+    <td class="tg-9wq8"> 2,726 </td>
+    <td class="tg-9wq8"> 1,888 </td>
+    <td class="tg-9wq8"> 4,589 </td>
+  </tr>
+  <tr>
+    <td class="tg-d459">Event</td>
+    <td class="tg-9wq8"> 6,206 </td>
+    <td class="tg-9wq8"> 17,972 </td>
+    <td class="tg-9wq8"> 23/7 </td>
+    <td class="tg-9wq8"> 4,721 </td>
+    <td class="tg-9wq8"> 14,150 </td>
+    <td class="tg-9wq8"> 1,386 </td>
+    <td class="tg-9wq8"> 4,631 </td>
+    <td class="tg-9wq8"> 593 </td>
+    <td class="tg-9wq8"> 1,869 </td>
+    <td class="tg-9wq8"> 892 </td>
+    <td class="tg-9wq8"> 1,953 </td>
+
+    <td class="tg-9wq8"> 6,713 </td>
+    <td class="tg-9wq8"> 21,298 </td>
+    <td class="tg-9wq8"> 25/8 </td>
+    <td class="tg-9wq8"> 5,220 </td>
+    <td class="tg-9wq8"> 15,949 </td>
+    <td class="tg-9wq8"> 1,417 </td>
+    <td class="tg-9wq8"> 4,868 </td>
+    <td class="tg-9wq8"> 722 </td>
+    <td class="tg-9wq8"> 2,573 </td>
+    <td class="tg-9wq8"> 771 </td>
+    <td class="tg-9wq8"> 2,776 </td>
+  </tr>
+  <tr>
+    <td class="tg-lboi">Recipe</td>
+    <td class="tg-9wq8"> 5,080 </td>
+    <td class="tg-9wq8"> 24,590 </td>
+    <td class="tg-9wq8"> 42/13 </td>
+    <td class="tg-9wq8"> 4,083 </td>
+    <td class="tg-9wq8"> 20,809 </td>
+    <td class="tg-9wq8"> 756 </td>
+    <td class="tg-9wq8"> 4,459 </td>
+    <td class="tg-9wq8"> 412 </td>
+    <td class="tg-9wq8"> 2,199 </td>
+    <td class="tg-9wq8"> 585 </td>
+    <td class="tg-9wq8"> 1,582 </td>
+
+    <td class="tg-9wq8"> 4,535 </td>
+    <td class="tg-9wq8"> 27,070 </td>
+    <td class="tg-9wq8"> 52/15 </td>
+    <td class="tg-9wq8"> 3,547 </td>
+    <td class="tg-9wq8"> 20,279 </td>
+    <td class="tg-9wq8"> 967 </td>
+    <td class="tg-9wq8"> 4,687 </td>
+    <td class="tg-9wq8"> 426 </td>
+    <td class="tg-9wq8"> 2,426 </td>
+    <td class="tg-9wq8"> 562 </td>
+    <td class="tg-9wq8"> 4,365 </td>
+  </tr>
+  <tr>
+    <td class="tg-d459">Person</td>
+    <td class="tg-9wq8"> 4,623 </td>
+    <td class="tg-9wq8"> 10,466 </td>
+    <td class="tg-9wq8"> 27/5 </td>
+    <td class="tg-9wq8"> 3,818 </td>
+    <td class="tg-9wq8"> 8,680 </td>
+    <td class="tg-9wq8"> 851 </td>
+    <td class="tg-9wq8"> 1,876 </td>
+    <td class="tg-9wq8"> 374 </td>
+    <td class="tg-9wq8"> 867 </td>
+    <td class="tg-9wq8"> 431 </td>
+    <td class="tg-9wq8"> 919 </td>
+
+    <td class="tg-9wq8"> 3,186 </td>
+    <td class="tg-9wq8"> 11,535 </td>
+    <td class="tg-9wq8"> 32/5 </td>
+    <td class="tg-9wq8"> 2,159 </td>
+    <td class="tg-9wq8"> 8,542 </td>
+    <td class="tg-9wq8"> 476 </td>
+    <td class="tg-9wq8"> 1,936 </td>
+    <td class="tg-9wq8"> 309 </td>
+    <td class="tg-9wq8"> 1,033 </td>
+    <td class="tg-9wq8"> 718 </td>
+    <td class="tg-9wq8"> 1,960 </td>
+  </tr>
+  <tr>
+    <td class="tg-lboi">MusicRecording</td>
+    <td class="tg-9wq8"> 4,092 </td>
+    <td class="tg-9wq8"> 7,482 </td>
+    <td class="tg-9wq8"> 17/5 </td>
+    <td class="tg-9wq8"> 3,344 </td>
+    <td class="tg-9wq8"> 6,117 </td>
+    <td class="tg-9wq8"> 854 </td>
+    <td class="tg-9wq8"> 1546 </td>
+    <td class="tg-9wq8"> 401 </td>
+    <td class="tg-9wq8"> 749 </td>
+    <td class="tg-9wq8"> 347 </td>
+    <td class="tg-9wq8"> 616 </td>
+
+    <td class="tg-9wq8"> 1,250 </td>
+    <td class="tg-9wq8"> 3,883 </td>
+    <td class="tg-9wq8"> 19/5 </td>
+    <td class="tg-9wq8"> 957 </td>
+    <td class="tg-9wq8"> 3,029 </td>
+    <td class="tg-9wq8"> 252 </td>
+    <td class="tg-9wq8"> 776 </td>
+    <td class="tg-9wq8"> 119 </td>
+    <td class="tg-9wq8"> 388 </td>
+    <td class="tg-9wq8"> 174 </td>
+    <td class="tg-9wq8"> 466 </td>
+  </tr>
+  <tr>
+    <td class="tg-d459">Place</td>
+    <td class="tg-9wq8"> 2,680 </td>
+    <td class="tg-9wq8"> 9,181 </td>
+    <td class="tg-9wq8"> 28/7 </td>
+    <td class="tg-9wq8"> 2,015 </td>
+    <td class="tg-9wq8"> 7,596 </td>
+    <td class="tg-9wq8"> 363 </td>
+    <td class="tg-9wq8"> 1,408 </td>
+    <td class="tg-9wq8"> 224</td>
+    <td class="tg-9wq8"> 735 </td>
+    <td class="tg-9wq8"> 441 </td>
+    <td class="tg-9wq8"> 850 </td>
+
+    <td class="tg-9wq8"> 1,403 </td>
+    <td class="tg-9wq8"> 8,070 </td>
+    <td class="tg-9wq8"> 29/7 </td>
+    <td class="tg-9wq8"> 1,175 </td>
+    <td class="tg-9wq8"> 7,090 </td>
+    <td class="tg-9wq8"> 274 </td>
+    <td class="tg-9wq8"> 1,608 </td>
+    <td class="tg-9wq8"> 95 </td>
+    <td class="tg-9wq8"> 486 </td>
+    <td class="tg-9wq8"> 133 </td>
+    <td class="tg-9wq8"> 494 </td>
+  </tr>
+  <tr>
+    <td class="tg-lboi">LocalBusiness</td>
+    <td class="tg-9wq8"> 5,292 </td>
+    <td class="tg-9wq8"> 14,941 </td>
+    <td class="tg-9wq8"> 37/9 </td>
+    <td class="tg-9wq8"> 3,744 </td>
+    <td class="tg-9wq8"> 10,657 </td>
+    <td class="tg-9wq8"> 1,226 </td>
+    <td class="tg-9wq8"> 3,932 </td>
+    <td class="tg-9wq8"> 602 </td>
+    <td class="tg-9wq8"> 2,161 </td>
+    <td class="tg-9wq8"> 946 </td>
+    <td class="tg-9wq8"> 2,123 </td>
+
+    <td class="tg-9wq8"> 5,274 </td>
+    <td class="tg-9wq8"> 15,987 </td>
+    <td class="tg-9wq8"> 39/9 </td>
+    <td class="tg-9wq8"> 4,076 </td>
+    <td class="tg-9wq8"> 11,373 </td>
+    <td class="tg-9wq8"> 1,108 </td>
+    <td class="tg-9wq8"> 3,615 </td>
+    <td class="tg-9wq8"> 503 </td>
+    <td class="tg-9wq8"> 1,991 </td>
+    <td class="tg-9wq8"> 695 </td>
+    <td class="tg-9wq8"> 2,623 </td>
+  </tr>
+  <tr>
+    <td class="tg-d459">CreativeWork</td>
+    <td class="tg-9wq8"> 4,674 </td>
+    <td class="tg-9wq8"> 9,240 </td>
+    <td class="tg-9wq8"> 26/4 </td>
+    <td class="tg-9wq8"> 3,393 </td>
+    <td class="tg-9wq8"> 6,921 </td>
+    <td class="tg-9wq8"> 1,142 </td>
+    <td class="tg-9wq8"> 2,299 </td>
+    <td class="tg-9wq8"> 686 </td>
+    <td class="tg-9wq8"> 1,355 </td>
+    <td class="tg-9wq8"> 595 </td>
+    <td class="tg-9wq8"> 964 </td>
+
+    <td class="tg-9wq8"> 2,997 </td>
+    <td class="tg-9wq8"> 12,468 </td>
+    <td class="tg-9wq8"> 28/6 </td>
+    <td class="tg-9wq8"> 2,323 </td>
+    <td class="tg-9wq8"> 9,866 </td>
+    <td class="tg-9wq8"> 584 </td>
+    <td class="tg-9wq8"> 2,681 </td>
+    <td class="tg-9wq8"> 316 </td>
+    <td class="tg-9wq8"> 1,360 </td>
+    <td class="tg-9wq8"> 358 </td>
+    <td class="tg-9wq8"> 1,242 </td>
+  </tr>
+  <tr>
+    <td class="tg-lboi">MusicAlbum</td>
+    <td class="tg-9wq8"> 393 </td>
+    <td class="tg-9wq8"> 896 </td>
+    <td class="tg-9wq8"> 45/4 </td>
+    <td class="tg-9wq8"> 316 </td>
+    <td class="tg-9wq8"> 725 </td>
+    <td class="tg-9wq8"> 80 </td>
+    <td class="tg-9wq8"> 179 </td>
+    <td class="tg-9wq8"> 38 </td>
+    <td class="tg-9wq8"> 90 </td>
+    <td class="tg-9wq8"> 39 </td>
+    <td class="tg-9wq8"> 81 </td>
+
+    <td class="tg-9wq8"> 373 </td>
+    <td class="tg-9wq8"> 1,057 </td>
+    <td class="tg-9wq8"> 43/4 </td>
+    <td class="tg-9wq8"> 287 </td>
+    <td class="tg-9wq8"> 806 </td>
+    <td class="tg-9wq8"> 80 </td>
+    <td class="tg-9wq8"> 198 </td>
+    <td class="tg-9wq8"> 44 </td>
+    <td class="tg-9wq8"> 125 </td>
+    <td class="tg-9wq8"> 42 </td>
+    <td class="tg-9wq8"> 126 </td>
+  </tr>
+  <tr>
+    <td class="tg-d459">Movie</td>
+    <td class="tg-9wq8"> 2,270 </td>
+    <td class="tg-9wq8"> 6,625 </td>
+    <td class="tg-9wq8"> 75/7 </td>
+    <td class="tg-9wq8"> 1,846 </td>
+    <td class="tg-9wq8"> 5,253 </td>
+    <td class="tg-9wq8"> 489 </td>
+    <td class="tg-9wq8"> 1,605 </td>
+    <td class="tg-9wq8"> 202 </td>
+    <td class="tg-9wq8"> 945 </td>
+    <td class="tg-9wq8"> 222 </td>
+    <td class="tg-9wq8"> 427 </td>
+
+    <td class="tg-9wq8"> 1,539 </td>
+    <td class="tg-9wq8"> 9,194 </td>
+    <td class="tg-9wq8"> 65/8 </td>
+    <td class="tg-9wq8"> 1,115 </td>
+    <td class="tg-9wq8"> 7,379 </td>
+    <td class="tg-9wq8"> 298 </td>
+    <td class="tg-9wq8"> 2,164 </td>
+    <td class="tg-9wq8"> 148 </td>
+    <td class="tg-9wq8"> 828 </td>
+    <td class="tg-9wq8"> 276 </td>
+    <td class="tg-9wq8"> 987 </td>
+  </tr>
+  <tr>
+    <td class="tg-lboi">Hotel</td>
+    <td class="tg-9wq8"> 1,866 </td>
+    <td class="tg-9wq8"> 6,895 </td>
+    <td class="tg-9wq8"> 42/9 </td>
+    <td class="tg-9wq8"> 1,393 </td>
+    <td class="tg-9wq8"> 5,424 </td>
+    <td class="tg-9wq8"> 394 </td>
+    <td class="tg-9wq8"> 1,498 </td>
+    <td class="tg-9wq8"> 238 </td>
+    <td class="tg-9wq8"> 895 </td>
+    <td class="tg-9wq8"> 235 </td>
+    <td class="tg-9wq8"> 576 </td>
+
+    <td class="tg-9wq8"> 998 </td>
+    <td class="tg-9wq8"> 6,123 </td>
+    <td class="tg-9wq8"> 55/9 </td>
+    <td class="tg-9wq8"> 585 </td>
+    <td class="tg-9wq8"> 3,387 </td>
+    <td class="tg-9wq8"> 243 </td>
+    <td class="tg-9wq8"> 1,522 </td>
+    <td class="tg-9wq8"> 202 </td>
+    <td class="tg-9wq8"> 1,466 </td>
+    <td class="tg-9wq8"> 211 </td>
+    <td class="tg-9wq8"> 1,270 </td>
+  </tr>
+  <tr>
+    <td class="tg-d459">SportsEvent</td>
+    <td class="tg-9wq8"> 783 </td>
+    <td class="tg-9wq8"> 2,188 </td>
+    <td class="tg-9wq8"> 41/5 </td>
+    <td class="tg-9wq8"> 613 </td>
+    <td class="tg-9wq8"> 1,823 </td>
+    <td class="tg-9wq8"> 151 </td>
+    <td class="tg-9wq8"> 371 </td>
+    <td class="tg-9wq8"> 86 </td>
+    <td class="tg-9wq8"> 199 </td>
+    <td class="tg-9wq8"> 84 </td>
+    <td class="tg-9wq8"> 166 </td>
+
+    <td class="tg-9wq8"> 766 </td>
+    <td class="tg-9wq8"> 3,508 </td>
+    <td class="tg-9wq8"> 40/5 </td>
+    <td class="tg-9wq8"> 664 </td>
+    <td class="tg-9wq8"> 3,173 </td>
+    <td class="tg-9wq8"> 109 </td>
+    <td class="tg-9wq8"> 379 </td>
+    <td class="tg-9wq8"> 54 </td>
+    <td class="tg-9wq8"> 150 </td>
+    <td class="tg-9wq8"> 48 </td>
+    <td class="tg-9wq8"> 185 </td>
+  </tr>
+  <tr>
+    <td class="tg-lboi">Restaurant</td>
+    <td class="tg-9wq8"> 1,314 </td>
+    <td class="tg-9wq8"> 4,552 </td>
+    <td class="tg-9wq8"> 38/10 </td>
+    <td class="tg-9wq8"> 1,033 </td>
+    <td class="tg-9wq8"> 3,832 </td>
+    <td class="tg-9wq8"> 201 </td>
+    <td class="tg-9wq8"> 497 </td>
+    <td class="tg-9wq8"> 135 </td>
+    <td class="tg-9wq8"> 381 </td>
+    <td class="tg-9wq8"> 146 </td>
+    <td class="tg-9wq8"> 339 </td>
+
+    <td class="tg-9wq8"> 812 </td>
+    <td class="tg-9wq8"> 6,761 </td>
+    <td class="tg-9wq8"> 35/10 </td>
+    <td class="tg-9wq8"> 643 </td>
+    <td class="tg-9wq8"> 6,445 </td>
+    <td class="tg-9wq8"> 69 </td>
+    <td class="tg-9wq8"> 643 </td>
+    <td class="tg-9wq8"> 11 </td>
+    <td class="tg-9wq8"> 58 </td>
+    <td class="tg-9wq8"> 158 </td>
+    <td class="tg-9wq8"> 258 </td>
+  </tr>
+  <tr>
+    <td class="tg-d459">Book</td>
+    <td class="tg-9wq8"> 2,640 </td>
+    <td class="tg-9wq8"> 6,103 </td>
+    <td class="tg-9wq8"> 61/7 </td>
+    <td class="tg-9wq8"> 2,022 </td>
+    <td class="tg-9wq8"> 4,791 </td>
+    <td class="tg-9wq8"> 578 </td>
+    <td class="tg-9wq8"> 1,394 </td>
+    <td class="tg-9wq8"> 341 </td>
+    <td class="tg-9wq8"> 776 </td>
+    <td class="tg-9wq8"> 277 </td>
+    <td class="tg-9wq8"> 536 </td>
+
+    <td class="tg-9wq8"> 1,884 </td>
+    <td class="tg-9wq8"> 9,469 </td>
+    <td class="tg-9wq8"> 73/8 </td>
+    <td class="tg-9wq8"> 1,226 </td>
+    <td class="tg-9wq8"> 6,302 </td>
+    <td class="tg-9wq8"> 372 </td>
+    <td class="tg-9wq8"> 1,847 </td>
+    <td class="tg-9wq8"> 278 </td>
+    <td class="tg-9wq8"> 1,570 </td>
+    <td class="tg-9wq8"> 380 </td>
+    <td class="tg-9wq8"> 1,597 </td>
+  </tr>
+  <tr>
+    <td class="tg-lboi">TVEpisode</td>
+    <td class="tg-9wq8"> 433 </td>
+    <td class="tg-9wq8"> 1,051 </td>
+    <td class="tg-9wq8"> 71/5 </td>
+    <td class="tg-9wq8"> 346 </td>
+    <td class="tg-9wq8"> 849 </td>
+    <td class="tg-9wq8"> 85 </td>
+    <td class="tg-9wq8"> 208 </td>
+    <td class="tg-9wq8"> 45 </td>
+    <td class="tg-9wq8"> 115 </td>
+    <td class="tg-9wq8"> 42 </td>
+    <td class="tg-9wq8"> 87 </td>
+
+    <td class="tg-9wq8"> 416 </td>
+    <td class="tg-9wq8"> 1,257 </td>
+    <td class="tg-9wq8"> 70/5 </td>
+    <td class="tg-9wq8"> 313 </td>
+    <td class="tg-9wq8"> 945 </td>
+    <td class="tg-9wq8"> 83 </td>
+    <td class="tg-9wq8"> 222 </td>
+    <td class="tg-9wq8"> 52 </td>
+    <td class="tg-9wq8"> 159 </td>
+    <td class="tg-9wq8"> 51 </td>
+    <td class="tg-9wq8"> 153 </td>
+  </tr>
+  <tr>
+    <td class="tg-d459">JobPosting</td>
+    <td class="tg-9wq8"> 4,512 </td>
+    <td class="tg-9wq8"> 8,946 </td>
+    <td class="tg-9wq8"> 37/8 </td>
+    <td class="tg-9wq8"> 3,584 </td>
+    <td class="tg-9wq8"> 7,220 </td>
+    <td class="tg-9wq8"> 895 </td>
+    <td class="tg-9wq8"> 1,819 </td>
+    <td class="tg-9wq8"> 484 </td>
+    <td class="tg-9wq8"> 959 </td>
+    <td class="tg-9wq8"> 444 </td>
+    <td class="tg-9wq8"> 767 </td>
+
+    <td class="tg-9wq8"> 134 </td>
+    <td class="tg-9wq8"> 649 </td>
+    <td class="tg-9wq8"> 45/8 </td>
+    <td class="tg-9wq8"> 103 </td>
+    <td class="tg-9wq8"> 506 </td>
+    <td class="tg-9wq8"> 28 </td>
+    <td class="tg-9wq8"> 119 </td>
+    <td class="tg-9wq8"> 16 </td>
+    <td class="tg-9wq8"> 78 </td>
+    <td class="tg-9wq8"> 15 </td>
+    <td class="tg-9wq8"> 65 </td>
+  </tr>
+  <tr>
+    <td class="tg-lboi">Museum</td>
+    <td class="tg-9wq8"> 156 </td>
+    <td class="tg-9wq8"> 367 </td>
+    <td class="tg-9wq8"> 25/9 </td>
+    <td class="tg-9wq8"> 116 </td>
+    <td class="tg-9wq8"> 271 </td>
+    <td class="tg-9wq8"> 29 </td>
+    <td class="tg-9wq8"> 71 </td>
+    <td class="tg-9wq8"> 14 </td>
+    <td class="tg-9wq8"> 38 </td>
+    <td class="tg-9wq8"> 26 </td>
+    <td class="tg-9wq8"> 58 </td>
+
+    <td class="tg-9wq8"> 67 </td>
+    <td class="tg-9wq8"> 205 </td>
+    <td class="tg-9wq8"> 25/6 </td>
+    <td class="tg-9wq8"> 67 </td>
+    <td class="tg-9wq8"> 205 </td>
+    <td class="tg-9wq8"> - </td>
+    <td class="tg-9wq8"> - </td>
+    <td class="tg-9wq8"> - </td>
+    <td class="tg-9wq8"> - </td>
+    <td class="tg-9wq8"> - </td>
+    <td class="tg-9wq8"> - </td>
+  </tr>
+</tbody>
+</table></div>
+
+<span id="toc6"></span>
+<h2> 6. Testsets for Specific Challenges </h2>
+
+<p>
+  In addition to the full test sets for both tasks, we provide subsets of the test set that measure how good the systems under test can handle specific annotation challenges. 
+  We provide test sets for the following challenges: (i) Missing Values, (ii) Value Format Heterogeneity and (iii) Corner Cases. The last test set is the Random subset. 
+  In each subset and for each label included there is a minimum of 10 examples. These are explained in more detail below.    
+</p>
+
+<p>
+  <b>(a) Missing values:</b> It is difficult for table annotation systems to correctly annotate columns in which many values are missing. In order to measure the annotation performance on such columns, 
+  we provide a test set that contains columns that have a density between 10 and 70 percent, i.e. 10-70 percent of their rows are filled with values. For the CPA problem we included 4,032 column pairs 
+  annotated with 130 CPA labels and for CTA 2,808 columns annotated with 66 CTA labels in this testset.
+</p>
+
+<p>
+  <b>(b) Value Format Heterogeneity:</b> As it can be difficult to distinguish columns whose values are expressed with different formats or metrics, we include this subset with columns that have the same label 
+  but their values are expressed in different formats, like different date formats or different measurement metrics. The CPA columns that are selected for this
+  challenge are the different date columns, duration, height, weight, width, price, telephone, faxNumber, servingSize, size and salary. There are in total 1,593 columns for CPA in this
+  subset annotated with 31 different CPA labels.
+  For CTA, the selected columns are duration, height, weight, width, Date, DateTime, Time, price, priceRange, telephone and faxNumber. The CTA columns are in total 619 and are annotated with
+  10 CTA labels.
+</p>
+
+<p>
+  <b>(c) Corner Cases:</b> Corner Cases columns are columns that are considered difficult to annotate as they resemble columns with different labels or their values differ from other columns with the same label.
+  This could lead to wrong predictions made by systems on these columns. Therefore we provide a subset that includes columns that are considered to be corner cases. 
+  These similar and dissimilar columns
+  were detected using a TF-IDF and cosine similarity method for textual columns and a Kolmogorov–Smirnov statistical test for numerical and DateTime columns.
+  There are 3,492 corner cases included in the
+  CPA corner cases subset which are annotated with 116 different CPA labels, while in the CTA subset there are 3,015 corner case columns annotated with 59 different CTA labels.
+</p>
+
+<p>
+  <b>(d) Random Columns: </b> This subset includes randomly selected columns for each label of each task. In total there are 8,598 randomly selected columns annotated with 91 different labels
+  for CTA and 14,039 randomly selected columns annotated with 176 different labels in the CPA subset.
+
+  <br/>
+  Some examples of columns selected for the three challenges are shown in <i>Table 3</i>.
+</p>
+
+
+<table>
+  <caption>Table 3. Challenge columns examples.</caption>
+  <tbody>
+    <tr>
+      <th></th>
+      <th><b>Label</b></th>
+      <th><b>Column Values</b></th>
+    </tr>
+    <tr>
+      <td rowspan="2"> <i>(a) Missing Values</i> </td>
+      <td> <b>bestRating</b>  </td>
+      <td> 5.0, 5.0, None, None ... </td>
+    </tr>
+    <tr>
+      <td> <b>priceCurrency</b> </td>
+      <td> 'GBP', 'GBP', None, None ... </td>
+    </tr>
+    <tr>
+      <td rowspan="2"> <i>(b) Format Heterogeneity</i> </td>
+      <td> <b>duration</b> </td>
+      <td> 'Runtime: 86 mins', 'Runtime: 76 mins' ... </td>
+    </tr>
+    <tr>
+      <td> <b>duration</b> </td>
+      <td> '8:11', '4:14', '0:48', '5:51', '4:55' ... </td>
+    </tr>
+    <tr>
+      <td rowspan="6"> <i>(c) Corner Cases</i> </td>
+      <td> <b>startDate</b>  </td>
+      <td>'2020-09-12T00:00:00.000Z', '2020-05-22T01:00:00.000Z', '2020-08-07T00:00:00.000Z' ... </td>
+    </tr>
+    <tr>
+      <td> <b>endDate</b> </td>
+      <td>'2020-09-20T14:00:00.000Z', '2020-05-24T10:00:00.000Z', '2020-08-09T15:00:00.000Z' ... </td>
+    </tr>
+    <tr>
+      <td> <b>memberOf</b> </td>
+      <td> 'Pinterest', 'youtube', 'Facebook', 'Twitter', ... </td>
+    </tr>
+    <tr>
+      <td> <b>text</b> </td>
+      <td> Share this: Email Facebook Twitter LinkedIn Pinterest' ...</td>
+    </tr>
+    <tr>
+      <td> <b>currenciesAccepted</b> </td>
+      <td>'USD', 'USD', 'USD', 'USD', ...</td>
+    </tr>
+    <tr>
+      <td> <b>priceCurrency</b> </td>
+      <td>'USD', 'USD', 'USD', 'USD', ...</td>
+    </tr>
+  </tbody>
+</table>
+
+<span id="toc7"></span>
+<h2> 7. Baselines</h2>
+
+<p>
+  To evaluate the usefulness of the benchmark created sets, we ran three baseline experiments. The first baseline method is a non-deep learning method that uses TF-IDF weighting to create features 
+  based on the column values
+  and uses a Random Forest classifier to make predictions. The second baseline is a deep learning method called TURL [<a href="#toc14">4</a>] which uses a Transformer-based [<a href="#toc15">5</a>] architecture and is 
+  pre-trained on relational tables using TinyBERT. In addition, TURL incorporates table context into its model. We fine-tune TURL for 50 epochs using a learning rate of 5e-5 and a batch size of 20. The last baseline method is DODUO [<a href="#toc16">7</a>] which fine-tunes BERT and 
+  uses table serialization to incorporate table context. For the experiments the micro-F1 score is used to report the results of each baseline method and using both the Large training set and the Small training set. The results are summarized in <i>Table 4a</i> for CTA
+  and in <i>Table 4b</i> for CPA.
+</p>
+
+<div class="tg-wrap"><table id="tg-X7nck" class="tg">
+            <caption>Table 4a: Baseline Results for CTA</caption>
+
+<thead>
+  <tr>
+    <th></th>
+    <th class="tg-mkpc" colspan="3">Large Training Set</th>
+    <th class="tg-ixdq" colspan="3">Small Training Set</th>
+  </tr>
+  <tr>
+    <th class="tg-mkpc"></th>
+    <th class="tg-ixdq">RF</th>
+    <th class="tg-ixdq">TURL</th>
+    <th class="tg-ixdq">DODUO</th>
+    <th class="tg-ixdq">RF</th>
+    <th class="tg-ixdq">TURL</th>
+    <th class="tg-ixdq">DODUO</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="tg-d459">Test (Full) </td>
+    <td class="tg-kyy7"><span style="font-weight:400;font-style:normal">58.58</span></td>
+    <td class="tg-kyy7"><span style="font-weight:400;font-style:normal">78.96</span></td>
+    <td class="tg-kyy7"><span style="font-weight:400;font-style:normal">84.82</span></td>
+    <td class="tg-kyy7"><span style="font-weight:400;font-style:normal">55.57</span></td>
+    <td class="tg-kyy7"><span style="font-weight:400;font-style:normal">72.16</span></td>
+    <td class="tg-kyy7"><span style="font-weight:400;font-style:normal">76.27</span></td>
+    
+  </tr>
+  <tr>
+    <td class="tg-lboi"> Test (Missing Values) </td>
+    <td class="tg-kyy7"><span style="font-weight:400;font-style:normal">60.47</span></td>
+    <td class="tg-kyy7"><span style="font-weight:400;font-style:normal">73.14</span></td>
+    <td class="tg-kyy7"><span style="font-weight:400;font-style:normal">83.28</span></td>
+    <td class="tg-kyy7"><span style="font-weight:400;font-style:normal">58.04</span></td>
+    <td class="tg-kyy7"><span style="font-weight:400;font-style:normal">66.98</span></td>
+    <td class="tg-kyy7"><span style="font-weight:400;font-style:normal">69.55</span></td>
+    
+  </tr>
+  <tr>
+    <td class="tg-d459"> Test (Format Heterogeneity) </td>
+    <td class="tg-kyy7"><span style="font-weight:400;font-style:normal">64.78</span></td>
+    <td class="tg-kyy7"><span style="font-weight:400;font-style:normal">90.14</span></td>
+    <td class="tg-kyy7"><span style="font-weight:400;font-style:normal">92.98</span></td>
+    <td class="tg-kyy7"><span style="font-weight:400;font-style:normal">62.35</span></td>
+    <td class="tg-kyy7"><span style="font-weight:400;font-style:normal">87.88</span></td>
+    <td class="tg-kyy7"><span style="font-weight:400;font-style:normal">85.95</span></td>
+
+    
+  </tr>
+  <tr>
+    <td class="tg-lboi">Test (Corner Cases)</td>
+    <td class="tg-kyy7"><span style="font-weight:400;font-style:normal">55.15</span></td>
+    <td class="tg-kyy7"><span style="font-weight:400;font-style:normal">73.59</span></td>
+    <td class="tg-kyy7"><span style="font-weight:400;font-style:normal">78.03</span></td>
+    <td class="tg-kyy7"><span style="font-weight:400;font-style:normal">51.97</span></td>
+    <td class="tg-kyy7"><span style="font-weight:400;font-style:normal">68.19</span></td>
+    <td class="tg-kyy7"><span style="font-weight:400;font-style:normal">74.00</span></td>
+
+    
+  </tr>
+  <tr>
+    <td class="tg-lboi">Test (Random Columns)</td>
+    <td class="tg-kyy7"><span style="font-weight:400;font-style:normal">58.72</span></td>
+    <td class="tg-kyy7"><span style="font-weight:400;font-style:normal">81.93</span></td>
+    <td class="tg-kyy7"><span style="font-weight:400;font-style:normal">87.12</span></td>
+    <td class="tg-kyy7"><span style="font-weight:400;font-style:normal">55.53</span></td>
+    <td class="tg-kyy7"><span style="font-weight:400;font-style:normal">74.11</span></td>
+    <td class="tg-kyy7"><span style="font-weight:400;font-style:normal">81.82</span></td>
+
+    
+  </tr>
+</tbody>
+</table>
+					
+<table id="tg-FFQ1F" class="tg">
+  <caption>Table 4b: Baseline Results for CPA</caption>
+  <thead>
+  <tr>
+    <th></th>
+    <th class="tg-mkpc" colspan="3">Large Training Set</th>
+    <th class="tg-ixdq" colspan="3">Small Training Set</th>
+  </tr>
+  <tr>
+    <th class="tg-mkpc"></th>
+    <th class="tg-ixdq">RF</th>
+    <th class="tg-ixdq">TURL</th>
+    <th class="tg-ixdq">DODUO</th>
+    <th class="tg-ixdq">RF</th>
+    <th class="tg-ixdq">TURL</th>
+    <th class="tg-ixdq">DODUO</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="tg-d459">Test (Full) </td>
+    <td class="tg-kyy7"><span style="font-weight:400;font-style:normal">44.80</span></td>
+    <td class="tg-kyy7"><span style="font-weight:400;font-style:normal">72.93</span></td>
+    <td class="tg-kyy7"><span style="font-weight:400;font-style:normal">79.96</span></td>
+    <td class="tg-kyy7"><span style="font-weight:400;font-style:normal">41.44</span></td>
+    <td class="tg-kyy7"><span style="font-weight:400;font-style:normal">66.30</span></td>
+    <td class="tg-kyy7"><span style="font-weight:400;font-style:normal">75.38</span></td>
+  </tr>
+  <tr>
+    <td class="tg-lboi"> Test (Missing Values) </td>
+    <td class="tg-kyy7"><span style="font-weight:400;font-style:normal">44.59</span></td>
+    <td class="tg-kyy7"><span style="font-weight:400;font-style:normal">66.24</span></td>
+    <td class="tg-kyy7"><span style="font-weight:400;font-style:normal">78.27</span></td>
+    <td class="tg-kyy7"><span style="font-weight:400;font-style:normal">42.06</span></td>
+    <td class="tg-kyy7"><span style="font-weight:400;font-style:normal">59.97</span></td>
+    <td class="tg-kyy7"><span style="font-weight:400;font-style:normal">74.34</span></td>
+  </tr>
+  <tr>
+    <td class="tg-d459"> Test (Format Heterogeneity) </td>
+    <td class="tg-kyy7"><span style="font-weight:400;font-style:normal">45.69</span></td>
+    <td class="tg-kyy7"><span style="font-weight:400;font-style:normal">77.15</span></td>
+    <td class="tg-kyy7"><span style="font-weight:400;font-style:normal">83.50</span></td>
+    <td class="tg-kyy7"><span style="font-weight:400;font-style:normal">43.69</span></td>
+    <td class="tg-kyy7"><span style="font-weight:400;font-style:normal">69.86</span></td>
+    <td class="tg-kyy7"><span style="font-weight:400;font-style:normal">77.38</span></td>
+  </tr>
+  <tr>
+    <td class="tg-lboi">Test (Corner Cases)</td>
+    <td class="tg-kyy7"><span style="font-weight:400;font-style:normal">38.00</span></td>
+    <td class="tg-kyy7"><span style="font-weight:400;font-style:normal">62.54</span></td>
+    <td class="tg-kyy7"><span style="font-weight:400;font-style:normal">71.24</span></td>
+    <td class="tg-kyy7"><span style="font-weight:400;font-style:normal">35.39</span></td>
+    <td class="tg-kyy7"><span style="font-weight:400;font-style:normal">57.87</span></td>
+    <td class="tg-kyy7"><span style="font-weight:400;font-style:normal">66.73</span></td>
+  </tr>
+  <tr>
+    <td class="tg-lboi">Test (Random Columns)</td>
+    <td class="tg-kyy7"><span style="font-weight:400;font-style:normal">46.46</span></td>
+    <td class="tg-kyy7"><span style="font-weight:400;font-style:normal">76.96</span></td>
+    <td class="tg-kyy7"><span style="font-weight:400;font-style:normal">82.25</span></td>
+    <td class="tg-kyy7"><span style="font-weight:400;font-style:normal">42.51</span></td>
+    <td class="tg-kyy7"><span style="font-weight:400;font-style:normal">69.81</span></td>
+    <td class="tg-kyy7"><span style="font-weight:400;font-style:normal">77.64</span></td>
+  </tr>
+</tbody>
+</table></div>
+
+<p>
+  Test (Full) refers to the full test set that includes all annotated columns, while Test (Missing Values) refers to the subset of the full
+  test set that contains the columns that have missing values, Test (Format Heterogeneity) refers to the subset of the full test set that contains
+  the columns with different value formats , Test (Corner Cases) refers to the subset of the full test set that contains the hard to annotate
+  columns and lastly Test (Random Columns) contains all the columns of the full test set that were chosen randomly. 
+</p>
+
+<p>
+  In all cases, TURL achieves higher micro-F1 scores when trainined on the Large and Small training sets. The difference between both baselines
+  is on average 17 percetange points on all test sets. The Test (Corner Cases) and Test (Missing Values) are two of the subsets where the lowest
+  micro-F1 scores are reached for both baselines, while when evaluating on Test (Format Heterogeneity) both methods appear to achieve better performance
+  than in other subsets. Additionally, training with less examples drops the F1 scores and this can be seen more in TURL. A more fine-grained evaluation
+  and their results for each label in each task and each challenge can be found in the <a href="#toc8">Download</a> section. 
+  We list in <i>Table 5</i> the top 5 labels that reached the highest score in the overall test set and the top 5 labels that reached the lowest score for both CPA and CTA tasks in the overall test set.
+ </p>
+
+ <div class="tg-wrap"><table id="tg-X7nck" class="tg">
+  <caption>Table 5a. Top 5 best and 5 lowest F1 scores for labels in CTA for TURL using the Large training set</caption>
+
+<thead>
+  <tr>
+      <th class="tg-mkpc" colspan="2">Top 5</th>
+      <th class="tg-mkpc" colspan="2">Lowest 5</th>
+    </tr>
+  <tr>
+      <td>Label</td>
+      <td>Overall F1</td>
+      <td>Label</td>
+      <td>Overall F1</td>
+    </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>Action</td>
+    <td>98.94</td>
+    <td>MusicAlbum/name</td>
+    <td>47.36</td>
+  </tr>
+  <tr>
+    <td>GenderType</td>
+    <td>98.90</td>
+    <td>DeliveryMethod</td>
+    <td>46.42</td>
+  </tr>
+  <tr>
+    <td>DayOfWeek</td>
+    <td>98.35</td>
+    <td>ProductModel</td>
+    <td>41.66</td>
+  </tr>
+  <tr>
+    <td>Boolean</td>
+    <td>97.24</td>
+    <td>MusicGroup</td>
+    <td>34.28</td>
+  </tr>
+  <tr>
+    <td>EventAttendanceModeEnumeration</td>
+    <td>97.16</td>
+    <td>CreativeWork/name</td>
+    <td>31.84</td>
+  </tr>
+</tbody>
+</table>
+					
+<table id="tg-FFQ1F" class="tg">
+  <caption>Table 5b. Top 5 best and 5 lowest F1 scores for labels in CPA for TURL using the Large training set</caption>
+  <thead>
+  <tr>
+      <th class="tg-mkpc" colspan="2">Top 5</th>
+      <th class="tg-mkpc" colspan="2">Lowest 5</th>
+    </tr>
+  <tr>
+      <td>Label</td>
+      <td>Overall F1</td>
+      <td>Label</td>
+      <td>Overall F1</td>
+    </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>dayOfWeek</td>
+    <td>99.21</td>
+    <td>alternateName</td>
+    <td>20.00</td>
+  </tr>
+  <tr>
+    <td>knowsLanguage</td>
+    <td>98.70</td>
+    <td>productID</td>
+    <td>19.90</td>
+  </tr>
+  <tr>
+    <td>availability</td>
+    <td>98.16</td>
+    <td>workLocation</td>
+    <td>18.60</td>
+  </tr>
+  <tr>
+    <td >contactType</td>
+    <td>97.85</td>
+    <td>memberOf</td>
+    <td>11.02</td>
+  </tr>
+  <tr>
+    <td>interactionType</td>
+    <td >97.43</td>
+    <td >award</td>
+    <td>7.14</td>
+  </tr>
+</tbody>
+</table></div>
+
+<span id="toc8"></span>
+<h2> 8. Download</h2>
+			
+        <p>We offer the WDC SOTAB benchmark for public download and make the code for building the benchmark available on <a href="https://github.com/wbsg-uni-mannheim/wdc-sotab">github</a>. In the table below you will find download links for training, validation and testing splits for both tasks, CPA and CTA. Each zip file contains a folder with the tables
+		as well as a csv file containing the label annotations for each table. This file consists of three columns, (i) table name, (ii) column position in the table and (iii) associated CPA/CTA label for this column.
+		
+		For both types of files we also offer a small sample file as an example and quick reference on their structure.</p>
+		
+		The tables are represented using the JSON format and can for example be easily processed using the <a href="https://pandas.pydata.org/">pandas</a> Python library.<br><br>
+			<code>import pandas as pd<br>
+						df = pd.read_json('table_name.json.gz', compression='gzip', lines=True)
+				</code>
+				<p>
+		</p>
+
+    <p>
+      The ground truth files are provided in the same format as datasets used in the SemTab challenge. The files include the <i>"table_name"</i> column, the <i>"column_index"</i> column and the <i>"label"</i> column. The first
+      lists the names of the tables, the second points to the position of a column in the table and the last the annotation of the column at the specified index. Additionally, in the CPA ground truth files, the
+      <i>"main_column_index"</i> points to the position in the table where the main column of the table is located. An example of ground truth files 
+      is given in <i>Figure 2</i>.
+    </p>
+
+    <figure>
+      <img src="images/ground_truth_files.png" alt="Ground Truth" width="85%">
+      <figcaption><b><a id="Fig1"></a>Figure 2:</b> Example of ground truth files. The left table shows the CTA ground truth file and the right table shows the CPA ground truth file.</figcaption>
+    </figure>
+
+			<p>
+<table>
+					<tbody>
+						<tr>
+							<td><b>Task</b></td>
+							<td><b>Training Set</b></td>
+							<td><b>Size</b></td>
+							<td><b>Validation Set</b></td>
+							<td><b>Size</b></td>
+							<td><b>Test Set</b></td>
+							<td><b>Size</b></td>
+							<td><b>Table file sample</b></td>
+							<td><b>Label file sample</b></td>
+						</tr>
+
+
+
+						<tr>
+							<td>Column Property Annotation (CPA)</td>
+							<td><a
+									href="https://data.dws.informatik.uni-mannheim.de/structureddata/sotab/CPA_Training.zip">CPA_Training.zip</a>
+								</td>
+							<td>1.2GB</td>
+							<td><a
+									href="https://data.dws.informatik.uni-mannheim.de/structureddata/sotab/CPA_Validation.zip">CPA_Validation.zip</a>
+							</td>
+							<td>200MB</td>
+							<td><a
+									href="https://data.dws.informatik.uni-mannheim.de/structureddata/sotab/CPA_Test.zip">CPA_Test.zip</a>
+								</td>
+							<td>335MB</td>
+							<td><a
+									href="https://data.dws.informatik.uni-mannheim.de/structureddata/sotab/sample_cpa_table.json">CPA_sample_table</a>
+							</td>
+              <td><a
+                  href="https://data.dws.informatik.uni-mannheim.de/structureddata/sotab/sample_cpa_labels.json">CPA_sample_labels</a>
+              </td>
+						</tr>
+						<tr>
+    <td>Column Type Annotation (CTA)</td>
+    <td><a
+            href="https://data.dws.informatik.uni-mannheim.de/structureddata/sotab/CTA_Training.zip">CTA_Training.zip</a>
+        </td>
+	<td>1.2GB</td>
+    <td><a
+            href="https://data.dws.informatik.uni-mannheim.de/structureddata/sotab/CTA_Validation.zip">CTA_Validation.zip</a>
+    </td>
+	<td>170MB</td>
+    <td><a
+            href="https://data.dws.informatik.uni-mannheim.de/structureddata/sotab/CTA_Test.zip">CTA_Test.zip</a>
+        </td>
+	<td>300MB</td>
+    <td><a
+            href="https://data.dws.informatik.uni-mannheim.de/structureddata/sotab/sample_cta_table.json">CTA_sample_table</a>
+    </td>
+    <td><a
+            href="https://data.dws.informatik.uni-mannheim.de/structureddata/sotab/sample_cta_labels.json">CTA_sample_labels</a>
+    </td>
+</tr>
+					</tbody>
+				</table>
+
+  <h3>Additional Downloads</h3>
+  <p>
+    <table>
+      <tbody>
+        <tr>
+          <td></td>
+          <td>File</td>
+          <td>Size</td>
+        </tr>
+        <tr>
+          <td><b>Detailed Baseline Results</b></td>
+          <td>
+            <a href="https://data.dws.informatik.uni-mannheim.de/structureddata/sotab/Baseline Results.xlsx">Baseline Results.xlsx</a>
+          </td>
+          <td>149 KB</td>
+        </tr>
+        <tr>
+          <td><b>CTA and CPA Labels</b></td>
+          <td>
+            <a href="https://data.dws.informatik.uni-mannheim.de/structureddata/sotab/CPA and CTA Labels.xlsx">CPA and CTA Labels.xlsx</a>
+          </td>
+          <td>25 KB</td>
+        </tr>
+      </tbody>  
+    </table>
+  </p>
+				<span id="toc9"></span>
+				<h2>9. Other Table Annotation Benchmarks</h2>
+
+        <p>
+          There exist several other benchmark datasets for the CTA and CPA task. An overview of current results on these datasets is given at Papers with Code for Column Type Annotation, Column Property Annotation and Cell Entity Annotation.
+          The two benchmarks that are most closely related to SOTAB are GitTables-SemTab [<a href="#toc16">6</a>] and Wikitables-TURL [<a href="#toc14">4</a>]. 
+        </p>
+
+        <p>
+          <a href="https://gittables.github.io/">GitTables</a> [<a href="#toc16">6</a>] is a corpus that contains around 1 million tables collected from GitHub and annotated with Schema.org and 
+          DBpedia classes and properties. A <a href="https://zenodo.org/record/5706316#.YvuQdnZByUk">subset of GitTables</a> was created for the SemTab challenge, where 1,101 tables were annotated 
+          and made available for benchmarking methods on the CTA task. In these tables, 721 columns were annotated with 59 unique Schema.org types and properties 
+          and 2,533 columns were annotated using 122 unique DBpedia classes.
+        </p>
+
+        <p>
+          The <a href="https://github.com/sunlab-osu/TURL">WikiTables-TURL</a> [<a href="#toc14">4</a>] datasets were created to evaluate methods on the CTA and CPA tasks. It contains 406,706 tables annotated for 
+          the CTA task using 255 unique labels from Freebase and 55,970 tables annotated for CPA using 121 unique labels. They provide fixed 
+          training, validation and test sets. Over 600,000 columns are annotated for CTA and over 60,000 column pairs for CPA. 
+        </p>
+				
+				<span id="toc10"></span>
+				<h2> 10. References </h2>
+
+        <p>
+          <span id="toc12"></span>
+
+          [1] K. Korini, R. Peeters,  C. Bizer, SOTAB: The WDC Schema.org Table Annotation Benchmark,  in: Semantic Web Challenge on Tabular Data to Knowledge Graph Matching
+          (SemTab), CEUR-WS.org, 2022. <br/>
+
+          [2] D. Ritze, O. Lehmberg, Y. Oulabi, C. Bizer, Profiling the Potential of Web Tables for
+          Augmenting Cross-domain Knowledge Bases, in: Proceedings of the 25th International
+          Conference on World Wide Web, 2016, pp. 251–261. <br/>
+
+          <span id="toc13"></span>
+          [3] E. Rahm, P. A. Bernstein, A survey of approaches to automatic schema matching, The
+          VLDB Journal — The International Journal on Very Large Data Bases 10 (2001) 334–350. <br/>
+
+          <span id="toc14"></span>
+          [4] X. Deng, H. Sun, A. Lees, Y. Wu, C. Yu, TURL: Table understanding through representation
+          learning, Proceedings of the VLDB Endowment 14 (2020) 307–319. <br/>
+
+          <span id="toc15"></span>
+          [5] A. Vaswani, N. Shazeer, N. Parmar, J. Uszkoreit, L. Jones, et al., Attention is All you Need,
+          in: Advances in Neural Information Processing Systems (NIPS 2017), volume 30, 2017. <br/>
+
+          <span id="toc16"></span>
+          [6] M. Hulsebos, Ç. Demiralp, P. Groth, GitTables: A Large-Scale Corpus of Relational Tables,
+          arXiv:2106.07258 (2022). <br/>
+
+          <span id="toc17"></span>
+          [7] Suhara, Y., Li, J., Li, Y., Zhang, D., Demiralp, Ç. et al. “Annotating columns 
+          with pre-trained language models.” In Proceedings of the 2022 International Conference on Management of Data, 2022, pp. 1493–1503
+        </p>
+
+        <span id="toc11"></span>
+				<h2> 11. Feedback </h2>
+        
+        <p>Please send questions and feedback to the <a
+						href="http://groups.google.com/group/web-data-commons">Web Data
+						Commons Google Group</a>.<br /><br />
+					More information about the <strong>Web Data Commons</strong> project is found <a href="http://webdatacommons.org/">here</a>.</p>
+				
+				<p>&nbsp;</p>
+
+				<script type="text/javascript">
+					$('#toc').toc({
+						'selectors': 'h2', //elements to use as headings
+						'container': '#toccontent', //element to find all selectors in
+						'smoothScrolling': true, //enable or disable smooth scrolling on click
+						'prefix': 'toc', //prefix for anchor tags and class names
+						'highlightOnScroll': true, //add class to heading that is currently in focus
+						'highlightOffset': 100, //offset to trigger the next headline
+						'anchorName': function (i, heading, prefix) { //custom function for anchor name
+							return prefix + i;
+						}
+					});
+					$('[id*="link_"]').each(function () {
+						var element = $(this);
+						element.click(function (e) {
+							e.preventDefault();
+							var id = element.attr("id").split("_")[1];
+							element.parent().removeClass("show").addClass("no-show");
+							$('#charts_' + id).removeClass("no-show").addClass("show");
+						});
+					});
+					$('[id*="colapse_"]').each(function () {
+						var element = $(this);
+						element.click(function (e) {
+							e.preventDefault();
+							var id = element.attr("id").split("_")[1];
+							element.parent().removeClass("show").addClass("no-show");
+							$('#intro_' + id).removeClass("no-show").addClass("show");
+						});
+					});
+					document.getElementById("defaultOpen").click();
+				</script>
+</body>
+
+</html>
