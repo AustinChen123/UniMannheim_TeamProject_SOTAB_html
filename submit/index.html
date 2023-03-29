@@ -676,25 +676,19 @@
   </div>
   <div id="content">
     <p>
-      This page provides the <b>WDC Schema.org <a href="https://paperswithcode.com/task/table-annotation">Table
-          Annotation</a> Benchmark</b> (SOTAB) for public download. SOTAB features two annotation tasks: Column Type
-      Annotation and
-      Columns Property Annotation. The goal of the <a
-        href="https://paperswithcode.com/task/column-type-annotation">Column Type Annotation (CTA)</a> task is to
-      annotate the columns of a table with 91
-      <a href="https://schema.org/">Schema.org</a> types, such as telephone, duration, Place, or Organization. The goal
-      of the <a href="https://paperswithcode.com/task/columns-property-annotation">Columns Property
-        Annotation (CPA)</a> task is to annotate pairs of table columns with one out of 176 <a
-        href="https://schema.org/">Schema.org</a> properties, such as gtin13, startDate, priceValidUntil, or
-      recipeIngredient.
-      The benchmark consists of <b>59,548 tables</b> annotated for CTA and <b>48,379 tables</b> annotated for CPA
-      originating from <b> 74,215 </b> different websites. The tables are split into training-, validation- and test
-      sets for both tasks.
-      The tables cover 17 popular Schema.org types including Product, LocalBusiness, Event, and JobPosting. The tables
-      originate from the <a href="http://webdatacommons.org/structureddata/schemaorgtables/">Schema.org Table
-        Corpus</a>.
+      This webpage engages with the experiements and results of a six month student team project on the topic of 
+      "Table Annotation using Deep Learning" at the School of Business Informatics and Mathematics of the 
+      University of Mannheim under the supervision of Keti Korini and Christian Bizer.
     </p>
-
+    <p>
+        We have conducted a set of experiments around the use of transformer language models based on <a href="https://webdatacommons.org/structureddata/sotab/">WDC Schema.org Table
+        Annotation Benchmark</b> (SOTAB)</a>[<a href = "#toc9">1</a>]. There are two multi-class classification tasks: <a
+        href="https://paperswithcode.com/task/column-type-annotation">Column Type Annotation (CTA)</a> 
+        and <a href="https://paperswithcode.com/task/columns-property-annotation">Columns Property
+        Annotation (CPA)</a> CTA involves predicting the column type, while CPA involves predicting the column properties or relations.
+        All of our experiments and code are available in our <a href = "https://github.com/wbsg-uni-mannheim-students/table-annotation-using-deep-learning">GitHub repository.</a>
+    </p>
+      
     <h2>Contents</h2>
     <ul>
       <li class="toc-h2 toc-active">
@@ -747,62 +741,37 @@
     <span id="toc1"></span>
     <h2>1. Introduction</h2>
     <p>
-      Understanding the semantics of table elements is a pre-requisite for many data integration and data discovery
-      tasks such as knowledge base augmentation [<a href="#toc12">2</a>], schema matching [<a href="#toc13">3</a>] or
-      dataset search.
-      <a href="https://paperswithcode.com/task/table-annotation">Table annotation</a> is the task of annotating a table
-      with terms/concepts from knowledge graph, database schema or vocabulary.
-      Table annotation consists of five different tasks: column type annotation (CTA), columns property annotation
-      (CPA), cell entity annotation (CEA), row annotation, and table type detection.
-      Table annotation has attracted <a href="https://paperswithcode.com/task/table-annotation">quite some attention in
-        the research community</a> in recent years and there are active benchmarking campaigns on table annotation, such
-      as <a href="https://www.cs.ox.ac.uk/isg/challenges/sem-tab/">SemTab</a>.
-      <span id="toc2"></span>
-    </p>
-
-    <p>
-      CTA is the task of annotating table columns with the type of entities described in the column, while CPA aims to
-      annotate the relationship between the main column of a table (usually the leftmost)
-      with another column in the table.
-      An example of CTA and CPA annotations is given in <i>Figure 1</i>. For the CTA task, the first column is annotated
-      with the label <b>"Hotel/name"</b> as the column contains the names of hotels. Further CTA annotations are
-      <b>"addressLocation", "addressLocality", "Country" and "currency"</b> For the CPA task
-      the relationship between the main column <b>"Hotel/name"</b> and the second column is annotated using
-      <b>"streetAddress"</b> as the second column shows the address of the hotels in the first column.
-    </p>
-
-    <figure>
-      <img src="images/table_CTA_CPA.jpg" alt="Table Annotation Example">
-      <figcaption><b><a id="Fig1"></a>Figure 1:</b> Example of table annotation. The CTA labels are placed on the top of
-        the columns, while the CPA labels are placed between the main column (leftmost column) and another column.
-      </figcaption>
-    </figure>
-
-
-    <p>
-      In order to compare the performance of table annotation methods, benchmark datasets covering a wide range of
-      topics are needed. The aim of SOTAB is to completement the set of publicly available table annotation benchmarks
-      with a CTA and CPA benchmark covering various entity types of general interest, e.g. products, local business, job
-      postings, and to provide training data from many independent data sources for these types in order to reflect the
-      full heterogeneity of the values that are used to describe entities.
-      The SOTAB benchmark is build using tables from the <a
-        href="http://webdatacommons.org/structureddata/schemaorgtables/">Schema.org Table Corpus</a>.
+      Table annotation is the process of adding descriptive labels to tables in a large dataset using concepts from a knowledge 
+      graph or shared vocabulary. This process is crucial for effective data search and integration, especially since the web 
+      contains millions of high-quality tables available on websites and public data portals such as Wikipedia. 
+      However, to utilize these tables, we need to understand their structure and schema, which can be challenging due to their heterogeneous 
+      or unknown headers and content. The objective of this project is to address the aforementioned challenges by 
+      proficiently utilizing diverse deep learning methods for both Column Type annotation and Columns Property Annotation tasks.
     </p>
 
     <span id="toc2"></span>
     <h2>2. Theoretical Background </h2>
     <p>
+      This Chapter provides an overview of the theoretical underpinnings, frameworks as well as specific information relevant 
+      to follow our work. For this reason, we start by introducing the main tasks we are trying to solve. 
+      We also give a brief introduction to transformer models which formed the basis for the algorithms we use.
 
     </p>
 
     <span id="toc2.1"></span>
-    <h3>2.1 CTA </h3>
+    <h3>2.1 Column Type Annotation (CTA) </h3>
     <p>
-
+      CTA is the task of annotating table columns with the type of entities described in the column. 
+      Type of entities can be classified into two categories:
+      <ul>
+        <li><strong>Data types:</strong> format of the entities, e.g. string, integer, boolean...</li>
+        <li><strong>Entity types:</strong> description of the entites, e.g. country, product, person...</li>
+      </ul>
+      Entity types can capture more domain semantics than data types 
     </p>
 
     <span id="toc2.2"></span>
-    <h3>2.2 CPA </h3>
+    <h3>2.2 Columns Property Annotation (CPA) </h3>
     <p>
 
     </p>
@@ -851,31 +820,33 @@
     <h2> 8. References </h2>
 
     <p>
+      <span id="toc9"></span>
       [1] K. Korini, R. Peeters, C. Bizer, SOTAB: The WDC Schema.org Table Annotation Benchmark, in: Semantic Web
       Challenge on Tabular Data to Knowledge Graph Matching
       (SemTab), CEUR-WS.org, 2022. <br />
-
+      
+      <span id="toc10"></span>
       [2] D. Ritze, O. Lehmberg, Y. Oulabi, C. Bizer, Profiling the Potential of Web Tables for
       Augmenting Cross-domain Knowledge Bases, in: Proceedings of the 25th International
       Conference on World Wide Web, 2016, pp. 251–261. <br />
 
-      <span id="toc13"></span>
+      <span id="toc11"></span>
       [3] E. Rahm, P. A. Bernstein, A survey of approaches to automatic schema matching, The
       VLDB Journal — The International Journal on Very Large Data Bases 10 (2001) 334–350. <br />
 
-      <span id="toc14"></span>
+      <span id="toc12"></span>
       [4] X. Deng, H. Sun, A. Lees, Y. Wu, C. Yu, TURL: Table understanding through representation
       learning, Proceedings of the VLDB Endowment 14 (2020) 307–319. <br />
 
-      <span id="toc15"></span>
+      <span id="toc13"></span>
       [5] A. Vaswani, N. Shazeer, N. Parmar, J. Uszkoreit, L. Jones, et al., Attention is All you Need,
       in: Advances in Neural Information Processing Systems (NIPS 2017), volume 30, 2017. <br />
 
-      <span id="toc16"></span>
+      <span id="toc14"></span>
       [6] M. Hulsebos, Ç. Demiralp, P. Groth, GitTables: A Large-Scale Corpus of Relational Tables,
       arXiv:2106.07258 (2022). <br />
 
-      <span id="toc17"></span>
+      <span id="toc15"></span>
       [7] Suhara, Y., Li, J., Li, Y., Zhang, D., Demiralp, Ç. et al. “Annotating columns
       with pre-trained language models.” In Proceedings of the 2022 International Conference on Management of Data,
       2022, pp. 1493–1503
