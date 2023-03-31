@@ -845,73 +845,47 @@
           <a href="#toc8"> 8. References </a>
         </li>
       </ul>
-      <span id="toc1"></span>
-      <h2>1. Introduction</h2>
-      <p>
-        Table annotation is the process of adding descriptive labels to tables
-        in a large dataset using concepts from a knowledge graph or shared
-        vocabulary. This process is crucial for effective data search and
-        integration, especially since the web contains millions of high-quality
-        tables available on websites and public data portals such as Wikipedia.
-        However, to utilize these tables, we need to understand their structure
-        and schema, which can be challenging due to their heterogeneous or
-        unknown headers and content. The objective of this project is to address
-        the aforementioned challenges by proficiently utilizing diverse deep
-        learning methods for both Column Type annotation and Columns Property
-        Annotation tasks.
-      </p>
-      <span id="toc2"></span>
-      <h2>2. Theoretical Background</h2>
-      <p>
-        This Chapter provides an overview of the theoretical underpinnings,
-        frameworks as well as specific information relevant to follow our work.
-        For this reason, we start by introducing the main tasks we are trying to
-        solve. We also give a brief introduction to transformer models which
-        formed the basis for the algorithms we use.
-      </p>
-      <span id="toc2.1"></span>
-      <h3>2.1 Column Type Annotation (CTA)</h3>
-      <p>
-        CTA is the task of annotating table columns with the type of entities
-        described in the column. Type of entities can be classified into two
-        categories:
-      </p>
-      <ul>
-        <li>
-          <strong>Data types:</strong> format of the entities, e.g. string,
-          integer, boolean...
-        </li>
-        <li>
-          <strong>Entity types:</strong> description of the entites, e.g.
-          country, product, person...
-        </li>
-      </ul>
-      Entity types can capture more domain semantics than data types
-      <span id="toc2.2"></span>
-      <h3>2.2 Columns Property Annotation (CPA)</h3>
-      <p></p>
-      <span id="toc3"></span>
-      <h2>3. Related Work</h2>
-      <p>
-        We need to discuss some existing papers that we have referred here. I.e.
-        the approach by DODUO, TURL and maybe TUTA.
-      </p>
-      <span id="toc3.1"></span>
-      <h3>3.1 Transformers</h3>
-      <p></p>
-      <span id="toc4"></span>
-      <h2>4. Dataset and Methodology</h2>
-      <p>
-        In the following we present the Transformer model utilizing primary
-        serialization, i.e., Single Column serialization and further refinement
-        on two different datasets SOTAB Benchmark and TURL respectively.
-      </p>
+
+      Entity types can capture more domain semantics than data types 
+    </p>
+
+    <span id="toc2.2"></span>
+    <h3>2.2 Columns Property Annotation (CPA)</h3>
+    <p>
+
+    </p>
+
+    <span id="toc3"></span>
+    <h2>3. Related Work</h2>
+    <p>
+    We need to discuss some existing papers that we have referred here. I.e. the approach by DODUO, TURL and maybe TUTA.
+    </p>
+
+    <span id="toc3.1"></span>
+    <h3>3.1 Transformers</h3>
+    <p>
+
+    </p>
+    
+
+
+
+    <span id="toc4"></span>
+    <h2>4. Dataset and Methodology</h2>
+    <p>
+    In the following we present the Transformer model utilizing primary serialization, i.e., Single Column serialization and further refinement on two different datasets SOTAB Benchmark and TURL respectively.
+    </p>
+
       <span id="toc4.1"></span>
       <h3>4.1 Preprocessing</h3>
-      <p></p>
+      <p>
+      
+      </p>
       <span id="toc4.2"></span>
       <h3>4.2 Augmentation</h3>
-      <p></p>
+      <p>
+      
+      </p>
       <span id="toc4.3"></span>
       <h3>4.3 Serialization</h3>
       <p>
@@ -921,7 +895,7 @@
         <b>(ii) TaBERT</b>
       </p>
       <p>
-        <b>(iii) TaBERT</b>
+        <b>(iii) Others</b>
       </p>
       <span id="toc4.4"></span>
       <h3>4.3 Further Model</h3>
@@ -931,64 +905,150 @@
       <p>
         <b>(ii)LongFormer</b>
       </p>
-      <span id="toc5"></span>
-      <h2>5. Experimental Setup</h2>
-      <p></p>
-      <span id="toc6"></span>
-      <h2>6. Experimental Results and Error Analysis</h2>
-      <p></p>
-      <span id="toc6"></span>
-      <h2>6. Discussion</h2>
-      <p></p>
-      <span id="toc7"></span>
-      <h2>7. Conclusion</h2>
-      <p></p>
-      <span id="toc8"></span>
-      <h2>8. References</h2>
-      <p>
-        <span id="toc9"></span>
-        [1] K. Korini, R. Peeters, C. Bizer, SOTAB: The WDC Schema.org Table
-        Annotation Benchmark, in: Semantic Web Challenge on Tabular Data to
-        Knowledge Graph Matching (SemTab), CEUR-WS.org, 2022. <br />
-        <span id="toc10"></span>
-        [2] D. Ritze, O. Lehmberg, Y. Oulabi, C. Bizer, Profiling the Potential
-        of Web Tables for Augmenting Cross-domain Knowledge Bases, in:
-        Proceedings of the 25th International Conference on World Wide Web,
-        2016, pp. 251–261. <br />
-        <span id="toc11"></span>
-        [3] E. Rahm, P. A. Bernstein, A survey of approaches to automatic schema
-        matching, The VLDB Journal — The International Journal on Very Large
-        Data Bases 10 (2001) 334–350. <br />
-        <span id="toc12"></span>
-        [4] X. Deng, H. Sun, A. Lees, Y. Wu, C. Yu, TURL: Table understanding
-        through representation learning, Proceedings of the VLDB Endowment 14
-        (2020) 307–319. <br />
-        <span id="toc13"></span>
-        [5] A. Vaswani, N. Shazeer, N. Parmar, J. Uszkoreit, L. Jones, et al.,
-        Attention is All you Need, in: Advances in Neural Information Processing
-        Systems (NIPS 2017), volume 30, 2017. <br />
-        <span id="toc14"></span>
-        [6] M. Hulsebos, Ç. Demiralp, P. Groth, GitTables: A Large-Scale Corpus
-        of Relational Tables, arXiv:2106.07258 (2022). <br />
-        <span id="toc15"></span>
-        [7] Suhara, Y., Li, J., Li, Y., Zhang, D., Demiralp, Ç. et al.
-        “Annotating columns with pre-trained language models.” In Proceedings of
-        the 2022 International Conference on Management of Data, 2022, pp.
-        1493–1503
-      </p>
-      <p>&nbsp;</p>
-      <script type="text/javascript">
-        $("#toc").toc({
-          selectors: "h2", //elements to use as headings
-          container: "#toccontent", //element to find all selectors in
-          smoothScrolling: true, //enable or disable smooth scrolling on click
-          prefix: "toc", //prefix for anchor tags and class names
-          highlightOnScroll: true, //add class to heading that is currently in focus
-          highlightOffset: 100, //offset to trigger the next headline
-          anchorName: function (i, heading, prefix) {
-            //custom function for anchor name
-            return prefix + i;
-          },
+
+    <span id="toc5"></span>
+    <h2>5. Experimental Setup</h2>
+    <p>
+
+    </p>
+
+    <span id="toc6"></span>
+    <h2>6. Experimental Results and Error Analysis</h2>
+    <p>
+      We performed error analysis on the best result obtained from neighbor serialization with a window size of 2. 
+      To do this, we sampled errors in prediction by schema for both the CTA and CPA tasks. 
+      Specifically, we sampled 614 errors from a total of 1533 observations for CTA, and 617 errors from 3853 observations for CPA.
+      We manually checked these tables and classified the types of errors we found, which are listed in <i>Table 1</i>.
+    </p>  
+    <table>
+      <caption> Table 1: Error Types and Definitions</caption>
+      <thead>
+        <th>Observed Error Types</th>
+        <th>Definition</th>
+        <th>Example</th>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Actual wrong label</td>
+          <td>The label given in the table is obviously incorrect.</td>
+          <td>10-digit-number is labeled as gtin8</td>
+        </tr>
+        <tr>
+          <td>Bad prediction</td>
+          <td>The data provided by the column and neighbor columns is sufficient but the prediction is incorrect.</td>
+          <td>gtin12 is predicted as gtin14</td>
+        </tr>
+        <tr>
+          <td>Schema related label</td>
+          <td>The prediction correctly represents the data but does not match the associated schema.</td>
+          <td>In Movie schema, Movie/name is predicted as Book/name</td>
+        </tr>
+        <tr>
+          <td>Semantic label</td>
+          <td>The prediction has the same data type or format as label, but the interpretation of the data was incorrect.</td>
+          <td>FAXnumber is predicted as telephone number and vice versa</td>
+        </tr>
+        <tr>
+          <td>Duplicate label</td>
+          <td>Two columns in a table that have same values but are labeled differently, leading to data redundancy and potential confusion or inconsistency in the interpretation of the data.
+              In this case, usually the wrong prediction is the label of the other column.</td>
+          <td>columns with same value are labeled as Brand and Organization respectively</td>
+        </tr>
+        <tr>
+          <td>Hierarchical label</td>
+          <td>The prediction may represent a higher or lower level of abstraction than the label, but the semantic meaning is still understandable.</td>
+          <td>
+            <ul>
+              <li>Book/name is predicted as CreativeWork</li>
+              <li>Restaurant is predicted as LocalBusiness</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>Bad tables</td>
+          <td>Approximately 80% of the values in the table are either empty strings, 'undefined', or contain erroneous data inputted by humans.</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Lack of information</td>
+          <td>The data provided is insufficient in current and neighbor columns but contained in columns outside the windows.</td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+
+    
+
+    <span id="toc6"></span>
+    <h2>6. Discussion</h2>
+    <p>
+
+    </p>
+
+    <span id="toc7"></span>
+    <h2>7. Conclusion</h2>
+
+    <p>
+
+    </p>
+
+    <span id="toc8"></span>
+    <h2>8. References</h2>
+
+    <p>
+      <span id="toc9"></span>
+      [1] K. Korini, R. Peeters, C. Bizer, SOTAB: The WDC Schema.org Table Annotation Benchmark, in: Semantic Web
+      Challenge on Tabular Data to Knowledge Graph Matching
+      (SemTab), CEUR-WS.org, 2022. <br />
+      
+      <span id="toc10"></span>
+      [2] D. Ritze, O. Lehmberg, Y. Oulabi, C. Bizer, Profiling the Potential of Web Tables for
+      Augmenting Cross-domain Knowledge Bases, in: Proceedings of the 25th International
+      Conference on World Wide Web, 2016, pp. 251–261. <br />
+
+      <span id="toc11"></span>
+      [3] E. Rahm, P. A. Bernstein, A survey of approaches to automatic schema matching, The
+      VLDB Journal — The International Journal on Very Large Data Bases 10 (2001) 334–350. <br />
+
+      <span id="toc12"></span>
+      [4] X. Deng, H. Sun, A. Lees, Y. Wu, C. Yu, TURL: Table understanding through representation
+      learning, Proceedings of the VLDB Endowment 14 (2020) 307–319. <br />
+
+      <span id="toc13"></span>
+      [5] A. Vaswani, N. Shazeer, N. Parmar, J. Uszkoreit, L. Jones, et al., Attention is All you Need,
+      in: Advances in Neural Information Processing Systems (NIPS 2017), volume 30, 2017. <br />
+
+      <span id="toc14"></span>
+      [6] M. Hulsebos, Ç. Demiralp, P. Groth, GitTables: A Large-Scale Corpus of Relational Tables,
+      arXiv:2106.07258 (2022). <br />
+
+      <span id="toc15"></span>
+      [7] Suhara, Y., Li, J., Li, Y., Zhang, D., Demiralp, Ç. et al. “Annotating columns
+      with pre-trained language models.” In Proceedings of the 2022 International Conference on Management of Data,
+      2022, pp. 1493–1503
+    </p>
+
+    <p>&nbsp;</p>
+
+    <script type="text/javascript">
+      $('#toc').toc({
+        'selectors': 'h2', //elements to use as headings
+        'container': '#toccontent', //element to find all selectors in
+        'smoothScrolling': true, //enable or disable smooth scrolling on click
+        'prefix': 'toc', //prefix for anchor tags and class names
+        'highlightOnScroll': true, //add class to heading that is currently in focus
+        'highlightOffset': 100, //offset to trigger the next headline
+        'anchorName': function (i, heading, prefix) { //custom function for anchor name
+          return prefix + i;
+        }
+      });
+      $('[id*="link_"]').each(function () {
+        var element = $(this);
+        element.click(function (e) {
+          e.preventDefault();
+          var id = element.attr("id").split("_")[1];
+          element.parent().removeClass("show").addClass("no-show");
+          $('#charts_' + id).removeClass("no-show").addClass("show");
         });
         $('[id*="link_"]').each(function () {
           var element = $(this);
