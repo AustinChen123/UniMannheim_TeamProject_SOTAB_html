@@ -823,8 +823,69 @@
     <span id="toc6"></span>
     <h2>6. Experimental Results and Error Analysis</h2>
     <p>
+      We performed error analysis on the best result obtained from neighbor serialization with a window size of 2. 
+      To do this, we sampled errors in prediction by schema for both the CTA and CPA tasks. 
+      Specifically, we sampled 614 errors from a total of 1533 observations for CTA, and 617 errors from 3853 observations for CPA.
+      We manually checked these tables and classified the types of errors we found, which are listed in <i>Table 1</i>.
+    </p>  
+    <table>
+      <caption> Table 1: Error Types and Definitions</caption>
+      <thead>
+        <th>Observed Error Types</th>
+        <th>Definition</th>
+        <th>Example</th>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Actual wrong label</td>
+          <td>The label given in the table is obviously incorrect.</td>
+          <td>10-digit-number is labeled as gtin8</td>
+        </tr>
+        <tr>
+          <td>Bad prediction</td>
+          <td>The data provided by the column and neighbor columns is sufficient but the prediction is incorrect.</td>
+          <td>gtin12 is predicted as gtin14</td>
+        </tr>
+        <tr>
+          <td>Schema related label</td>
+          <td>The prediction correctly represents the data but does not match the associated schema.</td>
+          <td>In Movie schema, Movie/name is predicted as Book/name</td>
+        </tr>
+        <tr>
+          <td>Semantic label</td>
+          <td>The prediction has the same data type or format as label, but the interpretation of the data was incorrect.</td>
+          <td>FAXnumber is predicted as telephone number and vice versa</td>
+        </tr>
+        <tr>
+          <td>Duplicate label</td>
+          <td>Two columns in a table that have same values but are labeled differently, leading to data redundancy and potential confusion or inconsistency in the interpretation of the data.
+              In this case, usually the wrong prediction is the label of the other column.</td>
+          <td>columns with same value are labeled as Brand and Organization respectively</td>
+        </tr>
+        <tr>
+          <td>Hierarchical label</td>
+          <td>The prediction may represent a higher or lower level of abstraction than the label, but the semantic meaning is still understandable.</td>
+          <td>
+            <ul>
+              <li>Book/name is predicted as CreativeWork</li>
+              <li>Restaurant is predicted as LocalBusiness</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>Bad tables</td>
+          <td>Approximately 80% of the values in the table are either empty strings, 'undefined', or contain erroneous data inputted by humans.</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Lack of information</td>
+          <td>The data provided is insufficient in current and neighbor columns but contained in columns outside the windows.</td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
 
-    </p>
+    
 
     <span id="toc6"></span>
     <h2>6. Discussion</h2>
