@@ -778,6 +778,7 @@
       <a>Munir Abobaker</a><br />
       <a>Reng Chiz Der</a><br />
     </div>
+
     <div id="content">
       <p>
         This webpage engages with the experiements and results of a six month
@@ -876,7 +877,7 @@
         formed the basis for the algorithms we use.
       </p>
       <span id="toc2.1"></span>
-      
+
       <h3>2.1 Column Type Annotation (CTA)</h3>
       <p>
         CTA is the task of annotating table columns with the type of entities
@@ -893,10 +894,8 @@
           country, product, person...
         </li>
       </ul>
-     <p>
-        Entity types can capture more domain semantics than data types
-     </p> 
-      
+      <p>Entity types can capture more domain semantics than data types</p>
+
       <span id="toc2.2"></span>
       <h3>2.2 Columns Property Annotation (CPA)</h3>
       <p></p>
@@ -919,10 +918,21 @@
       <span id="toc4"></span>
       <h2>4. Model</h2>
       <p>
-      	#TODO Table serialization. Language models such as BERT and RoBERTa take token sequences as input. For table task, this translates to converting table columns into token sequences.
+        #TODO Table serialization. Language models such as BERT and RoBERTa take
+        token sequences as input. For table task, this translates to converting
+        table columns into token sequences. The default parameter settings are
+        as follows:
       </p>
+      <ul>
+        <li>Base Model: RoBERTa</li>
+        <li>Learning Rate: 1e-5</li>
+        <li>Max Length: 512</li>
+        <li>Batch Size: 32</li>
+        <li>Random Seeds: 0-2 (Take average as result F1)</li>
+        <li>Window Size(if needed): 5</li>
+      </ul>
 
- 	  <span id="toc4.1"></span>
+      <span id="toc4.1"></span>
       <h3>4.1 Preprocessing</h3>
       With token limit of 512 tokens for BERT-like language models, we identify the need to trim cell values for longer textual data to fit more cells from a table. Follow suit the empirical studies by Wang et al. [<a href="#toc16">8</a>]
       <p></p>
@@ -936,10 +946,25 @@
       <p>
         <b>(i) Neighboring column</b>
       </p>
+      <img
+        src="./images/Neighbor.gif"
+        alt="TaBERT illustration GIF"
+        style="width: 550px; height: 330px"
+      />
       <p>
-        <b>(ii) TaBERT</b>
-
+        <b>(ii) TaBERT</b> The TaBERT serialization mainly focuses on the
+        relationship between the target column and the context columns (all
+        other columns) by inputting the context data in a row-based direction
+        and adding one datatype token to each cell. The TaBERT serialization
+        mainly focuses on the relationship between the target column and the
+        context columns (all other columns) by inputting the context data in a
+        row-based direction and adding one datatype token to each cell.
       </p>
+      <img
+        src="./images/TaBERT.gif"
+        alt="TaBERT illustration GIF"
+        style="width: 550px; height: 330px"
+      />
       <p>
         <b>(iii) Others</b>
       </p>
@@ -957,22 +982,46 @@
 
       <span id="toc5"></span>
       <h2>5. Evaluation</h2>
-      <p>
-      </p>
+      <p></p>
 
- 	  <span id="toc5.1"></span>
+      <span id="toc5.1"></span>
       <h3>5.1 Dataset</h3>
       <p>
-      	We evaluate our solutions primarily on the <a href="https://webdatacommons.org/structureddata/sotab/">WDC Schema.org Table Annotation Benchmark (SOTAB)</a>[<a href="#toc9">1</a>] benchmark dataset. To ensure the generalizability of our approach, we perform transfer learning to the <a href="https://github.com/sunlab-osu/TURL/">WikiTables dataset by TURL</a>[<a href="#toc12">3</a>]. The SOTAB benchmark is a collection of tables extracted from the Schema.org Table Corpus, which is maintained by the Data and Web Science Research Group at the University of Mannheim. THe corpus comprises over 4.2 million web relational tables covering 43 schema.org classes. The dataset defines both CTA and CPA labels for tables from 17 schema.org classes/domains. For the CTA task, the SOTAB dataset provides annotations for 162,351 columns from 59,548 tables, with a label space of 91 type labels. For the CPA task, it provides annotations for 174,998 column pairs from 48,379 tables, with a label space of 176 property labels. We used the provided train/valid/test splits for both tasks.
-  	  </p>
-  	  <p>
-  	  	The WikiTables dataset [<a href='#toc12'>3</a>] is a collection of tables extracted from the WikiTable corpus, which contains over 1.54 million tables extracted from Wikipedia pages. The dataset defines both CTA and CPA labels. For the CTA task, the dataset provides annotations of 628,254 columns from 397,098 tables, with a label space of 255 type labels for training, and 13,025 (13,391) columns from 4,764 (4,844) tables for test and validation, respectively. For the CPA task, it provides annotations of 62,954 column pairs from 52,943 tables, with a label space of 121 relation labels for traning, and 2,072 (2,175) column pairs from 1,467 (1,560) tables for test (validation). 
-  	  </p>
+        We evaluate our solutions primarily on the
+        <a href="https://webdatacommons.org/structureddata/sotab/"
+          >WDC Schema.org Table Annotation Benchmark (SOTAB)</a
+        >[<a href="#toc9">1</a>] benchmark dataset. To ensure the
+        generalizability of our approach, we perform transfer learning to the
+        <a href="https://github.com/sunlab-osu/TURL/"
+          >WikiTables dataset by TURL</a
+        >[<a href="#toc12">3</a>]. The SOTAB benchmark is a collection of tables
+        extracted from the Schema.org Table Corpus, which is maintained by the
+        Data and Web Science Research Group at the University of Mannheim. THe
+        corpus comprises over 4.2 million web relational tables covering 43
+        schema.org classes. The dataset defines both CTA and CPA labels for
+        tables from 17 schema.org classes/domains. For the CTA task, the SOTAB
+        dataset provides annotations for 162,351 columns from 59,548 tables,
+        with a label space of 91 type labels. For the CPA task, it provides
+        annotations for 174,998 column pairs from 48,379 tables, with a label
+        space of 176 property labels. We used the provided train/valid/test
+        splits for both tasks.
+      </p>
+      <p>
+        The WikiTables dataset [<a href="#toc12">3</a>] is a collection of
+        tables extracted from the WikiTable corpus, which contains over 1.54
+        million tables extracted from Wikipedia pages. The dataset defines both
+        CTA and CPA labels. For the CTA task, the dataset provides annotations
+        of 628,254 columns from 397,098 tables, with a label space of 255 type
+        labels for training, and 13,025 (13,391) columns from 4,764 (4,844)
+        tables for test and validation, respectively. For the CPA task, it
+        provides annotations of 62,954 column pairs from 52,943 tables, with a
+        label space of 121 relation labels for traning, and 2,072 (2,175) column
+        pairs from 1,467 (1,560) tables for test (validation).
+      </p>
 
       <span id="toc5.2"></span>
       <h3>5.2 Baselines</h3>
       <p></p>
-     
 
       <span id="toc6"></span>
       <h2>6. Experimental Results and Error Analysis</h2>
@@ -1128,7 +1177,11 @@
         1493–1503
 
         <span id="toc16"></span>
-        [8] Wang, Z., Dong, H., Jia, R., Li, J., Fu, Z., Han, S., & Zhang, D. (2020). TUTA: Tree-based Transformers for Generally Structured Table Pre-training. Proceedings of the 27th ACM SIGKDD Conference on Knowledge Discovery & Data Mining.
+
+        [8] Wang, Z., Dong, H., Jia, R., Li, J., Fu, Z., Han, S., & Zhang, D.
+        (2020). TUTA: Tree-based Transformers for Generally Structured Table
+        Pre-training. Proceedings of the 27th ACM SIGKDD Conference on Knowledge
+        Discovery & Data Mining.
 
       </p>
 
