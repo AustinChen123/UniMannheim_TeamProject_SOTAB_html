@@ -1033,7 +1033,12 @@
       <h3>5.2 Baselines</h3>
       <p>
         Our baseline configuration adopts the single column method, while all
-        other parameters remain unchanged from the default values.
+        other parameters remain unchanged from the default values. Additionally,
+        we take the TURL and DODUO result of SOTAB dataset from
+        <a href="https://webdatacommons.org/structureddata/sotab/"
+          >WDC Schema.org Table Annotation Benchmark (SOTAB)</a
+        >[<a href="#toc9">1</a>] and result of WikiTable from the studies by
+        Wang et al. [<a href="#toc16">8</a>]
       </p>
 
       <span id="toc6"></span>
@@ -1041,6 +1046,65 @@
 
       <span id="toc6.1"></span>
       <h3>6.1 Results and Ablation Study></h3>
+      <p></p>
+      <div class="tg-wrap">
+        <table class="tg">
+          <caption>
+            Table ?: Experiment results
+          </caption>
+          <thead>
+            <tr>
+              <th class="tg-ixdq">Datset</th>
+              <th class="tg-ixdq" colspan="2">SOTAB</th>
+              <th class="tg-ixdq" colspan="2">WikiTable</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th class="tg-ixdq"><br /></th>
+              <th class="tg-ixdq">CTA</th>
+              <th class="tg-ixdq">CPA</th>
+              <th class="tg-ixdq">CTA</th>
+              <th class="tg-ixdq">CPA</th>
+            </tr>
+            <tr>
+              <td class="tg-9wq8">Single Column</td>
+              <td class="tg-9wq8"></td>
+              <td class="tg-9wq8"></td>
+              <td class="tg-9wq8"></td>
+              <td class="tg-9wq8"></td>
+            </tr>
+            <tr>
+              <td class="tg-9wq8">Neighboring column</td>
+              <td class="tg-9wq8"></td>
+              <td class="tg-9wq8"></td>
+              <td class="tg-9wq8"></td>
+              <td class="tg-9wq8"></td>
+            </tr>
+            <tr>
+              <td class="tg-9wq8">TaBERT</td>
+              <td class="tg-9wq8"></td>
+              <td class="tg-9wq8"></td>
+              <td class="tg-9wq8"></td>
+              <td class="tg-9wq8"></td>
+            </tr>
+            <tr>
+              <td class="tg-9wq8">DODUO</td>
+              <td class="tg-9wq8"></td>
+              <td class="tg-9wq8"></td>
+              <td class="tg-9wq8"></td>
+              <td class="tg-9wq8"></td>
+            </tr>
+            <tr>
+              <td class="tg-9wq8">TURL</td>
+              <td class="tg-9wq8"></td>
+              <td class="tg-9wq8"></td>
+              <td class="tg-9wq8"></td>
+              <td class="tg-9wq8"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
       <span id="toc6.2"></span>
       <h3>6.2 Error Analysis</h3>
