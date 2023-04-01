@@ -865,6 +865,7 @@
       <span id="toc4"></span>
       <h2>4. Model</h2>
       <p>
+      	#TODO Table serialization. Language models such as BERT and RoBERTa take token sequences as input. For table task, this translates to converting table columns into token sequences.
       </p>
 
  	  <span id="toc4.1"></span>
@@ -906,7 +907,7 @@
  	  <span id="toc5.1"></span>
       <h3>5.1 Dataset</h3>
       <p>
-      	We evaluate our solutions primarily on the <a href="https://webdatacommons.org/structureddata/sotab/">WDC Schema.org Table Annotation Benchmark (SOTAB)</a>[<a href="#toc9">1</a>] benchmark dataset. To ensure the generalizability of our approach, we perform transfer learning to the <a href="https://github.com/sunlab-osu/TURL/">WikiTables dataset by TURL</a>[<a href="#toc12">3</a>]. The SOTAB benchmark is a collection of tables extracted from the Schema.org Table Corpus, which is maintained by the Data and Web Science Research Group at the University of Mannheim. THe corpus comprises over 4.2 million web relational tables covering 43 schema.org classes. The dataset defines both CTA and CPA labels for tables from 17 schema.org classes. For the CTA task, the SOTAB dataset provides annotations for 162,351 columns from 59,548 tables, with a label space of 91 type labels. For the CPA task, it provides annotations for 174,998 column pairs from 48,379 tables, with a label space of 176 property labels. We used the provided train/valid/test splits for both tasks.
+      	We evaluate our solutions primarily on the <a href="https://webdatacommons.org/structureddata/sotab/">WDC Schema.org Table Annotation Benchmark (SOTAB)</a>[<a href="#toc9">1</a>] benchmark dataset. To ensure the generalizability of our approach, we perform transfer learning to the <a href="https://github.com/sunlab-osu/TURL/">WikiTables dataset by TURL</a>[<a href="#toc12">3</a>]. The SOTAB benchmark is a collection of tables extracted from the Schema.org Table Corpus, which is maintained by the Data and Web Science Research Group at the University of Mannheim. THe corpus comprises over 4.2 million web relational tables covering 43 schema.org classes. The dataset defines both CTA and CPA labels for tables from 17 schema.org classes/domains. For the CTA task, the SOTAB dataset provides annotations for 162,351 columns from 59,548 tables, with a label space of 91 type labels. For the CPA task, it provides annotations for 174,998 column pairs from 48,379 tables, with a label space of 176 property labels. We used the provided train/valid/test splits for both tasks.
   	  </p>
   	  <p>
   	  	The WikiTables dataset [<a href='#toc12'>3</a>] is a collection of tables extracted from the WikiTable corpus, which contains over 1.54 million tables extracted from Wikipedia pages. The dataset defines both CTA and CPA labels. For the CTA task, the dataset provides annotations of 628,254 columns from 397,098 tables, with a label space of 255 type labels for training, and 13,025 (13,391) columns from 4,764 (4,844) tables for test and validation, respectively. For the CPA task, it provides annotations of 62,954 column pairs from 52,943 tables, with a label space of 121 relation labels for traning, and 2,072 (2,175) column pairs from 1,467 (1,560) tables for test (validation). 
