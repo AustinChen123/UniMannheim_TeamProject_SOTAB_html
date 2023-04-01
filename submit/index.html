@@ -918,10 +918,10 @@
       <span id="toc4"></span>
       <h2>4. Model</h2>
       <p>
-        #TODO Table serialization. Language models such as BERT and RoBERTa take
+        <!-- #TODO Table serialization. Language models such as BERT and RoBERTa take
         token sequences as input. For table task, this translates to converting
-        table columns into token sequences. The default parameter settings are
-        as follows:
+        table columns into token sequences.  -->
+        The default parameter settings are as follows:
       </p>
       <ul>
         <li>Base Model: RoBERTa</li>
@@ -934,8 +934,12 @@
 
       <span id="toc4.1"></span>
       <h3>4.1 Preprocessing</h3>
-      With token limit of 512 tokens for BERT-like language models, we identify the need to trim cell values for longer textual data to fit more cells from a table. Follow suit the empirical studies by Wang et al. [<a href="#toc16">8</a>]
-      <p></p>
+      <p>
+        With token limit of 512 tokens for BERT-like language models, we
+        identify the need to trim cell values for longer textual data to fit
+        more cells from a table. Follow suit the empirical studies by Wang et
+        al. [<a href="#toc16">8</a>]
+      </p>
 
       <span id="toc4.2"></span>
       <h3>4.2 Augmentation</h3>
@@ -958,7 +962,13 @@
         and adding one datatype token to each cell. The TaBERT serialization
         mainly focuses on the relationship between the target column and the
         context columns (all other columns) by inputting the context data in a
-        row-based direction and adding one datatype token to each cell.
+        row-based direction. Additionally, we were inspired by the architecture
+        of TUTA[<a href="#toc16">8</a>], so we also one datatype token to each
+        cell in this method.We expect this approach to allow the model to learn
+        the relationships between the different columns and the target column,
+        thereby enhancing the connection between each cell's value and the
+        prediction target. For instance, the URL datatype may be present in the
+        logo (which may imply the company or brand), hotel photos, etc.
       </p>
       <img
         src="./images/TaBERT.gif"
@@ -1021,7 +1031,10 @@
 
       <span id="toc5.2"></span>
       <h3>5.2 Baselines</h3>
-      <p></p>
+      <p>
+        Our baseline configuration adopts the single column method, while all
+        other parameters remain unchanged from the default values.
+      </p>
 
       <span id="toc6"></span>
       <h2>6. Experimental Results and Error Analysis</h2>
@@ -1174,15 +1187,13 @@
         [7] Suhara, Y., Li, J., Li, Y., Zhang, D., Demiralp, Ç. et al.
         “Annotating columns with pre-trained language models.” In Proceedings of
         the 2022 International Conference on Management of Data, 2022, pp.
-        1493–1503
-
+        1493–1503 <br />
         <span id="toc16"></span>
 
         [8] Wang, Z., Dong, H., Jia, R., Li, J., Fu, Z., Han, S., & Zhang, D.
         (2020). TUTA: Tree-based Transformers for Generally Structured Table
         Pre-training. Proceedings of the 27th ACM SIGKDD Conference on Knowledge
         Discovery & Data Mining.
-
       </p>
 
       <p>&nbsp;</p>
