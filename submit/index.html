@@ -919,8 +919,17 @@
       <p>
         #TODO Table serialization. Language models such as BERT and RoBERTa take
         token sequences as input. For table task, this translates to converting
-        table columns into token sequences.
+        table columns into token sequences. The default parameter settings are
+        as follows:
       </p>
+      <ul>
+        <li>Base Model: RoBERTa</li>
+        <li>Learning Rate: 1e-5</li>
+        <li>Max Length: 512</li>
+        <li>Batch Size: 32</li>
+        <li>Random Seeds: 0-2 (Take average as result F1)</li>
+        <li>Window Size(if needed): 5</li>
+      </ul>
 
       <span id="toc4.1"></span>
       <h3>4.1 Preprocessing</h3>
@@ -935,9 +944,22 @@
       <p>
         <b>(i) Neighboring column</b>
       </p>
+      <img
+        src="./images/Neighbor.gif"
+        alt="TaBERT illustration GIF"
+        style="width: 550px; height: 330px"
+      />
       <p>
-        <b>(ii) TaBERT</b>
+        <b>(ii) TaBERT</b> The TaBERT serialization mainly focuses on the
+        relationship between the target column and the context columns (all
+        other columns) by inputting the context data in a row-based direction
+        and adding one datatype token to each cell.
       </p>
+      <img
+        src="./images/TaBERT.gif"
+        alt="TaBERT illustration GIF"
+        style="width: 550px; height: 330px"
+      />
       <p>
         <b>(iii) Others</b>
       </p>
