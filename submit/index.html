@@ -773,8 +773,10 @@
       <h1 style="font-size: 250%">Table Annotation using Deep Learning</h1>
     </div>
     <div id="authors">
+      <a>Christian Bizer</a><br />
       <a>Chun-Yi Chen</a><br />
       <a>I-Chen Hsieh</a><br />
+      <a>Keti Korini</a><br />
       <a>Munir Abobaker</a><br />
       <a>Reng Chiz Der</a><br />
     </div>
@@ -933,15 +935,15 @@
       </ul>
 
       <span id="toc4.1"></span>
-      <h3>4.1 Preprocessing</h3>
-      With token limit of 512 tokens for BERT-like language models, we identify the need to trim cell values for longer textual data to fit more cells from a table. Follow suit the empirical studies by Wang et al. [<a href="#toc16">8</a>]
-      <p></p>
+      <h3>4.1 Preprocessing and Augmentation</h3>
+      <p>
+        To accommodate the token limit of 512 tokens for BERT-like language models, we trim cell values for longer textual data to fit more cells from a table. Following Wang et al.[<a href="#toc16">8</a>]'s empirical studies, we retain at most 8 tokens from a cell. This is because long textual strings often introduce noise and disrupt the structure of a table input. Additionally, we experiment with different threshold cell lengths, i.e., <em>median</em> and <em>mean</em> cell length computed per table basis. The rational being a table typically contains columns with mainly short string and numeric (date) values, and only a few long textual columns for descriptions.
+      </p>
+      <p>
+        To enhance our data processing, we perform data augmentation (DA) at both the cell and table level during the earlier stages of our workflow. Specifically, we apply standard textual DA techniques, such as word swapping, word replacement, word deletion, and column cell value shuffling, at the cell level. At the table level, we perform random cell deletion and column cell shuffling.
+      </p>
 
       <span id="toc4.2"></span>
-      <h3>4.2 Augmentation</h3>
-      <p></p>
-
-      <span id="toc4.3"></span>
       <h3>4.3 Serialization</h3>
       <p>
         <b>(i) Neighboring column</b>
