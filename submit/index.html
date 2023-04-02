@@ -966,7 +966,7 @@
          address column refers to the hotel's location (see <a href="#toc2.1.Fig">Figure 1</a>). 
       </p>
   
-        Examples: Here are a few examples of how CPA can be applied:<br>
+        Here are a few examples of how CPA can be applied:<br>
       <ul>
         <li>In a product database that contains information about products, including their names, prices, and
          descriptions. CPA can be used to identify which columns are related to each other, such as the relationship 
@@ -1016,16 +1016,16 @@
         first row of the table to identify common patterns or formats, such as whether the cells contain numerical 
         values or text.
       </p>
-  
+      <span id="toc2.3.fig"></span>
       <figure>
         <img src="images/transformers-architecture.JPG" alt="Transformer", class="center">
-        <figcaption class="center"><b><a id="Fig1"></a >Figure 1:</b> The Transformer - model architecture [<a href="#toc15">5</a>].
+        <figcaption class="center"><b><a id="Fig1"></a >Figure 2:</b> The Transformer - model architecture [<a href="#toc15">5</a>].
         </figcaption>
       </figure>
   
       <p>
-        The transformer architecture consists of an encoder and a decoder, which are both composed of multiple 
-        layers of self-attention and feed-forward networks. The encoder takes an input sequence and produces a 
+        As illustrated in <a href="#toc2.3.Fig">Figure 2</a>, the transformer architecture consists of an encoder and a decoder, which are both composed of multiple 
+        layers of self-attention(Multi-head Attention) and feed-forward networks. The encoder takes an input sequence and produces a 
         sequence of encoded representations, while the decoder takes a sequence of encoded representations and 
         produces a sequence of outputs.
         One of the advantages of transformers is that they can process the entire input sequence at once, rather 
@@ -1034,24 +1034,33 @@
       </p>
       <p>
         Example Application: Language Translation One of the most common applications of transformers is language
-         translation. In this context, the input sequence is a sentence in one language, and the output sequence 
-         is a sentence in another language. The encoder takes the input sentence and produces a sequence of encoded representations, which are then 
-        fed into the decoder. The decoder uses self-attention to focus on different parts of the encoded sequence 
-        at each step, and produces a sequence of output representations. Finally, a linear layer is used to map the 
-        output representations to the target language vocabulary.
+        translation. The core idea in a nutshell is, the input sequence is a sentence in one language, and the output sequence 
+         is a sentence in another language. The encoder takes the input sentence and uses the self-attention to produce
+        a sequence of encoded representations, which are then fed into the decoder. The decoder uses self-attention to 
+        focus on different parts of the encoded sequence at each step, and produces a sequence of output representations. Finally, 
+        a Softmax layer is  used to the produce probability distribution over the target language vocabulary.
         
       </p>
 
       <span id="toc3"></span>
       <h2>3. Related Work</h2>
       <p>
-        We need to discuss some existing papers that we have referred here. I.e.
-        the approach by DODUO, TURL and maybe TUTA.
+        <!--We need to discuss some existing papers that we have referred here. I.e.
+        the approach by DODUO, TURL and maybe TUTA. -->
+        With the emergence of pretraining/fine-tuning techniques, many researchers have utilized these methods in table annotation tasks. One such approach is presented in the paper
+        [<a href="#toc12">4</a>],  which proposes a framework for table understanding through representation learning called TURL. The authors utilize the pre-training/fine-tuning paradigm to learn
+         contextualized representations on relational tables during pretraining. This enables the model to be fine-tuned on various downstream tasks with minimal task-specific adjustments.
+          The proposed model is pretrained in an unsupervised manner on a large-scale web table corpus that is based on the WikiTable corpus. Furthermore, the framework can also be used to 
+          infer meta information about tables such as column types and relationships between columns (CTA and CPA).
+         DUDO, another framework proposed by [<a href="#toc15">7</a>],  tackles the problems of annotating table columns using only the information contained in tables. It is built 
+        around language models, and takes the entire table as input to predict column types and relationships between columns. This approach is unique in that it requires no external
+        knowledge or context beyond what is present in the table itself. Furthermore, DUDO has achieved competitive results on two benchmarks  for the column type prediction and 
+        column relation prediction tasks.
+        [<a href="#toc16">8</a>] introduces TUTA, a pre-training architecture that enhances transformers for understanding generally structured tables. The authors use a structure aware mechanism that 
+        employs a tree-based attention and position mechanism to capture the spatial and hierarchical information of tables. TUTA is trained on unlabeled web and spreadsheet tables at three 
+        representation levels - token, cell, and table levels. It achieves state-of-the-art performance on five datasets for cell type classification and table type classification tasks.
       </p>
 
-      <span id="toc3.1"></span>
-      <h3>3.1 Transformers</h3>
-      <p></p>
 
       <span id="toc4"></span>
       <h2>4. Model</h2>
@@ -1399,8 +1408,8 @@
         “Annotating columns with pre-trained language models.” In Proceedings of
         the 2022 International Conference on Management of Data, 2022, pp.
         1493–1503 <br />
-        <span id="toc16"></span>
 
+        <span id="toc16"></span>
         [8] Wang, Z., Dong, H., Jia, R., Li, J., Fu, Z., Han, S., & Zhang, D.
         (2020). TUTA: Tree-based Transformers for Generally Structured Table
         Pre-training. Proceedings of the 27th ACM SIGKDD Conference on Knowledge
