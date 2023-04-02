@@ -520,6 +520,9 @@
       margin-right: auto;
       width: 30%;
     }
+    figure figcaption {
+        text-align: center;
+    }
     </style>
     <script
       type="text/javascript"
@@ -1033,52 +1036,66 @@
       <span id="toc4"></span>
       <h2>4. Model</h2>
       <p>
-        A Transformer-based language model fits perfectly in the tasks pertaining table understanding for its language understanding capability and Transformer's attention mechanism that captures contextualized column representations. Such language models expect token sequences as inputs. This translates to representing relational tables in text sequences, formally known as table serialization, for the tasks of CTA and CPA. A natural serialization solution is single-column serialization that simply concatenate the column values into a sequence to feed into the language model. More concretely, as defined by Suhara et al.[<a href="#toc15">7</a>], for column <i>C</i> with column values <i>v<sub>1</sub>,...,v<sub>m</sub></i>, the serialized sequence is [<a href="#toc15">7</a>]: <p><span class="math display">\[serialize_{single}(C)::= [CLS]\;v_1\;...\;v_m\;[SEP]\]</span></p>
+        A Transformer-based language model is ideal for tasks related to table understanding due to its language understanding capabilities and Transformer's attention mechanism that captures contextualized column representations. These language models expect token (text) sequences as inputs. This translates to representing tables in text sequences, formally known as table serialization, for the tasks of CTA and CPA. Single-column serialization is an intuitive solution that concatenates column values into a sequence to feed into the language model. Specifically, as defined by Suhara et al.[<a href="#toc15">7</a>], for column <i>C</i> with column values <i>v<sub>1</sub>,...,v<sub>m</sub></i>, the serialized sequence is [<a href="#toc15">7</a>]: <p><span class="math display">\[serialize_{single}(C)::= [CLS]\;v_1\;...\;v_m\;[SEP]\]</span></p>
       </p>
       <p>
-        Such serialization conveniently translates the CTA and CPA tasks into sequence classification and sequence-pair classification task respectively. The major drawback of single-column serialization is treating each column in a table as independent sequence neglects the table context that is crucial for relational tables that defines an real-world entity as a table. Previous works [<a href="#toc15">7, </a><a href="#toc17">9, </a><a href="#toc18">10, </a><a href="#toc19">11</a>] have highlighted the importance of table context for the CTA task.
+        Table serialization conveniently translates the CTA and CPA tasks into sequence classification and sequence-pair classification task respectively. However, the major drawback of single-column serialization is that it treats each column in a table as an independent sequence, neglecting the crucial table context that defines a real-world entity for a relational table. Previous works [<a href="#toc15">7,</a><a href="#toc17">9,</a><a href="#toc18">10,</a><a href="#toc19">11</a>] have highlighted the importance of table context for the CTA task. At the other end of the spectrum for table serialization is DODUO, which represents a table as an aggregation of contextual information from all column values.  Our work's main focus and contributions include experimenting with various serialization strategies, preprocessing techniques, and augmentation methods to account for table context.
       </p>
 
       <span id="toc4.1"></span>
       <h3>4.1 Preprocessing and Augmentation</h3>
       <p>
-        To accommodate the token limit of 512 tokens for BERT-like language models, we trim cell values for longer textual data to fit more cells from a table. Following Wang et al.[<a href="#toc16">8</a>]'s empirical studies, we retain at most 8 tokens from a cell. This is because long textual strings often introduce noise and disrupt the structure of a table input. Additionally, we experiment with different threshold cell lengths, i.e., <em>median</em> and <em>mean</em> cell length computed per table basis. The rational being a table typically contains columns with mainly short string and numeric (date) values, and only a few long textual columns for descriptions.
+        To accommodate the token limit of 512 tokens for BERT-like language models, we trim cell values for longer textual data to fit more cells from a table. Following Wang et al.[<a href="#toc16">8</a>]'s empirical studies, we retain at most 8 tokens from a cell. This is because long textual strings often introduce noise and disrupt the structure of a table input. Additionally, we experiment with different threshold cell lengths, i.e., <em>median</em> and <em>mean</em> cell length computed per column basis. The rational being a long textual column contains strings of different length.
       </p>
       <p>
         To enhance our data processing, we perform data augmentation (DA) at both the cell and table level during the earlier stages of our workflow. Specifically, we apply standard textual DA techniques, such as word swapping, word replacement, word deletion, and column cell value shuffling, at the cell level. At the table level, we perform random cell deletion and column cell shuffling.
       </p>
 
       <span id="toc4.2"></span>
-      <h3>4.3 Serialization</h3>
+      <h3>4.2 Serialization</h3>
       <p>
-        <b>(i) Neighboring column</b>
+        <b>(i) Neighboring Column (with summary):</b> The Neighboring Column Serialization technique utilizes adjacent columns as local context in a relational table. Previous research by SATO [<a href="#toc19">11</a>] demonstrated that incorporating local context aids in resolving semantic type ambiguities in single-column predictions. To accomplish this, their approach incorporates the predicted semantic types of immediately adjacent columns as local context for a column prediction model of neural network. For our approach, we utilize neighboring columns of varying window sizes along with the target column in the CTA task. Furthermore, for the CPA task, we incorporate neighboring columns for both the main and target columns.
       </p>
-      <img
-        src="./images/Neighbor.gif"
-        alt="TaBERT illustration GIF"
-        style="width: 550px; height: 330px"
-      />
       <p>
-        <b>(ii) TaBERT</b> The TaBERT serialization
-        mainly focuses on the relationship between the target column and the
-        context columns (all other columns) by inputting the context data in a
-        row-based direction. Additionally, we were inspired by the architecture
-        of TUTA[<a href="#toc16">8</a>], so we prepend a datatype token to each
-        cell in this method. We expect this approach to allow the model to learn
-        the relationships between the different columns and the target column,
-        thereby enhancing the connection between each cell's value and the
-        prediction target. For instance, the URL datatype may be present in the
-        logo (which may imply the company or brand), hotel photos, etc.
+        To build on the Neighboring Column Serialization approach, we introduce a more complex variation called Neighboring Column Serialization with Summary. This approach leverages results from exploratory data analysis (EDA) to extract relevant column value data. We use the pandas-profiling library [<a href="#toc20">12</a>] to infer column data types and analyzes text and context using common statistical metrics such as mean, maximum, and minimum text length. We prepend the statistical results to the data for each column, providing a syntax summary for lengthy columns/tables as part of the local context.
       </p>
-      <img
-        src="./images/TaBERT.gif"
-        alt="TaBERT illustration GIF"
-        style="width: 550px; height: 330px"
-      />
+      <p>
+        However, for the CPA task, including the main column and its local context in conjunction with the Neighboring Column Serialization approach can lead to redundancy. Therefore, we transfer the Neighboring Column Serialization technique from the CTA task to the CPA task, without including the main column, which we refer to as the No-Main Neighboring Column Serialization.
+      </p>
+
+      <span id="toc4.2.1.Fig"></span>
+      <figure>
+        <img
+          src="./images/Neighbor.gif"
+          alt="Neighbor illustration GIF"
+          style="width: 550px; height: 330px"
+          class="center"
+        />
+        <figcaption class="center"><b><a id="Fig2"></a>Figure 2:</b> Neighboring Column Serialization</figcaption>
+      </figure>
+
+      <p>
+        <b>(ii) TaBERT:</b> In TaBERT Serialization, our goal is to capture the relationship between the target column and the context columns by inputting the context data row-wise. To achieve this, we follow the approach proposed by TUTA [<a href="#toc16">8</a>], where we prepend a data type token to each cell. This row serialization approach helps the Transformer's attention mechanism better capture the table structure while maintaining constant intervals for each column. Moreover, by including data types, the language model can learn the relationships between the cells of the target column and the prediction label. For instance, a URL data for company, label, or hotel photos may indicate a target label of "Logo". 
+      </p>
+      <p>
+        To reduce the number of additional tokens required for inserting data types in each cell, we introduce Column-TaBERT Serialization, which infers the data type for each column by majority count and includes the data types for each column only once. For the CTA task, the resulting serialization is illustrated in <a href="#toc4.2.2.Fig">Figure 3</a> or: <p><span class="math display">\[serialize_{col\_tabert}(C)::= [CLS]\;type\_target\_col\;target\_col\_data\;type\_context\_col\_1\;type\_context\_col\_2\;...\;row\_data\;[SEP]\]</span></p>
+      </p>
+
+      <span id="toc4.2.2.Fig"></span>
+      <figure>
+        <img
+          src="./images/TaBERT.gif"
+          alt="Neighbor illustration GIF"
+          style="width: 550px; height: 330px"
+          class="center"
+        />
+        <figcaption class="center"><b><a id="Fig3"></a>Figure 3:</b> TaBERT Serialization</figcaption>
+      </figure>
+
       <p>
         <b>(iii) Others</b>
       </p>
-      <span id="toc4.4"></span>
+      <span id="toc4.4"></span> 
       <h3>4.4 Further Model</h3>
       <p>
         <b>(i) Two-Step Model:</b>
@@ -1131,6 +1148,7 @@
       <span id="toc5.2"></span>
       <h3>5.2 Baselines</h3>
       <p>
+        # TODO To systematically evaluate our pre-trained framework ... we do what ... #
         Our baseline configuration adopts the single column method, while all
         other parameters remain unchanged from the default values. Additionally,
         we take the TURL and DODUO result of SOTAB dataset from
@@ -1382,6 +1400,9 @@
 
         <span id="toc19"></span>
         [11] Zhang, D., Suhara, Y., Li, J., Hulsebos, M., Demiralp, C., & Tan, W.C. (2019). Sato: Contextual Semantic Type Detection in Tables. Proc. VLDB Endow., 13, 1835-1848.
+
+        <span id="toc20"></span>
+        [12] Brugman, S. pandas-profiling: Exploratory Data Analysis for Python. https://github.com/pandas-profiling/
       </p>
 
       <p>&nbsp;</p>
