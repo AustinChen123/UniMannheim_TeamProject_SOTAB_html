@@ -2165,12 +2165,16 @@
 
         To evaluate the performance of our best result from neighbor serialization with a window size of 2, 
         we initially conducted statistic analysis on three different aspects: (i) schema type, (ii) data type, and (iii) specific challenges.
-        The specific challgenges include: Missing Values, Value Format Heterogeneity, Corner Cases, 
-        and Random Columns which were all clearly defined in <a href="https://webdatacommons.org/structureddata/sotab/"
-        >WDC Schema.org Table Annotation Benchmark (SOTAB)</a>[<a href="#toc9">1</a>]. Subsequently, we furthered look into the data and manually classified the errors.
+        Subsequently, we furthered look into the data and manually classified the errors.
       </p>
       <p>
-        <b>(i) Schema Type:</b>
+        <b>(i) Schema Type: </b> The tables are distribtued across 17 schema.org types and the tables do no include any metadata which
+        means no table headers or cpations are available. We list in Table X the top 5 labels that reached the highest score in the 
+        overall test set and the top 5 labels that reached the lowest score for both CPA and CTA tasks.
+        The performance of CTA and CPA varies across different schema types. 
+        <strong>MusicRecording</strong> is the only schema where both tasks perform well, while <strong>CreativeWork and Product</strong>  are weak for both tasks. 
+        <strong>Recipe and Person</strong> are among the top 5 schemas for CTA, but are among the lowest 5 for CPA.
+ 
         <table class="tg">
           <caption>Table X: Schema Type result for CTA & CPA</caption>
           <thead>
@@ -2250,7 +2254,7 @@
         </table>
       </p>
       <p>
-        <b>(ii) Data Type:</b>
+        <b>(ii) Data Type: </b> 
         <table class="tg">
           <caption>Table x: Data Type Results for CTA & CPA</caption>
           <thead>
@@ -2290,7 +2294,9 @@
         </table>
       </p>
       <p>
-        <b>(ii) Specific Challenges:</b>
+        <b>(iii) Specific Challenges: </b>The specific challgenges include: Missing Values, Value Format Heterogeneity, Corner Cases, 
+        and Random Columns which were all clearly defined in <a href="https://webdatacommons.org/structureddata/sotab/"
+        >WDC Schema.org Table Annotation Benchmark (SOTAB)</a>[<a href="#toc9">1</a>]. The results are summarized in Table X for CTA and CPA.
         <table class="tg">
           <caption>Table 4a: Specific Challenges Results for CTA & CPA</caption>
           <thead>
@@ -2407,7 +2413,7 @@
               strings, 'undefined', or contain erroneous data inputted by
               humans.
             </td>
-            <td></td>
+            <td>Example given in <i>figure x</i>.</td>
           </tr>
           <tr>
             <td>Lack of information</td>
@@ -2415,10 +2421,19 @@
               The data provided is insufficient in current and neighbor columns
               but contained in columns outside the windows.
             </td>
-            <td></td>
+            <td>Example given in <i>figure y</i>. In CTA task, the target is to predict column 12, while the useful information is included in first few columns.</td>
           </tr>
         </tbody>
       </table>
+      <figure>
+        <img src="images/example_bad_tables.png" alt="example_bad_tables" width="70%">
+        <figcaption><b><a id="Fig1"></a>Figure x:</b> Example of Bad tables.</figcaption>
+      </figure>
+
+      <figure>
+        <img src="images/example_lack_info.png" alt="example_lack_info" width="70%">
+        <figcaption><b><a id="Fig1"></a>Figure y:</b> Example of Lack of information.</figcaption>
+      </figure>
 
       <span id="toc6"></span>
       <h2>6. Discussion</h2>
