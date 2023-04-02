@@ -865,11 +865,15 @@
       </p>
 
       <p>
-        This work is organized as follows. Firstly, in Chapter 1, we will introduce and motivate the task of table annotation. Furthermore, 
-        in Chapter 2, we will provide an overview of the preliminaries such as CTA, CPA, and Transformers. Subsequently, in Chapter 3, 
-        we will present the related work. Moving on to Chapter 4, we will describe the models, preprocessing steps, and serialization 
-        approaches. Additionally, in Chapter 5, we will describe the experiment setup. Then, in Chapter 6, we will delve into 
-        the experimental results and Error Analysis. Finally, in Chapters 7 and 8, we will discuss the results and conclude the work, 
+        This work is organized as follows. Firstly, in Chapter 1, we will
+        introduce and motivate the task of table annotation. Furthermore, in
+        Chapter 2, we will provide an overview of the preliminaries such as CTA,
+        CPA, and Transformers. Subsequently, in Chapter 3, we will present the
+        related work. Moving on to Chapter 4, we will describe the models,
+        preprocessing steps, and serialization approaches. Additionally, in
+        Chapter 5, we will describe the experiment setup. Then, in Chapter 6, we
+        will delve into the experimental results and Error Analysis. Finally, in
+        Chapters 7 and 8, we will discuss the results and conclude the work,
         respectively.
       </p>
       <h2>Contents</h2>
@@ -1170,7 +1174,7 @@
         formally known as table serialization, for the tasks of CTA and CPA.
         Single-column serialization is an intuitive solution that concatenates
         column values into a sequence to feed into the language model.
-        Specifically, as defined by Suhara et al.[<a href="#toc15">7</a>], for
+        Specifically, as defined by Suhara et al. [<a href="#toc15">7</a>], for
         column <i>C</i> with column values <i>v<sub>1</sub>,...,v<sub>m</sub></i
         >, the serialized sequence is [<a href="#toc15">7</a>]:
         <span class="math display"
@@ -1198,7 +1202,7 @@
       <p>
         To accommodate the token limit of 512 tokens for BERT-like language
         models, we trim cell values for longer textual data to fit more cells
-        from a table. Following Wang et al.[<a href="#toc16">8</a>]'s empirical
+        from a table. Following Wang et al. [<a href="#toc16">8</a>]'s empirical
         studies, we retain at most 8 tokens from a cell. This is because long
         textual strings often introduce noise and disrupt the structure of a
         table input. Additionally, we experiment with different threshold cell
@@ -1218,7 +1222,17 @@
       <span id="toc4.2"></span>
       <h3>4.2 Serialization</h3>
       <p>
-        <b>(i) Neighboring Column:</b> The <em>Neighboring Column Serialization</em> technique utilizes adjacent columns as local context in a relational table. Previous research by SATO [<a href="#toc19">11</a>] demonstrated that incorporating local context aids in resolving semantic type ambiguities in single-column predictions. To accomplish this, their approach incorporates the predicted semantic types of immediately adjacent columns as local context for a column prediction model of neural network. For our approach, we utilize neighboring columns of varying window sizes along with the target column in the CTA task. Furthermore, for the CPA task, we incorporate neighboring columns for both the main and target columns.
+        <b>(i) Neighboring Column:</b> The
+        <em>Neighboring Column Serialization</em> technique utilizes adjacent
+        columns as local context in a relational table. Previous research by
+        SATO [<a href="#toc19">11</a>] demonstrated that incorporating local
+        context aids in resolving semantic type ambiguities in single-column
+        predictions. To accomplish this, their approach incorporates the
+        predicted semantic types of immediately adjacent columns as local
+        context for a column prediction model of neural network. For our
+        approach, we utilize neighboring columns of varying window sizes along
+        with the target column in the CTA task. Furthermore, for the CPA task,
+        we incorporate neighboring columns for both the main and target columns.
       </p>
       <p>
         To build on the Neighboring Column Serialization approach, we introduce
@@ -1340,7 +1354,9 @@
       <span id="toc5"></span>
       <h2>5. Experiment</h2>
       <p>
-        To run the experiments, we utilize the computing resources from the University of Mannheim (dws-server) and bwHPC servers by the state of Baden-Württemberg.
+        To run the experiments, we utilize the computing resources from the
+        University of Mannheim (dws-server) and bwHPC servers by the state of
+        Baden-Württemberg.
       </p>
 
       <span id="toc5.1"></span>
@@ -1379,8 +1395,19 @@
       </p>
 
       <span id="toc5.2"></span>
-      <h3>5.2 Baselines</h3>
+      <h3>5.2 Experimental Settings</h3>
+      <p> 
+        For our experiments on both SOTAB benchmark and WikiTables dataset, we trained a RoBERTa model with default settings: 30 epochs, 3 runs (with seed 0-2), and a batch size of 32. The initial learning rate was set to 5e-5, and we used a linear decay scheduler with no warmup. We set a maximum token length of 512 and used a standard window size of 5 for relevant serializations. For the SOTAB benchmark, we formulated the task as a multi-label prediction problem and used Cross Entropy loss. For the WikiTable dataset, we formulated the task as a multi-class prediction problem and used Binary Cross Entropy loss. We evaluated the performance of our models using micro F1 scores for both datasets.
+      </p>
+
+      <span id="toc5.3"></span>
+      <h3>5.3 Experiments for SOTAB benchmark</h3>
       <p>
+        For the SOTAB benchmark, 
+
+
+        Lastly, for both CTA and CPA tasks, we perform ablation study to investigate the impact of different window sizes for 
+        Our 
         # TODO To systematically evaluate our pre-trained framework ... we do
         what ... # Our baseline configuration adopts the single column method,
         while all other parameters remain unchanged from the default values.
@@ -1388,21 +1415,14 @@
         <a href="https://webdatacommons.org/structureddata/sotab/"
           >WDC Schema.org Table Annotation Benchmark (SOTAB)</a
         >[<a href="#toc9">1</a>] and result of WikiTable from the studies by
-        Wang et al. [<a href="#toc16">8</a>]
+        Suhara et al. [<a href="#toc15">7</a>]
       </p>
 
-      <span id="toc5.3"></span>
-      <h3>Experimental Settings</h3>
-      <p>The default parameter settings are as follows:</p>
-
-      <ul>
-        <li>Base Model: RoBERTa</li>
-        <li>Learning Rate: 5e-5</li>
-        <li>Max Length: 512</li>
-        <li>Batch Size: 32</li>
-        <li>Random Seeds: 0-2 (Take average as result F1)</li>
-        <li>Window Size(if needed): 5</li>
-      </ul>
+      <span id="toc5.4"></span>
+      <h3>5.4 Experiments for WikiTables dataset</h3>
+      <p>
+        To test the generalizability of our findings for the SOTAB benchmark, we transfer the serialization methods to WikiTables dataset. 
+      </p>
 
       <span id="toc6"></span>
       <h2>6. Experimental Results and Error Analysis</h2>
@@ -2040,46 +2060,66 @@
       </div>
       <div class="tg-wrap">
         <table class="tg">
+          <caption>
+            Preprocess and Augmentation test
+          </caption>
           <thead>
             <tr>
-              <th class="tg-9wq8">
+              <th class="tg-4akn">
                 <span
                   style="
                     font-weight: bold;
                     font-style: normal;
                     text-decoration: none;
                     color: #000;
-                    background-color: transparent;
                   "
-                  >TaBERT</span
+                  >Method</span
+                >
+              </th>
+              <th class="tg-4akn">
+                <span
+                  style="
+                    font-weight: bold;
+                    font-style: normal;
+                    text-decoration: none;
+                    color: #000;
+                  "
+                  >CTA with TaBERT</span
                 ><br /><span
                   style="
                     font-weight: bold;
                     font-style: normal;
                     text-decoration: none;
                     color: #000;
-                    background-color: transparent;
                   "
                   >MainCol Percentage=0.5</span
                 >
               </th>
-              <th class="tg-9wq8">
+              <th class="tg-4akn">
                 <span
                   style="
                     font-weight: bold;
                     font-style: normal;
                     text-decoration: none;
                     color: #000;
-                    background-color: transparent;
                   "
-                  >Test F1</span
+                >
+                  CPA with No-main Neighbor</span
+                ><br /><span
+                  style="
+                    font-weight: bold;
+                    font-style: normal;
+                    text-decoration: none;
+                    color: #000;
+                  "
+                  >MainCol Percentage=0.5</span
                 >
               </th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td class="tg-9wq8">
+              <td class="tg-zkss">
                 <span
                   style="
                     font-weight: 400;
@@ -2091,7 +2131,7 @@
                   >TUTA</span
                 >
               </td>
-              <td class="tg-9wq8">
+              <td class="tg-zkss">
                 <span
                   style="
                     font-weight: 400;
@@ -2103,9 +2143,20 @@
                   >92.45</span
                 >
               </td>
+              <td class="tg-zkss">
+                <span
+                  style="
+                    font-weight: 400;
+                    font-style: normal;
+                    text-decoration: none;
+                    color: #000;
+                  "
+                  >85.77</span
+                >
+              </td>
             </tr>
             <tr>
-              <td class="tg-9wq8">
+              <td class="tg-zkss">
                 <span
                   style="
                     font-weight: 400;
@@ -2117,7 +2168,7 @@
                   >MEAN</span
                 >
               </td>
-              <td class="tg-9wq8">
+              <td class="tg-zkss">
                 <span
                   style="
                     font-weight: 400;
@@ -2129,9 +2180,20 @@
                   >92.05</span
                 >
               </td>
+              <td class="tg-zkss">
+                <span
+                  style="
+                    font-weight: 400;
+                    font-style: normal;
+                    text-decoration: none;
+                    color: #000;
+                  "
+                  >85.70</span
+                >
+              </td>
             </tr>
             <tr>
-              <td class="tg-9wq8">
+              <td class="tg-zkss">
                 <span
                   style="
                     font-weight: 400;
@@ -2143,7 +2205,7 @@
                   >MEDIAN</span
                 >
               </td>
-              <td class="tg-9wq8">
+              <td class="tg-zkss">
                 <span
                   style="
                     font-weight: 400;
@@ -2152,6 +2214,17 @@
                     color: #000;
                   "
                   >92.24</span
+                >
+              </td>
+              <td class="tg-zkss">
+                <span
+                  style="
+                    font-weight: 400;
+                    font-style: normal;
+                    text-decoration: none;
+                    color: #000;
+                  "
+                  >85.68</span
                 >
               </td>
             </tr>
@@ -2165,7 +2238,7 @@
 
         To evaluate the performance of our best result from neighbor serialization with a window size of 2, 
         we initially conducted statistic analysis on three different aspects: (i) schema type, (ii) data type, and (iii) specific challenges.
-        Subsequently, we furthered look into the data and manually classified the errors.
+         Subsequently, we furthered look into the data and manually classified the errors.
       </p>
       <p>
         <b>(i) Schema Type: </b> The tables are distribtued across 17 schema.org types and the tables do no include any metadata which
@@ -2331,14 +2404,13 @@
         </table>
       </p>
       <p>
-
-        Following the statistical analysis of our results, 
-        we delved deeper into the data itself to investigate the root causes of the errors. 
-        To do this, we sampled errors in
-        prediction by schema for both the CTA and CPA tasks. Specifically, we
-        sampled 614 errors from a total of 1533 observations for CTA, and 617
-        errors from 3853 observations for CPA. We manually checked these tables
-        and classified the types of errors we found, which are listed in <i>Table X</i>.
+        Following the statistical analysis of our results, we delved deeper into
+        the data itself to investigate the root causes of the errors. To do
+        this, we sampled errors in prediction by schema for both the CTA and CPA
+        tasks. Specifically, we sampled 614 errors from a total of 1533
+        observations for CTA, and 617 errors from 3853 observations for CPA. We
+        manually checked these tables and classified the types of errors we
+        found, which are listed in <i>Table X</i>.
       </p>
       <table>
         <caption>
@@ -2493,7 +2565,8 @@
 
         <span id="toc17"></span>
         [9] Chen, J., Jiménez-Ruiz, E., Horrocks, I., & Sutton, C. (2019).
-        Learning Semantic Annotations for Tabular Data. ArXiv, abs/1906.00781. <br />
+        Learning Semantic Annotations for Tabular Data. ArXiv, abs/1906.00781.
+        <br />
 
         <span id="toc18"></span>
         [10] Khurana, U., & Galhotra, S. (2021). Semantic Concept Annotation for
@@ -2507,19 +2580,22 @@
 
         <span id="toc20"></span>
 
-
-        [12] Brugman, S. pandas-profiling: Exploratory Data Analysis for Python. https://github.com/pandas-profiling/ <br />
+        [12] Brugman, S. pandas-profiling: Exploratory Data Analysis for Python.
+        https://github.com/pandas-profiling/ <br />
 
         <span id="toc21"></span>
-        [13] Beltagy I, Peters ME, Cohan A. Longformer: The long-document transformer. arXiv preprint arXiv:2004.05150. 2020 Apr 10. <br />
+        [13] Beltagy I, Peters ME, Cohan A. Longformer: The long-document
+        transformer. arXiv preprint arXiv:2004.05150. 2020 Apr 10. <br />
 
         <span id="toc22"></span>
-        [14] Devlin J, Chang MW, Lee K, Toutanova K. Bert: Pre-training of deep bidirectional transformers for language understanding. arXiv preprint arXiv:1810.04805. 2018 Oct 11.<br />
-        
+        [14] Devlin J, Chang MW, Lee K, Toutanova K. Bert: Pre-training of deep
+        bidirectional transformers for language understanding. arXiv preprint
+        arXiv:1810.04805. 2018 Oct 11.<br />
+
         <span id="toc23"></span>
-        [15] Liu Y, Ott M, Goyal N, Du J, Joshi M, Chen D, Levy O, Lewis M, Zettlemoyer L, Stoyanov V. Roberta: A robustly optimized bert pretraining approach. arXiv preprint arXiv:1907.11692. 2019 Jul 26.<br />
-
-
+        [15] Liu Y, Ott M, Goyal N, Du J, Joshi M, Chen D, Levy O, Lewis M,
+        Zettlemoyer L, Stoyanov V. Roberta: A robustly optimized bert
+        pretraining approach. arXiv preprint arXiv:1907.11692. 2019 Jul 26.<br />
       </p>
 
       <p>&nbsp;</p>
