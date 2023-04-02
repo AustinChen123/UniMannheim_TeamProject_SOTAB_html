@@ -1065,7 +1065,7 @@
       <span id="toc4.2"></span>
       <h3>4.2 Serialization</h3>
       <p>
-        <b>(i) Neighboring Column (with summary):</b> The <em>Neighboring Column Serialization</em> technique utilizes adjacent columns as local context in a relational table. Previous research by SATO [<a href="#toc19">11</a>] demonstrated that incorporating local context aids in resolving semantic type ambiguities in single-column predictions. To accomplish this, their approach incorporates the predicted semantic types of immediately adjacent columns as local context for a column prediction model of neural network. For our approach, we utilize neighboring columns of varying window sizes along with the target column in the CTA task. Furthermore, for the CPA task, we incorporate neighboring columns for both the main and target columns.
+        <b>(i) Neighboring Column:</b> The <em>Neighboring Column Serialization</em> technique utilizes adjacent columns as local context in a relational table. Previous research by SATO [<a href="#toc19">11</a>] demonstrated that incorporating local context aids in resolving semantic type ambiguities in single-column predictions. To accomplish this, their approach incorporates the predicted semantic types of immediately adjacent columns as local context for a column prediction model of neural network. For our approach, we utilize neighboring columns of varying window sizes along with the target column in the CTA task. Furthermore, for the CPA task, we incorporate neighboring columns for both the main and target columns.
       </p>
       <p>
         To build on the Neighboring Column Serialization approach, we introduce a more complex variation called <em>Neighboring Column Serialization with Summary</em>. This approach leverages results from exploratory data analysis (EDA) to extract relevant column value data. We use the pandas-profiling library [<a href="#toc20">12</a>] to infer column data types and analyzes text and context using common statistical metrics such as mean, maximum, and minimum text length. We prepend the statistical results to the data for each column, providing a syntax summary for lengthy columns/tables as part of the local context.
@@ -1120,6 +1120,9 @@
 
       <span id="toc5"></span>
       <h2>5. Experiment</h2>
+      <p>
+        To run the experiments, we utilize the computing resources from the University of Mannheim (dws-server) and bwHPC servers by the state of Baden-Württemberg.
+      </p>
 
       <span id="toc5.1"></span>
       <h3>5.1 Dataset</h3>
