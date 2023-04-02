@@ -515,14 +515,14 @@
         }
       }
       .center {
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-      width: 30%;
-    }
-    figure figcaption {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 30%;
+      }
+      figure figcaption {
         text-align: center;
-    }
+      }
     </style>
     <script
       type="text/javascript"
@@ -772,7 +772,11 @@
         })(document);
     </script>
     <!-- MathJax: cdn to display latex equations -->
-  <script type="text/javascript" async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    <script
+      type="text/javascript"
+      async=""
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"
+    ></script>
   </head>
   <body>
     <div id="logo" style="text-align: right; background-color: white">
@@ -823,10 +827,14 @@
       </p>
 
       <p>
-        The organization of this work is as follows. Firstly, we will introduce and motivate the task of table 
-        annotation in Chapter 1. Next, in Chapter 2, we will provide an overview of the preliminaries,such as CTA, CPA, and <br> Transformers. Chapter 3 will then present the related work.
-        Moving on to Chapters 4 and 5, we will delve into the experimental results and Error Analysis. Finally, in Chapters 6 and 7, 
-        we will discuss the results <br>and conclude the work, respectively.
+        The organization of this work is as follows. Firstly, we will introduce
+        and motivate the task of table annotation in Chapter 1. Next, in Chapter
+        2, we will provide an overview of the preliminaries,such as CTA, CPA,
+        and <br />
+        Transformers. Chapter 3 will then present the related work. Moving on to
+        Chapters 4 and 5, we will delve into the experimental results and Error
+        Analysis. Finally, in Chapters 6 and 7, we will discuss the results
+        <br />and conclude the work, respectively.
       </p>
       <h2>Contents</h2>
       <ul>
@@ -906,160 +914,269 @@
 
       <h3>2.1 Column Type Annotation (CTA)</h3>
       <p>
-        Column Type Annotation (CTA) is a critical task in data integration and knowledge discovery that involves 
-        assigning labels to each column in a table based on the types of entities it contains such as <b>"hotel/name",
-        "streetAddress","addressLocality", "Country", and "currency" </b> as shown in <a href="#toc2.1.Fig">Figure 1</a>. Additionally, 
-        CTA can also assign data types to columns such as String, Integer, and Boolean. While data types provide 
-        basic information about the type of data stored in a column, entity types capture domain-specific semantics that 
-        convey more meaning.  For instance, labeling a column with <b>"hotel/name"</b> rather than 
-        just <b>"String" </b> provides valuable information about the specific type of data stored in that column, which is crucial for 
-        downstream tasks such as data analysis and retrieval. Therefore, it can be argued that entity types 
-        assigned through CTA are more useful than data types alone. [<a href="#toc8">1</a>,  <a href="#toc14">4</a>]
-      
+        Column Type Annotation (CTA) is a critical task in data integration and
+        knowledge discovery that involves assigning labels to each column in a
+        table based on the types of entities it contains such as
+        <b
+          >"hotel/name", "streetAddress","addressLocality", "Country", and
+          "currency"
+        </b>
+        as shown in <a href="#toc2.1.Fig">Figure 1</a>. Additionally, CTA can
+        also assign data types to columns such as String, Integer, and Boolean.
+        While data types provide basic information about the type of data stored
+        in a column, entity types capture domain-specific semantics that convey
+        more meaning. For instance, labeling a column with
+        <b>"hotel/name"</b> rather than just <b>"String" </b> provides valuable
+        information about the specific type of data stored in that column, which
+        is crucial for downstream tasks such as data analysis and retrieval.
+        Therefore, it can be argued that entity types assigned through CTA are
+        more useful than data types alone. [<a href="#toc8">1</a>,
+        <a href="#toc14">4</a>]
       </p>
       <span id="toc2.1.Fig"></span>
       <figure>
-        <img src="images/table_CTA_CPA.jpg" alt="Table Annotation Example" class="center">
-        <figcaption class="center"><b><a id="Fig1"></a>Figure 1:</b> Example of table annotation. The CTA labels are placed on the top of
-          the columns, while the CPA labels are placed between the main column (leftmost column) and another column [<a href="#toc8">1</a>].
+        <img
+          src="images/table_CTA_CPA.jpg"
+          alt="Table Annotation Example"
+          class="center"
+        />
+        <figcaption class="center">
+          <b><a id="Fig1"></a>Figure 1:</b> Example of table annotation. The CTA
+          labels are placed on the top of the columns, while the CPA labels are
+          placed between the main column (leftmost column) and another column
+          [<a href="#toc8">1</a>].
         </figcaption>
       </figure>
-    
+
+      <p>Examples of CTA are:</p>
+      <ul>
+        <li>
+          In a customer database that includes columns for the customer name,
+          transaction date, and purchase amount, CTA can be used to identify the
+          data type of each column, such as string for customer name, date for
+          transaction date, and float for purchase amount (data type).
+        </li>
+        <li>
+          In a medical database, that includes columns for patient ID,
+          diagnosis, and treatment, CTA can be used to identify the data type of
+          each column, such as integer for patient ID, string for diagnosis, and
+          string for treatment (data type).
+        </li>
+        <li>
+          A financial institution has a database of stock market data that
+          includes columns for stock symbol, date, and closing price, CTA can be
+          used to identify the data type of each column, such as string for
+          stock symbol, date for date, and float for closing price (data type).
+        </li>
+        <li>
+          An e-commerce website may have a table of products with columns such
+          as "product name", "description", "price", "category", and "brand". By
+          annotating the columns with entity types such as "product name",
+          "brand", and "category", a machine learning model can better
+          understand the semantic meaning of the data, and accurately categorize
+          products into appropriate categories, recommend related products, and
+          provide a more personalized shopping experience to the user (entity
+          type).
+        </li>
+      </ul>
+
       <p>
-          Examples of CTA are: 
-        <ul>
-          <li>
-            In a customer database that includes columns for the customer name, transaction date, and purchase 
-            amount, CTA can be used to identify the data type of each column, such as string for customer name, date 
-            for transaction date, and float for purchase amount (data type). 
-          </li>
-          <li> 
-            In a medical database,  that includes columns for patient ID, 
-            diagnosis, and treatment, CTA can be used to identify the data type of each column, such as integer for 
-            patient ID, string for diagnosis, and string for treatment (data type).   
-          </li>
-          <li>
-            A financial institution has a database of stock market data that includes columns for stock symbol, date,
-            and closing price, CTA can be used to identify the data type of each column, such as string for stock symbol,
-            date for date, and float for closing price (data type). 
-          </li>
-          <li>
-            An e-commerce website may have a table of products with columns such as "product name", "description", 
-            "price", "category", and "brand". By annotating the columns with entity types such as "product name", 
-            "brand", and "category", a machine learning model can better understand the semantic meaning of the data,
-             and accurately categorize products into appropriate categories, recommend related products, and provide
-              a more personalized shopping experience to the user (entity type).
-          </li>
-    
-        </ul>
+        Identifying the data type of each column in a table is essential because
+        it can determine the preprocessing steps required for that column. For
+        instance, a column of type string may require spelling correction and
+        lemmatization, while a column of type currency may require unifying the
+        format of currency values that comes form different countries.
       </p>
+
       <p>
-        Identifying the data type of each column in a table is essential because it can determine the preprocessing 
-        steps required for that column. For instance, a column of type string may require spelling correction and 
-        lemmatization, while a column of type currency may require unifying the format of currency values that 
-        comes form different countries.
+        CTA can be approached as either
+        <a href="https://paperswithcode.com/task/column-type-annotation/">
+          a multi-class or multi-label classification</a
+        >
+        problem. In multi-class, each column is annotated with only one label
+        representing its type, while in multi-label, each column is annotated
+        with multiple labels.
       </p>
-    
-        <p> 
-          CTA can be approached as either <a href="https://paperswithcode.com/task/column-type-annotation/"> 
-            a multi-class or multi-label classification</a> problem. In multi-class, each column is annotated with
-          only one label representing its type, while in multi-label, each column is annotated with multiple labels.
-       </p>
 
       <span id="toc2.2"></span>
       <h3>2.2 Columns Property Annotation (CPA)</h3>
       <p>
-        CPA, a web data integration task, aims to identify relationships between different columns in a table. 
-        It can infer relationships that might not be immediately obvious. For example,
-         when applied to a table with columns labeled "hotel/name" and "address", CPA can help infer that the 
-         address column refers to the hotel's location (see <a href="#toc2.1.Fig">Figure 1</a>). 
+        CPA, a web data integration task, aims to identify relationships between
+        different columns in a table. It can infer relationships that might not
+        be immediately obvious. For example, when applied to a table with
+        columns labeled "hotel/name" and "address", CPA can help infer that the
+        address column refers to the hotel's location (see
+        <a href="#toc2.1.Fig">Figure 1</a>).
       </p>
-  
-        Here are a few examples of how CPA can be applied:<br>
+
+      Here are a few examples of how CPA can be applied:<br />
       <ul>
-        <li>In a product database that contains information about products, including their names, prices, and
-         descriptions, CPA can be used to identify which columns are related to each other, such as the relationship 
-         between the product name and description. </li>
-   
-         <li>In a customer database, CPA can be used to identify relationships between different columns such as the 
-        relationship between a customer's name, age, and gender. </li>
-    
-        <li>In a medical database, CPA can be used to identify relationships between different columns such as the 
-        relationship between a patient's symptoms, diagnosis, and treatment. </li>
+        <li>
+          In a product database that contains information about products,
+          including their names, prices, and descriptions, CPA can be used to
+          identify which columns are related to each other, such as the
+          relationship between the product name and description.
+        </li>
+
+        <li>
+          In a customer database, CPA can be used to identify relationships
+          between different columns such as the relationship between a
+          customer's name, age, and gender.
+        </li>
+
+        <li>
+          In a medical database, CPA can be used to identify relationships
+          between different columns such as the relationship between a patient's
+          symptoms, diagnosis, and treatment.
+        </li>
       </ul>
-        In each of these examples, CPA can help to identify relationships between columns that may not be 
-        immediately apparent, leading to better data discovery. For example, in a product database, identifying the
-        relationship between a product's name and description can help with search engine 
-        optimization and online sales. Moreover, CPA is a fundamental technique in further 
-        data management tasks. It plays a crucial role in ensuring  data quality control, as well as schema
-         matching. [<a href="#toc17">7</a>].
+      In each of these examples, CPA can help to identify relationships between
+      columns that may not be immediately apparent, leading to better data
+      discovery. For example, in a product database, identifying the
+      relationship between a product's name and description can help with search
+      engine optimization and online sales. Moreover, CPA is a fundamental
+      technique in further data management tasks. It plays a crucial role in
+      ensuring data quality control, as well as schema matching. [<a
+        href="#toc17"
+        >7</a
+      >].
       <p>
-          One common way to tackle CPA is to view it as a <a href="https://paperswithcode.com/task/columns-property-annotation/"> multi-class classification</a> task, and it is also known as 
-          column relation annotation or relation extraction in various works.
-      </p>
+        One common way to tackle CPA is to view it as a
+        <a href="https://paperswithcode.com/task/columns-property-annotation/">
+          multi-class classification</a
+        >
+        task, and it is also known as column relation annotation or relation
+        extraction in various works.
       </p>
 
       <span id="toc2.3"></span>
       <h3>2.3 Transformer</h3>
       <p>
-        Transformers are a type of neural network architecture that has become widely used in natural language 
-        processing and other machine learning applications. They were first introduced in 2017 by Vaswani et al [<a href="#toc15">5</a>]. and
-        have since become one of the most popular deep-learning models. Transformers are based on the concept of
-        self-attention, which allows the model to focus on different parts of the input sequence at each step. 
-      </p>
-      <p>
-        <p>
-          The key innovation of transformers is self-attention, which is a mechanism that allows the 
-          model to selectively focus on different parts of the input sequence. Self-attention works by computing a 
-          weighted sum of the input sequence at each position, where the weights are determined by a similarity 
-          function between the current position and all other positions. The output of the self-attention layer is a 
-          sequence of weighted sums, which can then be fed into subsequent layers of the network.
-          The attention function can be formalized as follows:
-          <p><span class="math display">\[Attention(Q, K, V) = softmax(\frac{QK^T}{\sqrt{d_k}})V\]</span></p>
-          <p>where Q, K, and V are the query, key, and value vectors, respectively.
-        </p>
-        The attention mechanism can be used in the CTA task to help the model identify which parts of the input table
-        are most relevant for predicting the column types. For example, the model might attend to the cells in the 
-        first row of the table to identify common patterns or formats, such as whether the cells contain numerical 
-        values or text.
+        Transformers are a type of neural network architecture that has become
+        widely used in natural language processing and other machine learning
+        applications. They were first introduced in 2017 by Vaswani et al [<a
+          href="#toc15"
+          >5</a
+        >]. and have since become one of the most popular deep-learning models.
+        Transformers are based on the concept of self-attention, which allows
+        the model to focus on different parts of the input sequence at each
+        step.
       </p>
 
+      <p>
+        The key innovation of transformers is self-attention, which is a
+        mechanism that allows the model to selectively focus on different parts
+        of the input sequence. Self-attention works by computing a weighted sum
+        of the input sequence at each position, where the weights are determined
+        by a similarity function between the current position and all other
+        positions. The output of the self-attention layer is a sequence of
+        weighted sums, which can then be fed into subsequent layers of the
+        network. The attention function can be formalized as follows:
+      </p>
+      <p>
+        <span class="math display"
+          >\[Attention(Q, K, V) = softmax(\frac{QK^T}{\sqrt{d_k}})V\]</span
+        >
+      </p>
+      <p>
+        where Q, K, and V are the query, key, and value vectors, respectively.
+      </p>
+      <p>
+        The attention mechanism can be used in the CTA task to help the model
+        identify which parts of the input table are most relevant for predicting
+        the column types. For example, the model might attend to the cells in
+        the first row of the table to identify common patterns or formats, such
+        as whether the cells contain numerical values or text.
+      </p>
       <span id="toc3"></span>
       <h2>3. Related Work</h2>
       <p>
         <!--We need to discuss some existing papers that we have referred here. I.e.
         the approach by DODUO, TURL and maybe TUTA. -->
-        With the emergence of pretraining/fine-tuning techniques, many researchers have utilized these methods in table annotation tasks. One such approach is presented in the paper
-        [<a href="#toc12">4</a>],  which proposes a framework for table understanding through representation learning called TURL. The authors utilize the pre-training/fine-tuning paradigm to learn
-         contextualized representations on relational tables during pretraining. This enables the model to be fine-tuned on various downstream tasks with minimal task-specific adjustments.
-          The proposed model is pretrained in an unsupervised manner on a large-scale web table corpus that is based on the WikiTable corpus. Furthermore, the framework can also be used to 
-          infer meta information about tables such as column types and relationships between columns (CTA and CPA).
-         DUDO, another framework proposed by [<a href="#toc15">7</a>],  tackles the problems of annotating table columns using only the information contained in tables. It is built 
-        around language models, and takes the entire table as input to predict column types and relationships between columns. This approach is unique in that it requires no external
-        knowledge or context beyond what is present in the table itself. Furthermore, DUDO has achieved competitive results on two benchmarks  for the column type prediction and 
-        column relation prediction tasks.
-        [<a href="#toc16">8</a>] introduces TUTA, a pre-training architecture that enhances transformers for understanding generally structured tables. The authors use a structure aware mechanism that 
-        employs a tree-based attention and position mechanism to capture the spatial and hierarchical information of tables. TUTA is trained on unlabeled web and spreadsheet tables at three 
-        representation levels - token, cell, and table levels. It achieves state-of-the-art performance on five datasets for cell type classification and table type classification tasks.
+        With the emergence of pretraining/fine-tuning techniques, many
+        researchers have utilized these methods in table annotation tasks. One
+        such approach is presented in the paper [<a href="#toc12">4</a>], which
+        proposes a framework for table understanding through representation
+        learning called TURL. The authors utilize the pre-training/fine-tuning
+        paradigm to learn contextualized representations on relational tables
+        during pretraining. This enables the model to be fine-tuned on various
+        downstream tasks with minimal task-specific adjustments. The proposed
+        model is pretrained in an unsupervised manner on a large-scale web table
+        corpus that is based on the WikiTable corpus. Furthermore, the framework
+        can also be used to infer meta information about tables such as column
+        types and relationships between columns (CTA and CPA). DUDO, another
+        framework proposed by [<a href="#toc15">7</a>], tackles the problems of
+        annotating table columns using only the information contained in tables.
+        It is built around language models, and takes the entire table as input
+        to predict column types and relationships between columns. This approach
+        is unique in that it requires no external knowledge or context beyond
+        what is present in the table itself. Furthermore, DUDO has achieved
+        competitive results on two benchmarks for the column type prediction and
+        column relation prediction tasks. [<a href="#toc16">8</a>] introduces
+        TUTA, a pre-training architecture that enhances transformers for
+        understanding generally structured tables. The authors use a structure
+        aware mechanism that employs a tree-based attention and position
+        mechanism to capture the spatial and hierarchical information of tables.
+        TUTA is trained on unlabeled web and spreadsheet tables at three
+        representation levels - token, cell, and table levels. It achieves
+        state-of-the-art performance on five datasets for cell type
+        classification and table type classification tasks.
       </p>
-
 
       <span id="toc4"></span>
       <h2>4. Model</h2>
       <p>
-        A Transformer-based language model is ideal for tasks related to table understanding due to its language understanding capabilities and Transformer's attention mechanism that captures contextualized column representations. These language models expect token (text) sequences as inputs. This translates to representing tables in text sequences, formally known as table serialization, for the tasks of CTA and CPA. Single-column serialization is an intuitive solution that concatenates column values into a sequence to feed into the language model. Specifically, as defined by Suhara et al.[<a href="#toc15">7</a>], for column <i>C</i> with column values <i>v<sub>1</sub>,...,v<sub>m</sub></i>, the serialized sequence is [<a href="#toc15">7</a>]: <p><span class="math display">\[serialize_{single}(C)::= [CLS]\;v_1\;...\;v_m\;[SEP]\]</span></p>
+        A Transformer-based language model is ideal for tasks related to table
+        understanding due to its language understanding capabilities and
+        Transformer's attention mechanism that captures contextualized column
+        representations. These language models expect token (text) sequences as
+        inputs. This translates to representing tables in text sequences,
+        formally known as table serialization, for the tasks of CTA and CPA.
+        Single-column serialization is an intuitive solution that concatenates
+        column values into a sequence to feed into the language model.
+        Specifically, as defined by Suhara et al.[<a href="#toc15">7</a>], for
+        column <i>C</i> with column values <i>v<sub>1</sub>,...,v<sub>m</sub></i
+        >, the serialized sequence is [<a href="#toc15">7</a>]:
+        <span class="math display"
+          >\[serialize_{single}(C)::= [CLS]\;v_1\;...\;v_m\;[SEP]\]</span
+        >
       </p>
       <p>
-        Table serialization conveniently translates the CTA and CPA tasks into sequence classification and sequence-pair classification task respectively. However, the major drawback of single-column serialization is that it treats each column in a table as an independent sequence, neglecting the crucial table context that defines a real-world entity for a relational table. Previous works [<a href="#toc15">7,</a><a href="#toc17">9,</a><a href="#toc18">10,</a><a href="#toc19">11</a>] have highlighted the importance of table context for the CTA task. At the other end of the spectrum for table serialization is DODUO, which represents a table as an aggregation of contextual information from all column values.  Our work's main focus and contributions include experimenting with various serialization strategies, preprocessing techniques, and augmentation methods to account for table context.
+        Table serialization conveniently translates the CTA and CPA tasks into
+        sequence classification and sequence-pair classification task
+        respectively. However, the major drawback of single-column serialization
+        is that it treats each column in a table as an independent sequence,
+        neglecting the crucial table context that defines a real-world entity
+        for a relational table. Previous works [<a href="#toc15">7,</a
+        ><a href="#toc17">9,</a><a href="#toc18">10,</a><a href="#toc19">11</a>]
+        have highlighted the importance of table context for the CTA task. At
+        the other end of the spectrum for table serialization is DODUO, which
+        represents a table as an aggregation of contextual information from all
+        column values. Our work's main focus and contributions include
+        experimenting with various serialization strategies, preprocessing
+        techniques, and augmentation methods to account for table context.
       </p>
 
       <span id="toc4.1"></span>
       <h3>4.1 Preprocessing and Augmentation</h3>
       <p>
-        To accommodate the token limit of 512 tokens for BERT-like language models, we trim cell values for longer textual data to fit more cells from a table. Following Wang et al.[<a href="#toc16">8</a>]'s empirical studies, we retain at most 8 tokens from a cell. This is because long textual strings often introduce noise and disrupt the structure of a table input. Additionally, we experiment with different threshold cell lengths, i.e., <em>median</em> and <em>mean</em> cell length computed per column basis. The rational being a long textual column contains strings of different length.
+        To accommodate the token limit of 512 tokens for BERT-like language
+        models, we trim cell values for longer textual data to fit more cells
+        from a table. Following Wang et al.[<a href="#toc16">8</a>]'s empirical
+        studies, we retain at most 8 tokens from a cell. This is because long
+        textual strings often introduce noise and disrupt the structure of a
+        table input. Additionally, we experiment with different threshold cell
+        lengths, i.e., <em>median</em> and <em>mean</em> cell length computed
+        per column basis. The rational being a long textual column contains
+        strings of different length.
       </p>
       <p>
-        To enhance our data processing, we perform data augmentation (DA) at both the cell and table level during the earlier stages of our workflow. Specifically, we apply standard textual DA techniques, such as word swapping, word replacement, word deletion, and column cell value shuffling, at the cell level. At the table level, we perform random cell deletion and column cell shuffling.
+        To enhance our data processing, we perform data augmentation (DA) at
+        both the cell and table level during the earlier stages of our workflow.
+        Specifically, we apply standard textual DA techniques, such as word
+        swapping, word replacement, word deletion, and column cell value
+        shuffling, at the cell level. At the table level, we perform random cell
+        deletion and column cell shuffling.
       </p>
 
       <span id="toc4.2"></span>
@@ -1068,10 +1185,25 @@
         <b>(i) Neighboring Column:</b> The <em>Neighboring Column Serialization</em> technique utilizes adjacent columns as local context in a relational table. Previous research by SATO [<a href="#toc19">11</a>] demonstrated that incorporating local context aids in resolving semantic type ambiguities in single-column predictions. To accomplish this, their approach incorporates the predicted semantic types of immediately adjacent columns as local context for a column prediction model of neural network. For our approach, we utilize neighboring columns of varying window sizes along with the target column in the CTA task. Furthermore, for the CPA task, we incorporate neighboring columns for both the main and target columns.
       </p>
       <p>
-        To build on the Neighboring Column Serialization approach, we introduce a more complex variation called <em>Neighboring Column Serialization with Summary</em>. This approach leverages results from exploratory data analysis (EDA) to extract relevant column value data. We use the pandas-profiling library [<a href="#toc20">12</a>] to infer column data types and analyzes text and context using common statistical metrics such as mean, maximum, and minimum text length. We prepend the statistical results to the data for each column, providing a syntax summary for lengthy columns/tables as part of the local context.
+        To build on the Neighboring Column Serialization approach, we introduce
+        a more complex variation called
+        <em>Neighboring Column Serialization with Summary</em>. This approach
+        leverages results from exploratory data analysis (EDA) to extract
+        relevant column value data. We use the pandas-profiling library [<a
+          href="#toc20"
+          >12</a
+        >] to infer column data types and analyzes text and context using common
+        statistical metrics such as mean, maximum, and minimum text length. We
+        prepend the statistical results to the data for each column, providing a
+        syntax summary for lengthy columns/tables as part of the local context.
       </p>
       <p>
-        However, for the CPA task, including the main column and its local context in conjunction with the Neighboring Column Serialization approach can lead to redundancy. Therefore, we transfer the Neighboring Column Serialization technique from the CTA task to the CPA task, without including the main column, which we refer to as the <em>No-Main Neighboring Column Serialization</em>.
+        However, for the CPA task, including the main column and its local
+        context in conjunction with the Neighboring Column Serialization
+        approach can lead to redundancy. Therefore, we transfer the Neighboring
+        Column Serialization technique from the CTA task to the CPA task,
+        without including the main column, which we refer to as the
+        <em>No-Main Neighboring Column Serialization</em>.
       </p>
 
       <span id="toc4.2.1.Fig"></span>
@@ -1082,14 +1214,35 @@
           style="width: 550px; height: 330px"
           class="center"
         />
-        <figcaption class="center"><b><a id="Fig2"></a>Figure 2:</b> Neighboring Column Serialization</figcaption>
+        <figcaption class="center">
+          <b><a id="Fig2"></a>Figure 2:</b> Neighboring Column Serialization
+        </figcaption>
       </figure>
 
       <p>
-        <b>(ii) TaBERT:</b> In <em>TaBERT Serialization</em>, our goal is to capture the relationship between the target column and the context columns by inputting the context data row-wise. To achieve this, we follow the approach proposed by TUTA [<a href="#toc16">8</a>], where we prepend a data type token to each cell. This row serialization approach helps the Transformer's attention mechanism better capture the table structure while maintaining constant intervals for each column. Moreover, by including data types, the language model can learn the relationships between the cells of the target column and the prediction label. For instance, a URL data for company, label, or hotel photos may indicate a target label of "Logo". 
+        <b>(ii) TaBERT:</b> In <em>TaBERT Serialization</em>, our goal is to
+        capture the relationship between the target column and the context
+        columns by inputting the context data row-wise. To achieve this, we
+        follow the approach proposed by TUTA [<a href="#toc16">8</a>], where we
+        prepend a data type token to each cell. This row serialization approach
+        helps the Transformer's attention mechanism better capture the table
+        structure while maintaining constant intervals for each column.
+        Moreover, by including data types, the language model can learn the
+        relationships between the cells of the target column and the prediction
+        label. For instance, a URL data for company, label, or hotel photos may
+        indicate a target label of "Logo".
       </p>
       <p>
-        To reduce the number of additional tokens required for inserting data types in each cell, we introduce <em>Column-TaBERT Serialization</em>, which infers the data type for each column by majority count and includes the data types for each column only once. For the CTA task, the resulting serialization is illustrated in <a href="#toc4.2.2.Fig">Figure 3</a> or: <p><span class="math display">\[serialize_{col\_tabert}(C)::= [CLS]\;type\_target\_col\;target\_col\_data\;type\_context\_col\_1\;type\_context\_col\_2\;...\;row\_data\;[SEP]\]</span></p>
+        To reduce the number of additional tokens required for inserting data
+        types in each cell, we introduce <em>Column-TaBERT Serialization</em>,
+        which infers the data type for each column by majority count and
+        includes the data types for each column only once. For the CTA task, the
+        resulting serialization is illustrated in
+        <a href="#toc4.2.2.Fig">Figure 3</a> or:
+        <span class="math display"
+          >\[serialize_{col\_tabert}(C)::=
+          [CLS]\;type\_target\_col\;target\_col\_data\;type\_context\_col\_1\;type\_context\_col\_2\;...\;row\_data\;[SEP]\]</span
+        >
       </p>
 
       <span id="toc4.2.2.Fig"></span>
@@ -1100,22 +1253,43 @@
           style="width: 550px; height: 330px"
           class="center"
         />
-        <figcaption class="center"><b><a id="Fig3"></a>Figure 3:</b> TaBERT Serialization</figcaption>
+        <figcaption class="center">
+          <b><a id="Fig3"></a>Figure 3:</b> TaBERT Serialization
+        </figcaption>
       </figure>
 
-      <span id="toc4.3"></span> 
+      <span id="toc4.3"></span>
       <h3>4.3 Further Models</h3>
       <p>
-        We further explore different experimental models for the CPA task in various iterations. 
+        We further explore different experimental models for the CPA task in
+        various iterations.
       </p>
       <p>
-        <b>(i) Subtable Model:</b> According to the statistics provided by SOTAB Benchmark [<a href="#toc9">1</a>], the CPA task involves 48,379 tables with a total of 174,998 columns. Notably, the tables have a median of 42 rows and 8 columns. To increase the diversity of the training data and incorporate more parts of each table, we divide each table into subtables consisting of a maximum of 20 rows per subtable and up to 5 subtables per table. As a result, our approach now encompasses a total of 391,115 columns.
+        <b>(i) Subtable Model:</b> According to the statistics provided by SOTAB
+        Benchmark [<a href="#toc9">1</a>], the CPA task involves 48,379 tables
+        with a total of 174,998 columns. Notably, the tables have a median of 42
+        rows and 8 columns. To increase the diversity of the training data and
+        incorporate more parts of each table, we divide each table into
+        subtables consisting of a maximum of 20 rows per subtable and up to 5
+        subtables per table. As a result, our approach now encompasses a total
+        of 391,115 columns.
       </p>
       <p>
-        <b>(ii) 2-Step Model:</b> To improve the accuracy of our predictions, we adopt a 2-step model that leverages the 17 schema.org labels associated with each table. Specifically, we first predict the schema type of a table using a model trained on the SOTAB Benchmark [<a href="#toc9">1</a>] training data. This allows us to restrict our predictions to only relevant labels for each column. For example, if a column is identified as "Book", it will not be predicted as "MusicRecording/Name" for a CTA task. Next, we train submodels for each schema type to predict the final label for each column. To make predictions on test data, we first predict the schema type and then use the corresponding submodel to predict the final label for each column. 
+        <b>(ii) 2-Step Model:</b> To improve the accuracy of our predictions, we
+        adopt a 2-step model that leverages the 17 schema.org labels associated
+        with each table. Specifically, we first predict the schema type of a
+        table using a model trained on the SOTAB Benchmark [<a href="#toc9">1</a
+        >] training data. This allows us to restrict our predictions to only
+        relevant labels for each column. For example, if a column is identified
+        as "Book", it will not be predicted as "MusicRecording/Name" for a CTA
+        task. Next, we train submodels for each schema type to predict the final
+        label for each column. To make predictions on test data, we first
+        predict the schema type and then use the corresponding submodel to
+        predict the final label for each column.
       </p>
       <p>
-        <b>(ii) LongFormer:</b>
+        <b>(ii) LongFormer:</b> Transformer-based models suffer from a limitation when it comes to processing long sequences. The self-attention operation in transformers scales quadratically with the sequence length, which restricts the ability to process long texts. This is a challenge in table annotation where long texts need to be processed. While models such as BERT or RoBERTa [<a href="#toc22">14</a>, <a href="#toc23">15</a>] are limited to a sequence length of 512, [<a href="#toc21">13</a>] proposes Longformer, which has a linear attention mechanism that can process sequences up to 4,096 in length.
+
       </p>
 
       <span id="toc5"></span>
@@ -1162,10 +1336,10 @@
       <span id="toc5.2"></span>
       <h3>5.2 Baselines</h3>
       <p>
-        # TODO To systematically evaluate our pre-trained framework ... we do what ... #
-        Our baseline configuration adopts the single column method, while all
-        other parameters remain unchanged from the default values. Additionally,
-        we take the TURL and DODUO result of SOTAB dataset from
+        # TODO To systematically evaluate our pre-trained framework ... we do
+        what ... # Our baseline configuration adopts the single column method,
+        while all other parameters remain unchanged from the default values.
+        Additionally, we take the TURL and DODUO result of SOTAB dataset from
         <a href="https://webdatacommons.org/structureddata/sotab/"
           >WDC Schema.org Table Annotation Benchmark (SOTAB)</a
         >[<a href="#toc9">1</a>] and result of WikiTable from the studies by
@@ -1174,10 +1348,8 @@
 
       <span id="toc5.3"></span>
       <h3>Experimental Settings</h3>
-      <p>
-        The default parameter settings are as follows:
-      </p>
-      </p>
+      <p>The default parameter settings are as follows:</p>
+
       <ul>
         <li>Base Model: RoBERTa</li>
         <li>Learning Rate: 5e-5</li>
@@ -1195,73 +1367,310 @@
       <p></p>
       <div class="tg-wrap">
         <table class="tg">
-          <caption>
-            Table ?: Experiment results
-          </caption>
           <thead>
+            <caption>
+              Table ?:Experiment results
+            </caption>
+
             <tr>
-              <th class="tg-ixdq">Datset</th>
-              <th class="tg-ixdq" colspan="2">SOTAB</th>
-              <th class="tg-ixdq" colspan="2">WikiTable</th>
+              <th class="tg-9wq8">
+                <span
+                  style="
+                    font-weight: 400;
+                    font-style: normal;
+                    text-decoration: none;
+                    color: #000;
+                    background-color: transparent;
+                  "
+                  >CTA</span
+                >
+              </th>
+              <th class="tg-9wq8">
+                <span
+                  style="
+                    font-weight: 400;
+                    font-style: normal;
+                    text-decoration: none;
+                    color: #000;
+                    background-color: transparent;
+                  "
+                  >0.2</span
+                >
+              </th>
+              <th class="tg-9wq8">
+                <span
+                  style="
+                    font-weight: 400;
+                    font-style: normal;
+                    text-decoration: none;
+                    color: #000;
+                    background-color: transparent;
+                  "
+                  >0.5</span
+                >
+              </th>
+              <th class="tg-9wq8">
+                <span
+                  style="
+                    font-weight: 400;
+                    font-style: normal;
+                    text-decoration: none;
+                    color: #000;
+                    background-color: transparent;
+                  "
+                  >0.8</span
+                >
+              </th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <th class="tg-ixdq"><br /></th>
-              <th class="tg-ixdq">CTA</th>
-              <th class="tg-ixdq">CPA</th>
-              <th class="tg-ixdq">CTA</th>
-              <th class="tg-ixdq">CPA</th>
+              <td class="tg-9wq8">
+                <span
+                  style="
+                    font-weight: 400;
+                    font-style: normal;
+                    text-decoration: none;
+                    color: #000;
+                    background-color: transparent;
+                  "
+                  >TaBERT</span
+                >
+              </td>
+              <td class="tg-9wq8">
+                <span
+                  style="
+                    font-weight: 400;
+                    font-style: normal;
+                    text-decoration: none;
+                    color: #000;
+                    background-color: transparent;
+                  "
+                  >92.14</span
+                >
+              </td>
+              <td class="tg-9wq8">
+                <span
+                  style="
+                    font-weight: 400;
+                    font-style: normal;
+                    text-decoration: none;
+                    color: #000;
+                    background-color: transparent;
+                  "
+                  >92.24</span
+                >
+              </td>
+              <td class="tg-9wq8">
+                <span
+                  style="
+                    font-weight: 400;
+                    font-style: normal;
+                    text-decoration: none;
+                    color: #000;
+                    background-color: transparent;
+                  "
+                  >91.60</span
+                >
+              </td>
             </tr>
             <tr>
-              <td class="tg-9wq8">Single Column</td>
-              <td class="tg-9wq8"></td>
-              <td class="tg-9wq8"></td>
-              <td class="tg-9wq8"></td>
-              <td class="tg-9wq8"></td>
+              <td class="tg-9wq8">
+                <span
+                  style="
+                    font-weight: 400;
+                    font-style: normal;
+                    text-decoration: none;
+                    color: #000;
+                    background-color: transparent;
+                  "
+                  >col_taBERT</span
+                >
+              </td>
+              <td class="tg-9wq8">
+                <span
+                  style="
+                    font-weight: 400;
+                    font-style: normal;
+                    text-decoration: none;
+                    color: #000;
+                    background-color: transparent;
+                  "
+                  >87.92</span
+                >
+              </td>
+              <td class="tg-9wq8">
+                <span
+                  style="
+                    font-weight: 400;
+                    font-style: normal;
+                    text-decoration: none;
+                    color: #000;
+                    background-color: transparent;
+                  "
+                  >88.40</span
+                >
+              </td>
+              <td class="tg-9wq8">
+                <span
+                  style="
+                    font-weight: 400;
+                    font-style: normal;
+                    text-decoration: none;
+                    color: #000;
+                    background-color: transparent;
+                  "
+                  >88.67</span
+                >
+              </td>
             </tr>
             <tr>
-              <td class="tg-9wq8">Neighboring column</td>
-              <td class="tg-9wq8"></td>
-              <td class="tg-9wq8"></td>
-              <td class="tg-9wq8"></td>
-              <td class="tg-9wq8"></td>
+              <td class="tg-9wq8">
+                <span
+                  style="
+                    font-weight: 400;
+                    font-style: normal;
+                    text-decoration: none;
+                    color: #000;
+                    background-color: transparent;
+                  "
+                  >Neighbor</span
+                >
+              </td>
+              <td class="tg-lxrp">
+                <span
+                  style="
+                    font-weight: 400;
+                    font-style: normal;
+                    text-decoration: none;
+                    color: #000;
+                  "
+                  >92.44</span
+                >
+              </td>
+              <td class="tg-9wq8">
+                <span
+                  style="
+                    font-weight: 400;
+                    font-style: normal;
+                    text-decoration: none;
+                    color: #000;
+                    background-color: transparent;
+                  "
+                  >92.14</span
+                >
+              </td>
+              <td class="tg-9wq8">
+                <span
+                  style="
+                    font-weight: 400;
+                    font-style: normal;
+                    text-decoration: none;
+                    color: #000;
+                    background-color: transparent;
+                  "
+                  >91.29</span
+                >
+              </td>
             </tr>
             <tr>
-              <td class="tg-9wq8">TaBERT</td>
-              <td class="tg-9wq8"></td>
-              <td class="tg-9wq8"></td>
-              <td class="tg-9wq8"></td>
-              <td class="tg-9wq8"></td>
+              <td class="tg-9wq8">
+                <span
+                  style="
+                    font-weight: 400;
+                    font-style: normal;
+                    text-decoration: none;
+                    color: #000;
+                    background-color: transparent;
+                  "
+                  >sum_Neighbor, WS=5</span
+                >
+              </td>
+              <td class="tg-9wq8">
+                <span
+                  style="
+                    font-weight: 400;
+                    font-style: normal;
+                    text-decoration: none;
+                    color: #000;
+                    background-color: transparent;
+                  "
+                  >90.97</span
+                >
+              </td>
+              <td class="tg-9wq8">
+                <span
+                  style="
+                    font-weight: 400;
+                    font-style: normal;
+                    text-decoration: none;
+                    color: #000;
+                    background-color: transparent;
+                  "
+                  >88.63</span
+                >
+              </td>
+              <td class="tg-9wq8">
+                <span
+                  style="
+                    font-weight: 400;
+                    font-style: normal;
+                    text-decoration: none;
+                    color: #000;
+                    background-color: transparent;
+                  "
+                  >85.82</span
+                >
+              </td>
+            </tr>
+            <!-- <tr>
+              <td class="tg-9wq8">DODUO*</td>
+              <td class="tg-vdld" colspan="3"><span style="font-weight:400;font-style:normal">84.82</span></td>
             </tr>
             <tr>
-              <td class="tg-9wq8">DODUO</td>
-              <td class="tg-9wq8"></td>
-              <td class="tg-9wq8"></td>
-              <td class="tg-9wq8"></td>
-              <td class="tg-9wq8"></td>
+              <td class="tg-9wq8">TURL*</td>
+              <td class="tg-9wq8" colspan="3">78.96</td>
             </tr>
             <tr>
-              <td class="tg-9wq8">TURL</td>
-              <td class="tg-9wq8"></td>
-              <td class="tg-9wq8"></td>
-              <td class="tg-9wq8"></td>
-              <td class="tg-9wq8"></td>
+              <td class="tg-c3ow">Single Column</td>
+              <td class="tg-c3ow" colspan="3">82.97 </td>
+            </tr> -->
+            <tr>
+              <td class="tg-9wq8">DODUO*</td>
+              <td class="tg-vdld">
+                <span style="font-weight: 400; font-style: normal">84.82</span>
+              </td>
+              <td class="tg-vdld">
+                <span style="font-weight: 400; font-style: normal">84.82</span>
+              </td>
+              <td class="tg-vdld">
+                <span style="font-weight: 400; font-style: normal">84.82</span>
+              </td>
+            </tr>
+            <tr>
+              <td class="tg-9wq8">TURL*</td>
+              <td class="tg-9wq8">78.96</td>
+              <td class="tg-9wq8">78.96</td>
+              <td class="tg-9wq8">78.96</td>
+            </tr>
+            <tr>
+              <td class="tg-c3ow">Single Column</td>
+              <td class="tg-c3ow">82.97</td>
+              <td class="tg-0pky">82.97</td>
+              <td class="tg-0pky">82.97</td>
             </tr>
           </tbody>
         </table>
       </div>
 
-
       <span id="toc6.2"></span>
       <h3>6.2 Error Analysis</h3>
       <p>
-        To evaluate the performance of each model and assess their strengths and weaknesses, 
+        To evaluate the performance of our best result from neighbor serialization with a window size of 2, 
         we initially conducted statistic analysis on three different aspects: (i) schema type, (ii) data type, and (iii) specific challenges.
         The specific challgenges include: Missing Values, Value Format Heterogeneity, Corner Cases, 
         and Random Columns which were all clearly defined in <a href="https://webdatacommons.org/structureddata/sotab/"
-        >WDC Schema.org Table Annotation Benchmark (SOTAB)</a>[<a href="#toc9">1</a>]. Subsequently, we furthered look into the data
-        and manually classified the errors.
+        >WDC Schema.org Table Annotation Benchmark (SOTAB)</a>[<a href="#toc9">1</a>]. Subsequently, we furthered look into the data and manually classified the errors.
       </p>
       <p>
         <b>(i) Schema Type:</b>
@@ -1275,13 +1684,11 @@
       <p>
         Following the statistical analysis of our results, 
         we delved deeper into the data itself to investigate the root causes of the errors. 
-        We took the data on the best result obtained from neighbor
-        serialization with a window size of 2. To do this, we sampled errors in
+        To do this, we sampled errors in
         prediction by schema for both the CTA and CPA tasks. Specifically, we
         sampled 614 errors from a total of 1533 observations for CTA, and 617
         errors from 3853 observations for CPA. We manually checked these tables
-        and classified the types of errors we found, which are listed in
-        <i>Table X</i>.
+        and classified the types of errors we found, which are listed in <i>Table X</i>.
       </p>
       <table>
         <caption>
@@ -1426,16 +1833,32 @@
         Discovery & Data Mining.
 
         <span id="toc17"></span>
-        [9] Chen, J., Jiménez-Ruiz, E., Horrocks, I., & Sutton, C. (2019). Learning Semantic Annotations for Tabular Data. ArXiv, abs/1906.00781.
+        [9] Chen, J., Jiménez-Ruiz, E., Horrocks, I., & Sutton, C. (2019).
+        Learning Semantic Annotations for Tabular Data. ArXiv, abs/1906.00781.
 
         <span id="toc18"></span>
-        [10] Khurana, U., & Galhotra, S. (2021). Semantic Concept Annotation for Tabular Data. Proceedings of the 30th ACM International Conference on Information & Knowledge Management.
+        [10] Khurana, U., & Galhotra, S. (2021). Semantic Concept Annotation for
+        Tabular Data. Proceedings of the 30th ACM International Conference on
+        Information & Knowledge Management.
 
         <span id="toc19"></span>
-        [11] Zhang, D., Suhara, Y., Li, J., Hulsebos, M., Demiralp, C., & Tan, W.C. (2019). Sato: Contextual Semantic Type Detection in Tables. Proc. VLDB Endow., 13, 1835-1848.
+        [11] Zhang, D., Suhara, Y., Li, J., Hulsebos, M., Demiralp, C., & Tan,
+        W.C. (2019). Sato: Contextual Semantic Type Detection in Tables. Proc.
+        VLDB Endow., 13, 1835-1848.
 
         <span id="toc20"></span>
+
         [12] Brugman, S. pandas-profiling: Exploratory Data Analysis for Python. https://github.com/pandas-profiling/
+
+        <span id="toc21"></span>
+        [13] Beltagy I, Peters ME, Cohan A. Longformer: The long-document transformer. arXiv preprint arXiv:2004.05150. 2020 Apr 10.
+
+        <span id="toc22"></span>
+        [14] Devlin J, Chang MW, Lee K, Toutanova K. Bert: Pre-training of deep bidirectional transformers for language understanding. arXiv preprint arXiv:1810.04805. 2018 Oct 11.
+        
+        <span id="toc23"></span>
+        [15] Liu Y, Ott M, Goyal N, Du J, Joshi M, Chen D, Levy O, Lewis M, Zettlemoyer L, Stoyanov V. Roberta: A robustly optimized bert pretraining approach. arXiv preprint arXiv:1907.11692. 2019 Jul 26.
+
       </p>
 
       <p>&nbsp;</p>
