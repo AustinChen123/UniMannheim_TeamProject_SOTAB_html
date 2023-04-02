@@ -1253,17 +1253,36 @@
       <span id="toc6.2"></span>
       <h3>6.2 Error Analysis</h3>
       <p>
-        We performed error analysis on the best result obtained from neighbor
+        To evaluate the performance of each model and assess their strengths and weaknesses, 
+        we initially conducted statistic analysis on three different aspects: (i) schema type, (ii) data type, and (iii) specific challenges.
+        The specific challgenges include: Missing Values, Value Format Heterogeneity, Corner Cases, 
+        and Random Columns which were all clearly defined in <a href="https://webdatacommons.org/structureddata/sotab/"
+        >WDC Schema.org Table Annotation Benchmark (SOTAB)</a>[<a href="#toc9">1</a>]. Subsequently, we furthered look into the data
+        and manually classified the errors.
+      </p>
+      <p>
+        <b>(i) Schema Type:</b>
+      </p>
+      <p>
+        <b>(ii) Data Type:</b>
+      </p>
+      <p>
+        <b>(ii) Specific Challenges:</b>
+      </p>
+      <p>
+        Following the statistical analysis of our results, 
+        we delved deeper into the data itself to investigate the root causes of the errors. 
+        We took the data on the best result obtained from neighbor
         serialization with a window size of 2. To do this, we sampled errors in
         prediction by schema for both the CTA and CPA tasks. Specifically, we
         sampled 614 errors from a total of 1533 observations for CTA, and 617
         errors from 3853 observations for CPA. We manually checked these tables
         and classified the types of errors we found, which are listed in
-        <i>Table 1</i>.
+        <i>Table X</i>.
       </p>
       <table>
         <caption>
-          Table 1: Error Types and Definitions
+          Table X: Error Types and Definitions
         </caption>
         <thead>
           <th>Observed Error Types</th>
