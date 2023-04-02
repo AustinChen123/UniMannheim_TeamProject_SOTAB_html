@@ -1115,7 +1115,8 @@
         <b>(ii) 2-Step Model:</b> To improve the accuracy of our predictions, we adopt a 2-step model that leverages the 17 schema.org labels associated with each table. Specifically, we first predict the schema type of a table using a model trained on the SOTAB Benchmark [<a href="#toc9">1</a>] training data. This allows us to restrict our predictions to only relevant labels for each column. For example, if a column is identified as "Book", it will not be predicted as "MusicRecording/Name" for a CTA task. Next, we train submodels for each schema type to predict the final label for each column. To make predictions on test data, we first predict the schema type and then use the corresponding submodel to predict the final label for each column. 
       </p>
       <p>
-        <b>(ii) LongFormer:</b>
+        <b>(ii) LongFormer:</b> Transformer-based models suffer from a limitation when it comes to processing long sequences. The self-attention operation in transformers scales quadratically with the sequence length, which restricts the ability to process long texts. This is a challenge in table annotation where long texts need to be processed. While models such as BERT or RoBERTa [<a href="#toc22">14</a>, <a href="#toc23">15</a>] are limited to a sequence length of 512, [<a href="#toc21">13</a>] proposes Longformer, which has a linear attention mechanism that can process sequences up to 4,096 in length.
+
       </p>
 
       <span id="toc5"></span>
@@ -1433,6 +1434,14 @@
 
         <span id="toc20"></span>
         [12] Brugman, S. pandas-profiling: Exploratory Data Analysis for Python. https://github.com/pandas-profiling/
+
+        <span id="toc21"></span>
+        [13] Beltagy I, Peters ME, Cohan A. Longformer: The long-document transformer. arXiv preprint arXiv:2004.05150. 2020 Apr 10.
+
+        <span id="toc22"></span>
+        [14] Devlin J, Chang MW, Lee K, Toutanova K. Bert: Pre-training of deep bidirectional transformers for language understanding. arXiv preprint arXiv:1810.04805. 2018 Oct 11.
+        <span id="toc23"></span>
+        [15] Liu Y, Ott M, Goyal N, Du J, Joshi M, Chen D, Levy O, Lewis M, Zettlemoyer L, Stoyanov V. Roberta: A robustly optimized bert pretraining approach. arXiv preprint arXiv:1907.11692. 2019 Jul 26.
       </p>
 
       <p>&nbsp;</p>
