@@ -922,24 +922,24 @@
           <li>
             In a customer database that includes columns for the customer name, transaction date, and purchase 
             amount. CTA can be used to identify the data type of each column, such as string for customer name, date 
-            for transaction date, and float for purchase amount (data type) . 
+            for transaction date, and float for purchase amount (data type). 
           </li>
           <li> 
             In a medical database,  that includes columns for patient ID, 
             diagnosis, and treatment. CTA can be used to identify the data type of each column, such as integer for 
-            patient ID, string for diagnosis, and string for treatment (data type) .   
+            patient ID, string for diagnosis, and string for treatment (data type).   
           </li>
           <li>
             A financial institution has a database of stock market data that includes columns for stock symbol, date,
             and closing price. CTA can be used to identify the data type of each column, such as string for stock symbol,
-            date for date, and float for closing price (data type) . 
+            date for date, and float for closing price (data type). 
           </li>
           <li>
             An e-commerce website may have a table of products with columns such as "product name", "description", 
             "price", "category", and "brand". By annotating the columns with entity types such as "product name", 
             "brand", and "category", a machine learning model can better understand the semantic meaning of the data,
              and accurately categorize products into appropriate categories, recommend related products, and provide
-              a more personalized shopping experience to the user (entity type) .
+              a more personalized shopping experience to the user (entity type).
           </li>
     
         </ul>
@@ -1065,20 +1065,11 @@
       <span id="toc4"></span>
       <h2>4. Model</h2>
       <p>
-        <!-- #TODO Table serialization. Language models such as BERT and RoBERTa take
-        token sequences as input. For table task, this translates to converting
-        table columns into token sequences.  -->
-
-        The default parameter settings are as follows:
+        A Transformer-based language model fits perfectly in the tasks pertaining table understanding for its language understanding capability and Transformer's attention mechanism that captures contextualized column representations. Such language models expect token sequences as inputs. This translates to representing relational tables in text sequences, formally known as table serialization, for the tasks of CTA and CPA. A natural serialization solution is single-column serialization that simply concatenate the column values into a sequence to feed into the language model. More concretely, as defined by Suhara et al.[<a href="#toc15">7</a>], for column <i>C</i> with column values <i>v<sub>1</sub>,...,v<sub>m</sub></i>, the serialized sequence is [<a href="#toc15">7</a>]: <p><span class="math display">\[serialize_{single}(C)::= [CLS]\;v_1\;...\;v_m\;[SEP]\]</span></p>
       </p>
-      <ul>
-        <li>Base Model: RoBERTa</li>
-        <li>Learning Rate: 1e-5</li>
-        <li>Max Length: 512</li>
-        <li>Batch Size: 32</li>
-        <li>Random Seeds: 0-2 (Take average as result F1)</li>
-        <li>Window Size(if needed): 5</li>
-      </ul>
+      <p>
+        Such serialization conveniently translates the CTA and CPA tasks into sequence classification and sequence-pair classification task respectively. The major drawback of single-column serialization is treating each column in a table as independent sequence neglects the table context that is crucial for relational tables that defines an real-world entity as a table. Previous works [<a href="#toc15">7, </a><a href="#toc17">9, </a><a href="#toc18">10, </a><a href="#toc19">11</a>] have highlighted the importance of table context for the CTA task.
+      </p>
 
       <span id="toc4.1"></span>
       <h3>4.1 Preprocessing and Augmentation</h3>
@@ -1146,7 +1137,7 @@
           >WikiTables dataset by TURL</a
         >[<a href="#toc12">3</a>]. The SOTAB benchmark is a collection of tables
         extracted from the Schema.org Table Corpus, which is maintained by the
-        Data and Web Science Research Group at the University of Mannheim. THe
+        Data and Web Science Research Group at the University of Mannheim. The
         corpus comprises over 4.2 million web relational tables covering 43
         schema.org classes. The dataset defines both CTA and CPA labels for
         tables from 17 schema.org classes/domains. For the CTA task, the SOTAB
@@ -1414,6 +1405,15 @@
         (2020). TUTA: Tree-based Transformers for Generally Structured Table
         Pre-training. Proceedings of the 27th ACM SIGKDD Conference on Knowledge
         Discovery & Data Mining.
+
+        <span id="toc17"></span>
+        [9] Chen, J., Jiménez-Ruiz, E., Horrocks, I., & Sutton, C. (2019). Learning Semantic Annotations for Tabular Data. ArXiv, abs/1906.00781.
+
+        <span id="toc18"></span>
+        [10] Khurana, U., & Galhotra, S. (2021). Semantic Concept Annotation for Tabular Data. Proceedings of the 30th ACM International Conference on Information & Knowledge Management.
+
+        <span id="toc19"></span>
+        [11] Zhang, D., Suhara, Y., Li, J., Hulsebos, M., Demiralp, C., & Tan, W.C. (2019). Sato: Contextual Semantic Type Detection in Tables. Proc. VLDB Endow., 13, 1835-1848.
       </p>
 
       <p>&nbsp;</p>
