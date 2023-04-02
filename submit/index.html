@@ -1132,7 +1132,7 @@
         formally known as table serialization, for the tasks of CTA and CPA.
         Single-column serialization is an intuitive solution that concatenates
         column values into a sequence to feed into the language model.
-        Specifically, as defined by Suhara et al.[<a href="#toc15">7</a>], for
+        Specifically, as defined by Suhara et al. [<a href="#toc15">7</a>], for
         column <i>C</i> with column values <i>v<sub>1</sub>,...,v<sub>m</sub></i
         >, the serialized sequence is [<a href="#toc15">7</a>]:
         <span class="math display"
@@ -1160,7 +1160,7 @@
       <p>
         To accommodate the token limit of 512 tokens for BERT-like language
         models, we trim cell values for longer textual data to fit more cells
-        from a table. Following Wang et al.[<a href="#toc16">8</a>]'s empirical
+        from a table. Following Wang et al.[ <a href="#toc16">8</a>]'s empirical
         studies, we retain at most 8 tokens from a cell. This is because long
         textual strings often introduce noise and disrupt the structure of a
         table input. Additionally, we experiment with different threshold cell
@@ -1332,8 +1332,19 @@
       </p>
 
       <span id="toc5.2"></span>
-      <h3>5.2 Baselines</h3>
+      <h3>5.2 Experimental Settings</h3>
+      <p> 
+        For our experiments on both SOTAB benchmark and WikiTables dataset, we trained a RoBERTa model with default settings: 30 epochs, 3 runs (with seed 0-2), and a batch size of 32. The initial learning rate was set to 5e-5, and we used a linear decay scheduler with no warmup. We set a maximum token length of 512 and used a standard window size of 5 for relevant serializations. For the SOTAB benchmark, we formulated the task as a multi-label prediction problem and used Cross Entropy loss. For the WikiTable dataset, we formulated the task as a multi-class prediction problem and used Binary Cross Entropy loss. We evaluated the performance of our models using micro F1 scores for both datasets.
+      </p>
+
+      <span id="toc5.3"></span>
+      <h3>5.3 Experiments for SOTAB benchmark</h3>
       <p>
+        For the SOTAB benchmark, 
+
+
+        Lastly, for both CTA and CPA tasks, we perform ablation study to investigate the impact of different window sizes for 
+        Our 
         # TODO To systematically evaluate our pre-trained framework ... we do
         what ... # Our baseline configuration adopts the single column method,
         while all other parameters remain unchanged from the default values.
@@ -1344,18 +1355,11 @@
         Wang et al. [<a href="#toc16">8</a>]
       </p>
 
-      <span id="toc5.3"></span>
-      <h3>Experimental Settings</h3>
-      <p>The default parameter settings are as follows:</p>
-
-      <ul>
-        <li>Base Model: RoBERTa</li>
-        <li>Learning Rate: 5e-5</li>
-        <li>Max Length: 512</li>
-        <li>Batch Size: 32</li>
-        <li>Random Seeds: 0-2 (Take average as result F1)</li>
-        <li>Window Size(if needed): 5</li>
-      </ul>
+      <span id="toc5.4"></span>
+      <h3>5.4 Experiments for WikiTables dataset</h3>
+      <p>
+        To test the generalizability of our findings for the SOTAB benchmark, we transfer the serialization methods to WikiTables dataset. 
+      </p>
 
       <span id="toc6"></span>
       <h2>6. Experimental Results and Error Analysis</h2>
