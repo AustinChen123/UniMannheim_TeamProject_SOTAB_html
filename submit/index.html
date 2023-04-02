@@ -854,13 +854,13 @@
           <a href="#toc4"> 4. Model </a>
           <ul>
             <li>
-              <a href="#toc2.1">4.1 Preprocessing and Augmentation</a>
+              <a href="#toc4.1">4.1 Preprocessing and Augmentation</a>
             </li>
             <li>
-              <a href="#toc2.2">4.2 Serialization</a>
+              <a href="#toc4.2">4.2 Serialization</a>
             </li>
             <li>
-              <a href="#toc2.3">4.3 Further Models</a>
+              <a href="#toc4.3">4.3 Further Models</a>
             </li>
           </ul>
         </li>
@@ -1106,10 +1106,13 @@
       <span id="toc4.3"></span> 
       <h3>4.3 Further Models</h3>
       <p>
-        <b>(i) Two-Step Model:</b>
+        We further explore different experimental models for the CPA task in various iterations. 
       </p>
       <p>
-        <b>(ii) Subtable Model:</b>
+        <b>(i) Subtable Model:</b> According to the statistics provided by SOTAB Benchmark [<a href="#toc9">1</a>], the CPA task involves 48,379 tables with a total of 174,998 columns. Notably, the tables have a median of 42 rows and 8 columns. To increase the diversity of the training data and incorporate more parts of each table, we divide each table into subtables consisting of a maximum of 20 rows per subtable and up to 5 subtables per table. As a result, our approach now encompasses a total of 391,115 columns.
+      </p>
+      <p>
+        <b>(ii) 2-Step Model:</b> To improve the accuracy of our predictions, we adopt a 2-step model that leverages the 17 schema.org labels associated with each table. Specifically, we first predict the schema type of a table using a model trained on the SOTAB Benchmark [<a href="#toc9">1</a>] training data. This allows us to restrict our predictions to only relevant labels for each column. For example, if a column is identified as "Book", it will not be predicted as "MusicRecording/Name" for a CTA task. Next, we train submodels for each schema type to predict the final label for each column. To make predictions on test data, we first predict the schema type and then use the corresponding submodel to predict the final label for each column. 
       </p>
       <p>
         <b>(ii) LongFormer:</b>
