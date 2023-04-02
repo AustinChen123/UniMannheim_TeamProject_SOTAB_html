@@ -846,11 +846,6 @@
         </li>
         <li class="toc-h2 toc-active">
           <a href="#toc3"> 3. Related Work</a>
-          <ul>
-            <li>
-              <a href="#toc3.1">3.1 Transformers</a>
-            </li>
-          </ul>
         </li>
         <li class="toc-h2 toc-active">
           <a href="#toc4"> 4. Model </a>
@@ -993,14 +988,12 @@
       <span id="toc2.3"></span>
       <h3>2.3 Transformer</h3>
       <p>
-
         Transformers are a type of neural network architecture that has become widely used in natural language 
         processing and other machine learning applications. They were first introduced in 2017 by Vaswani et al [<a href="#toc15">5</a>]. and
         have since become one of the most popular deep-learning models. Transformers are based on the concept of
         self-attention, which allows the model to focus on different parts of the input sequence at each step. 
       </p>
       <p>
-  
         <p>
           The key innovation of transformers is self-attention, which is a mechanism that allows the 
           model to selectively focus on different parts of the input sequence. Self-attention works by computing a 
@@ -1015,31 +1008,6 @@
         are most relevant for predicting the column types. For example, the model might attend to the cells in the 
         first row of the table to identify common patterns or formats, such as whether the cells contain numerical 
         values or text.
-      </p>
-      <span id="toc2.3.fig"></span>
-      <figure>
-        <img src="images/transformers-architecture.JPG" alt="Transformer", class="center">
-        <figcaption class="center"><b><a id="Fig1"></a >Figure 2:</b> The Transformer - model architecture [<a href="#toc15">5</a>].
-        </figcaption>
-      </figure>
-  
-      <p>
-        As illustrated in <a href="#toc2.3.Fig">Figure 2</a>, the transformer architecture consists of an encoder and a decoder, which are both composed of multiple 
-        layers of self-attention(Multi-head Attention) and feed-forward networks. The encoder takes an input sequence and produces a 
-        sequence of encoded representations, while the decoder takes a sequence of encoded representations and 
-        produces a sequence of outputs.
-        One of the advantages of transformers is that they can process the entire input sequence at once, rather 
-        than sequentially like traditional recurrent neural networks. This makes them more efficient and allows 
-        them to capture longer-range dependencies[<a href="#toc15">5</a>].
-      </p>
-      <p>
-        Example Application: Language Translation One of the most common applications of transformers is language
-        translation. The core idea in a nutshell is, the input sequence is a sentence in one language, and the output sequence 
-         is a sentence in another language. The encoder takes the input sentence and uses the self-attention to produce
-        a sequence of encoded representations, which are then fed into the decoder. The decoder uses self-attention to 
-        focus on different parts of the encoded sequence at each step, and produces a sequence of output representations. Finally, 
-        a Softmax layer is  used to the produce probability distribution over the target language vocabulary.
-        
       </p>
 
       <span id="toc3"></span>
