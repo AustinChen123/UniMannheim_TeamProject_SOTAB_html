@@ -865,14 +865,12 @@
       </p>
 
       <p>
-        The organization of this work is as follows. Firstly, we will introduce
-        and motivate the task of table annotation in Chapter 1. Next, in Chapter
-        2, we will provide an overview of the preliminaries,such as CTA, CPA,
-        and <br />
-        Transformers. Chapter 3 will then present the related work. Moving on to
-        Chapters 4 and 5, we will delve into the experimental results and Error
-        Analysis. Finally, in Chapters 6 and 7, we will discuss the results
-        <br />and conclude the work, respectively.
+        This work is organized as follows. Firstly, in Chapter 1, we will introduce and motivate the task of table annotation. Furthermore, 
+        in Chapter 2, we will provide an overview of the preliminaries such as CTA, CPA, and Transformers. Subsequently, in Chapter 3, 
+        we will present the related work. Moving on to Chapter 4, we will describe the models, preprocessing steps, and serialization 
+        approaches. Additionally, in Chapter 5, we will describe the experiment setup. Then, in Chapter 6, we will delve into 
+        the experimental results and Error Analysis. Finally, in Chapters 7 and 8, we will discuss the results and conclude the work, 
+        respectively.
       </p>
       <h2>Contents</h2>
       <ul>
@@ -1220,17 +1218,7 @@
       <span id="toc4.2"></span>
       <h3>4.2 Serialization</h3>
       <p>
-        <b>(i) Neighboring Column (with summary):</b> The
-        <em>Neighboring Column Serialization</em> technique utilizes adjacent
-        columns as local context in a relational table. Previous research by
-        SATO [<a href="#toc19">11</a>] demonstrated that incorporating local
-        context aids in resolving semantic type ambiguities in single-column
-        predictions. To accomplish this, their approach incorporates the
-        predicted semantic types of immediately adjacent columns as local
-        context for a column prediction model of neural network. For our
-        approach, we utilize neighboring columns of varying window sizes along
-        with the target column in the CTA task. Furthermore, for the CPA task,
-        we incorporate neighboring columns for both the main and target columns.
+        <b>(i) Neighboring Column:</b> The <em>Neighboring Column Serialization</em> technique utilizes adjacent columns as local context in a relational table. Previous research by SATO [<a href="#toc19">11</a>] demonstrated that incorporating local context aids in resolving semantic type ambiguities in single-column predictions. To accomplish this, their approach incorporates the predicted semantic types of immediately adjacent columns as local context for a column prediction model of neural network. For our approach, we utilize neighboring columns of varying window sizes along with the target column in the CTA task. Furthermore, for the CPA task, we incorporate neighboring columns for both the main and target columns.
       </p>
       <p>
         To build on the Neighboring Column Serialization approach, we introduce
@@ -1351,6 +1339,9 @@
 
       <span id="toc5"></span>
       <h2>5. Experiment</h2>
+      <p>
+        To run the experiments, we utilize the computing resources from the University of Mannheim (dws-server) and bwHPC servers by the state of Baden-Württemberg.
+      </p>
 
       <span id="toc5.1"></span>
       <h3>5.1 Dataset</h3>
@@ -2171,16 +2162,12 @@
       <span id="toc6.2"></span>
       <h3>6.2 Error Analysis</h3>
       <p>
-        To evaluate the performance of our best result from neighbor
-        serialization with a window size of 2, we initially conducted statistic
-        analysis on three different aspects: (i) schema type, (ii) data type,
-        and (iii) specific challenges. The specific challgenges include: Missing
-        Values, Value Format Heterogeneity, Corner Cases, and Random Columns
-        which were all clearly defined in
-        <a href="https://webdatacommons.org/structureddata/sotab/"
-          >WDC Schema.org Table Annotation Benchmark (SOTAB)</a
-        >[<a href="#toc9">1</a>]. Subsequently, we furthered look into the data
-        and manually classified the errors.
+
+        To evaluate the performance of our best result from neighbor serialization with a window size of 2, 
+        we initially conducted statistic analysis on three different aspects: (i) schema type, (ii) data type, and (iii) specific challenges.
+        The specific challgenges include: Missing Values, Value Format Heterogeneity, Corner Cases, 
+        and Random Columns which were all clearly defined in <a href="https://webdatacommons.org/structureddata/sotab/"
+        >WDC Schema.org Table Annotation Benchmark (SOTAB)</a>[<a href="#toc9">1</a>]. Subsequently, we furthered look into the data and manually classified the errors.
       </p>
       <p>
         <b>(i) Schema Type:</b>
@@ -2192,15 +2179,14 @@
         <b>(ii) Specific Challenges:</b>
       </p>
       <p>
-        Following the statistical analysis of our results, we delved deeper into
-        the data itself to investigate the root causes of the errors. To do
-        this, we sampled errors in prediction by schema for both the CTA and CPA
-        tasks. Specifically, we sampled 614 errors from a total of 1533
-        observations for CTA, and 617 errors from 3853 observations for CPA. We
-        manually checked these tables and classified the types of errors we
-        found, which are listed in
 
-        <i>Table X</i>.
+        Following the statistical analysis of our results, 
+        we delved deeper into the data itself to investigate the root causes of the errors. 
+        To do this, we sampled errors in
+        prediction by schema for both the CTA and CPA tasks. Specifically, we
+        sampled 614 errors from a total of 1533 observations for CTA, and 617
+        errors from 3853 observations for CPA. We manually checked these tables
+        and classified the types of errors we found, which are listed in <i>Table X</i>.
       </p>
       <table>
         <caption>
@@ -2342,39 +2328,37 @@
         [8] Wang, Z., Dong, H., Jia, R., Li, J., Fu, Z., Han, S., & Zhang, D.
         (2020). TUTA: Tree-based Transformers for Generally Structured Table
         Pre-training. Proceedings of the 27th ACM SIGKDD Conference on Knowledge
-        Discovery & Data Mining.
+        Discovery & Data Mining. <br />
 
         <span id="toc17"></span>
         [9] Chen, J., Jiménez-Ruiz, E., Horrocks, I., & Sutton, C. (2019).
-        Learning Semantic Annotations for Tabular Data. ArXiv, abs/1906.00781.
+        Learning Semantic Annotations for Tabular Data. ArXiv, abs/1906.00781. <br />
 
         <span id="toc18"></span>
         [10] Khurana, U., & Galhotra, S. (2021). Semantic Concept Annotation for
         Tabular Data. Proceedings of the 30th ACM International Conference on
-        Information & Knowledge Management.
+        Information & Knowledge Management. <br />
 
         <span id="toc19"></span>
         [11] Zhang, D., Suhara, Y., Li, J., Hulsebos, M., Demiralp, C., & Tan,
         W.C. (2019). Sato: Contextual Semantic Type Detection in Tables. Proc.
-        VLDB Endow., 13, 1835-1848.
+        VLDB Endow., 13, 1835-1848. <br />
 
         <span id="toc20"></span>
 
-        [12] Brugman, S. pandas-profiling: Exploratory Data Analysis for Python.
-        https://github.com/pandas-profiling/
+
+        [12] Brugman, S. pandas-profiling: Exploratory Data Analysis for Python. https://github.com/pandas-profiling/ <br />
 
         <span id="toc21"></span>
-        [13] Beltagy I, Peters ME, Cohan A. Longformer: The long-document
-        transformer. arXiv preprint arXiv:2004.05150. 2020 Apr 10.
+        [13] Beltagy I, Peters ME, Cohan A. Longformer: The long-document transformer. arXiv preprint arXiv:2004.05150. 2020 Apr 10. <br />
 
         <span id="toc22"></span>
-        [14] Devlin J, Chang MW, Lee K, Toutanova K. Bert: Pre-training of deep
-        bidirectional transformers for language understanding. arXiv preprint
-        arXiv:1810.04805. 2018 Oct 11.
+        [14] Devlin J, Chang MW, Lee K, Toutanova K. Bert: Pre-training of deep bidirectional transformers for language understanding. arXiv preprint arXiv:1810.04805. 2018 Oct 11.<br />
+        
         <span id="toc23"></span>
-        [15] Liu Y, Ott M, Goyal N, Du J, Joshi M, Chen D, Levy O, Lewis M,
-        Zettlemoyer L, Stoyanov V. Roberta: A robustly optimized bert
-        pretraining approach. arXiv preprint arXiv:1907.11692. 2019 Jul 26.
+        [15] Liu Y, Ott M, Goyal N, Du J, Joshi M, Chen D, Levy O, Lewis M, Zettlemoyer L, Stoyanov V. Roberta: A robustly optimized bert pretraining approach. arXiv preprint arXiv:1907.11692. 2019 Jul 26.<br />
+
+
       </p>
 
       <p>&nbsp;</p>
