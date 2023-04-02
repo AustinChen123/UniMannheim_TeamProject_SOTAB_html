@@ -1298,7 +1298,8 @@
         predict the final label for each column.
       </p>
       <p>
-        <b>(ii) LongFormer:</b>
+        <b>(ii) LongFormer:</b> Transformer-based models suffer from a limitation when it comes to processing long sequences. The self-attention operation in transformers scales quadratically with the sequence length, which restricts the ability to process long texts. This is a challenge in table annotation where long texts need to be processed. While models such as BERT or RoBERTa [<a href="#toc22">14</a>, <a href="#toc23">15</a>] are limited to a sequence length of 512, [<a href="#toc21">13</a>] proposes Longformer, which has a linear attention mechanism that can process sequences up to 4,096 in length.
+
       </p>
 
       <span id="toc5"></span>
@@ -1672,15 +1673,13 @@
       <span id="toc6.2"></span>
       <h3>6.2 Error Analysis</h3>
       <p>
-        To evaluate the performance of each model and assess their strengths and
-        weaknesses, we initially conducted statistic analysis on three different
-        aspects: (i) schema type, (ii) data type, and (iii) specific challenges.
-        The specific challgenges include: Missing Values, Value Format
-        Heterogeneity, Corner Cases, and Random Columns which were all clearly
-        defined in
-        <a href="https://webdatacommons.org/structureddata/sotab/"
-          >WDC Schema.org Table Annotation Benchmark (SOTAB)</a
-        >[<a href="#toc9">1</a>]. Subsequently, we furthered look into the data
+
+        To evaluate the performance of our best result from neighbor serialization with a window size of 2, 
+        we initially conducted statistic analysis on three different aspects: (i) schema type, (ii) data type, and (iii) specific challenges.
+        The specific challgenges include: Missing Values, Value Format Heterogeneity, Corner Cases, 
+        and Random Columns which were all clearly defined in <a href="https://webdatacommons.org/structureddata/sotab/"
+        >WDC Schema.org Table Annotation Benchmark (SOTAB)</a>[<a href="#toc9">1</a>]. Subsequently, we furthered look into the data
+
         and manually classified the errors.
       </p>
       <p>
@@ -1693,14 +1692,15 @@
         <b>(ii) Specific Challenges:</b>
       </p>
       <p>
-        Following the statistical analysis of our results, we delved deeper into
-        the data itself to investigate the root causes of the errors. We took
-        the data on the best result obtained from neighbor serialization with a
-        window size of 2. To do this, we sampled errors in prediction by schema
-        for both the CTA and CPA tasks. Specifically, we sampled 614 errors from
-        a total of 1533 observations for CTA, and 617 errors from 3853
-        observations for CPA. We manually checked these tables and classified
-        the types of errors we found, which are listed in
+
+        Following the statistical analysis of our results, 
+        we delved deeper into the data itself to investigate the root causes of the errors. 
+        To do this, we sampled errors in
+        prediction by schema for both the CTA and CPA tasks. Specifically, we
+        sampled 614 errors from a total of 1533 observations for CTA, and 617
+        errors from 3853 observations for CPA. We manually checked these tables
+        and classified the types of errors we found, which are listed in
+
         <i>Table X</i>.
       </p>
       <table>
@@ -1860,8 +1860,17 @@
         VLDB Endow., 13, 1835-1848.
 
         <span id="toc20"></span>
-        [12] Brugman, S. pandas-profiling: Exploratory Data Analysis for Python.
-        https://github.com/pandas-profiling/
+
+        [12] Brugman, S. pandas-profiling: Exploratory Data Analysis for Python. https://github.com/pandas-profiling/
+
+        <span id="toc21"></span>
+        [13] Beltagy I, Peters ME, Cohan A. Longformer: The long-document transformer. arXiv preprint arXiv:2004.05150. 2020 Apr 10.
+
+        <span id="toc22"></span>
+        [14] Devlin J, Chang MW, Lee K, Toutanova K. Bert: Pre-training of deep bidirectional transformers for language understanding. arXiv preprint arXiv:1810.04805. 2018 Oct 11.
+        <span id="toc23"></span>
+        [15] Liu Y, Ott M, Goyal N, Du J, Joshi M, Chen D, Levy O, Lewis M, Zettlemoyer L, Stoyanov V. Roberta: A robustly optimized bert pretraining approach. arXiv preprint arXiv:1907.11692. 2019 Jul 26.
+
       </p>
 
       <p>&nbsp;</p>
