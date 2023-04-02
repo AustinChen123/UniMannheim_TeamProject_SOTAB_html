@@ -1354,15 +1354,13 @@
       <span id="toc5"></span>
       <h2>5. Experiment</h2>
       <p>
-        To run the experiments, we utilize the computing resources from the
-        University of Mannheim (dws-server) and bwHPC servers by the state of
-        Baden-Württemberg.
+        To conduct our experiments, we utilized computing resources from the University of Mannheim (dws-server) and bwHPC servers provided by the state of Baden-Württemberg.
       </p>
 
       <span id="toc5.1"></span>
       <h3>5.1 Dataset</h3>
       <p>
-        We evaluate our solutions primarily on the
+        We evaluated our solutions primarily on the
         <a href="https://webdatacommons.org/structureddata/sotab/"
           >WDC Schema.org Table Annotation Benchmark (SOTAB)</a
         >[<a href="#toc9">1</a>] benchmark dataset. To ensure the
@@ -1397,31 +1395,25 @@
       <span id="toc5.2"></span>
       <h3>5.2 Experimental Settings</h3>
       <p> 
-        For our experiments on both SOTAB benchmark and WikiTables dataset, we trained a RoBERTa model with default settings: 30 epochs, 3 runs (with seed 0-2), and a batch size of 32. The initial learning rate was set to 5e-5, and we used a linear decay scheduler with no warmup. We set a maximum token length of 512 and used a standard window size of 5 for relevant serializations. For the SOTAB benchmark, we formulated the task as a multi-label prediction problem and used Cross Entropy loss. For the WikiTable dataset, we formulated the task as a multi-class prediction problem and used Binary Cross Entropy loss. We evaluated the performance of our models using micro F1 scores for both datasets.
+        For our experiments on both the SOTAB benchmark and WikiTables dataset, we trained a RoBERTa model with default settings: 30 epochs, 3 runs (with seed 0-2), and a batch size of 32. The initial learning rate was set to 5e-5, and we used a linear decay scheduler with no warmup. We set a maximum token length of 512, used a window size of 5, and a standard context ratio of 0.5 for relevant serializations. For the SOTAB benchmark, we formulated the task as a multi-label prediction problem and used Cross Entropy loss. For the WikiTable dataset, we formulated the task as a multi-class prediction problem and used Binary Cross Entropy loss. We evaluated the performance of our models using micro F1 scores for both datasets.
       </p>
 
       <span id="toc5.3"></span>
       <h3>5.3 Experiments for SOTAB benchmark</h3>
       <p>
-        For the SOTAB benchmark, 
-
-
-        Lastly, for both CTA and CPA tasks, we perform ablation study to investigate the impact of different window sizes for 
-        Our 
-        # TODO To systematically evaluate our pre-trained framework ... we do
-        what ... # Our baseline configuration adopts the single column method,
-        while all other parameters remain unchanged from the default values.
-        Additionally, we take the TURL and DODUO result of SOTAB dataset from
-        <a href="https://webdatacommons.org/structureddata/sotab/"
-          >WDC Schema.org Table Annotation Benchmark (SOTAB)</a
-        >[<a href="#toc9">1</a>] and result of WikiTable from the studies by
-        Suhara et al. [<a href="#toc15">7</a>]
+        For the SOTAB benchmark, we conducted extensive experiments on serialization for both CTA and CPA tasks. Specifically, we tested different variants of Neighboring Column Serialization and TaBERT Serialization. For CPA, we also performed No-Main Neighboring Column Serialization, which treats a CPA task as a CTA task.
+      </p>
+      <p>
+        In order to explore more possibilities for the challenging CPA task, we further investigated Subtable, 2-Step, and Longformer models. For the Subtable Model, we trained a BERT model for 30 epochs with a batch size of 16 and a maximum token length of 512 tokens. We utilized a Neighboring Column Serialization of window size 2 for this model. For the 2-Step model, we used default parameter settings, including a RoBERTa model trained for 30 epochs. For the Longformer model, we used single-column serialization with a batch size of 8.
+      </p>
+      <p>
+        We conducted ablation studies for both CTA and CPA tasks to investigate the impact of different window sizes for Neighboring Column Serializations. We also experimented with different preprocessing methods, such as TUTA, median, and mean preprocessing for each promising serialization. Additionally, we varied the proportions of the target column and local context (context ratio) to assess the effect of context weight on different serializations, experimenting with context ratios of 0.2, 0.5, and 0.8, respectively. Finally, in the early stages of our workflow, we investigated the performance of augmentation strategies on single-column serialization for the CPA task.
       </p>
 
       <span id="toc5.4"></span>
       <h3>5.4 Experiments for WikiTables dataset</h3>
       <p>
-        To test the generalizability of our findings for the SOTAB benchmark, we transfer the serialization methods to WikiTables dataset. 
+        To test the generalizability of our findings for the SOTAB benchmark, we transferred the serialization methods to the WikiTables dataset. For the CTA task, we used only Column-TaBERT Serialization due to computational limitations resulting from the dataset's size. For the CPA task, we experimented with different serializations, including TaBERT, Column-TaBERT, and No-Main Neighboring Column Serializations. We utilized the default experimental parameters as described and following Suhara et al. [<a href="#toc15">7</a>], we trained the model for 15 epochs.</p>
       </p>
 
       <span id="toc6"></span>
@@ -2232,6 +2224,16 @@
         </table>
       </div>
 
+      <p>
+        # TODO To systematically evaluate our pre-trained framework ... we do
+        what ... # Our baseline configuration adopts the single column method,
+        while all other parameters remain unchanged from the default values.
+        Additionally, we take the TURL and DODUO result of SOTAB dataset from
+        <a href="https://webdatacommons.org/structureddata/sotab/"
+          >WDC Schema.org Table Annotation Benchmark (SOTAB)</a
+        >[<a href="#toc9">1</a>] and result of WikiTable from the studies by
+        Suhara et al. [<a href="#toc15">7</a>]
+      </p>
       <span id="toc6.2"></span>
       <h3>6.2 Error Analysis</h3>
       <p>
