@@ -923,6 +923,7 @@
         <!-- #TODO Table serialization. Language models such as BERT and RoBERTa take
         token sequences as input. For table task, this translates to converting
         table columns into token sequences.  -->
+
         The default parameter settings are as follows:
       </p>
       <ul>
@@ -954,15 +955,12 @@
         style="width: 550px; height: 330px"
       />
       <p>
-        <b>(ii) TaBERT</b> The TaBERT serialization mainly focuses on the
-        relationship between the target column and the context columns (all
-        other columns) by inputting the context data in a row-based direction
-        and adding one datatype token to each cell. The TaBERT serialization
+        <b>(ii) TaBERT</b> The TaBERT serialization
         mainly focuses on the relationship between the target column and the
         context columns (all other columns) by inputting the context data in a
         row-based direction. Additionally, we were inspired by the architecture
-        of TUTA[<a href="#toc16">8</a>], so we also one datatype token to each
-        cell in this method.We expect this approach to allow the model to learn
+        of TUTA[<a href="#toc16">8</a>], so we prepend a datatype token to each
+        cell in this method. We expect this approach to allow the model to learn
         the relationships between the different columns and the target column,
         thereby enhancing the connection between each cell's value and the
         prediction target. For instance, the URL datatype may be present in the
@@ -989,8 +987,7 @@
       </p>
 
       <span id="toc5"></span>
-      <h2>5. Evaluation</h2>
-      <p></p>
+      <h2>5. Experiment</h2>
 
       <span id="toc5.1"></span>
       <h3>5.1 Dataset</h3>
@@ -1039,11 +1036,26 @@
         Wang et al. [<a href="#toc16">8</a>]
       </p>
 
+      <span id="toc5.3"></span>
+      <h3>Experimental Settings</h3>
+      <p>
+        The default parameter settings are as follows:
+      </p>
+      </p>
+      <ul>
+        <li>Base Model: RoBERTa</li>
+        <li>Learning Rate: 5e-5</li>
+        <li>Max Length: 512</li>
+        <li>Batch Size: 32</li>
+        <li>Random Seeds: 0-2 (Take average as result F1)</li>
+        <li>Window Size(if needed): 5</li>
+      </ul>
+
       <span id="toc6"></span>
       <h2>6. Experimental Results and Error Analysis</h2>
 
       <span id="toc6.1"></span>
-      <h3>6.1 Results and Ablation Study></h3>
+      <h3>6.1 Results and Ablation Study</h3>
       <p></p>
       <div class="tg-wrap">
         <table class="tg">
