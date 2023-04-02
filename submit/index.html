@@ -852,9 +852,20 @@
         </li>
         <li class="toc-h2 toc-active">
           <a href="#toc4"> 4. Model </a>
+          <ul>
+            <li>
+              <a href="#toc2.1">4.1 Preprocessing and Augmentation</a>
+            </li>
+            <li>
+              <a href="#toc2.2">4.2 Serialization</a>
+            </li>
+            <li>
+              <a href="#toc2.3">4.3 Further Models</a>
+            </li>
+          </ul>
         </li>
         <li class="toc-h2 toc-active">
-          <a href="#toc5"> 5. Evaluation </a>
+          <a href="#toc5"> 5. Experiment </a>
         </li>
         <li class="toc-h2 toc-active">
           <a href="#toc6"> 6. Experimental Results and Error Analysis </a>
@@ -1054,13 +1065,13 @@
       <span id="toc4.2"></span>
       <h3>4.2 Serialization</h3>
       <p>
-        <b>(i) Neighboring Column (with summary):</b> The Neighboring Column Serialization technique utilizes adjacent columns as local context in a relational table. Previous research by SATO [<a href="#toc19">11</a>] demonstrated that incorporating local context aids in resolving semantic type ambiguities in single-column predictions. To accomplish this, their approach incorporates the predicted semantic types of immediately adjacent columns as local context for a column prediction model of neural network. For our approach, we utilize neighboring columns of varying window sizes along with the target column in the CTA task. Furthermore, for the CPA task, we incorporate neighboring columns for both the main and target columns.
+        <b>(i) Neighboring Column (with summary):</b> The <em>Neighboring Column Serialization</em> technique utilizes adjacent columns as local context in a relational table. Previous research by SATO [<a href="#toc19">11</a>] demonstrated that incorporating local context aids in resolving semantic type ambiguities in single-column predictions. To accomplish this, their approach incorporates the predicted semantic types of immediately adjacent columns as local context for a column prediction model of neural network. For our approach, we utilize neighboring columns of varying window sizes along with the target column in the CTA task. Furthermore, for the CPA task, we incorporate neighboring columns for both the main and target columns.
       </p>
       <p>
-        To build on the Neighboring Column Serialization approach, we introduce a more complex variation called Neighboring Column Serialization with Summary. This approach leverages results from exploratory data analysis (EDA) to extract relevant column value data. We use the pandas-profiling library [<a href="#toc20">12</a>] to infer column data types and analyzes text and context using common statistical metrics such as mean, maximum, and minimum text length. We prepend the statistical results to the data for each column, providing a syntax summary for lengthy columns/tables as part of the local context.
+        To build on the Neighboring Column Serialization approach, we introduce a more complex variation called <em>Neighboring Column Serialization with Summary</em>. This approach leverages results from exploratory data analysis (EDA) to extract relevant column value data. We use the pandas-profiling library [<a href="#toc20">12</a>] to infer column data types and analyzes text and context using common statistical metrics such as mean, maximum, and minimum text length. We prepend the statistical results to the data for each column, providing a syntax summary for lengthy columns/tables as part of the local context.
       </p>
       <p>
-        However, for the CPA task, including the main column and its local context in conjunction with the Neighboring Column Serialization approach can lead to redundancy. Therefore, we transfer the Neighboring Column Serialization technique from the CTA task to the CPA task, without including the main column, which we refer to as the No-Main Neighboring Column Serialization.
+        However, for the CPA task, including the main column and its local context in conjunction with the Neighboring Column Serialization approach can lead to redundancy. Therefore, we transfer the Neighboring Column Serialization technique from the CTA task to the CPA task, without including the main column, which we refer to as the <em>No-Main Neighboring Column Serialization</em>.
       </p>
 
       <span id="toc4.2.1.Fig"></span>
@@ -1075,10 +1086,10 @@
       </figure>
 
       <p>
-        <b>(ii) TaBERT:</b> In TaBERT Serialization, our goal is to capture the relationship between the target column and the context columns by inputting the context data row-wise. To achieve this, we follow the approach proposed by TUTA [<a href="#toc16">8</a>], where we prepend a data type token to each cell. This row serialization approach helps the Transformer's attention mechanism better capture the table structure while maintaining constant intervals for each column. Moreover, by including data types, the language model can learn the relationships between the cells of the target column and the prediction label. For instance, a URL data for company, label, or hotel photos may indicate a target label of "Logo". 
+        <b>(ii) TaBERT:</b> In <em>TaBERT Serialization</em>, our goal is to capture the relationship between the target column and the context columns by inputting the context data row-wise. To achieve this, we follow the approach proposed by TUTA [<a href="#toc16">8</a>], where we prepend a data type token to each cell. This row serialization approach helps the Transformer's attention mechanism better capture the table structure while maintaining constant intervals for each column. Moreover, by including data types, the language model can learn the relationships between the cells of the target column and the prediction label. For instance, a URL data for company, label, or hotel photos may indicate a target label of "Logo". 
       </p>
       <p>
-        To reduce the number of additional tokens required for inserting data types in each cell, we introduce Column-TaBERT Serialization, which infers the data type for each column by majority count and includes the data types for each column only once. For the CTA task, the resulting serialization is illustrated in <a href="#toc4.2.2.Fig">Figure 3</a> or: <p><span class="math display">\[serialize_{col\_tabert}(C)::= [CLS]\;type\_target\_col\;target\_col\_data\;type\_context\_col\_1\;type\_context\_col\_2\;...\;row\_data\;[SEP]\]</span></p>
+        To reduce the number of additional tokens required for inserting data types in each cell, we introduce <em>Column-TaBERT Serialization</em>, which infers the data type for each column by majority count and includes the data types for each column only once. For the CTA task, the resulting serialization is illustrated in <a href="#toc4.2.2.Fig">Figure 3</a> or: <p><span class="math display">\[serialize_{col\_tabert}(C)::= [CLS]\;type\_target\_col\;target\_col\_data\;type\_context\_col\_1\;type\_context\_col\_2\;...\;row\_data\;[SEP]\]</span></p>
       </p>
 
       <span id="toc4.2.2.Fig"></span>
@@ -1092,11 +1103,8 @@
         <figcaption class="center"><b><a id="Fig3"></a>Figure 3:</b> TaBERT Serialization</figcaption>
       </figure>
 
-      <p>
-        <b>(iii) Others</b>
-      </p>
-      <span id="toc4.4"></span> 
-      <h3>4.4 Further Model</h3>
+      <span id="toc4.3"></span> 
+      <h3>4.3 Further Models</h3>
       <p>
         <b>(i) Two-Step Model:</b>
       </p>
