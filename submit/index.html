@@ -1237,7 +1237,7 @@
         <a href="#toc4.2.2.Fig">Figure 3</a> or:
         <span class="math display"
           >\[serialize_{col\_tabert}(C)::=
-          [CLS]\;type\_target\_col\;target\_col\_data\;type\_context\_col\_1\;type\_context\_col\_2\;...\;row\_data\;[SEP]\]</span
+          [CLS]\;type\_target\_col\;target\_col\_data\;[SEP]type\_context\_col\_1\;type\_context\_col\_2\;...\;[SEP]row\_data\;[SEP]\]</span
         >
       </p>
 
@@ -2936,12 +2936,14 @@
         </tbody>
       </table>
       <p>
-        <b>(ii) Data Type: </b> The columns are divided into 5 groups based on their data type: Boolean, Numeric, URL, short text and long text. 
-        Boolean columns contain only "yes" or "no" or "true" or "false" values, Numeric columns contain only numbers, 
-        and URL columns contain web addresses. All other columns are classified as text, 
-        and if the token in the value is less than five, it is considered short text, 
-        otherwise, it is long text. The results of each data type with micro-F1 score are summarized in Table X for CTA
-        and CPA.
+        <b>(ii) Data Type: </b> The columns are divided into 5 groups based on
+        their data type: Boolean, Numeric, URL, short text and long text.
+        Boolean columns contain only "yes" or "no" or "true" or "false" values,
+        Numeric columns contain only numbers, and URL columns contain web
+        addresses. All other columns are classified as text, and if the token in
+        the value is less than five, it is considered short text, otherwise, it
+        is long text. The results of each data type with micro-F1 score are
+        summarized in Table X for CTA and CPA.
       </p>
       <table class="tg">
         <caption>
