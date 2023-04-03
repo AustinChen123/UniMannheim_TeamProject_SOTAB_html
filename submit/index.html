@@ -1315,7 +1315,7 @@
       <p>
         For our experiments on both the SOTAB benchmark and WikiTables dataset,
         we trained a RoBERTa model with default settings: 30 epochs, 3 runs
-        (with seed 0-2), and a batch size of 32. The initial learning rate was
+        (with seed 0-2), and a batch size of 32, if not specified. The initial learning rate was
         set to 5e-5, and we used a linear decay scheduler with no warmup. We set
         a maximum token length of 512, used a window size of 5, and a standard
         MP ratio of 0.5 for relevant serializations. We identify single-column
@@ -1339,7 +1339,7 @@
       <p>
         In order to explore more possibilities for the challenging CPA task, we
         further investigated Subtable, 2-Step, and Longformer models. For the
-        Subtable Model, we trained a BERT model for 30 epochs with a batch size
+        Subtable model, we trained a BERT model for 30 epochs with a batch size
         of 16 and a maximum token length of 512 tokens. We utilized a
         Neighboring Column Serialization of window size 2 for this model. For
         the 2-Step model, we used default parameter settings, including a
@@ -1355,7 +1355,7 @@
         serialization. Additionally, we varied the proportions of the target
         column and local context (MP - Main Percentange Ratio) to assess the
         effect of context weight on different serializations, experimenting with
-        MP Ratios of 0.2, 0.5, and 0.8, respectively. Finally, in the early
+        MP Ratios of 0.2, 0.5, and 0.8, respectively. For instance, the MP Ratio of 0.8 for Neighboring Column Serialization, for the CPA task, allocates 80% of the available token limit to the Main and Target Columns and only 20% to their neighbors, Finally, in the early
         stages of our workflow, we investigated the performance of augmentation
         strategies on single-column serialization for the CPA task.
       </p>
@@ -2068,14 +2068,12 @@
         for a column pair prediction. Once again, less structured serialization
         solutions achieve lower F1 scores (Column TaBERT and Neighboring Column
         with Summary). Lastly, only Neighboring Column with Summary with MP
-        Ratio of 0.8 achieves lower F1 score than Single-Column. The MP Ratio of
-        0.8 allocates 80% of the available token limit to the Main and Target
-        Columns and only 20% to their neighbors, as explained earlier. Overall,
+        Ratio of 0.8 achieves lower F1 score than Single-Column. Overall,
         our results highlight the importance of carefully selecting the
         appropriate serialization method to achieve optimal performance in table
         annotation tasks.
       </p>
-      <p></p>
+      <p>For the additional experiments, we did not achieve improvement on Test F1 score. Notably for LongFormer model, further modifications on the model setup should be investigated.</p>
 
       <div style="text-align: center" class="tg-wrap">
         <table class="tg">
@@ -2343,7 +2341,7 @@
         F1 score to the state-of-the-art DODUO, missing by only 1 point. This is
         a significant improvement over the TURL baseline, which we outperformed
         by 2.5 points. However, our results from SOTAB benchmark suggest that
-        there may be even more room for improvement using other more performant
+        there may be rooms for improvement using more performant
         serialization methods. For the CPA task, our TaBERT Serialization
         outperformed existing methods by 1.5 points in terms of F1 score. These
         results demonstrate that our serialization approaches can achieve
@@ -2369,7 +2367,7 @@
                     text-decoration: none;
                     color: #000;
                   "
-                  >Method</span
+                  >Preprocessing Method</span
                 >
               </th>
               <th class="tg-4akn">
@@ -2800,7 +2798,7 @@
         </table>
         <table class="tg">
           <caption>
-            Table ?: Augmentation method on single column serialization
+            Table 3c: Augmentation method on single-column serialization
           </caption>
           <thead>
             <tr>
@@ -2876,7 +2874,7 @@
                     text-decoration: none;
                     color: #000;
                   "
-                  >Replacewith Frequent Value</span
+                  >Replace with Frequent Value</span
                 >
               </td>
               <td class="tg-zkss">
@@ -3022,16 +3020,15 @@
       <span id="toc6.3"></span>
       <h3>6.3 Error Analysis</h3>
       <p>
-        To evaluate the performance of our best result from neighbor
-        serialization with a window size of 2, we initially conducted statistic
+        As error analysis is an on-going task, we analyzed the performance of the Neighboring Column Serialization with window size of 2. The parameters utilized is a BERT model trained for 30 epochs with batch size of 16. We initially conducted statistic
         analysis on three different aspects: (i) schema type, (ii) data type,
-        and (iii) specific challenges. Subsequently, we furthered look into the
+        and (iii) specific challenges. Subsequently, we further looked into the
         data and manually classified the errors.
       </p>
       <p>
         <b>(i) Schema Type: </b> The tables are distributed across 17 schema.org
         types and the tables do no include any metadata which means no table
-        headers or cpations are available. We list the top 5 labels that reached
+        headers or cpations are available. We list the top 5 labels that achieved
         the highest score in the overall test set and the top 5 labels that
         reached the lowest score for CTA in <i>Table 4a</i> and CPA in
         <i>Table 4b</i>. The performance of CTA and CPA varies across different
@@ -3053,9 +3050,9 @@
             </tr>
             <tr>
               <th class="tg-mkpc">Label</th>
-              <th class="tg-mkpc">Overall F1</th>
+              <th class="tg-mkpc">Overall Test F1</th>
               <th class="tg-mkpc">Label</th>
-              <th class="tg-mkpc">Overall F1</th>
+              <th class="tg-mkpc">Overall Test F1</th>
             </tr>
           </thead>
           <tbody>
@@ -3103,9 +3100,9 @@
             </tr>
             <tr>
               <th class="tg-mkpc">Label</th>
-              <th class="tg-mkpc">Overall F1</th>
+              <th class="tg-mkpc">Overall Test F1</th>
               <th class="tg-mkpc">Label</th>
-              <th class="tg-mkpc">Overall F1</th>
+              <th class="tg-mkpc">Overall Test F1</th>
             </tr>
           </thead>
           <tbody>
