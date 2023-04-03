@@ -964,20 +964,15 @@
         Column Type Annotation (CTA) is a critical task in data integration and
         knowledge discovery that involves assigning labels to each column in a
         table based on the types of entities it contains such as
-        <b
-          >"hotel/name", "streetAddress","addressLocality", "Country", and
+        <b>"hotel/name", "streetAddress","addressLocality", "Country", and
           "currency"
         </b>
-        as shown in <a href="#toc2.1.Fig">Figure 1</a>. Additionally, CTA can
-        also assign data types to columns such as String, Integer, and Boolean.
-        While data types provide basic information about the type of data stored
-        in a column, entity types capture domain-specific semantics that convey
-        more meaning. For instance, labeling a column with
+        as shown in <a href="#toc2.1.Fig">Figure 1</a>.While data types provide basic 
+        information about the type of data stored in a column, entity types capture 
+        domain-specific semantics that convey more meaning. For instance, labeling a column with
         <b>"hotel/name"</b> rather than just <b>"String" </b> provides valuable
         information about the specific type of data stored in that column, which
-        is crucial for downstream tasks such as data analysis and retrieval.
-        Therefore, it can be argued that entity types assigned through CTA are
-        more useful than data types alone. [<a href="#toc8">1</a>,
+        is crucial for downstream tasks such as data analysis and retrieval.[<a href="#toc8">1</a>,
         <a href="#toc14">4</a>]
       </p>
       <span id="toc2.1.Fig"></span>
@@ -995,27 +990,8 @@
         </figcaption>
       </figure>
 
-      <p>Examples of CTA are:</p>
-      <ul>
-        <li>
-          In a customer database that includes columns for the customer name,
-          transaction date, and purchase amount, CTA can be used to identify the
-          data type of each column, such as string for customer name, date for
-          transaction date, and float for purchase amount (data type).
-        </li>
-        <li>
-          In a medical database, that includes columns for patient ID,
-          diagnosis, and treatment, CTA can be used to identify the data type of
-          each column, such as integer for patient ID, string for diagnosis, and
-          string for treatment (data type).
-        </li>
-        <li>
-          A financial institution has a database of stock market data that
-          includes columns for stock symbol, date, and closing price, CTA can be
-          used to identify the data type of each column, such as string for
-          stock symbol, date for date, and float for closing price (data type).
-        </li>
-        <li>
+      <p>An Example of CTA is:
+      
           An e-commerce website may have a table of products with columns such
           as "product name", "description", "price", "category", and "brand". By
           annotating the columns with entity types such as "product name",
@@ -1023,17 +999,8 @@
           understand the semantic meaning of the data, and accurately categorize
           products into appropriate categories, recommend related products, and
           provide a more personalized shopping experience to the user (entity
-          type).
-        </li>
-      </ul>
-
-      <p>
-        Identifying the data type of each column in a table is essential because
-        it can determine the preprocessing steps required for that column. For
-        instance, a column of type string may require spelling correction and
-        lemmatization, while a column of type currency may require unifying the
-        format of currency values that comes form different countries.
-      </p>
+         type).
+      </p> 
 
       <p>
         CTA can be approached as either
@@ -1355,7 +1322,7 @@
           href="#toc21"
           >13</a
         >] proposes Longformer, which has a linear attention mechanism that can
-        process sequences up to 4,096 in length.
+        process longer sequences length. The length constrained on the memory of GPU.
       </p>
 
       <span id="toc5"></span>
@@ -1435,7 +1402,7 @@
         Neighboring Column Serialization of window size 2 for this model. For
         the 2-Step model, we used default parameter settings, including a
         RoBERTa model trained for 30 epochs. For the Longformer model, we used
-        single-column serialization with a batch size of 8.
+        single-column serialization with a batch size of 8 and maximum length of 1000.
       </p>
       <p>
         We conducted ablation studies for both CTA and CPA tasks to investigate
