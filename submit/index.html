@@ -81,9 +81,6 @@
         margin: 20px 0;
         /* This leaves 10px margin on left and right. If only right margin is needed try margin-right: 10px; */
       }
-      h3 {
-        padding-bottom: 1rem;
-      }
       .tg {
         border-collapse: collapse;
         border-color: #ccc;
@@ -117,9 +114,7 @@
       .tg tr th {
         align-items: center;
       }
-      .tg caption {
-        caption-side: top;
-      }
+
       .tg {
         vertical-align: top;
       }
@@ -1363,9 +1358,7 @@
       <span id="toc5"></span>
       <h2>5. Experiment</h2>
       <p>
-        To conduct our experiments, we utilized computing resources from the
-        University of Mannheim (dws-server) and bwHPC servers provided by the
-        state of Baden-Württemberg.
+        To conduct our experiments, we utilized computing resources from the University of Mannheim (dws-server) and bwHPC servers provided by the state of Baden-Württemberg.
       </p>
 
       <span id="toc5.1"></span>
@@ -1405,65 +1398,26 @@
 
       <span id="toc5.2"></span>
       <h3>5.2 Experimental Settings</h3>
-      <p>
-        For our experiments on both the SOTAB benchmark and WikiTables dataset,
-        we trained a RoBERTa model with default settings: 30 epochs, 3 runs
-        (with seed 0-2), and a batch size of 32. The initial learning rate was
-        set to 5e-5, and we used a linear decay scheduler with no warmup. We set
-        a maximum token length of 512, used a window size of 5, and a standard
-        context ratio of 0.5 for relevant serializations. We identify
-        single-column serialization as the baseline configuration. For the SOTAB
-        benchmark, we formulated the task as a multi-label prediction problem
-        and used Cross Entropy loss. For the WikiTable dataset, we formulated
-        the task as a multi-class prediction problem and used Binary Cross
-        Entropy loss. We evaluated the performance of our models using micro F1
-        scores for both datasets.
+      <p> 
+        For our experiments on both the SOTAB benchmark and WikiTables dataset, we trained a RoBERTa model with default settings: 30 epochs, 3 runs (with seed 0-2), and a batch size of 32. The initial learning rate was set to 5e-5, and we used a linear decay scheduler with no warmup. We set a maximum token length of 512, used a window size of 5, and a standard context ratio of 0.5 for relevant serializations. We identify single-column serialization as the baseline configuration. For the SOTAB benchmark, we formulated the task as a multi-label prediction problem and used Cross Entropy loss. For the WikiTable dataset, we formulated the task as a multi-class prediction problem and used Binary Cross Entropy loss. We evaluated the performance of our models using micro F1 scores for both datasets.
       </p>
 
       <span id="toc5.3"></span>
       <h3>5.3 Experiments for SOTAB benchmark</h3>
       <p>
-        For the SOTAB benchmark, we conducted extensive experiments on
-        serialization for both CTA and CPA tasks. Specifically, we tested
-        different variants of Neighboring Column Serialization and TaBERT
-        Serialization. For CPA, we also performed No-Main Neighboring Column
-        Serialization, which treats a CPA task as a CTA task.
+        For the SOTAB benchmark, we conducted extensive experiments on serialization for both CTA and CPA tasks. Specifically, we tested different variants of Neighboring Column Serialization and TaBERT Serialization. For CPA, we also performed No-Main Neighboring Column Serialization, which treats a CPA task as a CTA task.
       </p>
       <p>
-        In order to explore more possibilities for the challenging CPA task, we
-        further investigated Subtable, 2-Step, and Longformer models. For the
-        Subtable Model, we trained a BERT model for 30 epochs with a batch size
-        of 16 and a maximum token length of 512 tokens. We utilized a
-        Neighboring Column Serialization of window size 2 for this model. For
-        the 2-Step model, we used default parameter settings, including a
-        RoBERTa model trained for 30 epochs. For the Longformer model, we used
-        single-column serialization with a batch size of 8.
+        In order to explore more possibilities for the challenging CPA task, we further investigated Subtable, 2-Step, and Longformer models. For the Subtable Model, we trained a BERT model for 30 epochs with a batch size of 16 and a maximum token length of 512 tokens. We utilized a Neighboring Column Serialization of window size 2 for this model. For the 2-Step model, we used default parameter settings, including a RoBERTa model trained for 30 epochs. For the Longformer model, we used single-column serialization with a batch size of 8.
       </p>
       <p>
-        We conducted ablation studies for both CTA and CPA tasks to investigate
-        the impact of different window sizes for Neighboring Column
-        Serializations. We also experimented with different preprocessing
-        methods, such as TUTA, median, and mean preprocessing for each promising
-        serialization. Additionally, we varied the proportions of the target
-        column and local context (context ratio) to assess the effect of context
-        weight on different serializations, experimenting with context ratios of
-        0.2, 0.5, and 0.8, respectively. Finally, in the early stages of our
-        workflow, we investigated the performance of augmentation strategies on
-        single-column serialization for the CPA task.
+        We conducted ablation studies for both CTA and CPA tasks to investigate the impact of different window sizes for Neighboring Column Serializations. We also experimented with different preprocessing methods, such as TUTA, median, and mean preprocessing for each promising serialization. Additionally, we varied the proportions of the target column and local context (context ratio) to assess the effect of context weight on different serializations, experimenting with context ratios of 0.2, 0.5, and 0.8, respectively. Finally, in the early stages of our workflow, we investigated the performance of augmentation strategies on single-column serialization for the CPA task.
       </p>
 
       <span id="toc5.4"></span>
       <h3>5.4 Experiments for WikiTables dataset</h3>
       <p>
-        To test the generalizability of our findings for the SOTAB benchmark, we
-        transferred the serialization methods to the WikiTables dataset. For the
-        CTA task, we used only Column-TaBERT Serialization due to computational
-        limitations resulting from the dataset's size. For the CPA task, we
-        experimented with different serializations, including TaBERT,
-        Column-TaBERT, and No-Main Neighboring Column Serializations. We
-        utilized the default experimental parameters as described and following
-        Suhara et al. [<a href="#toc15">7</a>], we trained the model for 15
-        epochs.
+        To test the generalizability of our findings for the SOTAB benchmark, we transferred the serialization methods to the WikiTables dataset. For the CTA task, we used only Column-TaBERT Serialization due to computational limitations resulting from the dataset's size. For the CPA task, we experimented with different serializations, including TaBERT, Column-TaBERT, and No-Main Neighboring Column Serializations. We utilized the default experimental parameters as described and following Suhara et al. [<a href="#toc15">7</a>], we trained the model for 15 epochs.</p>
       </p>
 
       <span id="toc6"></span>
@@ -1471,660 +1425,625 @@
 
       <span id="toc6.1"></span>
       <h3>6.1 Main Results</h3>
-
-      <div style="text-align: center" class="tg-wrap">
-        <table class="tg tg-top">
-          <thead>
-            <caption>
-              Table 1a: CTA Experiment results
-            </caption>
-            <tr>
-              <th class="tg-mkpc"></th>
-              <th class="tg-mkpc" colspan="3">
-                <span style="background-color: #f0f0f0">Context Ratio</span>
-              </th>
-            </tr>
-          </thead>
-          <tfoot>
-            <tr>
-              <td colspan="4">
-                <sup>*</sup>: Context ratio is irrelevant; <sup>**</sup>:
-                Results from [<a href="#toc9">1</a>]
-              </td>
-            </tr>
-          </tfoot>
-          <tbody>
-            <tr>
-              <th class="tg-syo5">CTA</th>
-              <th class="tg-syo5">0.2</th>
-              <th class="tg-syo5">0.5</th>
-              <th class="tg-syo5">0.8</th>
-            </tr>
-            <tr>
-              <td class="tg-9wq8">
-                <span style="color: #333; background-color: #fff"
-                  >Single-Column<sup>*</sup></span
-                >
-              </td>
-              <td class="tg-9wq8">
-                <span style="color: #333; background-color: #fff">-</span>
-              </td>
-              <td class="tg-9wq8">
-                <span style="color: #333; background-color: #fff">82.97</span>
-              </td>
-              <td class="tg-9wq8">
-                <span style="color: #333; background-color: #fff">-</span>
-              </td>
-            </tr>
-            <tr>
-              <td class="tg-9wq8">
-                <span style="color: #333; background-color: #fff"
-                  >DODUO<sup>*,**</sup></span
-                >
-              </td>
-              <td class="tg-9wq8">
-                <span style="font-weight: 400; font-style: normal">-</span>
-              </td>
-              <td class="tg-9wq8">
-                <span style="font-weight: 400; font-style: normal">84.82</span>
-              </td>
-              <td class="tg-9wq8">
-                <span style="font-weight: 400; font-style: normal">-</span>
-              </td>
-            </tr>
-            <tr>
-              <td class="tg-9wq8">
-                <span style="color: #333; background-color: #fff"
-                  >TURL<sup>*,**</sup></span
-                >
-              </td>
-              <td class="tg-9wq8">
-                <span style="color: #333; background-color: #fff">-</span>
-              </td>
-              <td class="tg-9wq8">
-                <span style="color: #333; background-color: #fff">78.96</span>
-              </td>
-              <td class="tg-9wq8">
-                <span style="color: #333; background-color: #fff">-</span>
-              </td>
-            </tr>
-            <tr>
-              <td class="tg-9wq8">
-                <span
-                  style="
-                    font-weight: 400;
-                    font-style: normal;
-                    text-decoration: none;
-                    color: #000;
-                    background-color: transparent;
-                  "
-                  >TaBERT</span
-                >
-              </td>
-              <td class="tg-9wq8">
-                <span
-                  style="
-                    font-weight: 400;
-                    font-style: normal;
-                    text-decoration: none;
-                    color: #000;
-                    background-color: transparent;
-                  "
-                  >92.14</span
-                >
-              </td>
-              <td class="tg-9wq8">
-                <span
-                  style="
-                    font-weight: 400;
-                    font-style: normal;
-                    text-decoration: none;
-                    color: #000;
-                    background-color: transparent;
-                  "
-                  >92.24</span
-                >
-              </td>
-              <td class="tg-9wq8">
-                <span
-                  style="
-                    font-weight: 400;
-                    font-style: normal;
-                    text-decoration: none;
-                    color: #000;
-                    background-color: transparent;
-                  "
-                  >91.60</span
-                >
-              </td>
-            </tr>
-            <tr>
-              <td class="tg-9wq8">
-                <span
-                  style="
-                    font-weight: 400;
-                    font-style: normal;
-                    text-decoration: none;
-                    color: #000;
-                    background-color: transparent;
-                  "
-                  >Col-TaBERT</span
-                >
-              </td>
-              <td class="tg-9wq8">
-                <span
-                  style="
-                    font-weight: 400;
-                    font-style: normal;
-                    text-decoration: none;
-                    color: #000;
-                    background-color: transparent;
-                  "
-                  >87.92</span
-                >
-              </td>
-              <td class="tg-9wq8">
-                <span
-                  style="
-                    font-weight: 400;
-                    font-style: normal;
-                    text-decoration: none;
-                    color: #000;
-                    background-color: transparent;
-                  "
-                  >88.40</span
-                >
-              </td>
-              <td class="tg-9wq8">
-                <span
-                  style="
-                    font-weight: 400;
-                    font-style: normal;
-                    text-decoration: none;
-                    color: #000;
-                    background-color: transparent;
-                  "
-                  >88.67</span
-                >
-              </td>
-            </tr>
-            <tr>
-              <td class="tg-9wq8">
-                <span
-                  style="
-                    font-weight: 400;
-                    font-style: normal;
-                    text-decoration: none;
-                    color: #000;
-                    background-color: transparent;
-                  "
-                  >Neighbor, WS=5</span
-                >
-              </td>
-              <td class="tg-p91v">
-                <span
-                  style="
-                    font-weight: 700;
-                    font-style: normal;
-                    text-decoration: none;
-                    color: #000;
-                  "
-                  >92.44</span
-                >
-              </td>
-              <td class="tg-9wq8">
-                <span
-                  style="
-                    font-weight: 400;
-                    font-style: normal;
-                    text-decoration: none;
-                    color: #000;
-                    background-color: transparent;
-                  "
-                  >92.14</span
-                >
-              </td>
-              <td class="tg-9wq8">
-                <span
-                  style="
-                    font-weight: 400;
-                    font-style: normal;
-                    text-decoration: none;
-                    color: #000;
-                    background-color: transparent;
-                  "
-                  >91.29</span
-                >
-              </td>
-            </tr>
-            <tr>
-              <td class="tg-9wq8">
-                <span
-                  style="
-                    font-weight: 400;
-                    font-style: normal;
-                    text-decoration: none;
-                    color: #000;
-                    background-color: transparent;
-                  "
-                  >Sum_Neighbor, WS=5</span
-                >
-              </td>
-              <td class="tg-9wq8">
-                <span
-                  style="
-                    font-weight: 400;
-                    font-style: normal;
-                    text-decoration: none;
-                    color: #000;
-                    background-color: transparent;
-                  "
-                  >90.97</span
-                >
-              </td>
-              <td class="tg-9wq8">
-                <span
-                  style="
-                    font-weight: 400;
-                    font-style: normal;
-                    text-decoration: none;
-                    color: #000;
-                    background-color: transparent;
-                  "
-                  >88.63</span
-                >
-              </td>
-              <td class="tg-9wq8">
-                <span
-                  style="
-                    font-weight: 400;
-                    font-style: normal;
-                    text-decoration: none;
-                    color: #000;
-                    background-color: transparent;
-                  "
-                  >85.82</span
-                >
-              </td>
-              <tfoot>
-                <tr></tr>
-              </tfoot>
-            </tr>
-          </tbody>
-        </table>
-
-        <table class="tg">
-          <caption>
-            Table 1b: CPA Experiment results
-          </caption>
-          <thead>
-            <tr>
-              <th class="tg-mkpc"></th>
-              <th class="tg-mkpc" colspan="3">
-                <span style="background-color: #f0f0f0">Context Ratio</span>
-              </th>
-            </tr>
-          </thead>
-          <tfoot>
-            <tr>
-              <td colspan="4">
-                <sup>*</sup>: Context ratio is irrelevant; <sup>**</sup>:
-                Results from [<a href="#toc9">1</a>]
-              </td>
-            </tr>
-          </tfoot>
-          <tbody>
-            <tr>
-              <th class="tg-syo5">CPA</th>
-              <th class="tg-syo5">0.2</th>
-              <th class="tg-syo5">0.5</th>
-              <th class="tg-syo5">0.8</th>
-            </tr>
-            <tr>
-              <td class="tg-zkss">
-                <span
-                  style="
-                    font-weight: 400;
-                    font-style: normal;
-                    text-decoration: none;
-                    color: #000;
-                    background-color: transparent;
-                  "
-                  >Single-Column<sup>*</sup></span
-                >
-              </td>
-              <td class="tg-zkss">-</td>
-              <td class="tg-zkss">
-                <span
-                  style="
-                    font-weight: 400;
-                    font-style: normal;
-                    text-decoration: none;
-                    color: #000;
-                    background-color: transparent;
-                  "
-                  >79.52</span
-                >
-              </td>
-              <td class="tg-h2b0">-</td>
-            </tr>
-            <tr>
-              <td class="tg-h2b0">DODUO<sup>*,**</sup></td>
-              <td class="tg-h2b0">-</td>
-              <td class="tg-h2b0">
-                <span
-                  style="
-                    font-weight: 400;
-                    font-style: normal;
-                    text-decoration: none;
-                    color: #000;
-                    background-color: transparent;
-                  "
-                  >79.96</span
-                >
-              </td>
-              <td class="tg-h2b0">-</td>
-            </tr>
-            <tr>
-              <td class="tg-c3ow">TURL<sup>*,**</sup></td>
-              <td class="tg-c3ow">-</td>
-              <td class="tg-c3ow">
-                <span
-                  style="
-                    font-weight: 400;
-                    font-style: normal;
-                    text-decoration: none;
-                    color: #000;
-                    background-color: transparent;
-                  "
-                  >72.93</span
-                >
-              </td>
-              <td class="tg-c3ow">-</td>
-            </tr>
-            <tr>
-              <td class="tg-zkss">
-                <span
-                  style="
-                    font-weight: 400;
-                    font-style: normal;
-                    text-decoration: none;
-                    color: #000;
-                    background-color: transparent;
-                  "
-                  >TaBERT</span
-                >
-              </td>
-              <td class="tg-zkss">
-                <span
-                  style="
-                    font-weight: 400;
-                    font-style: normal;
-                    text-decoration: none;
-                    color: #000;
-                    background-color: transparent;
-                  "
-                  >83.09</span
-                >
-              </td>
-              <td class="tg-zkss">
-                <span
-                  style="
-                    font-weight: 400;
-                    font-style: normal;
-                    text-decoration: none;
-                    color: #000;
-                    background-color: transparent;
-                  "
-                  >83.68</span
-                >
-              </td>
-              <td class="tg-zkss">
-                <span
-                  style="
-                    font-weight: 400;
-                    font-style: normal;
-                    text-decoration: none;
-                    color: #000;
-                    background-color: transparent;
-                  "
-                  >82.49</span
-                >
-              </td>
-            </tr>
-            <tr>
-              <td class="tg-zkss">
-                <span
-                  style="
-                    font-weight: 400;
-                    font-style: normal;
-                    text-decoration: none;
-                    color: #000;
-                    background-color: transparent;
-                  "
-                  >Col-TaBERT</span
-                >
-              </td>
-              <td class="tg-zkss">
-                <span
-                  style="
-                    font-weight: 400;
-                    font-style: normal;
-                    text-decoration: none;
-                    color: #000;
-                    background-color: transparent;
-                  "
-                  >82.79</span
-                >
-              </td>
-              <td class="tg-zkss">
-                <span
-                  style="
-                    font-weight: 400;
-                    font-style: normal;
-                    text-decoration: none;
-                    color: #000;
-                    background-color: transparent;
-                  "
-                  >83.22</span
-                >
-              </td>
-              <td class="tg-zkss">
-                <span
-                  style="
-                    font-weight: 400;
-                    font-style: normal;
-                    text-decoration: none;
-                    color: #000;
-                    background-color: transparent;
-                  "
-                  >82.38</span
-                >
-              </td>
-            </tr>
-
-            <tr>
-              <td class="tg-zkss">
-                <span
-                  style="
-                    font-weight: 400;
-                    font-style: normal;
-                    text-decoration: none;
-                    color: #000;
-                    background-color: transparent;
-                  "
-                  >Neighbor, WS=5</span
-                >
-              </td>
-              <td class="tg-p91v">
-                <span
-                  style="
-                    font-weight: 700;
-                    font-style: normal;
-                    text-decoration: none;
-                    color: #000;
-                    background-color: transparent;
-                  "
-                  >86.09</span
-                >
-              </td>
-              <td class="tg-zkss">
-                <span
-                  style="
-                    font-weight: 400;
-                    font-style: normal;
-                    text-decoration: none;
-                    color: #000;
-                    background-color: transparent;
-                  "
-                  >85.50</span
-                >
-              </td>
-              <td class="tg-zkss">
-                <span
-                  style="
-                    font-weight: 400;
-                    font-style: normal;
-                    text-decoration: none;
-                    color: #000;
-                    background-color: transparent;
-                  "
-                  >85.14</span
-                >
-              </td>
-            </tr>
-            <tr>
-              <td class="tg-zkss">
-                <span
-                  style="
-                    font-weight: 400;
-                    font-style: normal;
-                    text-decoration: none;
-                    color: #000;
-                    background-color: transparent;
-                  "
-                  >Sum_Neighbor, WS=5</span
-                >
-              </td>
-              <td class="tg-zkss">
-                <span
-                  style="
-                    font-weight: 400;
-                    font-style: normal;
-                    text-decoration: none;
-                    color: #000;
-                    background-color: transparent;
-                  "
-                  >83.50</span
-                >
-              </td>
-              <td class="tg-zkss">
-                <span
-                  style="
-                    font-weight: 400;
-                    font-style: normal;
-                    text-decoration: none;
-                    color: #000;
-                    background-color: transparent;
-                  "
-                  >82.07</span
-                >
-              </td>
-              <td class="tg-zkss">
-                <span
-                  style="
-                    font-weight: 400;
-                    font-style: normal;
-                    text-decoration: none;
-                    color: #000;
-                    background-color: transparent;
-                  "
-                  >77.82</span
-                >
-              </td>
-            </tr>
-            <tr>
-              <td class="tg-zkss">
-                <span
-                  style="
-                    font-weight: 400;
-                    font-style: normal;
-                    text-decoration: none;
-                    color: #000;
-                    background-color: transparent;
-                  "
-                  >No-Main Neighbor, WS=5</span
-                >
-              </td>
-              <td class="tg-zkss">
-                <span
-                  style="
-                    font-weight: 400;
-                    font-style: normal;
-                    text-decoration: none;
-                    color: #000;
-                    background-color: transparent;
-                  "
-                  >85.88</span
-                >
-              </td>
-              <td class="tg-zkss">
-                <span
-                  style="
-                    font-weight: 400;
-                    font-style: normal;
-                    text-decoration: none;
-                    color: #000;
-                    background-color: transparent;
-                  "
-                  >85.29</span
-                >
-              </td>
-              <td class="tg-zkss">
-                <span
-                  style="
-                    font-weight: 400;
-                    font-style: normal;
-                    text-decoration: none;
-                    color: #000;
-                    background-color: transparent;
-                  "
-                  >84.87</span
-                >
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
       <p>
-        <b> SOTAB benchmark </b> Across both tasks, for all but one
-        serializations implemented, we achieved significant improvement on Micro
-        F1 against the single-column baseline serialization. For the CTA task,
-        we are able to achieve a maximum increase of 7.62 point F1 Score
-        compared to the state-of-the-art DODUO model, with Neighboring Column
-        Serialization of window size of 5 and a context ratio of 0.2. Similar
-        results are achieved by TaBERT and Neighoring Column Serialization
-        indicating the importance of context ratio and certain structure for
-        input sequence. The lower F1 Score of Column-TaBERT compared to its
-        counterpart of TaBERT, and like-wise for Neighboring Column with
-        Summary, by roughly 3 points suggests the inability of Transformer's
-        attention mechanism to identify significant positions in a input
-        sequence.
+        <div style="text-align: center" class="tg-wrap">
+          <table class="tg tg-top">
+            <thead>
+              <caption>
+                Table 1a: CTA Experiment results
+              </caption>
+              <tr>
+                <th class="tg-mkpc"></th>
+                <th class="tg-mkpc" colspan="3">
+                  <span style="background-color: #f0f0f0"
+                    >Context Ratio</span
+                  >
+                </th>
+              </tr>
+            </thead>
+            <tfoot><tr><td colspan="4"><sup>*</sup>: Context ratio is irrelevant; <sup>**</sup>: Results from [<a href="#toc9">1</a>] </td></tr></tfoot>
+            <tbody>
+              <tr>
+                <th class="tg-syo5">CTA</th>
+                <th class="tg-syo5">0.2</th>
+                <th class="tg-syo5">0.5</th>
+                <th class="tg-syo5">0.8</th>
+              </tr>
+              <tr>
+                <td class="tg-9wq8">
+                  <span style="color: #333; background-color: #fff"
+                    >Single-Column<sup>*</sup></span
+                  >
+                </td>
+                <td class="tg-9wq8">
+                  <span style="color: #333; background-color: #fff">-</span>
+                </td>
+                <td class="tg-9wq8">
+                  <span style="color: #333; background-color: #fff">82.97</span>
+                </td>
+                <td class="tg-9wq8">
+                  <span style="color: #333; background-color: #fff">-</span>
+                </td>
+              </tr>
+              <tr>
+                <td class="tg-9wq8">
+                  <span style="color: #333; background-color: #fff">DODUO<sup>*,**</sup></span>
+                </td>
+                <td class="tg-9wq8">
+                  <span style="font-weight: 400; font-style: normal">-</span>
+                </td>
+                <td class="tg-9wq8">
+                  <span style="font-weight: 400; font-style: normal">84.82</span>
+                </td>
+                <td class="tg-9wq8">
+                  <span style="font-weight: 400; font-style: normal">-</span>
+                </td>
+              </tr>
+              <tr>
+                <td class="tg-9wq8">
+                  <span style="color: #333; background-color: #fff">TURL<sup>*,**</sup></span>
+                </td>
+                <td class="tg-9wq8">
+                  <span style="color: #333; background-color: #fff">-</span>
+                </td>
+                <td class="tg-9wq8">
+                  <span style="color: #333; background-color: #fff">78.96</span>
+                </td>
+                <td class="tg-9wq8">
+                  <span style="color: #333; background-color: #fff">-</span>
+                </td>
+              </tr>
+              <tr>
+                <td class="tg-9wq8">
+                  <span
+                    style="
+                      font-weight: 400;
+                      font-style: normal;
+                      text-decoration: none;
+                      color: #000;
+                      background-color: transparent;
+                    "
+                    >TaBERT</span
+                  >
+                </td>
+                <td class="tg-9wq8">
+                  <span
+                    style="
+                      font-weight: 400;
+                      font-style: normal;
+                      text-decoration: none;
+                      color: #000;
+                      background-color: transparent;
+                    "
+                    >92.14</span
+                  >
+                </td>
+                <td class="tg-9wq8">
+                  <span
+                    style="
+                      font-weight: 400;
+                      font-style: normal;
+                      text-decoration: none;
+                      color: #000;
+                      background-color: transparent;
+                    "
+                    >92.24</span
+                  >
+                </td>
+                <td class="tg-9wq8">
+                  <span
+                    style="
+                      font-weight: 400;
+                      font-style: normal;
+                      text-decoration: none;
+                      color: #000;
+                      background-color: transparent;
+                    "
+                    >91.60</span
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td class="tg-9wq8">
+                  <span
+                    style="
+                      font-weight: 400;
+                      font-style: normal;
+                      text-decoration: none;
+                      color: #000;
+                      background-color: transparent;
+                    "
+                    >Col-TaBERT</span
+                  >
+                </td>
+                <td class="tg-9wq8">
+                  <span
+                    style="
+                      font-weight: 400;
+                      font-style: normal;
+                      text-decoration: none;
+                      color: #000;
+                      background-color: transparent;
+                    "
+                    >87.92</span
+                  >
+                </td>
+                <td class="tg-9wq8">
+                  <span
+                    style="
+                      font-weight: 400;
+                      font-style: normal;
+                      text-decoration: none;
+                      color: #000;
+                      background-color: transparent;
+                    "
+                    >88.40</span
+                  >
+                </td>
+                <td class="tg-9wq8">
+                  <span
+                    style="
+                      font-weight: 400;
+                      font-style: normal;
+                      text-decoration: none;
+                      color: #000;
+                      background-color: transparent;
+                    "
+                    >88.67</span
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td class="tg-9wq8">
+                  <span
+                    style="
+                      font-weight: 400;
+                      font-style: normal;
+                      text-decoration: none;
+                      color: #000;
+                      background-color: transparent;
+                    "
+                    >Neighbor, WS=5</span
+                  >
+                </td>
+                <td class="tg-p91v">
+                  <span
+                    style="
+                      font-weight: 700;
+                      font-style: normal;
+                      text-decoration: none;
+                      color: #000;
+                    "
+                    >92.44</span
+                  >
+                </td>
+                <td class="tg-9wq8">
+                  <span
+                    style="
+                      font-weight: 400;
+                      font-style: normal;
+                      text-decoration: none;
+                      color: #000;
+                      background-color: transparent;
+                    "
+                    >92.14</span
+                  >
+                </td>
+                <td class="tg-9wq8">
+                  <span
+                    style="
+                      font-weight: 400;
+                      font-style: normal;
+                      text-decoration: none;
+                      color: #000;
+                      background-color: transparent;
+                    "
+                    >91.29</span
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td class="tg-9wq8">
+                  <span
+                    style="
+                      font-weight: 400;
+                      font-style: normal;
+                      text-decoration: none;
+                      color: #000;
+                      background-color: transparent;
+                    "
+                    >Sum_Neighbor, WS=5</span
+                  >
+                </td>
+                <td class="tg-9wq8">
+                  <span
+                    style="
+                      font-weight: 400;
+                      font-style: normal;
+                      text-decoration: none;
+                      color: #000;
+                      background-color: transparent;
+                    "
+                    >90.97</span
+                  >
+                </td>
+                <td class="tg-9wq8">
+                  <span
+                    style="
+                      font-weight: 400;
+                      font-style: normal;
+                      text-decoration: none;
+                      color: #000;
+                      background-color: transparent;
+                    "
+                    >88.63</span
+                  >
+                </td>
+                <td class="tg-9wq8">
+                  <span
+                    style="
+                      font-weight: 400;
+                      font-style: normal;
+                      text-decoration: none;
+                      color: #000;
+                      background-color: transparent;
+                    "
+                    >85.82</span
+                  >
+                </td>
+                <tfoot>
+                    <tr>
+                        
+                    </tr>
+                </tfoot>
+              </tr>
+            </tbody>
+          </table>
+
+          <table class="tg">
+            <caption>
+              Table 1b: CPA Experiment results
+            </caption>
+            <thead>
+              <tr>
+                <th class="tg-mkpc"></th>
+                <th class="tg-mkpc" colspan="3">
+                  <span style="background-color: #f0f0f0"
+                    >Context Ratio</span
+                  >
+                </th>
+              </tr>
+            </thead>
+            <tfoot><tr><td colspan="4"><sup>*</sup>: Context ratio is irrelevant; <sup>**</sup>: Results from [<a href="#toc9">1</a>] </td></tr></tfoot>
+            <tbody>
+              <tr>
+                <th class="tg-syo5">CPA</th>
+                <th class="tg-syo5">0.2</th>
+                <th class="tg-syo5">0.5</th>
+                <th class="tg-syo5">0.8</th>
+              </tr>
+              <tr>
+                <td class="tg-zkss">
+                  <span
+                    style="
+                      font-weight: 400;
+                      font-style: normal;
+                      text-decoration: none;
+                      color: #000;
+                      background-color: transparent;
+                    "
+                    >Single-Column<sup>*</sup></span
+                  >
+                </td>
+                <td class="tg-zkss">-</td>
+                <td class="tg-zkss">
+                  <span
+                    style="
+                      font-weight: 400;
+                      font-style: normal;
+                      text-decoration: none;
+                      color: #000;
+                      background-color: transparent;
+                    "
+                    >79.52</span
+                  >
+                </td>
+                <td class="tg-h2b0">-</td>
+              </tr>
+              <tr>
+                <td class="tg-h2b0">DODUO<sup>*,**</sup></td>
+                <td class="tg-h2b0">-</td>
+                <td class="tg-h2b0">
+                  <span
+                    style="
+                      font-weight: 400;
+                      font-style: normal;
+                      text-decoration: none;
+                      color: #000;
+                      background-color: transparent;
+                    "
+                    >79.96</span
+                  >
+                </td>
+                <td class="tg-h2b0">-</td>
+              </tr>
+              <tr>
+                <td class="tg-c3ow">TURL<sup>*,**</sup></td>
+                <td class="tg-c3ow">-</td>
+                <td class="tg-c3ow">
+                  <span
+                    style="
+                      font-weight: 400;
+                      font-style: normal;
+                      text-decoration: none;
+                      color: #000;
+                      background-color: transparent;
+                    "
+                    >72.93</span
+                  >
+                </td>
+                <td class="tg-c3ow">-</td>
+              </tr>
+              <tr>
+                <td class="tg-zkss">
+                  <span
+                    style="
+                      font-weight: 400;
+                      font-style: normal;
+                      text-decoration: none;
+                      color: #000;
+                      background-color: transparent;
+                    "
+                    >TaBERT</span
+                  >
+                </td>
+                <td class="tg-zkss">
+                  <span
+                    style="
+                      font-weight: 400;
+                      font-style: normal;
+                      text-decoration: none;
+                      color: #000;
+                      background-color: transparent;
+                    "
+                    >83.09</span
+                  >
+                </td>
+                <td class="tg-zkss">
+                  <span
+                    style="
+                      font-weight: 400;
+                      font-style: normal;
+                      text-decoration: none;
+                      color: #000;
+                      background-color: transparent;
+                    "
+                    >83.68</span
+                  >
+                </td>
+                <td class="tg-zkss">
+                  <span
+                    style="
+                      font-weight: 400;
+                      font-style: normal;
+                      text-decoration: none;
+                      color: #000;
+                      background-color: transparent;
+                    "
+                    >82.49</span
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td class="tg-zkss">
+                  <span
+                    style="
+                      font-weight: 400;
+                      font-style: normal;
+                      text-decoration: none;
+                      color: #000;
+                      background-color: transparent;
+                    "
+                    >Col-TaBERT</span
+                  >
+                </td>
+                <td class="tg-zkss">
+                  <span
+                    style="
+                      font-weight: 400;
+                      font-style: normal;
+                      text-decoration: none;
+                      color: #000;
+                      background-color: transparent;
+                    "
+                    >82.79</span
+                  >
+                </td>
+                <td class="tg-zkss">
+                  <span
+                    style="
+                      font-weight: 400;
+                      font-style: normal;
+                      text-decoration: none;
+                      color: #000;
+                      background-color: transparent;
+                    "
+                    >83.22</span
+                  >
+                </td>
+                <td class="tg-zkss">
+                  <span
+                    style="
+                      font-weight: 400;
+                      font-style: normal;
+                      text-decoration: none;
+                      color: #000;
+                      background-color: transparent;
+                    "
+                    >82.38</span
+                  >
+                </td>
+              </tr>
+
+              <tr>
+                <td class="tg-zkss">
+                  <span
+                    style="
+                      font-weight: 400;
+                      font-style: normal;
+                      text-decoration: none;
+                      color: #000;
+                      background-color: transparent;
+                    "
+                    >Neighbor, WS=5</span
+                  >
+                </td>
+                <td class="tg-p91v">
+                  <span
+                    style="
+                      font-weight: 700;
+                      font-style: normal;
+                      text-decoration: none;
+                      color: #000;
+                      background-color: transparent;
+                    "
+                    >86.09</span
+                  >
+                </td>
+                <td class="tg-zkss">
+                  <span
+                    style="
+                      font-weight: 400;
+                      font-style: normal;
+                      text-decoration: none;
+                      color: #000;
+                      background-color: transparent;
+                    "
+                    >85.50</span
+                  >
+                </td>
+                <td class="tg-zkss">
+                  <span
+                    style="
+                      font-weight: 400;
+                      font-style: normal;
+                      text-decoration: none;
+                      color: #000;
+                      background-color: transparent;
+                    "
+                    >85.14</span
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td class="tg-zkss">
+                  <span
+                    style="
+                      font-weight: 400;
+                      font-style: normal;
+                      text-decoration: none;
+                      color: #000;
+                      background-color: transparent;
+                    "
+                    >Sum_Neighbor, WS=5</span
+                  >
+                </td>
+                <td class="tg-zkss">
+                  <span
+                    style="
+                      font-weight: 400;
+                      font-style: normal;
+                      text-decoration: none;
+                      color: #000;
+                      background-color: transparent;
+                    "
+                    >83.50</span
+                  >
+                </td>
+                <td class="tg-zkss">
+                  <span
+                    style="
+                      font-weight: 400;
+                      font-style: normal;
+                      text-decoration: none;
+                      color: #000;
+                      background-color: transparent;
+                    "
+                    >82.07</span
+                  >
+                </td>
+                <td class="tg-zkss">
+                  <span
+                    style="
+                      font-weight: 400;
+                      font-style: normal;
+                      text-decoration: none;
+                      color: #000;
+                      background-color: transparent;
+                    "
+                    >77.82</span
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td class="tg-zkss">
+                  <span
+                    style="
+                      font-weight: 400;
+                      font-style: normal;
+                      text-decoration: none;
+                      color: #000;
+                      background-color: transparent;
+                    "
+                    >No-Main Neighbor, WS=5</span
+                  >
+                </td>
+                <td class="tg-zkss">
+                  <span
+                    style="
+                      font-weight: 400;
+                      font-style: normal;
+                      text-decoration: none;
+                      color: #000;
+                      background-color: transparent;
+                    "
+                    >85.88</span
+                  >
+                </td>
+                <td class="tg-zkss">
+                  <span
+                    style="
+                      font-weight: 400;
+                      font-style: normal;
+                      text-decoration: none;
+                      color: #000;
+                      background-color: transparent;
+                    "
+                    >85.29</span
+                  >
+                </td>
+                <td class="tg-zkss">
+                  <span
+                    style="
+                      font-weight: 400;
+                      font-style: normal;
+                      text-decoration: none;
+                      color: #000;
+                      background-color: transparent;
+                    "
+                    >84.87</span
+                  >
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </p>
       <p>
-        For the CPA task, different variances of Neighboring Column
-        Serialization achieve 6 point higher F1 Score than the existing methods.
-        Once again, Neighboring Column Serialization of window size of 5 and
-        context ratio of 0.2 achieves the highest F1 Score. TaBERT variances
-        score 2.5 point lower F1 Score indicating less suitability of row
-        serialization for a column pair prediction. Once again, less structured
-        serialization solutions achieve lower F1 Scores (Column TaBERT and
-        Neighboring Column with Summary). Lastly, only Neighboring Column with
-        Summary with context ratio of 0.8 achieves lower F1 Score than
-        Single-Column. Context ratio of 0.8, as explained, allocate 80% of
-        available token limit to Main and Target Column and merely 20% to their
-        neighbors.
+        <b> SOTAB benchmark </b> Across both tasks, for all but one serializations implemented, we achieved significant improvement on Micro F1 against the single-column baseline serialization. For the CTA task, we are able to achieve a maximum increase of 7.62 point F1 Score compared to the state-of-the-art DODUO model, with Neighboring Column Serialization of window size of 5 and a context ratio of 0.2. Similar results are achieved by TaBERT and Neighoring Column Serialization indicating the importance of context ratio and certain structure for input sequence. The lower F1 Score of Column-TaBERT compared to its counterpart of TaBERT, and like-wise for Neighboring Column with Summary, by roughly 3 points suggests the inability of Transformer's attention mechanism to identify significant positions in a input sequence.
+      </p>
+      <p>
+        For the CPA task, different variances of Neighboring Column Serialization achieve 6 point higher F1 Score than the existing methods. Once again, Neighboring Column Serialization of window size of 5 and context ratio of 0.2 achieves the highest F1 Score. TaBERT variances score 2.5 point lower F1 Score indicating less suitability of row serialization for a column pair prediction. Once again, less structured serialization solutions achieve lower F1 Scores (Column TaBERT and Neighboring Column with Summary). Lastly, only Neighboring Column with Summary with context ratio of 0.8 achieves lower F1 Score than Single-Column. Context ratio of 0.8, as explained, allocate 80% of available token limit to Main and Target Column and merely 20% to their neighbors. 
       </p>
 
       <p>
@@ -2390,13 +2309,13 @@
       </p>
 
       <p>
-        <b> Wikitables Dataset </b>
+        <b> Wikitables Dataset </b> 
       </p>
 
       <span id="toc6.2"></span>
       <h3>6.2 Ablation Study</h3>
-
-      <div class="tg-wrap">
+      <p>
+        <div class="tg-wrap">
         <table class="tg">
           <caption>
             Table? :Preprocess and Augmentation test
@@ -2568,7 +2487,8 @@
             </tr>
           </tbody>
         </table>
-      </div>
+        </div>
+      </p>
 
       <div>
         <table class="tg">
@@ -2848,11 +2768,10 @@
       <span id="toc6.3"></span>
       <h3>6.3 Error Analysis</h3>
       <p>
-        To evaluate the performance of our best result from neighbor
-        serialization with a window size of 2, we initially conducted statistic
-        analysis on three different aspects: (i) schema type, (ii) data type,
-        and (iii) specific challenges. Subsequently, we furthered look into the
-        data and manually classified the errors.
+
+        To evaluate the performance of our best result from neighbor serialization with a window size of 2, 
+        we initially conducted statistic analysis on three different aspects: (i) schema type, (ii) data type, and (iii) specific challenges.
+         Subsequently, we furthered look into the data and manually classified the errors.
       </p>
       <p>
         <b>(i) Schema Type: </b> The tables are distribtued across 17 schema.org types and the tables do no include any metadata which
@@ -2959,128 +2878,82 @@
         </table>
       </p>
       <p>
-        <b>(ii) Data Type: </b>
+        <b>(ii) Data Type: </b> 
+        <table class="tg">
+          <caption>Table x: Data Type Results for CTA & CPA</caption>
+          <thead>
+            <tr>
+              <th></th>
+              <th class="tg-ixdq">CTA</th>
+              <th class="tg-ixdq">CPA</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="tg-lboi"> Boolean </td>
+              <td class="tg-lboi"><span style="font-weight:400;font-style:normal"></span>100</td>
+              <td class="tg-lboi"><span style="font-weight:400;font-style:normal"></span>85</td> 
+            </tr>
+            <tr>
+              <td class="tg-lboi"> Numeric </td>
+              <td class="tg-lboi"><span style="font-weight:400;font-style:normal"></span>91.77</td>
+              <td class="tg-lboi"><span style="font-weight:400;font-style:normal"></span>75.06</td>
+            </tr>
+            <tr>
+              <td class="tg-lboi"> Long Text </td>
+              <td class="tg-lboi"><span style="font-weight:400;font-style:normal"></span>86.92</td>
+              <td class="tg-lboi"><span style="font-weight:400;font-style:normal"></span>88.17</td>
+            </tr>
+            <tr>
+              <td class="tg-lboi"> Short Text </td>
+              <td class="tg-lboi"><span style="font-weight:400;font-style:normal"></span>90.27</td>
+              <td class="tg-lboi"><span style="font-weight:400;font-style:normal"></span>82.52</td>
+            </tr>
+            <tr>
+              <td class="tg-lboi"> URL </td>
+              <td class="tg-lboi"><span style="font-weight:400;font-style:normal"></span>97.06</td>
+              <td class="tg-lboi"><span style="font-weight:400;font-style:normal"></span>94.71</td>
+            </tr>
+          </tbody>
+        </table>
       </p>
-      <table class="tg">
-        <caption>
-          Table x: Data Type Results for CTA & CPA
-        </caption>
-        <thead>
-          <tr>
-            <th></th>
-            <th class="tg-ixdq">CTA</th>
-            <th class="tg-ixdq">CPA</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="tg-lboi">Boolean</td>
-            <td class="tg-lboi">
-              <span style="font-weight: 400; font-style: normal"></span>100
-            </td>
-            <td class="tg-lboi">
-              <span style="font-weight: 400; font-style: normal"></span>85
-            </td>
-          </tr>
-          <tr>
-            <td class="tg-lboi">Numeric</td>
-            <td class="tg-lboi">
-              <span style="font-weight: 400; font-style: normal"></span>91.77
-            </td>
-            <td class="tg-lboi">
-              <span style="font-weight: 400; font-style: normal"></span>75.06
-            </td>
-          </tr>
-          <tr>
-            <td class="tg-lboi">Long Text</td>
-            <td class="tg-lboi">
-              <span style="font-weight: 400; font-style: normal"></span>86.92
-            </td>
-            <td class="tg-lboi">
-              <span style="font-weight: 400; font-style: normal"></span>88.17
-            </td>
-          </tr>
-          <tr>
-            <td class="tg-lboi">Short Text</td>
-            <td class="tg-lboi">
-              <span style="font-weight: 400; font-style: normal"></span>90.27
-            </td>
-            <td class="tg-lboi">
-              <span style="font-weight: 400; font-style: normal"></span>82.52
-            </td>
-          </tr>
-          <tr>
-            <td class="tg-lboi">URL</td>
-            <td class="tg-lboi">
-              <span style="font-weight: 400; font-style: normal"></span>97.06
-            </td>
-            <td class="tg-lboi">
-              <span style="font-weight: 400; font-style: normal"></span>94.71
-            </td>
-          </tr>
-        </tbody>
-      </table>
-
       <p>
-        <b>(iii) Specific Challenges: </b>The specific challgenges include:
-        Missing Values, Value Format Heterogeneity, Corner Cases, and Random
-        Columns which were all clearly defined in
-        <a href="https://webdatacommons.org/structureddata/sotab/"
-          >WDC Schema.org Table Annotation Benchmark (SOTAB)</a
-        >[<a href="#toc9">1</a>]. The results are summarized in Table X for CTA
-        and CPA.
+        <b>(iii) Specific Challenges: </b>The specific challgenges include: Missing Values, Value Format Heterogeneity, Corner Cases, 
+        and Random Columns which were all clearly defined in <a href="https://webdatacommons.org/structureddata/sotab/"
+        >WDC Schema.org Table Annotation Benchmark (SOTAB)</a>[<a href="#toc9">1</a>]. The results are summarized in Table X for CTA and CPA.
+        <table class="tg">
+          <caption>Table 4a: Specific Challenges Results for CTA & CPA</caption>
+          <thead>
+            <tr>
+              <th></th>
+              <th class="tg-ixdq">CTA</th>
+              <th class="tg-ixdq">CPA</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="tg-lboi"> Test (Missing Values) </td>
+              <td class="tg-lboi"><span style="font-weight:400;font-style:normal"></span>90.60</td>
+              <td class="tg-lboi"><span style="font-weight:400;font-style:normal"></span>82.74</td> 
+            </tr>
+            <tr>
+              <td class="tg-lboi"> Test (Format Heterogeneity) </td>
+              <td class="tg-lboi"><span style="font-weight:400;font-style:normal"></span>97.09</td>
+              <td class="tg-lboi"><span style="font-weight:400;font-style:normal"></span>86.55</td>
+            </tr>
+            <tr>
+              <td class="tg-lboi">Test (Corner Cases)</td>
+              <td class="tg-lboi"><span style="font-weight:400;font-style:normal"></span>85.06</td>
+              <td class="tg-lboi"><span style="font-weight:400;font-style:normal"></span>73.48</td>
+            </tr>
+            <tr>
+              <td class="tg-lboi">Test (Random Columns)</td>
+              <td class="tg-lboi"><span style="font-weight:400;font-style:normal"></span>90.89</td>
+              <td class="tg-lboi"><span style="font-weight:400;font-style:normal"></span>85.36</td>
+            </tr>
+          </tbody>
+        </table>
       </p>
-      <table class="tg">
-        <caption>
-          Table 4a: Specific Challenges Results for CTA & CPA
-        </caption>
-        <thead>
-          <tr>
-            <th></th>
-            <th class="tg-ixdq">CTA</th>
-            <th class="tg-ixdq">CPA</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="tg-lboi">Test (Missing Values)</td>
-            <td class="tg-lboi">
-              <span style="font-weight: 400; font-style: normal"></span>90.60
-            </td>
-            <td class="tg-lboi">
-              <span style="font-weight: 400; font-style: normal"></span>82.74
-            </td>
-          </tr>
-          <tr>
-            <td class="tg-lboi">Test (Format Heterogeneity)</td>
-            <td class="tg-lboi">
-              <span style="font-weight: 400; font-style: normal"></span>97.09
-            </td>
-            <td class="tg-lboi">
-              <span style="font-weight: 400; font-style: normal"></span>86.55
-            </td>
-          </tr>
-          <tr>
-            <td class="tg-lboi">Test (Corner Cases)</td>
-            <td class="tg-lboi">
-              <span style="font-weight: 400; font-style: normal"></span>85.06
-            </td>
-            <td class="tg-lboi">
-              <span style="font-weight: 400; font-style: normal"></span>73.48
-            </td>
-          </tr>
-          <tr>
-            <td class="tg-lboi">Test (Random Columns)</td>
-            <td class="tg-lboi">
-              <span style="font-weight: 400; font-style: normal"></span>90.89
-            </td>
-            <td class="tg-lboi">
-              <span style="font-weight: 400; font-style: normal"></span>85.36
-            </td>
-          </tr>
-        </tbody>
-      </table>
-
       <p>
         Following the statistical analysis of our results, we delved deeper into
         the data itself to investigate the root causes of the errors. To do
@@ -3171,23 +3044,13 @@
               The data provided is insufficient in current and neighbor columns
               but contained in columns outside the windows.
             </td>
-            <td>
-              Example given in <i>figure y</i>. In CTA task, the target is to
-              predict column 12, while the useful information is included in
-              first few columns.
-            </td>
+            <td>Example given in <i>figure y</i>. In CTA task, the target is to predict column 12, while the useful information is included in first few columns.</td>
           </tr>
         </tbody>
       </table>
       <figure>
-        <img
-          src="images/example_bad_tables.png"
-          alt="example_bad_tables"
-          width="70%"
-        />
-        <figcaption>
-          <b><a id="Fig1"></a>Figure x: </b>Example of bad tables
-        </figcaption>
+        <img src="images/example_bad_tables.png" alt="example_bad_tables" width="70%">
+        <figcaption><b><a id="Fig1"></a>Figure x: </b>Example of bad tables</figcaption>
       </figure>
 
       <figure>
