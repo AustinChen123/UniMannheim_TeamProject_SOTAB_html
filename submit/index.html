@@ -2935,7 +2935,12 @@
         </tbody>
       </table>
       <p>
-        <b>(ii) Data Type: </b>
+        <b>(ii) Data Type: </b> The columns are divided into 5 groups based on their data type: Boolean, Numeric, URL, short text and long text. 
+        Boolean columns contain only "yes" or "no" or "true" or "false" values, Numeric columns contain only numbers, 
+        and URL columns contain web addresses. All other columns are classified as text, 
+        and if the token in the value is less than five, it is considered short text, 
+        otherwise, it is long text. The results of each data type with micro-F1 score are summarized in Table X for CTA
+        and CPA.
       </p>
       <table class="tg">
         <caption>
