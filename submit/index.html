@@ -2046,267 +2046,265 @@
         For the CPA task, different variances of Neighboring Column Serialization achieve 6 point higher F1 Score than the existing methods. Once again, Neighboring Column Serialization of window size of 5 and context ratio of 0.2 achieves the highest F1 Score. TaBERT variances score 2.5 point lower F1 Score indicating less suitability of row serialization for a column pair prediction. Once again, less structured serialization solutions achieve lower F1 Scores (Column TaBERT and Neighboring Column with Summary). Lastly, only Neighboring Column with Summary with context ratio of 0.8 achieves lower F1 Score than Single-Column. Context ratio of 0.8, as explained, allocate 80% of available token limit to Main and Target Column and merely 20% to their neighbors. 
       </p>
 
-      <p>
-        <div style="text-align: center" class="tg-wrap">
+      <div style="text-align: center" class="tg-wrap">
+        <table class="tg">
           <table class="tg">
-            <table class="tg">
-            <caption>
-              Table 2a: CTA result for WikiTable
-            </caption>
-            <thead>
-              <tr>
-                <th class="tg-5vuh"><br /></th>
-                <th class="tg-4akn">
-                  <span
-                    style="
-                      font-weight: 700;
-                      font-style: normal;
-                      text-decoration: none;
-                      color: #000;
-                      background-color: transparent;
-                    "
-                    >Test Micro F1</span
-                  >
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="tg-zkss">
-                  <span
-                    style="
-                      font-weight: 400;
-                      font-style: normal;
-                      text-decoration: none;
-                      color: #000;
-                      background-color: transparent;
-                    "
-                    >Col-TaBERT</span
-                  >
-                </td>
-                <td class="tg-zkss">
-                  <span
-                    style="
-                      font-weight: 400;
-                      font-style: normal;
-                      text-decoration: none;
-                      color: #000;
-                      background-color: transparent;
-                    "
-                    >91.42</span
-                  >
-                </td>
-              </tr>
-              <tr>
-                <td class="tg-zkss">
-                  <span
-                    style="
-                      font-weight: 400;
-                      font-style: normal;
-                      text-decoration: none;
-                      color: #000;
-                      background-color: transparent;
-                    "
-                    >DODUO</span
-                  >
-                </td>
-                <td class="tg-zkss">
-                  <span
-                    style="
-                      font-weight: 700;
-                      font-style: normal;
-                      text-decoration: none;
-                      color: #000;
-                      background-color: transparent;
-                    "
-                    >92.45</span
-                  >
-                </td>
-              </tr>
-              <tr>
-                <td class="tg-zkss">
-                  <span
-                    style="
-                      font-weight: 400;
-                      font-style: normal;
-                      text-decoration: none;
-                      color: #000;
-                      background-color: transparent;
-                    "
-                    >TURL</span
-                  >
-                </td>
-                <td class="tg-zkss">
-                  <span
-                    style="
-                      font-weight: 400;
-                      font-style: normal;
-                      text-decoration: none;
-                      color: #000;
-                      background-color: transparent;
-                    "
-                    >88.86</span
-                  >
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <table class="tg">
-            <caption>
-              Table 2b: CPA result for WikiTable
-            </caption>
-            <thead>
-              <tr>
-                <th class="tg-5vuh"><br /></th>
-                <th class="tg-4akn">
-                  <span
-                    style="
-                      font-weight: 700;
-                      font-style: normal;
-                      text-decoration: none;
-                      color: #000;
-                      background-color: transparent;
-                    "
-                    >Test Micro F1</span
-                  >
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="tg-zkss">
-                  <span
-                    style="
-                      font-weight: 400;
-                      font-style: normal;
-                      text-decoration: none;
-                      color: #000;
-                      background-color: transparent;
-                    "
-                    >Col-TaBERT</span
-                  >
-                </td>
-                <td class="tg-zkss">
-                  <span
-                    style="
-                      font-weight: 400;
-                      font-style: normal;
-                      text-decoration: none;
-                      color: #000;
-                      background-color: transparent;
-                    "
-                    >92.85</span
-                  >
-                </td>
-              </tr>
-              <tr>
-                <td class="tg-zkss">
-                  <span
-                    style="
-                      font-weight: 400;
-                      font-style: normal;
-                      text-decoration: none;
-                      color: #000;
-                      background-color: transparent;
-                    "
-                    >DODUO</span
-                  >
-                </td>
-                <td class="tg-zkss">
-                  <span
-                    style="
-                      font-weight: 400;
-                      font-style: normal;
-                      text-decoration: none;
-                      color: #000;
-                      background-color: transparent;
-                    "
-                    >91.72</span
-                  >
-                </td>
-              </tr>
-              <tr>
-                <td class="tg-zkss">
-                  <span
-                    style="
-                      font-weight: 400;
-                      font-style: normal;
-                      text-decoration: none;
-                      color: #000;
-                      background-color: transparent;
-                    "
-                    >TURL</span
-                  >
-                </td>
-                <td class="tg-zkss">
-                  <span
-                    style="
-                      font-weight: 400;
-                      font-style: normal;
-                      text-decoration: none;
-                      color: #000;
-                      background-color: transparent;
-                    "
-                    >90.94</span
-                  >
-                </td>
-              </tr>
-              <tr>
-                <td class="tg-zkss">
-                  <span
-                    style="
-                      font-weight: 400;
-                      font-style: normal;
-                      text-decoration: none;
-                      color: #000;
-                      background-color: transparent;
-                    "
-                    >TaBERT</span
-                  >
-                </td>
-                <td class="tg-zkss">
-                  <span
-                    style="
-                      font-weight: 700;
-                      font-style: normal;
-                      text-decoration: none;
-                      color: #000;
-                      background-color: transparent;
-                    "
-                    >93.30</span
-                  >
-                </td>
-              </tr>
-              <tr>
-                <td class="tg-zkss">
-                  <span
-                    style="
-                      font-weight: 400;
-                      font-style: normal;
-                      text-decoration: none;
-                      color: #000;
-                      background-color: transparent;
-                    "
-                    >No-Main Neighbor</span
-                  >
-                </td>
-                <td class="tg-zkss">
-                  <span
-                    style="
-                      font-weight: 400;
-                      font-style: normal;
-                      text-decoration: none;
-                      color: #000;
-                      background-color: transparent;
-                    "
-                    >91.60</span
-                  >
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </p>
+          <caption>
+            Table 2a: CTA result for WikiTable
+          </caption>
+          <thead>
+            <tr>
+              <th class="tg-5vuh"><br /></th>
+              <th class="tg-4akn">
+                <span
+                  style="
+                    font-weight: 700;
+                    font-style: normal;
+                    text-decoration: none;
+                    color: #000;
+                    background-color: transparent;
+                  "
+                  >Test Micro F1</span
+                >
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="tg-zkss">
+                <span
+                  style="
+                    font-weight: 400;
+                    font-style: normal;
+                    text-decoration: none;
+                    color: #000;
+                    background-color: transparent;
+                  "
+                  >Col-TaBERT</span
+                >
+              </td>
+              <td class="tg-zkss">
+                <span
+                  style="
+                    font-weight: 400;
+                    font-style: normal;
+                    text-decoration: none;
+                    color: #000;
+                    background-color: transparent;
+                  "
+                  >91.42</span
+                >
+              </td>
+            </tr>
+            <tr>
+              <td class="tg-zkss">
+                <span
+                  style="
+                    font-weight: 400;
+                    font-style: normal;
+                    text-decoration: none;
+                    color: #000;
+                    background-color: transparent;
+                  "
+                  >DODUO</span
+                >
+              </td>
+              <td class="tg-zkss">
+                <span
+                  style="
+                    font-weight: 700;
+                    font-style: normal;
+                    text-decoration: none;
+                    color: #000;
+                    background-color: transparent;
+                  "
+                  >92.45</span
+                >
+              </td>
+            </tr>
+            <tr>
+              <td class="tg-zkss">
+                <span
+                  style="
+                    font-weight: 400;
+                    font-style: normal;
+                    text-decoration: none;
+                    color: #000;
+                    background-color: transparent;
+                  "
+                  >TURL</span
+                >
+              </td>
+              <td class="tg-zkss">
+                <span
+                  style="
+                    font-weight: 400;
+                    font-style: normal;
+                    text-decoration: none;
+                    color: #000;
+                    background-color: transparent;
+                  "
+                  >88.86</span
+                >
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <table class="tg">
+          <caption>
+            Table 2b: CPA result for WikiTable
+          </caption>
+          <thead>
+            <tr>
+              <th class="tg-5vuh"><br /></th>
+              <th class="tg-4akn">
+                <span
+                  style="
+                    font-weight: 700;
+                    font-style: normal;
+                    text-decoration: none;
+                    color: #000;
+                    background-color: transparent;
+                  "
+                  >Test Micro F1</span
+                >
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="tg-zkss">
+                <span
+                  style="
+                    font-weight: 400;
+                    font-style: normal;
+                    text-decoration: none;
+                    color: #000;
+                    background-color: transparent;
+                  "
+                  >Col-TaBERT</span
+                >
+              </td>
+              <td class="tg-zkss">
+                <span
+                  style="
+                    font-weight: 400;
+                    font-style: normal;
+                    text-decoration: none;
+                    color: #000;
+                    background-color: transparent;
+                  "
+                  >92.85</span
+                >
+              </td>
+            </tr>
+            <tr>
+              <td class="tg-zkss">
+                <span
+                  style="
+                    font-weight: 400;
+                    font-style: normal;
+                    text-decoration: none;
+                    color: #000;
+                    background-color: transparent;
+                  "
+                  >DODUO</span
+                >
+              </td>
+              <td class="tg-zkss">
+                <span
+                  style="
+                    font-weight: 400;
+                    font-style: normal;
+                    text-decoration: none;
+                    color: #000;
+                    background-color: transparent;
+                  "
+                  >91.72</span
+                >
+              </td>
+            </tr>
+            <tr>
+              <td class="tg-zkss">
+                <span
+                  style="
+                    font-weight: 400;
+                    font-style: normal;
+                    text-decoration: none;
+                    color: #000;
+                    background-color: transparent;
+                  "
+                  >TURL</span
+                >
+              </td>
+              <td class="tg-zkss">
+                <span
+                  style="
+                    font-weight: 400;
+                    font-style: normal;
+                    text-decoration: none;
+                    color: #000;
+                    background-color: transparent;
+                  "
+                  >90.94</span
+                >
+              </td>
+            </tr>
+            <tr>
+              <td class="tg-zkss">
+                <span
+                  style="
+                    font-weight: 400;
+                    font-style: normal;
+                    text-decoration: none;
+                    color: #000;
+                    background-color: transparent;
+                  "
+                  >TaBERT</span
+                >
+              </td>
+              <td class="tg-zkss">
+                <span
+                  style="
+                    font-weight: 700;
+                    font-style: normal;
+                    text-decoration: none;
+                    color: #000;
+                    background-color: transparent;
+                  "
+                  >93.30</span
+                >
+              </td>
+            </tr>
+            <tr>
+              <td class="tg-zkss">
+                <span
+                  style="
+                    font-weight: 400;
+                    font-style: normal;
+                    text-decoration: none;
+                    color: #000;
+                    background-color: transparent;
+                  "
+                  >No-Main Neighbor</span
+                >
+              </td>
+              <td class="tg-zkss">
+                <span
+                  style="
+                    font-weight: 400;
+                    font-style: normal;
+                    text-decoration: none;
+                    color: #000;
+                    background-color: transparent;
+                  "
+                  >91.60</span
+                >
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
       <p>
         <b> Wikitables Dataset </b> 
