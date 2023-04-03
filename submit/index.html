@@ -839,7 +839,7 @@
         This work is organized as follows. Firstly, in Chapter 1, we will
         introduce and motivate the task of table annotation. Furthermore, in
         Chapter 2, we will provide an overview of the table annotation tasks. Subsequently, in Chapter 3, we will present the
-        related work including Transformer model. Moving on to Chapter 4, we will describe the models,
+        related work including, Transformer model. Moving on to Chapter 4, we will describe the models,
         preprocessing steps, and serialization approaches. Additionally, in
         Chapter 5, we will describe the experiment setup. Then, in Chapter 6, we
         will delve into the experimental results and error analysis. Finally, in
@@ -945,20 +945,20 @@
       </p>
 
       <p>
-        An Example of CTA is: An e-commerce website may have a table of products
+        An example of CTA: An e-commerce website may have a table of products
         with columns such as "product name", "description", "price", "category",
         and "brand". By annotating the columns with entity types such as
         "product name", "brand", and "category", a machine learning model can
         better understand the semantic meaning of the data, and accurately
         categorize products into appropriate categories, recommend related
         products, and provide a more personalized shopping experience to the
-        user (entity type).
+        user.
       </p>
 
       <p>
         CTA can be approached as either
         <a href="https://paperswithcode.com/task/column-type-annotation/">
-          a multi-class or multi-label classification</a
+          a multi-class or a multi-label classification</a
         >
         problem. In multi-class, each column is annotated with only one label
         representing its type, while in multi-label, each column is annotated
@@ -972,8 +972,8 @@
         ensuring data quality control and schema matching[<a href="#toc17">7</a
         >]. It aims to identify relationships between different columns in a
         table. It can infer relationships that might not be immediately obvious,
-        as illustrated in <a href="#toc2.1.Fig">Figure 1</a>, CPA can help
-        machine learning models to infer that the <b>"address" </b>column refers
+        as illustrated in <a href="#toc2.1.Fig">Figure 1</a>. Here, CPA can help
+        to infer that the <b>"address" </b>column refers
         to the hotel's location.
       </p>
 
@@ -1006,7 +1006,7 @@
       <span id="toc3.1"></span>
       <p>
         Chapter 3 provides an overview of relevant literature on table
-        annotation tasks and Transformer-based language model, which is
+        annotation tasks and a Transformer-based language model, which is
         currently the state-of-the-art approach for these tasks.
       </p>
       <h3>3.1 TURL</h3>
@@ -1210,7 +1210,7 @@
         <a href="#toc4.2.2.Fig">Figure 3</a> or:
         <span class="math display"
           >\[serialize_{col\_tabert}(C)::=
-          [CLS]\;type\_target\_col\;target\_col\_data\;[SEP]type\_context\_col\_1\;type\_context\_col\_2\;...\;[SEP]row\_data\;[SEP]\]</span
+          [CLS]\;target\_col\_type\;target\_col\_data\;[SEP]\;context\_col\_1\_type\;context\_col\_2\_type\;...\;[SEP]\;row\_data\;[SEP]\]</span
         >
       </p>
 
@@ -1267,7 +1267,7 @@
           href="#toc21"
           >13</a
         >] proposes Longformer, which has a linear attention mechanism that can
-        process longer sequences length. The length constrained on the memory of
+        process longer sequences length. The maximum length is constrained by the memory of
         GPU.
       </p>
 
