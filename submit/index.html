@@ -946,7 +946,7 @@
         and schema, which can be challenging due to their heterogeneous or
         unknown headers and content. The objective of this project is to address
         the aforementioned challenges by proficiently utilizing diverse deep
-        learning methods for both Column Type annotation and Columns Property
+        learning methods for both Column Type Annotation and Columns Property
         Annotation tasks.
       </p>
 
@@ -956,8 +956,7 @@
         This Chapter provides an overview of the theoretical underpinnings,
         frameworks as well as specific information relevant to follow our work.
         For this reason, we start by introducing the main tasks we are trying to
-        solve. We also give a brief introduction to transformer models which
-        formed the basis for the algorithms we use.
+        solve.
       </p>
       <span id="toc2.1"></span>
 
@@ -970,14 +969,13 @@
           >"hotel/name", "streetAddress","addressLocality", "Country", and
           "currency"
         </b>
-        as shown in <a href="#toc2.1.Fig">Figure 1</a>.While data types provide
+        as shown in <a href="#toc2.1.Fig">Figure 1</a>. While data types provide
         basic information about the type of data stored in a column, entity
         types capture domain-specific semantics that convey more meaning. For
         instance, labeling a column with <b>"hotel/name"</b> rather than just
         <b>"String" </b> provides valuable information about the specific type
         of data stored in that column, which is crucial for downstream tasks
-        such as data analysis and retrieval.[<a href="#toc8">1</a>,
-        <a href="#toc14">4</a>]
+        such as data analysis and retrieval [<a href="#toc8">1</a>,<a href="#toc14">4</a>].
       </p>
 
       <p>
@@ -1010,7 +1008,7 @@
         infer that the address column refers to the hotel's location when
         applied to a table with columns labeled "hotel/name" and "address" (see
         <a href="#toc2.1.Fig">Figure 1</a>). CPA plays a crucial role in
-        ensuring data quality control and schema matching[<a href="#toc17">7</a
+        ensuring data quality control and schema matching [<a href="#toc17">7</a
         >].
       </p>
 
@@ -1034,46 +1032,35 @@
           <b><a id="Fig1"></a>Figure 1:</b> Example of table annotation. The CTA
           labels are placed on the top of the columns, while the CPA labels are
           placed between the main column (leftmost column) and another column
-          [<a href="#toc8">1</a>].
+          [<a href="#toc8">1</a>]
         </figcaption>
       </figure>
 
       <span id="toc3"></span>
       <h2>3. Related Work</h2>
-      <p>
-        <!--We need to discuss some existing papers that we have referred here. I.e.
-        the approach by DODUO, TURL and maybe TUTA. -->
-        With the emergence of pretraining/fine-tuning techniques, many
-        researchers have utilized these methods in table annotation tasks. One
-        such approach is presented in the paper [<a href="#toc12">4</a>], which
-        proposes a framework for table understanding through representation
-        learning called TURL. The authors utilize the pre-training/fine-tuning
-        paradigm to learn contextualized representations on relational tables
-        during pretraining. This enables the model to be fine-tuned on various
-        downstream tasks with minimal task-specific adjustments. The proposed
-        model is pretrained in an unsupervised manner on a large-scale web table
-        corpus that is based on the WikiTable corpus. Furthermore, the framework
-        can also be used to infer meta information about tables such as column
-        types and relationships between columns (CTA and CPA). DODUO, another
-        framework proposed by [<a href="#toc15">7</a>], tackles the problems of
-        annotating table columns using only the information contained in tables.
-        It is built around language models, and takes the entire table as input
-        to predict column types and relationships between columns. This approach
-        is unique in that it requires no external knowledge or context beyond
-        what is present in the table itself. Furthermore, DODUO has achieved
-        competitive results on two benchmarks for the column type prediction and
-        column relation prediction tasks. [<a href="#toc16">8</a>] introduces
-        TUTA, a pre-training architecture that enhances transformers for
-        understanding generally structured tables. The authors use a structure
-        aware mechanism that employs a tree-based attention and position
-        mechanism to capture the spatial and hierarchical information of tables.
-        TUTA is trained on unlabeled web and spreadsheet tables at three
-        representation levels - token, cell, and table levels. It achieves
-        state-of-the-art performance on five datasets for cell type
-        classification and table type classification tasks.
-      </p>
       <span id="toc3.1"></span>
-      <h3>3.1 Transformer</h3>
+      <p>
+        Chapter 3 provides an overview of relevant literature on table annotation tasks and Transformer-based language model, which is currently the state-of-the-art approach for these tasks.
+      </p>
+      <h3>3.1 TURL</h3>
+      <p>
+        The paper [<a href="#toc12">4</a>] provides a cornerstone for table representation through the introduction of a framework for table understanding called TURL. TURL achieves this by utilizing representation learning to learn contextualized representations on relational tables. TURL's unsupervised pre-training on a vast web table corpus derived from WikiTable facilitates its application in various downstream tasks, requiring only minimal task-specific modifications. For example, the TURL framework can be used to infer valuable information about tables such as column types and the relationships between columns (CTA and CPA).
+      </p>
+
+      <span id="toc3.2"></span>
+      <h3>3.2 TUTA</h3>
+      <p>
+        TUTA, as introduced in [<a href="#toc16">8</a>], represents the first transformer-based model for the CTA and CPA tasks. Notably, TUTA demonstrates the importance of incorporating structure-aware mechanisms for table representation tasks. It captures the spatial and hierarchical information of tables through a tree-based attention and position mechanism. TUTA inspired us to incorporate similar preprocessing and structural-based approaches in our work.
+      </p>
+
+      <span id="toc3.3"></span>
+      <h3>3.3 DODUO</h3>
+        DODUO, as described in [<a href="#toc15">7</a>], is the ccurent state-of-the-art approach for the CTA and CPA tasks. This approach utilizes a Transformer-based language model and takes the entire table as input to predict column types and relationships between columns. What sets DODUO apart is its ability to annotate table columns using only the information contained in the table itself, without the need for external knowledge or context.
+      <p> 
+
+      </p>
+      <span id="toc3.4"></span>
+      <h3>3.4 Transformer</h3>
       <p>
         Transformers are a type of neural network architecture that has become
         widely used in natural language processing and other machine learning
@@ -1087,14 +1074,14 @@
       </p>
 
       <p>
-        The key innovation of transformers is self-attention, which is a
+        The key innovation of transformers is self-attention, a
         mechanism that allows the model to selectively focus on different parts
         of the input sequence. Self-attention works by computing a weighted sum
         of the input sequence at each position, where the weights are determined
         by a similarity function between the current position and all other
         positions. The output of the self-attention layer is a sequence of
         weighted sums, which can then be fed into subsequent layers of the
-        network. The attention function can be formalized as follows:
+        network. The attention function is formalized as:
       </p>
       <p>
         <span class="math display"
@@ -1105,9 +1092,9 @@
         where Q, K, and V are the query, key, and value vectors, respectively.
       </p>
       <p>
-        The attention mechanism can be used in the our tasks to help the model
-        identify which parts of the input table are most relevant for predicting
-        the column types and relation.
+        Transformer's attention mechanism can be used in the our tasks to help the model
+        identify which parts of a table are most relevant for predicting
+        the column types and relations.
       </p>
       <span id="toc4"></span>
       <h2>4. Model</h2>
