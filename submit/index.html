@@ -2165,6 +2165,12 @@
         appropriate serialization method to achieve optimal performance in table
         annotation tasks.
       </p>
+
+      <p>
+        Longformer's performance in comparison to BERT is lower, and one possible
+        reason for this is that the Longformer model employs a different attention
+        mechanism, which may not converge well with the current set of parameters
+      </p>
       <p>For the additional experiments, we did not achieve improvement on Test F1 score. Notably for LongFormer model, further modifications on the model setup should be investigated. For the 2-step model, we achieve a Test F1 Score of 96.73. Building on top of the schema prediction model, the final ensembly of submodels by schema class achieved a Test F1 of 84.34. Upon further investigating, decoupling the first model and inserting test data with correct schema labels into respective submodel merely increased the final Test F1 score to 84.81.</p>
 
       <div style="text-align: center" class="tg-wrap">
