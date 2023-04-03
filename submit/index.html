@@ -1016,45 +1016,16 @@
       <span id="toc2.2"></span>
       <h3>2.2 Columns Property Annotation (CPA)</h3>
       <p>
-        CPA, a web data integration task, aims to identify relationships between
-        different columns in a table. It can infer relationships that might not
-        be immediately obvious. For example, when applied to a table with
-        columns labeled "hotel/name" and "address", CPA can help infer that the
-        address column refers to the hotel's location (see
-        <a href="#toc2.1.Fig">Figure 1</a>).
+        CPA is a web data integration task that aims to identify relationships
+        between different columns in a table. It can infer relationships that
+        might not be immediately obvious, as illustrated by its ability to help
+        infer that the address column refers to the hotel's location when
+        applied to a table with columns labeled "hotel/name" and "address" (see
+        <a href="#toc2.1.Fig">Figure 1</a>). CPA plays a crucial role in
+        ensuring data quality control and schema matching[<a href="#toc17">7</a
+        >].
       </p>
 
-      Here are a few examples of how CPA can be applied:<br />
-      <ul>
-        <li>
-          In a product database that contains information about products,
-          including their names, prices, and descriptions, CPA can be used to
-          identify which columns are related to each other, such as the
-          relationship between the product name and description.
-        </li>
-
-        <li>
-          In a customer database, CPA can be used to identify relationships
-          between different columns such as the relationship between a
-          customer's name, age, and gender.
-        </li>
-
-        <li>
-          In a medical database, CPA can be used to identify relationships
-          between different columns such as the relationship between a patient's
-          symptoms, diagnosis, and treatment.
-        </li>
-      </ul>
-      In each of these examples, CPA can help to identify relationships between
-      columns that may not be immediately apparent, leading to better data
-      discovery. For example, in a product database, identifying the
-      relationship between a product's name and description can help with search
-      engine optimization and online sales. Moreover, CPA is a fundamental
-      technique in further data management tasks. It plays a crucial role in
-      ensuring data quality control, as well as schema matching. [<a
-        href="#toc17"
-        >7</a
-      >].
       <p>
         One common way to tackle CPA is to view it as a
         <a href="https://paperswithcode.com/task/columns-property-annotation/">
@@ -1119,13 +1090,13 @@
         model is pretrained in an unsupervised manner on a large-scale web table
         corpus that is based on the WikiTable corpus. Furthermore, the framework
         can also be used to infer meta information about tables such as column
-        types and relationships between columns (CTA and CPA). DUDO, another
+        types and relationships between columns (CTA and CPA). DODUO, another
         framework proposed by [<a href="#toc15">7</a>], tackles the problems of
         annotating table columns using only the information contained in tables.
         It is built around language models, and takes the entire table as input
         to predict column types and relationships between columns. This approach
         is unique in that it requires no external knowledge or context beyond
-        what is present in the table itself. Furthermore, DUDO has achieved
+        what is present in the table itself. Furthermore, DODUO has achieved
         competitive results on two benchmarks for the column type prediction and
         column relation prediction tasks. [<a href="#toc16">8</a>] introduces
         TUTA, a pre-training architecture that enhances transformers for
