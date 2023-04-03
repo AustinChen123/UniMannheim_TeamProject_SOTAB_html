@@ -3523,7 +3523,154 @@
         Therefore, the Relative Frequency of error prediction pair of ('ProductModel', 'IdentifierAT') is 0.2 and the Relative
         Frequency of correct prediction pair of ('ProductModel', 'ProductModel') is 0.6.
       </p>
-
+      <p>
+        We calculated the frequency on all prediction, and listed the top 5 pairs with the highest error frequency in table 9a for CTA and table 9b for CPA.
+        We also cross checked those pairs in our samples abovementioned to see what might be the error types of each pair.
+        Pair might have multiple possible error types depending on the table being used. 
+      </p>
+      <p>  
+        In CTA top 5, we found that the most frequent errors were related to Hierarchical labels, and this aligned with the sample data. 
+        We assumed that this problem can be improved with more refinement in 2 step models.
+        While the model generally performed well in capturing the meaning of predicted values, there were still some inaccuracies, particularly with the addressRegion and addressLocality pair. 
+        We found that the schema defined addressRegion as the region of the country, while addressLocality represented a lower level of addressRegion that typically corresponded to the city. 
+        However, there were a lot of inconsistent labeling and mixed-up terms in tables, sometimes the columns may also contain region and city together which make it harder for model to identify and predict.
+        Therefore, to address this problem, preprocessing and deal with inconsistent labels might what we can do to improve in the future.
+      </p>
+      <table class="tg">
+        <caption>
+          Table 9a: Top 5 Error Frequency for CTA
+        </caption>
+        <thead>
+          <tr>
+            <th class="tg-mkpc">Label</th>
+            <th class="tg-mkpc">Prediction</th>
+            <th class="tg-mkpc">Pair count</th>
+            <th class="tg-mkpc">Total count</th>
+            <th class="tg-mkpc">Error Frequency</th>
+            <th class="tg-mkpc">Correct Frequency</th>
+            <th class="tg-mkpc">Possible error types</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>MusicRecording</td>
+            <td>MusicRecording/name</td>
+            <td>4</td>
+            <td>14</td>
+            <td>0.286</td>
+            <td>0.571</td>
+            <td>Hierarchical label</td>
+          </tr>
+          <tr>
+            <td>ProductModel</td>
+            <td>IdentifierAT</td>
+            <td>60</td>
+            <td>268</td>
+            <td>0.224</td>
+            <td>0.496</td>
+            <td>Hierarchical label</td>
+          </tr>
+          <tr>
+            <td>faxNumber</td>
+            <td>telephone</td>
+            <td>34</td>
+            <td>172</td>
+            <td>0.198</td>
+            <td>0.791</td>
+            <td>Semantic label</td>
+          </tr>
+          <tr>
+            <td>addressRegion</td>
+            <td>addressLocality</td>
+            <td>43</td>
+            <td>221</td>
+            <td>0.195</td>
+            <td>0.738</td>
+            <td>Duplicate label, Bad prediction, Actual wrong label</td>
+          </tr>
+          <tr>
+            <td>MusicGroup</td>
+            <td>MusicArtistAT</td>
+            <td>2</td>
+            <td>11</td>
+            <td>0.182</td>
+            <td>0.818</td>
+            <td>Hierarchical label</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>
+        In CPA top 5, the most prevalent error type was related to semantic lable, 
+        which dominated the other possible error types. This highlights the challenges posed by accurately identifying 
+        and labeling the meaning of data values. Moreover, for these labeling and prediction pairs, the data format was consistent, 
+        which may make it challenging for humans to distinguish the difference between them without sufficient context or related information.
+        As a result, we suggested more columns included may help address this problem, for example in the case of the awayTeam and homeTeam pair, 
+        including information about the stadium could potentially help to disambiguate between them and improve the accuracy of the model's predictions. 
+      </p>
+      
+      <table class="tg">
+        <caption>
+          Table 9b: Top 5 Error Frequency for CPA
+        </caption>
+        <thead>
+          <tr>
+            <th class="tg-mkpc">Label</th>
+            <th class="tg-mkpc">Prediction</th>
+            <th class="tg-mkpc">Pair count</th>
+            <th class="tg-mkpc">Total count</th>
+            <th class="tg-mkpc">Error Frequency</th>
+            <th class="tg-mkpc">Correct Frequency</th>
+            <th class="tg-mkpc">Possible error types</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>awayTeam</td>
+            <td>homeTeam</td>
+            <td>10</td>
+            <td>16</td>
+            <td>0.625</td>
+            <td>0.375</td>
+            <td>Semantic label</td>
+          </tr>
+          <tr>
+            <td>ratingCount</td>
+            <td>reviewCount</td>
+            <td>65</td>
+            <td>199</td>
+            <td>0.327</td>
+            <td>0.568</td>
+            <td>Semantic label</td>
+          </tr>
+          <tr>
+            <td>height</td>
+            <td>width</td>
+            <td>57</td>
+            <td>192</td>
+            <td>0.297</td>
+            <td>0.464</td>
+            <td>Semantic label</td>
+          </tr>
+          <tr>
+            <td>productID</td>
+            <td>sku</td>
+            <td>42</td>
+            <td>154</td>
+            <td>0.273</td>
+            <td>0.26</td>
+            <td>Semantic label, Duplicate label</td>
+          </tr>
+          <tr>
+            <td>dateCreated</td>
+            <td>datePublished</td>
+            <td>62</td>
+            <td>249</td>
+            <td>0.249</td>
+            <td>0.558</td>
+            <td>Semantic label</td>
+          </tr>
+        </tbody>
+      </table>
       <span id="toc7"></span>
       <h2>7. Discussion and Conclusion</h2>
 
