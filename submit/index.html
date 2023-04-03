@@ -869,7 +869,10 @@
           <a href="#toc3"> 3. Related Work</a>
           <ul>
             <li>
-              <a href="#toc3.1">3.1 Transformer</a>
+              <a href="#toc3.1">3.1 TURL</a>
+              <a href="#toc3.2">3.2 TUTA</a>
+              <a href="#toc3.3">3.3 DODUO</a>
+              <a href="#toc3.4">3.4 Transformer</a>
             </li>
           </ul>
         </li>
@@ -889,12 +892,45 @@
         </li>
         <li class="toc-h2 toc-active">
           <a href="#toc5"> 5. Experiment </a>
+          <ul>
+            <li>
+              <a href="#toc5.1">5.1 Dataset</a>
+            </li>
+            <li>
+              <a href="#toc5.2">5.2 Experimental Settings</a>
+            </li>
+            <li>
+              <a href="#toc5.3">5.3 Experiments for SOTAB benchmark</a>
+            </li>
+            <li>
+              <a href="#toc5.3">5.4 Experiments for WikiTables dataset</a>
+            </li>
+          </ul>
         </li>
         <li class="toc-h2 toc-active">
           <a href="#toc6"> 6. Experimental Results and Error Analysis </a>
+          <ul>
+            <li>
+              <a href="#toc6.1">6.1 Main Results</a>
+            </li>
+            <li>
+              <a href="#toc6.2">6.2 Ablation Study</a>
+            </li>
+            <li>
+              <a href="#toc6.3">6.3 Error Analysis</a>
+            </li>
+          </ul>
         </li>
         <li class="toc-h2 toc-active">
-          <a href="#toc7"> 7. Conclusion </a>
+          <a href="#toc7"> 7. Discussion and Conclusion </a>
+          <ul>
+            <li>
+              <a href="#toc7.1">7.1 Discussion</a>
+            </li>
+            <li>
+              <a href="#toc7.2">7.2 Conclusion</a>
+            </li>
+          </ul>
         </li>
         <li class="toc-h2 toc-active">
           <a href="#toc8"> 8. References </a>
@@ -924,8 +960,8 @@
         For this reason, we start by introducing the main tasks we are trying to
         solve.
       </p>
-      <span id="toc2.1"></span>
 
+      <span id="toc2.1"></span>
       <h3>2.1 Column Type Annotation (CTA)</h3>
       <p>
         Column Type Annotation (CTA) is a critical task in data integration and
@@ -3488,9 +3524,12 @@
         Frequency of correct prediction pair of ('ProductModel', 'ProductModel') is 0.6.
       </p>
 
-      <span id="toc6"></span>
-      <h2>6. Discussion</h2>
-      
+      <span id="toc7"></span>
+      <h2>7. Discussion and Conclusion</h2>
+
+      <span id="toc7.1"></span>
+      <h3>7.1 Discussion</h3>
+            
       <p><b>WikiTable dataset</b></p>
       <p>
         In <i>Table 3a</i> and <i>Table 3b</i>, we can see that the best serialization
@@ -3513,15 +3552,16 @@
         normal cell value. Future experiments could explore ways to improve
         attention by altering this serialization design.
       </p>
-      <span id="toc7"></span>
-      <h2>7. Conclusion</h2>
+
+      <span id="toc7.2"></span>
+      <h3>7.2 Conclusion</h3>
 
       <p>
-        Drawing a conclusion, we have achieved significant improvement on current methods for both CTA and CPA tasks for the SOTAB benchmark and comparatively on the WikiTables dataset. We conclude that for a Transformer-based language model, level of structureness in input sequence, both column or row serialization plays significant role in attention mechanism. With a large training data like SOTAB benchmark, it is apparent that data augmentation methods such as preprocessing and augmentation are less useful. However, relevant experiments should be conducted when facing with a smaller dataset.
+        Drawing a conclusion, we have achieved significant improvement on current methods for both CTA and CPA tasks for the SOTAB benchmark and comparatively on the WikiTables dataset. We conclude that for a Transformer-based language model, structureness in input sequence, both column serialization and row serialization plays significant role in attention mechanism. With a large training data like SOTAB benchmark, it is apparent that data augmentation methods, such as preprocessing and augmentation are less useful. However, relevant experiments should be conducted when dealing with smaller datasets. 
       </p>
 
       <p>
-        Regarding future work that can be applied to table annotation tasks, we were not able to fully utlize the potential of Longformer with more input sequence length. Additionally due to time limit, we did not further develop specific data augmentation methods for different promising serialization methods. Lastly, optimization could be done to increase the training spped such as increasing batch size, model checkpointing and parallelism. On average, 1 epoch of training a RoBERTa model for SOTAB benchmark requires 1 hour for our machines and 5 times the duration for WikiTables dataset. 
+        Moving forward, we were not able to fully utilize the potential of Longformer with more input sequence length. Additionally, due to time limit, we did not further develop specific data augmentation methods for different promising serialization methods. Lastly, optimization could be done to increase the training speed such as increasing batch size, model checkpointing and parallelism. On average, 1 epoch of training a RoBERTa model for SOTAB benchmark requires 1 hour for our machines and 5 times the duration for WikiTables dataset. 
       </p>
       <p>
         As table annotation using deep learning is still at its infancy, future works may include Longformer, Contrastive Learning or Large Language Models like ChatGPT.
