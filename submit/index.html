@@ -2096,19 +2096,21 @@
       </div>
 
       <p>
-        <b> SOTAB benchmark </b> Across both tasks, for all but one
-        serializations implemented, we achieved significant improvement on Micro
-        F1 against the single-column baseline serialization. For the CTA task,
-        we are able to achieve a maximum increase of 7.62 point F1 Score
-        compared to the state-of-the-art DODUO model, with Neighboring Column
-        Serialization of window size of 5 and a context ratio of 0.2. Similar
-        results are achieved by TaBERT and Neighoring Column Serialization
-        indicating the importance of context ratio and certain structure for
-        input sequence. The lower F1 Score of Column-TaBERT compared to its
-        counterpart of TaBERT, and like-wise for Neighboring Column with
-        Summary, by roughly 3 points suggests the inability of Transformer's
-        attention mechanism to identify significant positions in a input
-        sequence.
+        <b> SOTAB benchmark </b>
+      </p>
+      <p>
+        Across both tasks, for all but one serializations implemented, we
+        achieved significant improvement on Micro F1 against the single-column
+        baseline serialization. For the CTA task, we are able to achieve a
+        maximum increase of 7.62 point F1 Score compared to the state-of-the-art
+        DODUO model, with Neighboring Column Serialization of window size of 5
+        and a context ratio of 0.2. Similar results are achieved by TaBERT and
+        Neighoring Column Serialization indicating the importance of context
+        ratio and certain structure for input sequence. The lower F1 Score of
+        Column-TaBERT compared to its counterpart of TaBERT, and like-wise for
+        Neighboring Column with Summary, by roughly 3 points suggests the
+        inability of Transformer's attention mechanism to identify significant
+        positions in a input sequence.
       </p>
       <p>
         For the CPA task, different variances of Neighboring Column
@@ -2187,7 +2189,7 @@
                   >DODUO</span
                 >
               </td>
-              <td class="tg-zkss">
+              <td class="tg-p91v">
                 <span
                   style="
                     font-weight: 700;
@@ -2341,7 +2343,7 @@
                   >TaBERT</span
                 >
               </td>
-              <td class="tg-zkss">
+              <td class="tg-p91v">
                 <span
                   style="
                     font-weight: 700;
@@ -2387,7 +2389,7 @@
       <p>
         <b> Wikitables Dataset </b>
       </p>
-
+      <p>#Todo WikiTable discription here</p>
       <span id="toc6.2"></span>
       <h3>6.2 Ablation Study</h3>
 
@@ -2961,8 +2963,9 @@
           </tr>
         </tbody>
       </table>
-
-      <b>(ii) Data Type: </b>
+      <p>
+        <b>(ii) Data Type: </b>
+      </p>
       <table class="tg">
         <caption>
           Table x: Data Type Results for CTA & CPA
@@ -3022,14 +3025,15 @@
           </tr>
         </tbody>
       </table>
-
-      <b>(iii) Specific Challenges: </b>The specific challgenges include:
-      Missing Values, Value Format Heterogeneity, Corner Cases, and Random
-      Columns which were all clearly defined in
-      <a href="https://webdatacommons.org/structureddata/sotab/"
-        >WDC Schema.org Table Annotation Benchmark (SOTAB)</a
-      >[<a href="#toc9">1</a>]. The results are summarized in Table X for CTA
-      and CPA.
+      <p>
+        <b>(iii) Specific Challenges: </b>The specific challgenges include:
+        Missing Values, Value Format Heterogeneity, Corner Cases, and Random
+        Columns which were all clearly defined in
+        <a href="https://webdatacommons.org/structureddata/sotab/"
+          >WDC Schema.org Table Annotation Benchmark (SOTAB)</a
+        >[<a href="#toc9">1</a>]. The results are summarized in Table X for CTA
+        and CPA.
+      </p>
       <table class="tg">
         <caption>
           Table 4a: Specific Challenges Results for CTA & CPA
@@ -3227,8 +3231,28 @@
 
       <span id="toc6"></span>
       <h2>6. Discussion</h2>
-      <p></p>
-
+      <p><b>WikiTable dataset</b></p>
+      <p>
+        In <i>Table 1 and 2</i>, we can see that the best serialization differs
+        between the SOTAB and WikiTable datasets. One possible reason for this
+        difference is that the WikiTable dataset contains more tables with few
+        columns, such as some tables that only have 2 columns. This could cause
+        the neighboring method to perform poorly and result in a lower F1 score
+        on the test set.
+      </p>
+      <p><b>Column-TaBERT</b></p>
+      <p>
+        We had hypothesized that the Col-TaBERT method would be able to encode
+        more information within the same limited number of tokens as TaBERT, and
+        therefore produce better results. However, the results indicate that the
+        column datatype performed worse than the cell datatype. This may be due
+        to the fact that the structural design did not effectively enable the
+        attention mechanism. In TaBERT, the model has one datatype token placed
+        just before the cell value. In contrast, Col-TaBERT obtains the datatype
+        only once and structures it as a normal cell value. Future experiments
+        could explore ways to improve attention by altering this serialization
+        design.
+      </p>
       <span id="toc7"></span>
       <h2>7. Conclusion</h2>
 
