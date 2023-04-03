@@ -964,15 +964,17 @@
         Column Type Annotation (CTA) is a critical task in data integration and
         knowledge discovery that involves assigning labels to each column in a
         table based on the types of entities it contains such as
-        <b>"hotel/name", "streetAddress","addressLocality", "Country", and
+        <b
+          >"hotel/name", "streetAddress","addressLocality", "Country", and
           "currency"
         </b>
-        as shown in <a href="#toc2.1.Fig">Figure 1</a>.While data types provide basic 
-        information about the type of data stored in a column, entity types capture 
-        domain-specific semantics that convey more meaning. For instance, labeling a column with
-        <b>"hotel/name"</b> rather than just <b>"String" </b> provides valuable
-        information about the specific type of data stored in that column, which
-        is crucial for downstream tasks such as data analysis and retrieval.[<a href="#toc8">1</a>,
+        as shown in <a href="#toc2.1.Fig">Figure 1</a>.While data types provide
+        basic information about the type of data stored in a column, entity
+        types capture domain-specific semantics that convey more meaning. For
+        instance, labeling a column with <b>"hotel/name"</b> rather than just
+        <b>"String" </b> provides valuable information about the specific type
+        of data stored in that column, which is crucial for downstream tasks
+        such as data analysis and retrieval.[<a href="#toc8">1</a>,
         <a href="#toc14">4</a>]
       </p>
       <span id="toc2.1.Fig"></span>
@@ -990,17 +992,16 @@
         </figcaption>
       </figure>
 
-      <p>An Example of CTA is:
-      
-          An e-commerce website may have a table of products with columns such
-          as "product name", "description", "price", "category", and "brand". By
-          annotating the columns with entity types such as "product name",
-          "brand", and "category", a machine learning model can better
-          understand the semantic meaning of the data, and accurately categorize
-          products into appropriate categories, recommend related products, and
-          provide a more personalized shopping experience to the user (entity
-         type).
-      </p> 
+      <p>
+        An Example of CTA is: An e-commerce website may have a table of products
+        with columns such as "product name", "description", "price", "category",
+        and "brand". By annotating the columns with entity types such as
+        "product name", "brand", and "category", a machine learning model can
+        better understand the semantic meaning of the data, and accurately
+        categorize products into appropriate categories, recommend related
+        products, and provide a more personalized shopping experience to the
+        user (entity type).
+      </p>
 
       <p>
         CTA can be approached as either
@@ -1322,7 +1323,8 @@
           href="#toc21"
           >13</a
         >] proposes Longformer, which has a linear attention mechanism that can
-        process longer sequences length. The length constrained on the memory of GPU.
+        process longer sequences length. The length constrained on the memory of
+        GPU.
       </p>
 
       <span id="toc5"></span>
@@ -1402,7 +1404,8 @@
         Neighboring Column Serialization of window size 2 for this model. For
         the 2-Step model, we used default parameter settings, including a
         RoBERTa model trained for 30 epochs. For the Longformer model, we used
-        single-column serialization with a batch size of 8 and maximum length of 1000.
+        single-column serialization with a batch size of 8 and maximum length of
+        1000.
       </p>
       <p>
         We conducted ablation studies for both CTA and CPA tasks to investigate
@@ -2125,11 +2128,9 @@
         available token limit to Main and Target Column and merely 20% to their
         neighbors.
       </p>
-      
 
       <div style="text-align: center" class="tg-wrap">
         <table class="tg">
-          <table class="tg">
           <caption>
             Table 2a: CTA result for WikiTable
           </caption>
@@ -3233,12 +3234,12 @@
       <h2>6. Discussion</h2>
       <p><b>WikiTable dataset</b></p>
       <p>
-        In <i>Tables 2.a and 2.b</i>, we can see that the best serialization differs
-        between the SOTAB and WikiTable datasets. One possible reason for this
-        difference is that the WikiTable dataset contains more tables with few
-        columns, such as some tables that only have 2 columns. This could cause
-        the neighboring method to perform poorly and result in a lower F1 score
-        on the test set.
+        In <i>Tables 2.a and 2.b</i>, we can see that the best serialization
+        differs between the SOTAB and WikiTable datasets. One possible reason
+        for this difference is that the WikiTable dataset contains more tables
+        with few columns, such as some tables that only have 2 columns. This
+        could cause the neighboring method to perform poorly and result in a
+        lower F1 score on the test set.
       </p>
       <p><b>Column-TaBERT</b></p>
       <p>
@@ -3256,17 +3257,18 @@
       <span id="toc7"></span>
       <h2>7. Conclusion</h2>
 
-     <p>
-      To conclude our study, we have presented the Neighbor methods,we found that the
-      performance of approach is limited by the context size and 
-      may not be as effective for  tables with fewer columns. To address this limitation,
-      future work could explore the use of LongFormer model to process longer text and
-      potentially reduce the need for more columns in a horizontal direction. Additionally, 
-      we suggest investigating the use of contrastive learning to further enhance 
-      the performance on these tasks. With these future directions, we hope to continue 
-      improving table annotation and advancing the field towards more accurate and 
-      efficient models.
-     </p>
+      <p>
+        To conclude our study, we have presented the Neighbor methods,we found
+        that the performance of approach is limited by the context size and may
+        not be as effective for tables with fewer columns. To address this
+        limitation, future work could explore the use of LongFormer model to
+        process longer text and potentially reduce the need for more columns in
+        a horizontal direction. Additionally, we suggest investigating the use
+        of contrastive learning to further enhance the performance on these
+        tasks. With these future directions, we hope to continue improving table
+        annotation and advancing the field towards more accurate and efficient
+        models.
+      </p>
 
       <span id="toc8"></span>
       <h2>8. References</h2>
