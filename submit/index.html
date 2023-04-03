@@ -562,6 +562,9 @@
           opacity: 1;
         }
       }
+      .left, .right {
+        display: inline-block;
+      }
       .center {
         display: block;
         margin-left: auto;
@@ -1310,6 +1313,59 @@
         pairs from 1,467 (1,560) tables for test (validation).
       </p>
 
+      <div style="text-align: center" class="tg-wrap">
+        <table class="tg">
+          <caption>
+            Table 1: Statistics for WikiTable Dataset
+          </caption>
+          <thead>
+            <tr>
+              <th class="tg-mkpc"></th>
+              <th class="tg-mkpc" colspan="3">CTA</th>
+              <th class="tg-mkpc" colspan="3">CPA</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="tg-mkpc"><br /></td>
+              <td class="tg-mkpc">mean</td>
+              <td class="tg-mkpc">median</td>
+              <td class="tg-mkpc">mode</td>
+              <td class="tg-mkpc">mean</td>
+              <td class="tg-mkpc">median</td>
+              <td class="tg-mkpc">mode</td>
+            </tr>
+            <tr>
+              <td class="tg-mkpc">Train columns</td>
+              <td class="tg-9wq8">1.58</td>
+              <td class="tg-9wq8">1</td>
+              <td class="tg-9wq8">1</td>
+              <td class="tg-9wq8">2.18</td>
+              <td class="tg-9wq8">2</td>
+              <td class="tg-9wq8">2</td>
+            </tr>
+            <tr>
+              <td class="tg-mkpc">Val columns</td>
+              <td class="tg-9wq8">2.76</td>
+              <td class="tg-9wq8">3</td>
+              <td class="tg-9wq8">3</td>
+              <td class="tg-9wq8">2.39</td>
+              <td class="tg-9wq8">2</td>
+              <td class="tg-9wq8">2</td>
+            </tr>
+            <tr>
+              <td class="tg-mkpc">Test columns</td>
+              <td class="tg-9wq8">2.73</td>
+              <td class="tg-9wq8">3</td>
+              <td class="tg-9wq8">3</td>
+              <td class="tg-9wq8">2.41</td>
+              <td class="tg-9wq8">2</td>
+              <td class="tg-9wq8">2</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
       <span id="toc5.2"></span>
       <h3>5.2 Experimental Settings</h3>
       <p>
@@ -1384,7 +1440,7 @@
         <table class="tg tg-top">
           <thead>
             <caption>
-              Table 1a: CTA Experiment results
+              Table 2a: CTA Experiment results
             </caption>
             <tr>
               <th class="tg-mkpc"></th>
@@ -1663,7 +1719,7 @@
 
         <table class="tg">
           <caption>
-            Table 1b: CPA Experiment results
+            Table 2b: CPA Experiment results
           </caption>
           <thead>
             <tr>
@@ -2006,7 +2062,7 @@
         </table>
         <table class="tg">
           <caption>
-            Table 1c: Further Experiments for CPA
+            Table 2c: Further Experiments for CPA
           </caption>
           <thead>
             <tr>
@@ -2078,7 +2134,7 @@
       <div style="text-align: center" class="tg-wrap">
         <table class="tg">
           <caption>
-            Table 2a: CTA result for WikiTable
+            Table 3a: CTA result for WikiTable
           </caption>
           <thead>
             <tr>
@@ -2180,7 +2236,7 @@
         </table>
         <table class="tg">
           <caption>
-            Table 2b: CPA result for WikiTable
+            Table 3b: CPA result for WikiTable
           </caption>
           <thead>
             <tr>
@@ -2355,7 +2411,7 @@
       <div style="text-align: center" class="tg-wrap">
         <table class="tg">
           <caption>
-            Table 3a: Preprocess and Augmentation test
+            Table 4a: Preprocess and Augmentation test
           </caption>
           <thead>
             <tr>
@@ -2526,7 +2582,7 @@
         </table>
         <table class="tg">
           <caption>
-            Table 3b: Window Size test for Neighboring Column
+            Table 4b: Window Size test for Neighboring Column
           </caption>
           <thead>
             <tr>
@@ -2798,7 +2854,7 @@
         </table>
         <table class="tg">
           <caption>
-            Table 3c: Augmentation method on single-column serialization
+            Table 4c: Augmentation method on single-column serialization
           </caption>
           <thead>
             <tr>
@@ -3041,7 +3097,7 @@
       <div style="text-align: center" class="tg-wrap">
         <table class="tg">
           <caption>
-            Table 4a: Schema Type result for CTA
+            Table 5a: Schema Type result for CTA
           </caption>
           <thead>
             <tr>
@@ -3091,7 +3147,7 @@
 
         <table class="tg">
           <caption>
-            Table 4b: Schema Type result for CPA
+            Table 5b: Schema Type result for CPA
           </caption>
           <thead>
             <tr>
@@ -3152,7 +3208,7 @@
       <div style="text-align: center" class="tg-wrap">
         <table class="tg">
           <caption>
-            Table 5: Data Type Results for CTA & CPA
+            Table 6: Data Type Results for CTA & CPA
           </caption>
           <thead>
             <tr>
@@ -3222,7 +3278,7 @@
       <div style="text-align: center" class="tg-wrap">
         <table class="tg">
           <caption>
-            Table 6: Specific Challenges Results for CTA & CPA
+            Table 7: Specific Challenges Results for CTA & CPA
           </caption>
           <thead>
             <tr>
@@ -3285,7 +3341,7 @@
       <div style="text-align: center" class="tg-wrap">
         <table>
           <caption>
-            Table 7: Error Types and Definitions
+            Table 8: Error Types and Definitions
           </caption>
           <thead>
             <th>Observed Error Types</th>
@@ -3374,43 +3430,46 @@
           </tbody>
         </table>
       </div>
-      <figure>
-        <img
-          src="images/example_bad_tables.png"
-          alt="example_bad_tables"
-          width="70%"
-        />
-        <figcaption>
-          <b><a id="Fig1"></a>Figure 4: </b>Example of bad tables
-        </figcaption>
-      </figure>
 
-      <figure>
-        <img
-          src="images/example_lack_info.png"
-          alt="example_lack_info"
-          width="70%"
-        />
-        <figcaption>
-          <b><a id="Fig1"></a>Figure 5: </b>Example of Lack of information
-        </figcaption>
-      </figure>
-      <figure>
-        <img
-          src="images/Percentage of Error Type in CTA sample.png"
-          alt="percentage of CTA error type"
-          width="45%"
-        />
-        <img
-          src="images/Percentage of Error Type in CPA sample.png"
-          alt="percentage of CPA error type"
-          width="45%"
-        />
-        <figcaption>
-          <b><a id=""></a>Figure 6:</b> CTA & CPA error types distribution in
-          samples.
-        </figcaption>
-      </figure>
+      <div style="text-align: center" class="tg-wrap">
+        <figure class="left">
+          <img
+            src="images/example_bad_tables.png"
+            alt="example_bad_tables"
+            width="820"
+          />
+          <figcaption>
+            <b><a id="Fig4a"></a>Figure 4a: </b>Example of bad tables
+          </figcaption>
+        </figure>
+
+        <figure class="right">
+          <img
+            src="images/example_lack_info.png"
+            alt="example_lack_info"
+            width="820"
+          />
+          <figcaption>
+            <b><a id="Fig4b"></a>Figure 4b: </b>Example of Lack of information
+          </figcaption>
+        </figure>
+        <figure>
+          <img
+            src="images/Percentage of Error Type in CTA sample.png"
+            alt="percentage of CTA error type"
+            width="45%"
+          />
+          <img
+            src="images/Percentage of Error Type in CPA sample.png"
+            alt="percentage of CPA error type"
+            width="45%"
+          />
+          <figcaption>
+            <b><a id=""></a>Figure 5:</b> CTA & CPA error types distribution in
+            samples.
+          </figcaption>
+        </figure>
+      </div>
       <p>
         In addition to the absolute count of errors, we also aim to investigate
         the relative frequencies of errors and correct predictions, in order to
@@ -3431,58 +3490,7 @@
 
       <span id="toc6"></span>
       <h2>6. Discussion</h2>
-      <div class="tg-wrap">
-        <table class="tg">
-          <caption>
-            Table ?: Statistics of WikiTable Dataset
-          </caption>
-          <thead>
-            <tr>
-              <th class="tg-mkpc"></th>
-              <th class="tg-mkpc" colspan="3">CTA</th>
-              <th class="tg-mkpc" colspan="3">CPA</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="tg-mkpc"><br /></td>
-              <td class="tg-mkpc">mean</td>
-              <td class="tg-mkpc">median</td>
-              <td class="tg-mkpc">mode</td>
-              <td class="tg-mkpc">mean</td>
-              <td class="tg-mkpc">median</td>
-              <td class="tg-mkpc">mode</td>
-            </tr>
-            <tr>
-              <td class="tg-mkpc">Train columns</td>
-              <td class="tg-9wq8">1.58</td>
-              <td class="tg-9wq8">1</td>
-              <td class="tg-9wq8">1</td>
-              <td class="tg-9wq8">2.18</td>
-              <td class="tg-9wq8">2</td>
-              <td class="tg-9wq8">2</td>
-            </tr>
-            <tr>
-              <td class="tg-mkpc">Val columns</td>
-              <td class="tg-9wq8">2.76</td>
-              <td class="tg-9wq8">3</td>
-              <td class="tg-9wq8">3</td>
-              <td class="tg-9wq8">2.39</td>
-              <td class="tg-9wq8">2</td>
-              <td class="tg-9wq8">2</td>
-            </tr>
-            <tr>
-              <td class="tg-mkpc">Test columns</td>
-              <td class="tg-9wq8">2.73</td>
-              <td class="tg-9wq8">3</td>
-              <td class="tg-9wq8">3</td>
-              <td class="tg-9wq8">2.41</td>
-              <td class="tg-9wq8">2</td>
-              <td class="tg-9wq8">2</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      
       <p><b>WikiTable dataset</b></p>
       <p>
         In <i>Tables 2a and 2b</i>, we can see that the best serialization
