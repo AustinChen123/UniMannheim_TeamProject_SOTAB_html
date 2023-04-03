@@ -935,7 +935,7 @@
           >"hotel/name", "streetAddress","addressLocality", "Country", and
           "currency"
         </b>
-        as shown in <a href="#toc2.1.Fig">Figure 1</a>. While data types provide
+        as shown in <i>Figure 1</i>. While data types provide
         basic information about the type of data stored in a column, entity
         types capture domain-specific semantics that convey more meaning. For
         instance, labeling a column with <b>"hotel/name"</b> rather than just
@@ -975,7 +975,7 @@
         ensuring data quality control and schema matching[<a href="#toc17">7</a
         >]. It aims to identify relationships between different columns in a
         table. It can infer relationships that might not be immediately obvious,
-        as illustrated in <a href="#toc2.1.Fig">Figure 1</a>. Here, CPA can help
+        as illustrated in <i>Figure 1</i>. Here, CPA can help
         to infer that the <b>"address" </b>column refers to the hotel's location.
       </p>
 
@@ -1206,7 +1206,7 @@
         which infers the data type for each column by majority count and
         includes the data types for each column only once. For the CTA task, the
         resulting serialization is illustrated in
-        <a href="#toc4.2.2.Fig">Figure 3</a> or:
+        <i>Figure 3</i> or:
         <span class="math display"
           >\[serialize_{col\_tabert}(C)::=
           [CLS]\;target\_col\_type\;target\_col\_data\;[SEP]\;context\_col\_1\_type\;context\_col\_2\_type\;...\;[SEP]\;row\_data\;[SEP]\]</span
@@ -3336,7 +3336,7 @@
         observations for CTA, and 617 errors from 3853 observations for CPA. We
         manually checked these tables and classified the types of errors we
         found, which are listed in <i>Table 8</i>. And the distribution of error
-        types in the samples are illustrated in the <i>figure 5</i>.
+        types in the samples are illustrated in <i>Figure 5</i>.
       </p>
       <div style="text-align: center" class="tg-wrap">
         <table>
@@ -3413,7 +3413,7 @@
                 strings, 'undefined', or contain erroneous data inputted by
                 humans.
               </td>
-              <td>Example given in <i>figure x</i>.</td>
+              <td>Example given in <i>Figure 4a</i>.</td>
             </tr>
             <tr>
               <td>Lack of information</td>
@@ -3422,7 +3422,7 @@
                 columns but contained in columns outside the windows.
               </td>
               <td>
-                Example given in <i>figure y</i>. In CTA task, the target is to
+                Example given in <i>Figure 4b</i>. In CTA task, the target is to
                 predict column 12, while the useful information is included in
                 first few columns.
               </td>
@@ -3497,7 +3497,7 @@
         differs between the SOTAB and WikiTable datasets. One possible reason
         for this difference is that the WikiTable dataset contains more tables
         with few columns, such as some tables that only have 2 columns. The difference is significant as calculated in <i>Table 1</i>. This
-        could cause the neighboring method to perform poorly and result in a
+        could cause the Neighboring Column method to perform less and result in a
         lower F1 score on the test set.
       </p>
       <p><b>Column-TaBERT</b></p>
@@ -3517,16 +3517,14 @@
       <h2>7. Conclusion</h2>
 
       <p>
-        To conclude our study, we have presented the Neighbor methods,we found
-        that the performance of approach is limited by the context size and may
-        not be as effective for tables with fewer columns. To address this
-        limitation, future work could explore the use of LongFormer model to
-        process longer text and potentially reduce the need for more columns in
-        a horizontal direction. Additionally, we suggest investigating the use
-        of contrastive learning to further enhance the performance on these
-        tasks. With these future directions, we hope to continue improving table
-        annotation and advancing the field towards more accurate and efficient
-        models.
+        Drawing a conclusion, we have achieved significant improvement on current methods for both CTA and CPA tasks for the SOTAB benchmark and comparatively on the WikiTables dataset. We conclude that for a Transformer-based language model, level of structureness in input sequence, both column or row serialization plays significant role in attention mechanism. With a large training data like SOTAB benchmark, it is apparent that data augmentation methods such as preprocessing and augmentation are less useful. However, relevant experiments should be conducted when facing with a smaller dataset.
+      </p>
+
+      <p>
+        Regarding future work that can be applied to table annotation tasks, we were not able to fully utlize the potential of Longformer with more input sequence length. Additionally due to time limit, we did not further develop specific data augmentation methods for different promising serialization methods. Lastly, optimization could be done to increase the training spped such as increasing batch size, model checkpointing and parallelism. On average, 1 epoch of training a RoBERTa model for SOTAB benchmark requires 1 hour for our machines and 5 times the duration for WikiTables dataset. 
+      </p>
+      <p>
+        As table annotation using deep learning is still at its infancy, future works may include Longformer, Contrastive Learning or Large Language Models like ChatGPT.
       </p>
 
       <span id="toc8"></span>
