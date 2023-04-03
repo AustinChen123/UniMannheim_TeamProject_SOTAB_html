@@ -851,7 +851,7 @@
       </p>
       <p>
         We have conducted a set of experiments around the use of transformer
-        language models based on
+        language models for table annotation, based on
         <a href="https://webdatacommons.org/structureddata/sotab/"
           >WDC Schema.org Table Annotation Benchmark (SOTAB)</a
         >[<a href="#toc9">1</a>]. There are two multi-class classification
@@ -875,11 +875,11 @@
         This work is organized as follows. Firstly, in Chapter 1, we will
         introduce and motivate the task of table annotation. Furthermore, in
         Chapter 2, we will provide an overview of the preliminaries such as CTA,
-        CPA, and Transformers. Subsequently, in Chapter 3, we will present the
+        CPA, and Transformer. Subsequently, in Chapter 3, we will present the
         related work. Moving on to Chapter 4, we will describe the models,
         preprocessing steps, and serialization approaches. Additionally, in
         Chapter 5, we will describe the experiment setup. Then, in Chapter 6, we
-        will delve into the experimental results and Error Analysis. Finally, in
+        will delve into the experimental results and error analysis. Finally, in
         Chapters 7 and 8, we will discuss the results and conclude the work,
         respectively.
       </p>
@@ -977,20 +977,6 @@
         such as data analysis and retrieval.[<a href="#toc8">1</a>,
         <a href="#toc14">4</a>]
       </p>
-      <span id="toc2.1.Fig"></span>
-      <figure>
-        <img
-          src="images/table_CTA_CPA.jpg"
-          alt="Table Annotation Example"
-          class="center"
-        />
-        <figcaption class="center">
-          <b><a id="Fig1"></a>Figure 1:</b> Example of table annotation. The CTA
-          labels are placed on the top of the columns, while the CPA labels are
-          placed between the main column (leftmost column) and another column
-          [<a href="#toc8">1</a>].
-        </figcaption>
-      </figure>
 
       <p>
         An Example of CTA is: An e-commerce website may have a table of products
@@ -1034,6 +1020,21 @@
         task, and it is also known as column relation annotation or relation
         extraction in various works.
       </p>
+
+      <span id="toc2.1.Fig"></span>
+      <figure>
+        <img
+          src="images/table_CTA_CPA.jpg"
+          alt="Table Annotation Example"
+          class="center"
+        />
+        <figcaption class="center">
+          <b><a id="Fig1"></a>Figure 1:</b> Example of table annotation. The CTA
+          labels are placed on the top of the columns, while the CPA labels are
+          placed between the main column (leftmost column) and another column
+          [<a href="#toc8">1</a>].
+        </figcaption>
+      </figure>
 
       <span id="toc2.3"></span>
       <h3>2.3 Transformer</h3>
