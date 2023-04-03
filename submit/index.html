@@ -364,6 +364,9 @@
           -webkit-overflow-scrolling: touch;
         }
       }
+      h2 {
+        padding-bottom: 1rem;
+      }
       .tg {
         border-collapse: collapse;
         border-color: #ccc;
@@ -935,7 +938,10 @@
         instance, labeling a column with <b>"hotel/name"</b> rather than just
         <b>"String" </b> provides valuable information about the specific type
         of data stored in that column, which is crucial for downstream tasks
-        such as data analysis and retrieval [<a href="#toc8">1</a>,<a href="#toc14">4</a>].
+        such as data analysis and retrieval [<a href="#toc8">1</a>,<a
+          href="#toc14"
+          >4</a
+        >].
       </p>
 
       <p>
@@ -963,13 +969,12 @@
       <h3>2.2 Columns Property Annotation (CPA)</h3>
       <p>
         CPA is a web data integration task and it plays a crucial role in
-        ensuring data quality control and schema matching[<a href="#toc17">7</a>]. 
-        It aims to identify relationships between different columns in a table. 
-        It can infer relationships that might not be immediately obvious, as 
-        illustrated in <a href="#toc2.1.Fig">Figure 1</a>,  CPA can help machine 
-        learning models to infer that the <b>"address" </b>column refers to the
-         hotel's location.
-
+        ensuring data quality control and schema matching[<a href="#toc17">7</a
+        >]. It aims to identify relationships between different columns in a
+        table. It can infer relationships that might not be immediately obvious,
+        as illustrated in <a href="#toc2.1.Fig">Figure 1</a>, CPA can help
+        machine learning models to infer that the <b>"address" </b>column refers
+        to the hotel's location.
       </p>
 
       <p>
@@ -1000,25 +1005,46 @@
       <h2>3. Related Work</h2>
       <span id="toc3.1"></span>
       <p>
-        Chapter 3 provides an overview of relevant literature on table annotation tasks and Transformer-based language model, which is currently the state-of-the-art approach for these tasks.
+        Chapter 3 provides an overview of relevant literature on table
+        annotation tasks and Transformer-based language model, which is
+        currently the state-of-the-art approach for these tasks.
       </p>
       <h3>3.1 TURL</h3>
       <p>
-        The paper [<a href="#toc12">4</a>] provides a cornerstone for table representation through the introduction of a framework for table understanding called TURL. TURL achieves this by utilizing representation learning to learn contextualized representations on relational tables. TURL's unsupervised pre-training on a vast web table corpus derived from WikiTable facilitates its application in various downstream tasks, requiring only minimal task-specific modifications. For example, the TURL framework can be used to infer valuable information about tables such as column types and the relationships between columns (CTA and CPA).
+        The paper [<a href="#toc12">4</a>] provides a cornerstone for table
+        representation through the introduction of a framework for table
+        understanding called TURL. TURL achieves this by utilizing
+        representation learning to learn contextualized representations on
+        relational tables. TURL's unsupervised pre-training on a vast web table
+        corpus derived from WikiTable facilitates its application in various
+        downstream tasks, requiring only minimal task-specific modifications.
+        For example, the TURL framework can be used to infer valuable
+        information about tables such as column types and the relationships
+        between columns (CTA and CPA).
       </p>
 
       <span id="toc3.2"></span>
       <h3>3.2 TUTA</h3>
       <p>
-        TUTA, as introduced in [<a href="#toc16">8</a>], represents the first transformer-based model for the CTA and CPA tasks. Notably, TUTA demonstrates the importance of incorporating structure-aware mechanisms for table representation tasks. It captures the spatial and hierarchical information of tables through a tree-based attention and position mechanism. TUTA inspired us to incorporate similar preprocessing and structural-based approaches in our work.
+        TUTA, as introduced in [<a href="#toc16">8</a>], represents the first
+        transformer-based model for the CTA and CPA tasks. Notably, TUTA
+        demonstrates the importance of incorporating structure-aware mechanisms
+        for table representation tasks. It captures the spatial and hierarchical
+        information of tables through a tree-based attention and position
+        mechanism. TUTA inspired us to incorporate similar preprocessing and
+        structural-based approaches in our work.
       </p>
 
       <span id="toc3.3"></span>
       <h3>3.3 DODUO</h3>
-        DODUO, as described in [<a href="#toc15">7</a>], is the ccurent state-of-the-art approach for the CTA and CPA tasks. This approach utilizes a Transformer-based language model and takes the entire table as input to predict column types and relationships between columns. What sets DODUO apart is its ability to annotate table columns using only the information contained in the table itself, without the need for external knowledge or context.
-      <p> 
-
-      </p>
+      DODUO, as described in [<a href="#toc15">7</a>], is the ccurent
+      state-of-the-art approach for the CTA and CPA tasks. This approach
+      utilizes a Transformer-based language model and takes the entire table as
+      input to predict column types and relationships between columns. What sets
+      DODUO apart is its ability to annotate table columns using only the
+      information contained in the table itself, without the need for external
+      knowledge or context.
+      <p></p>
       <span id="toc3.4"></span>
       <h3>3.4 Transformer</h3>
       <p>
@@ -1034,11 +1060,11 @@
       </p>
 
       <p>
-        The key innovation of transformers is self-attention, a
-        mechanism that allows the model to selectively focus on different parts
-        of the input sequence. Self-attention works by computing a weighted sum
-        of the input sequence at each position, where the weights are determined
-        by a similarity function between the current position and all other
+        The key innovation of transformers is self-attention, a mechanism that
+        allows the model to selectively focus on different parts of the input
+        sequence. Self-attention works by computing a weighted sum of the input
+        sequence at each position, where the weights are determined by a
+        similarity function between the current position and all other
         positions. The output of the self-attention layer is a sequence of
         weighted sums, which can then be fed into subsequent layers of the
         network. The attention function is formalized as:
@@ -1052,9 +1078,9 @@
         where Q, K, and V are the query, key, and value vectors, respectively.
       </p>
       <p>
-        Transformer's attention mechanism can be used in the our tasks to help the model
-        identify which parts of a table are most relevant for predicting
-        the column types and relations.
+        Transformer's attention mechanism can be used in the our tasks to help
+        the model identify which parts of a table are most relevant for
+        predicting the column types and relations.
       </p>
       <span id="toc4"></span>
       <h2>4. Model</h2>
@@ -1296,13 +1322,13 @@
         (with seed 0-2), and a batch size of 32. The initial learning rate was
         set to 5e-5, and we used a linear decay scheduler with no warmup. We set
         a maximum token length of 512, used a window size of 5, and a standard
-        MP ratio of 0.5 for relevant serializations. We identify
-        single-column serialization as the baseline configuration. For the SOTAB
-        benchmark, we formulated the task as a multi-label prediction problem
-        and used Cross Entropy loss. For the WikiTable dataset, we formulated
-        the task as a multi-class prediction problem and used Binary Cross
-        Entropy loss. We evaluated the performance of our models using micro F1
-        scores for both datasets.
+        MP ratio of 0.5 for relevant serializations. We identify single-column
+        serialization as the baseline configuration. For the SOTAB benchmark, we
+        formulated the task as a multi-label prediction problem and used Cross
+        Entropy loss. For the WikiTable dataset, we formulated the task as a
+        multi-class prediction problem and used Binary Cross Entropy loss. We
+        evaluated the performance of our models using micro F1 scores for both
+        datasets.
       </p>
 
       <span id="toc5.3"></span>
@@ -1331,11 +1357,11 @@
         Serializations. We also experimented with different preprocessing
         methods, such as TUTA, median, and mean preprocessing for each promising
         serialization. Additionally, we varied the proportions of the target
-        column and local context (MP - Main Percentange Ratio) to assess the effect of context
-        weight on different serializations, experimenting with MP Ratios of
-        0.2, 0.5, and 0.8, respectively. Finally, in the early stages of our
-        workflow, we investigated the performance of augmentation strategies on
-        single-column serialization for the CPA task.
+        column and local context (MP - Main Percentange Ratio) to assess the
+        effect of context weight on different serializations, experimenting with
+        MP Ratios of 0.2, 0.5, and 0.8, respectively. Finally, in the early
+        stages of our workflow, we investigated the performance of augmentation
+        strategies on single-column serialization for the CPA task.
       </p>
 
       <span id="toc5.4"></span>
@@ -1374,8 +1400,8 @@
           <tfoot>
             <tr>
               <td colspan="4">
-                <sup>*</sup>: MP Ratio is irrelevant; <sup>**</sup>:
-                Results from [<a href="#toc9">1</a>]
+                <sup>*</sup>: MP Ratio is irrelevant; <sup>**</sup>: Results
+                from [<a href="#toc9">1</a>]
               </td>
             </tr>
           </tfoot>
@@ -1400,22 +1426,6 @@
               </td>
               <td class="tg-9wq8">
                 <span style="color: #333; background-color: #fff">-</span>
-              </td>
-            </tr>
-            <tr>
-              <td class="tg-9wq8">
-                <span style="color: #333; background-color: #fff"
-                  >Longformer<sup>*</sup></span
-                >
-              </td>
-              <td class="tg-9wq8">
-                <span style="font-weight: 400; font-style: normal">-</span>
-              </td>
-              <td class="tg-9wq8">
-                <span style="font-weight: 400; font-style: normal">74.68</span>
-              </td>
-              <td class="tg-9wq8">
-                <span style="font-weight: 400; font-style: normal">-</span>
               </td>
             </tr>
             <tr>
@@ -1670,8 +1680,8 @@
           <tfoot>
             <tr>
               <td colspan="4">
-                <sup>*</sup>: MP Ratio is irrelevant; <sup>**</sup>:
-                Results from [<a href="#toc9">1</a>]
+                <sup>*</sup>: MP Ratio is irrelevant; <sup>**</sup>: Results
+                from [<a href="#toc9">1</a>]
               </td>
             </tr>
           </tfoot>
@@ -1710,22 +1720,7 @@
               </td>
               <td class="tg-h2b0">-</td>
             </tr>
-            <tr>
-              <td class="tg-9wq8">
-                <span style="color: #333; background-color: #fff"
-                  >Longformer<sup>*</sup></span
-                >
-              </td>
-              <td class="tg-9wq8">
-                <span style="font-weight: 400; font-style: normal">-</span>
-              </td>
-              <td class="tg-9wq8">
-                <span style="font-weight: 400; font-style: normal">51.74</span>
-              </td>
-              <td class="tg-9wq8">
-                <span style="font-weight: 400; font-style: normal">-</span>
-              </td>
-            </tr>
+
             <tr>
               <td class="tg-h2b0">DODUO<sup>*,**</sup></td>
               <td class="tg-h2b0">-</td>
@@ -2035,18 +2030,20 @@
       <p>
         For the CPA task, different variances of Neighboring Column
         Serialization achieve 6 point higher F1 score than the existing methods.
-        Once again, Neighboring Column Serialization of window size of 5 and
-        MP Ratio of 0.2 achieves the highest F1 score. TaBERT variances
-        score 2.5 point lower F1 score indicating less suitability of row
-        serialization for a column pair prediction. Once again, less structured
-        serialization solutions achieve lower F1 scores (Column TaBERT and
-        Neighboring Column with Summary). Lastly, only Neighboring Column with
-        Summary with MP Ratio of 0.8 achieves lower F1 score than
-        Single-Column. The MP Ratio of 0.8 allocates 80% of the available token limit to the Main and Target Columns and only 20% to their neighbors, as explained earlier. Overall, our results highlight the importance of carefully selecting the appropriate serialization method to achieve optimal performance in table annotation tasks.
+        Once again, Neighboring Column Serialization of window size of 5 and MP
+        Ratio of 0.2 achieves the highest F1 score. TaBERT variances score 2.5
+        point lower F1 score indicating less suitability of row serialization
+        for a column pair prediction. Once again, less structured serialization
+        solutions achieve lower F1 scores (Column TaBERT and Neighboring Column
+        with Summary). Lastly, only Neighboring Column with Summary with MP
+        Ratio of 0.8 achieves lower F1 score than Single-Column. The MP Ratio of
+        0.8 allocates 80% of the available token limit to the Main and Target
+        Columns and only 20% to their neighbors, as explained earlier. Overall,
+        our results highlight the importance of carefully selecting the
+        appropriate serialization method to achieve optimal performance in table
+        annotation tasks.
       </p>
-      <p>
-
-      </p>
+      <p></p>
 
       <div style="text-align: center" class="tg-wrap">
         <table class="tg">
@@ -2305,12 +2302,58 @@
             </tr>
           </tbody>
         </table>
+        <table class="tg">
+          <caption>
+            Table?: Experiments with CPA
+          </caption>
+          <thead>
+            <tr>
+              <th class="tg-5vuh"></th>
+              <th class="g-4akn">
+                <span
+                  style="
+                    font-weight: 700;
+                    font-style: normal;
+                    text-decoration: none;
+                    color: #000;
+                    background-color: transparent;
+                  "
+                  >Test F1</span
+                >
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="tg-zkss">Subtable Model*</td>
+              <td class="tg-zkss">83.20</td>
+            </tr>
+            <tr>
+              <td class="tg-zkss">Two-Step Model*</td>
+              <td class="tg-zkss">84.34</td>
+            </tr>
+            <tr>
+              <td class="tg-zkss">Longformer*</td>
+              <td class="tg-zkss">51.74</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
       <p>
         <b> Wikitables Dataset </b>
       </p>
       <p>
-        In the CTA task, our Column-TaBERT Serialization achieved a comparable F1 score to the state-of-the-art DODUO, missing by only 1 point. This is a significant improvement over the TURL baseline, which we outperformed by 2.5 points. However, our results from SOTAB benchmark suggest that there may be even more room for improvement using other more performant serialization methods. For the CPA task, our TaBERT Serialization outperformed existing methods by 1.5 points in terms of F1 score. These results demonstrate that our serialization approaches can achieve comparable performance on different real-world datasets. Overall, our findings suggest that careful selection of serialization methods can significantly improve the performance of table annotation tasks.
+        In the CTA task, our Column-TaBERT Serialization achieved a comparable
+        F1 score to the state-of-the-art DODUO, missing by only 1 point. This is
+        a significant improvement over the TURL baseline, which we outperformed
+        by 2.5 points. However, our results from SOTAB benchmark suggest that
+        there may be even more room for improvement using other more performant
+        serialization methods. For the CPA task, our TaBERT Serialization
+        outperformed existing methods by 1.5 points in terms of F1 score. These
+        results demonstrate that our serialization approaches can achieve
+        comparable performance on different real-world datasets. Overall, our
+        findings suggest that careful selection of serialization methods can
+        significantly improve the performance of table annotation tasks.
       </p>
       <span id="toc6.2"></span>
       <h3>6.2 Ablation Study</h3>
@@ -2759,18 +2802,225 @@
             </tr>
           </tbody>
         </table>
+        <table class="tg">
+          <caption>
+            Table ?: Augmentation method on single column serialization
+          </caption>
+          <thead>
+            <tr>
+              <th class="tg-mkpc">
+                <span
+                  style="font-style: normal; text-decoration: none; color: #000"
+                  >Augmentation method</span
+                >
+              </th>
+              <th class="tg-mkpc">
+                <span
+                  style="font-style: normal; text-decoration: none; color: #000"
+                  >Test Micro F1</span
+                >
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="tg-zkss">
+                <span
+                  style="
+                    font-weight: 400;
+                    font-style: normal;
+                    text-decoration: none;
+                    color: #000;
+                  "
+                  >Baseline</span
+                >
+              </td>
+              <td class="tg-zkss">
+                <span
+                  style="
+                    font-weight: 400;
+                    font-style: normal;
+                    text-decoration: none;
+                    color: #000;
+                  "
+                  >77.95</span
+                >
+              </td>
+            </tr>
+            <tr>
+              <td class="tg-zkss">
+                <span
+                  style="
+                    font-weight: 400;
+                    font-style: normal;
+                    text-decoration: none;
+                    color: #000;
+                  "
+                  >Delete Random Cell</span
+                >
+              </td>
+              <td class="tg-zkss">
+                <span
+                  style="
+                    font-weight: 400;
+                    font-style: normal;
+                    text-decoration: none;
+                    color: #000;
+                  "
+                  >77.28</span
+                >
+              </td>
+            </tr>
+            <tr>
+              <td class="tg-zkss">
+                <span
+                  style="
+                    font-weight: 400;
+                    font-style: normal;
+                    text-decoration: none;
+                    color: #000;
+                  "
+                  >Replacewith Frequent Value</span
+                >
+              </td>
+              <td class="tg-zkss">
+                <span
+                  style="
+                    font-weight: 400;
+                    font-style: normal;
+                    text-decoration: none;
+                    color: #000;
+                  "
+                  >78.00</span
+                >
+              </td>
+            </tr>
+            <tr>
+              <td class="tg-zkss">
+                <span
+                  style="
+                    font-weight: 400;
+                    font-style: normal;
+                    text-decoration: none;
+                    color: #000;
+                  "
+                  >Shuffle Column Cell</span
+                >
+              </td>
+              <td class="tg-zkss">
+                <span
+                  style="
+                    font-weight: 400;
+                    font-style: normal;
+                    text-decoration: none;
+                    color: #000;
+                  "
+                  >77.29</span
+                >
+              </td>
+            </tr>
+            <tr>
+              <td class="tg-zkss">
+                <span
+                  style="
+                    font-weight: 400;
+                    font-style: normal;
+                    text-decoration: none;
+                    color: #000;
+                  "
+                  >Shuffle Column Cell Value</span
+                >
+              </td>
+              <td class="tg-zkss">
+                <span
+                  style="
+                    font-weight: 400;
+                    font-style: normal;
+                    text-decoration: none;
+                    color: #000;
+                  "
+                  >77.05</span
+                >
+              </td>
+            </tr>
+            <tr>
+              <td class="tg-zkss">
+                <span
+                  style="
+                    font-weight: 400;
+                    font-style: normal;
+                    text-decoration: none;
+                    color: #000;
+                  "
+                  >Swap Word</span
+                >
+              </td>
+              <td class="tg-zkss">
+                <span
+                  style="
+                    font-weight: 400;
+                    font-style: normal;
+                    text-decoration: none;
+                    color: #000;
+                  "
+                  >74.13</span
+                >
+              </td>
+            </tr>
+            <tr>
+              <td class="tg-zkss">
+                <span
+                  style="
+                    font-weight: 400;
+                    font-style: normal;
+                    text-decoration: none;
+                    color: #000;
+                  "
+                  >Replace Word</span
+                >
+              </td>
+              <td class="tg-zkss">
+                <span
+                  style="
+                    font-weight: 400;
+                    font-style: normal;
+                    text-decoration: none;
+                    color: #000;
+                  "
+                  >75.48</span
+                >
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
       <p>
         <b> Preprocess and Augmentation</b>
       </p>
       <p>
-        Through our experiments, we found that preprocessing provides slight improvement on the performance of different serialization methods. This highlights the importance of providing structured input sequences to Transformer models and using more columns whenever possible. Furthermore, our initial experiments with data augmentation using single-column serialization indicate that, for large datasets like the SOTAB benchmark, the need for data augmentation may be limited.       
+        Through our experiments, we found that preprocessing provides slight
+        improvement on the performance of different serialization methods. This
+        highlights the importance of providing structured input sequences to
+        Transformer models and using more columns whenever possible.
+        Furthermore, our initial experiments with data augmentation using
+        single-column serialization indicate that, for large datasets like the
+        SOTAB benchmark, the need for data augmentation may be limited.
       </p>
 
       <p>
         <b> Window Size</b>
+      </p>
+
       <p>
-        For the SOTAB benchmark, we identified that the suitable window size for Neighboring Column Serializations are window size of 4 - 6. This indicates that a complete table structure with relevant columns is a suitable input for Language models in table annotation tasks. Notably, we observed that the main difference between Neighboring Column Serialization and DODUO lies in the structure of the input sequence. Specifically, our approach places the target column at the front of the input sequence to focus on it, while DODUO takes the entire table as input.
+        For the SOTAB benchmark, we identified that the suitable window size for
+        Neighboring Column Serializations are window size of 4 - 6. This
+        indicates that a complete table structure with relevant columns is a
+        suitable input for Language models in table annotation tasks. Notably,
+        we observed that the main difference between Neighboring Column
+        Serialization and DODUO lies in the structure of the input sequence.
+        Specifically, our approach places the target column at the front of the
+        input sequence to focus on it, while DODUO takes the entire table as
+        input.
       </p>
 
       <span id="toc6.3"></span>
@@ -3035,9 +3285,9 @@
         this, we sampled errors in prediction by schema for both the CTA and CPA
         tasks. Specifically, we sampled 614 errors from a total of 1533
         observations for CTA, and 617 errors from 3853 observations for CPA. We
-        manually checked these tables and classified the types of errors we found, which are listed in <i>Table 7</i>. 
-        And the distribution of error types in the samples are illustrated in the
-        <i>figure X</i>.
+        manually checked these tables and classified the types of errors we
+        found, which are listed in <i>Table 7</i>. And the distribution of error
+        types in the samples are illustrated in the <i>figure X</i>.
       </p>
       <div style="text-align: center" class="tg-wrap">
         <table>
@@ -3058,8 +3308,8 @@
             <tr>
               <td>Bad prediction</td>
               <td>
-                The data provided by the column and neighbor columns is sufficient
-                but the prediction is incorrect.
+                The data provided by the column and neighbor columns is
+                sufficient but the prediction is incorrect.
               </td>
               <td>gtin12 is predicted as gtin14</td>
             </tr>
@@ -3074,8 +3324,8 @@
             <tr>
               <td>Semantic label</td>
               <td>
-                The prediction has the same data type or format as label, but the
-                interpretation of the data was incorrect.
+                The prediction has the same data type or format as label, but
+                the interpretation of the data was incorrect.
               </td>
               <td>FAXnumber is predicted as telephone number and vice versa</td>
             </tr>
@@ -3083,9 +3333,10 @@
               <td>Duplicate label</td>
               <td>
                 Two columns in a table that have same values but are labeled
-                differently, leading to data redundancy and potential confusion or
-                inconsistency in the interpretation of the data. In this case,
-                usually the wrong prediction is the label of the other column.
+                differently, leading to data redundancy and potential confusion
+                or inconsistency in the interpretation of the data. In this
+                case, usually the wrong prediction is the label of the other
+                column.
               </td>
               <td>
                 columns with same value are labeled as Brand and Organization
@@ -3118,8 +3369,8 @@
             <tr>
               <td>Lack of information</td>
               <td>
-                The data provided is insufficient in current and neighbor columns
-                but contained in columns outside the windows.
+                The data provided is insufficient in current and neighbor
+                columns but contained in columns outside the windows.
               </td>
               <td>
                 Example given in <i>figure y</i>. In CTA task, the target is to
@@ -3168,23 +3419,77 @@
         </figcaption>
       </figure>
       <p>
-        In addition to the absolute count of errors, we also
-        aim to investigate the relative frequencies of errors and correct
-        predictions, in order to gain a better understanding of the overall
-        performance. Therefore, we seek to compare the ratio of incorrect
-        predictions to correct predictions based on the same label. 
+        In addition to the absolute count of errors, we also aim to investigate
+        the relative frequencies of errors and correct predictions, in order to
+        gain a better understanding of the overall performance. Therefore, we
+        seek to compare the ratio of incorrect predictions to correct
+        predictions based on the same label.
       </p>
       <span class="math display">
         \[Relative Frequency(E, C) = \frac{E}{{C}}\]
       </span>
       <p>
-        where E, C are the counts of error prediction, counts of correct prediction, respectively. 
-        For example, the count of error prediction pairs of (ProductModel, IdentifierAT) = 60 
-        and the count of correct prediction pairs of (ProductModel, ProductModel) = 100, the Relative Frequency will be 0.6.
+        where E, C are the counts of error prediction, counts of correct
+        prediction, respectively. For example, the count of error prediction
+        pairs of (ProductModel, IdentifierAT) = 60 and the count of correct
+        prediction pairs of (ProductModel, ProductModel) = 100, the Relative
+        Frequency will be 0.6.
       </p>
 
       <span id="toc6"></span>
       <h2>6. Discussion</h2>
+      <div class="tg-wrap">
+        <table class="tg">
+          <caption>
+            Table ?: Statistics of WikiTable Dataset
+          </caption>
+          <thead>
+            <tr>
+              <th class="tg-mkpc"></th>
+              <th class="tg-mkpc" colspan="3">CTA</th>
+              <th class="tg-mkpc" colspan="3">CPA</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="tg-mkpc"><br /></td>
+              <td class="tg-mkpc">mean</td>
+              <td class="tg-mkpc">median</td>
+              <td class="tg-mkpc">mode</td>
+              <td class="tg-mkpc">mean</td>
+              <td class="tg-mkpc">median</td>
+              <td class="tg-mkpc">mode</td>
+            </tr>
+            <tr>
+              <td class="tg-mkpc">Train columns</td>
+              <td class="tg-9wq8">1.58</td>
+              <td class="tg-9wq8">1</td>
+              <td class="tg-9wq8">1</td>
+              <td class="tg-9wq8">2.18</td>
+              <td class="tg-9wq8">2</td>
+              <td class="tg-9wq8">2</td>
+            </tr>
+            <tr>
+              <td class="tg-mkpc">Val columns</td>
+              <td class="tg-9wq8">2.76</td>
+              <td class="tg-9wq8">3</td>
+              <td class="tg-9wq8">3</td>
+              <td class="tg-9wq8">2.39</td>
+              <td class="tg-9wq8">2</td>
+              <td class="tg-9wq8">2</td>
+            </tr>
+            <tr>
+              <td class="tg-mkpc">Test columns</td>
+              <td class="tg-9wq8">2.73</td>
+              <td class="tg-9wq8">3</td>
+              <td class="tg-9wq8">3</td>
+              <td class="tg-9wq8">2.41</td>
+              <td class="tg-9wq8">2</td>
+              <td class="tg-9wq8">2</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
       <p><b>WikiTable dataset</b></p>
       <p>
         In <i>Tables 2a and 2b</i>, we can see that the best serialization
@@ -3196,16 +3501,16 @@
       </p>
       <p><b>Column-TaBERT</b></p>
       <p>
-        We had hypothesized that the Column-TaBERT method would be able to encode
-        more information within the same limited number of tokens as TaBERT, and
-        therefore produce better results. However, the results indicate that the
-        column datatype performed worse than the cell datatype. This may be due
-        to the fact that the structural design did not effectively enable the
-        attention mechanism. In TaBERT, the model has one datatype token placed
-        just before the cell value. In contrast, Column-TaBERT obtains the datatype
-        only once and structures it as a normal cell value. Future experiments
-        could explore ways to improve attention by altering this serialization
-        design.
+        We had hypothesized that the Column-TaBERT method would be able to
+        encode more information within the same limited number of tokens as
+        TaBERT, and therefore produce better results. However, the results
+        indicate that the column datatype performed worse than the cell
+        datatype. This may be due to the fact that the structural design did not
+        effectively enable the attention mechanism. In TaBERT, the model has one
+        datatype token placed just before the cell value. In contrast,
+        Column-TaBERT obtains the datatype only once and structures it as a
+        normal cell value. Future experiments could explore ways to improve
+        attention by altering this serialization design.
       </p>
       <span id="toc7"></span>
       <h2>7. Conclusion</h2>
