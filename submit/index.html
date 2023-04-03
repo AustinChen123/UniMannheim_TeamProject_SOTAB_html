@@ -3075,8 +3075,9 @@
         this, we sampled errors in prediction by schema for both the CTA and CPA
         tasks. Specifically, we sampled 614 errors from a total of 1533
         observations for CTA, and 617 errors from 3853 observations for CPA. We
-        manually checked these tables and classified the types of errors we
-        found, which are listed in <i>Table 7</i>.
+        manually checked these tables and classified the types of errors we found, which are listed in <i>Table 7</i>. 
+        And the distribution of error types in the samples are illustrated in the
+        <i>figure X</i>.
       </p>
       <div style="text-align: center" class="tg-wrap">
         <table>
@@ -3190,14 +3191,6 @@
           <b><a id="Fig1"></a>Figure 5: </b>Example of Lack of information
         </figcaption>
       </figure>
-      <p>
-        The distribution of error types in the samples are illustrated in the
-        <i>figure X</i>. In addition to the absolute count of errors, we also
-        aim to investigate the relative frequencies of errors and correct
-        predictions, in order to gain a better understanding of the overall
-        performance. Therefore, we seek to compare the ratio of incorrect
-        predictions to correct predictions.
-      </p>
       <figure>
         <img
           src="images/Percentage of Error Type in CTA sample.png"
@@ -3214,6 +3207,21 @@
           samples.
         </figcaption>
       </figure>
+      <p>
+        In addition to the absolute count of errors, we also
+        aim to investigate the relative frequencies of errors and correct
+        predictions, in order to gain a better understanding of the overall
+        performance. Therefore, we seek to compare the ratio of incorrect
+        predictions to correct predictions based on the same label. 
+      </p>
+      <span class="math display">
+        \[Relative Frequency(E, C) = \frac{E}{{C}}\]
+      </span>
+      <p>
+        where E, C are the counts of error prediction, counts of correct prediction, respectively. 
+        For example, the count of error prediction pairs of (ProductModel, IdentifierAT) = 60 
+        and the count of correct prediction pairs of (ProductModel, ProductModel) = 100, the Relative Frequency will be 0.6.
+      </p>
 
       <span id="toc6"></span>
       <h2>6. Discussion</h2>
