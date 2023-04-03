@@ -562,7 +562,8 @@
           opacity: 1;
         }
       }
-      .left, .right {
+      .left,
+      .right {
         display: inline-block;
       }
       .center {
@@ -841,8 +842,9 @@
       <p>
         This work is organized as follows. Firstly, in Chapter 1, we will
         introduce and motivate the task of table annotation. Furthermore, in
-        Chapter 2, we will provide an overview of the table annotation tasks. Subsequently, in Chapter 3, we will present the
-        related work including, Transformer model. Moving on to Chapter 4, we will describe the models,
+        Chapter 2, we will provide an overview of the table annotation tasks.
+        Subsequently, in Chapter 3, we will present the related work including,
+        Transformer model. Moving on to Chapter 4, we will describe the models,
         preprocessing steps, and serialization approaches. Additionally, in
         Chapter 5, we will describe the experiment setup. Then, in Chapter 6, we
         will delve into the experimental results and error analysis. Finally, in
@@ -870,8 +872,14 @@
           <ul>
             <li>
               <a href="#toc3.1">3.1 TURL</a>
+            </li>
+            <li>
               <a href="#toc3.2">3.2 TUTA</a>
+            </li>
+            <li>
               <a href="#toc3.3">3.3 DODUO</a>
+            </li>
+            <li>
               <a href="#toc3.4">3.4 Transformer</a>
             </li>
           </ul>
@@ -971,10 +979,10 @@
           >"hotel/name", "streetAddress","addressLocality", "Country", and
           "currency"
         </b>
-        as shown in <i>Figure 1</i>. While data types provide
-        basic information about the type of data stored in a column, entity
-        types capture domain-specific semantics that convey more meaning. For
-        instance, labeling a column with <b>"hotel/name"</b> rather than just
+        as shown in <i>Figure 1</i>. While data types provide basic information
+        about the type of data stored in a column, entity types capture
+        domain-specific semantics that convey more meaning. For instance,
+        labeling a column with <b>"hotel/name"</b> rather than just
         <b>"String" </b> provides valuable information about the specific type
         of data stored in that column, which is crucial for downstream tasks
         such as data analysis and retrieval [<a href="#toc8">1</a>,<a
@@ -1011,8 +1019,8 @@
         ensuring data quality control and schema matching[<a href="#toc17">7</a
         >]. It aims to identify relationships between different columns in a
         table. It can infer relationships that might not be immediately obvious,
-        as illustrated in <i>Figure 1</i>. Here, CPA can help
-        to infer that the <b>"address" </b>column refers to the hotel's location.
+        as illustrated in <i>Figure 1</i>. Here, CPA can help to infer that the
+        <b>"address" </b>column refers to the hotel's location.
       </p>
 
       <p>
@@ -1116,9 +1124,9 @@
         where Q, K, and V are the query, key, and value vectors, respectively.
       </p>
       <p>
-        A Transformer-based language model is ideal for the tasks due to its language understanding capabilities and
-        Transformer's attention mechanism that captures contextualized column
-        representations.
+        A Transformer-based language model is ideal for the tasks due to its
+        language understanding capabilities and Transformer's attention
+        mechanism that captures contextualized column representations.
       </p>
       <span id="toc4"></span>
       <h2>4. Model</h2>
@@ -1241,8 +1249,7 @@
         types in each cell, we introduce <em>Column-TaBERT Serialization</em>,
         which infers the data type for each column by majority count and
         includes the data types for each column only once. For the CTA task, the
-        resulting serialization is illustrated in
-        <i>Figure 3</i> or:
+        resulting serialization is illustrated in <i>Figure 3</i> or:
         <span class="math display"
           >\[serialize_{col\_tabert}(C)::=
           [CLS]\;target\_col\_type\;target\_col\_data\;[SEP]\;context\_col\_1\_type\;context\_col\_2\_type\;...\;[SEP]\;row\_data\;[SEP]\]</span
@@ -1302,8 +1309,8 @@
           href="#toc21"
           >13</a
         >] proposes Longformer, which has a linear attention mechanism that can
-        process longer sequences length. The maximum length is constrained by the memory of
-        GPU.
+        process longer sequences length. The maximum length is constrained by
+        the memory of GPU.
       </p>
 
       <span id="toc5"></span>
@@ -1407,16 +1414,16 @@
       <p>
         For our experiments on both the SOTAB benchmark and WikiTables dataset,
         we trained a RoBERTa model with default settings: 30 epochs, 3 runs
-        (with seed 0-2), and a batch size of 32, if not specified. The initial learning rate was
-        set to 5e-5, and we used a linear decay scheduler with no warmup. We set
-        a maximum token length of 512, used a window size of 5, and a standard
-        MP ratio of 0.5 for relevant serializations. We identify single-column
-        serialization as the baseline configuration. For the SOTAB benchmark, we
-        formulated the task as a multi-label prediction problem and used Cross
-        Entropy loss. For the WikiTable dataset, we formulated the task as a
-        multi-class prediction problem and used Binary Cross Entropy loss. We
-        evaluated the performance of our models using micro F1 scores for both
-        datasets.
+        (with seed 0-2), and a batch size of 32, if not specified. The initial
+        learning rate was set to 5e-5, and we used a linear decay scheduler with
+        no warmup. We set a maximum token length of 512, used a window size of
+        5, and a standard MP ratio of 0.5 for relevant serializations. We
+        identify single-column serialization as the baseline configuration. For
+        the SOTAB benchmark, we formulated the task as a multi-label prediction
+        problem and used Cross Entropy loss. For the WikiTable dataset, we
+        formulated the task as a multi-class prediction problem and used Binary
+        Cross Entropy loss. We evaluated the performance of our models using
+        micro F1 scores for both datasets.
       </p>
 
       <span id="toc5.3"></span>
@@ -1447,9 +1454,12 @@
         serialization. Additionally, we varied the proportions of the target
         column and local context (MP - Main Percentange Ratio) to assess the
         effect of context weight on different serializations, experimenting with
-        MP Ratios of 0.2, 0.5, and 0.8, respectively. For instance, the MP Ratio of 0.8 for Neighboring Column Serialization, for the CPA task, allocates 80% of the available token limit to the Main and Target Columns and only 20% to their neighbors, Finally, in the early
-        stages of our workflow, we investigated the performance of augmentation
-        strategies on single-column serialization for the CPA task.
+        MP Ratios of 0.2, 0.5, and 0.8, respectively. For instance, the MP Ratio
+        of 0.8 for Neighboring Column Serialization, for the CPA task, allocates
+        80% of the available token limit to the Main and Target Columns and only
+        20% to their neighbors, Finally, in the early stages of our workflow, we
+        investigated the performance of augmentation strategies on single-column
+        serialization for the CPA task.
       </p>
 
       <span id="toc5.4"></span>
@@ -2160,12 +2170,21 @@
         for a column pair prediction. Once again, less structured serialization
         solutions achieve lower F1 scores (Column TaBERT and Neighboring Column
         with Summary). Lastly, only Neighboring Column with Summary with MP
-        Ratio of 0.8 achieves lower F1 score than Single-Column. Overall,
-        our results highlight the importance of carefully selecting the
-        appropriate serialization method to achieve optimal performance in table
-        annotation tasks.
+        Ratio of 0.8 achieves lower F1 score than Single-Column. Overall, our
+        results highlight the importance of carefully selecting the appropriate
+        serialization method to achieve optimal performance in table annotation
+        tasks.
       </p>
-      <p>For the additional experiments, we did not achieve improvement on Test F1 score. Notably for LongFormer model, further modifications on the model setup should be investigated. For the 2-step model, we achieve a Test F1 Score of 96.73. Building on top of the schema prediction model, the final ensembly of submodels by schema class achieved a Test F1 of 84.34. Upon further investigating, decoupling the first model and inserting test data with correct schema labels into respective submodel merely increased the final Test F1 score to 84.81.</p>
+      <p>
+        For the additional experiments, we did not achieve improvement on Test
+        F1 score. Notably for LongFormer model, further modifications on the
+        model setup should be investigated. For the 2-step model, we achieve a
+        Test F1 Score of 96.73. Building on top of the schema prediction model,
+        the final ensembly of submodels by schema class achieved a Test F1 of
+        84.34. Upon further investigating, decoupling the first model and
+        inserting test data with correct schema labels into respective submodel
+        merely increased the final Test F1 score to 84.81.
+      </p>
 
       <div style="text-align: center" class="tg-wrap">
         <table class="tg">
@@ -2433,12 +2452,12 @@
         F1 score to the state-of-the-art DODUO, missing by only 1 point. This is
         a significant improvement over the TURL baseline, which we outperformed
         by 2.5 points. However, our results from SOTAB benchmark suggest that
-        there may be rooms for improvement using more performant
-        serialization methods. For the CPA task, our TaBERT Serialization
-        outperformed existing methods by 1.5 points in terms of F1 score. These
-        results demonstrate that our serialization approaches can achieve
-        comparable performance on different real-world datasets. Overall, our
-        findings suggest that careful selection of serialization methods can
+        there may be rooms for improvement using more performant serialization
+        methods. For the CPA task, our TaBERT Serialization outperformed
+        existing methods by 1.5 points in terms of F1 score. These results
+        demonstrate that our serialization approaches can achieve comparable
+        performance on different real-world datasets. Overall, our findings
+        suggest that careful selection of serialization methods can
         significantly improve the performance of table annotation tasks.
       </p>
       <span id="toc6.2"></span>
@@ -3112,17 +3131,20 @@
       <span id="toc6.3"></span>
       <h3>6.3 Error Analysis</h3>
       <p>
-        As error analysis is an on-going task, we analyzed the performance of the Neighboring Column Serialization with window size of 2. The parameters utilized is a BERT model trained for 30 epochs with batch size of 16. We initially conducted statistic
-        analysis on three different aspects: (i) schema type, (ii) data type,
-        and (iii) specific challenges. Subsequently, we further looked into the
-        data and manually classified the errors.
+        As error analysis is an on-going task, we analyzed the performance of
+        the Neighboring Column Serialization with window size of 2. The
+        parameters utilized is a BERT model trained for 30 epochs with batch
+        size of 16. We initially conducted statistic analysis on three different
+        aspects: (i) schema type, (ii) data type, and (iii) specific challenges.
+        Subsequently, we further looked into the data and manually classified
+        the errors.
       </p>
       <p>
         <b>(i) Schema Type: </b> The tables are distributed across 17 schema.org
         types and the tables do no include any metadata which means no table
-        headers or cpations are available. We list the top 5 labels that achieved
-        the highest score in the overall test set and the top 5 labels that
-        reached the lowest score for CTA in <i>Table 5a</i> and CPA in
+        headers or cpations are available. We list the top 5 labels that
+        achieved the highest score in the overall test set and the top 5 labels
+        that reached the lowest score for CTA in <i>Table 5a</i> and CPA in
         <i>Table 5b</i>. The performance of CTA and CPA varies across different
         schema types. <strong>MusicRecording</strong> is the only schema where
         both tasks perform well, while
@@ -3308,8 +3330,8 @@
         Columns which were all clearly defined in
         <a href="https://webdatacommons.org/structureddata/sotab/"
           >WDC Schema.org Table Annotation Benchmark (SOTAB)</a
-        >[<a href="#toc9">1</a>]. The results are summarized in <i>Table 7</i> for CTA
-        and CPA.
+        >[<a href="#toc9">1</a>]. The results are summarized in
+        <i>Table 7</i> for CTA and CPA.
       </p>
       <div style="text-align: center" class="tg-wrap">
         <table class="tg">
@@ -3377,7 +3399,7 @@
         found, which are listed in <i>Table 8</i>. And the distribution of error
         types in the samples are illustrated in <i>Figure 5</i>.
       </p>
-      <div style={text-align: center; text-align: left} class="tg-wrap">
+      <div style="text-align: center; text-align: left" class="tg-wrap">
         <table>
           <caption>
             Table 8: Error Types and Definitions
@@ -3510,32 +3532,48 @@
         </figure>
       </div>
       <p>
-        <b>
-          Relative Frequency Definition
-        </b>
+        <b> Relative Frequency Definition </b>
       </p>
       <p>
         In addition to the absolute count of errors, we also aim to investigate
-        the relative frequencies of errors and correct predictions, to determine corner cases. Therefore, we
-        seek to compare the ratio of incorrect predictions to correct
-        predictions based on the same label.
+        the relative frequencies of errors and correct predictions, to determine
+        corner cases. Therefore, we seek to compare the ratio of incorrect
+        predictions to correct predictions based on the same label.
       </p>
       <span class="math display">
         \[Relative Frequency(P,T) = \frac{P}{{T}}\]
       </span>
       <p>
-        where <i>P</i> is counts of prediction for specific (label, prediction) pair, and <i>T</i> is counts of prediction of total pairs of the label. 
-        For example, suppose we have a total of 100 predictions made for the 'ProductModel' label, 
-        of which 20 were incorrectly predicted as 'IdentifierAT' and 60 were correctly predicted as 'ProductModel', 
-        Therefore, the Relative Frequency of error prediction pair of ('ProductModel', 'IdentifierAT') is 0.2 and the Relative
-        Frequency of correct prediction pair of ('ProductModel', 'ProductModel') is 0.6. We calculated the frequency on all prediction, and listed the top 5 pairs with the highest error frequency in <i>Table 9a</i> for CTA and <i>Table 9b</i> for CPA. We also cross-checked those pairs in our samples above-mentioned to determine the error types of each pair. Pairs might have multiple possible error types depending on the table being used. 
+        where <i>P</i> is counts of prediction for specific (label, prediction)
+        pair, and <i>T</i> is counts of prediction of total pairs of the label.
+        For example, suppose we have a total of 100 predictions made for the
+        'ProductModel' label, of which 20 were incorrectly predicted as
+        'IdentifierAT' and 60 were correctly predicted as 'ProductModel',
+        Therefore, the Relative Frequency of error prediction pair of
+        ('ProductModel', 'IdentifierAT') is 0.2 and the Relative Frequency of
+        correct prediction pair of ('ProductModel', 'ProductModel') is 0.6. We
+        calculated the frequency on all prediction, and listed the top 5 pairs
+        with the highest error frequency in <i>Table 9a</i> for CTA and
+        <i>Table 9b</i> for CPA. We also cross-checked those pairs in our
+        samples above-mentioned to determine the error types of each pair. Pairs
+        might have multiple possible error types depending on the table being
+        used.
       </p>
       <p>
-        <b>Error Frequency for CTA
-        </b>
+        <b>Error Frequency for CTA </b>
       </p>
-      <p>  
-        Upon analyzing CTA's Top 5 errors, we observed that the majority were related to Hierarchical Labels, which was consistent with the sampled data. We believe that refining the 2-step model could address this issue. Despite the model's overall effectiveness in capturing the meaning of predicted values, inaccuracies persisted, particularly with the addressRegion and addressLocality pair. We discovered that while the schema defines addressRegion as the country's region, addressLocality corresponds to a city within that region. Unfortunately, we encountered numerous inconsistent labeling and mixed-up terms in tables. Therefore, future work must focus on preprocessing to address this problem by handling inconsistent labels.
+      <p>
+        Upon analyzing CTA's Top 5 errors, we observed that the majority were
+        related to Hierarchical Labels, which was consistent with the sampled
+        data. We believe that refining the 2-step model could address this
+        issue. Despite the model's overall effectiveness in capturing the
+        meaning of predicted values, inaccuracies persisted, particularly with
+        the addressRegion and addressLocality pair. We discovered that while the
+        schema defines addressRegion as the country's region, addressLocality
+        corresponds to a city within that region. Unfortunately, we encountered
+        numerous inconsistent labeling and mixed-up terms in tables. Therefore,
+        future work must focus on preprocessing to address this problem by
+        handling inconsistent labels.
       </p>
       <div style="text-align: center" class="tg-wrap">
         <table class="tg">
@@ -3603,13 +3641,20 @@
         </table>
       </div>
       <p>
-        <b>Error Frequency for CPA
-        </b>
+        <b>Error Frequency for CPA </b>
       </p>
       <p>
-        In CPA's top 5, the most common error type was related to semantic labeling, which highlights the challenges in accurately identifying and labeling the meaning of data values. Consistent data formats further complicate this issue, making it difficult for even humans to distinguish between them without contextual information. To address this issue, we propose including additional relevant columns, such as information about the stadium, to disambiguate between pairs of data like awayTeam and homeTeam, which can potentially improve the accuracy of the model's predictions.
+        In CPA's top 5, the most common error type was related to semantic
+        labeling, which highlights the challenges in accurately identifying and
+        labeling the meaning of data values. Consistent data formats further
+        complicate this issue, making it difficult for even humans to
+        distinguish between them without contextual information. To address this
+        issue, we propose including additional relevant columns, such as
+        information about the stadium, to disambiguate between pairs of data
+        like awayTeam and homeTeam, which can potentially improve the accuracy
+        of the model's predictions.
       </p>
-      
+
       <div style="text-align: center" class="tg-wrap">
         <table class="tg">
           <caption>
@@ -3680,41 +3725,60 @@
 
       <span id="toc7.1"></span>
       <h3>7.1 Discussion</h3>
-            
+
       <p><b>WikiTable dataset</b></p>
       <p>
-        In <i>Table 3a</i> and <i>Table 3b</i>, we can see that the best serialization
-        differs between the SOTAB and WikiTable datasets. One reason for this discrepancy could be that the WikiTable dataset contains more tables
-        with fewer columns, such as tables having only 2 columns. The difference is significant as calculated in <i>Table 1</i>. This
-        could cause the Neighboring Column method to perform less and result in a
-        lower F1 score on the test set.
+        In <i>Table 3a</i> and <i>Table 3b</i>, we can see that the best
+        serialization differs between the SOTAB and WikiTable datasets. One
+        reason for this discrepancy could be that the WikiTable dataset contains
+        more tables with fewer columns, such as tables having only 2 columns.
+        The difference is significant as calculated in <i>Table 1</i>. This
+        could cause the Neighboring Column method to perform less and result in
+        a lower F1 score on the test set.
       </p>
       <p><b>Column-TaBERT</b></p>
       <p>
-        We hypothesized that the Column-TaBERT method would be able to
-        encode more information with same token limit as
-        TaBERT, thus producing better results. However, the results
-        indicate that the column datatype performed worse than the cell
-        datatype. This may be due to the fact that the structural design did not
-        effectively enable the attention mechanism. In TaBERT, the model has one
-        datatype token placed just before the cell value. In contrast,
-        Column-TaBERT obtains the datatype only once and structures it as a
-        normal cell value. Future experiments could explore ways to improve
-        attention by altering this serialization design.
+        We hypothesized that the Column-TaBERT method would be able to encode
+        more information with same token limit as TaBERT, thus producing better
+        results. However, the results indicate that the column datatype
+        performed worse than the cell datatype. This may be due to the fact that
+        the structural design did not effectively enable the attention
+        mechanism. In TaBERT, the model has one datatype token placed just
+        before the cell value. In contrast, Column-TaBERT obtains the datatype
+        only once and structures it as a normal cell value. Future experiments
+        could explore ways to improve attention by altering this serialization
+        design.
       </p>
 
       <span id="toc7.2"></span>
       <h3>7.2 Conclusion</h3>
 
       <p>
-        Drawing a conclusion, we have achieved significant improvement on current methods for both CTA and CPA tasks for the SOTAB benchmark and comparatively on the WikiTables dataset. We conclude that for a Transformer-based language model, structureness in input sequence, both column serialization and row serialization plays significant role in attention mechanism. With a large training data like SOTAB benchmark, it is apparent that data augmentation methods, such as preprocessing and augmentation are less useful. However, relevant experiments should be conducted when dealing with smaller datasets. 
+        Drawing a conclusion, we have achieved significant improvement on
+        current methods for both CTA and CPA tasks for the SOTAB benchmark and
+        comparatively on the WikiTables dataset. We conclude that for a
+        Transformer-based language model, structureness in input sequence, both
+        column serialization and row serialization plays significant role in
+        attention mechanism. With a large training data like SOTAB benchmark, it
+        is apparent that data augmentation methods, such as preprocessing and
+        augmentation are less useful. However, relevant experiments should be
+        conducted when dealing with smaller datasets.
       </p>
 
       <p>
-        Moving forward, we were not able to fully utilize the potential of Longformer with more input sequence length. Additionally, due to time limit, we did not further develop specific data augmentation methods for different promising serialization methods. Lastly, optimization could be done to increase the training speed such as increasing batch size, model checkpointing and parallelism. On average, 1 epoch of training a RoBERTa model for SOTAB benchmark requires 1 hour for our machines and 5 times the duration for WikiTables dataset. 
+        Moving forward, we were not able to fully utilize the potential of
+        Longformer with more input sequence length. Additionally, due to time
+        limit, we did not further develop specific data augmentation methods for
+        different promising serialization methods. Lastly, optimization could be
+        done to increase the training speed such as increasing batch size, model
+        checkpointing and parallelism. On average, 1 epoch of training a RoBERTa
+        model for SOTAB benchmark requires 1 hour for our machines and 5 times
+        the duration for WikiTables dataset.
       </p>
       <p>
-        As table annotation using deep learning is still at its infancy, future works may include Longformer, Contrastive Learning or Large Language Models like ChatGPT.
+        As table annotation using deep learning is still at its infancy, future
+        works may include Longformer, Contrastive Learning or Large Language
+        Models like ChatGPT.
       </p>
 
       <span id="toc8"></span>
