@@ -3086,8 +3086,8 @@
         types and the tables do no include any metadata which means no table
         headers or cpations are available. We list the top 5 labels that achieved
         the highest score in the overall test set and the top 5 labels that
-        reached the lowest score for CTA in <i>Table 4a</i> and CPA in
-        <i>Table 4b</i>. The performance of CTA and CPA varies across different
+        reached the lowest score for CTA in <i>Table 5a</i> and CPA in
+        <i>Table 5b</i>. The performance of CTA and CPA varies across different
         schema types. <strong>MusicRecording</strong> is the only schema where
         both tasks perform well, while
         <strong>CreativeWork and Product</strong> are weak for both tasks.
@@ -3203,7 +3203,7 @@
         addresses. All other columns are classified as text, and if the token in
         the value is less than five, it is considered short text, otherwise, it
         is long text. The results of each data type with micro-F1 score are
-        summarized in Table 5 for CTA and CPA.
+        summarized in <i>Table 6</i> for CTA and CPA.
       </p>
       <div style="text-align: center" class="tg-wrap">
         <table class="tg">
@@ -3272,7 +3272,7 @@
         Columns which were all clearly defined in
         <a href="https://webdatacommons.org/structureddata/sotab/"
           >WDC Schema.org Table Annotation Benchmark (SOTAB)</a
-        >[<a href="#toc9">1</a>]. The results are summarized in Table 6 for CTA
+        >[<a href="#toc9">1</a>]. The results are summarized in <i>Table 7</i> for CTA
         and CPA.
       </p>
       <div style="text-align: center" class="tg-wrap">
@@ -3335,8 +3335,8 @@
         tasks. Specifically, we sampled 614 errors from a total of 1533
         observations for CTA, and 617 errors from 3853 observations for CPA. We
         manually checked these tables and classified the types of errors we
-        found, which are listed in <i>Table 7</i>. And the distribution of error
-        types in the samples are illustrated in the <i>figure X</i>.
+        found, which are listed in <i>Table 8</i>. And the distribution of error
+        types in the samples are illustrated in the <i>figure 5</i>.
       </p>
       <div style="text-align: center" class="tg-wrap">
         <table>
@@ -3493,10 +3493,10 @@
       
       <p><b>WikiTable dataset</b></p>
       <p>
-        In <i>Tables 2a and 2b</i>, we can see that the best serialization
+        In <i>Table 3a</i> and <i>Table 3b</i>, we can see that the best serialization
         differs between the SOTAB and WikiTable datasets. One possible reason
         for this difference is that the WikiTable dataset contains more tables
-        with few columns, such as some tables that only have 2 columns. This
+        with few columns, such as some tables that only have 2 columns. The difference is significant as calculated in <i>Table 1</i>. This
         could cause the neighboring method to perform poorly and result in a
         lower F1 score on the test set.
       </p>
