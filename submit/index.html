@@ -3365,6 +3365,9 @@
       </div>
 
       <p>
+        <b>Error Sampling</b>
+      </p>
+      <p>
         Following the statistical analysis of our results, we delved deeper into
         the data itself to investigate the root causes of the errors. To do
         this, we sampled errors in prediction by schema for both the CTA and CPA
@@ -3374,7 +3377,7 @@
         found, which are listed in <i>Table 8</i>. And the distribution of error
         types in the samples are illustrated in <i>Figure 5</i>.
       </p>
-      <div style="text-align: center" class="tg-wrap">
+      <div style={text-align: center; text-align: left} class="tg-wrap">
         <table>
           <caption>
             Table 8: Error Types and Definitions
@@ -3452,7 +3455,7 @@
               <td>Example given in <i>Figure 4a</i>.</td>
             </tr>
             <tr>
-              <td>Lack of information</td>
+              <td>Lack of info</td>
               <td>
                 The data provided is insufficient in current and neighbor
                 columns but contained in columns outside the windows.
@@ -3507,9 +3510,13 @@
         </figure>
       </div>
       <p>
+        <b>
+          Relative Frequency Definition
+        </b>
+      </p>
+      <p>
         In addition to the absolute count of errors, we also aim to investigate
-        the relative frequencies of errors and correct predictions, in order to
-        gain a better understanding of the overall performance. Therefore, we
+        the relative frequencies of errors and correct predictions, to determine corner cases. Therefore, we
         seek to compare the ratio of incorrect predictions to correct
         predictions based on the same label.
       </p>
@@ -3521,156 +3528,153 @@
         For example, suppose we have a total of 100 predictions made for the 'ProductModel' label, 
         of which 20 were incorrectly predicted as 'IdentifierAT' and 60 were correctly predicted as 'ProductModel', 
         Therefore, the Relative Frequency of error prediction pair of ('ProductModel', 'IdentifierAT') is 0.2 and the Relative
-        Frequency of correct prediction pair of ('ProductModel', 'ProductModel') is 0.6.
+        Frequency of correct prediction pair of ('ProductModel', 'ProductModel') is 0.6. We calculated the frequency on all prediction, and listed the top 5 pairs with the highest error frequency in <i>Table 9a</i> for CTA and <i>Table 9b</i> for CPA. We also cross-checked those pairs in our samples above-mentioned to determine the error types of each pair. Pairs might have multiple possible error types depending on the table being used. 
       </p>
       <p>
-        We calculated the frequency on all prediction, and listed the top 5 pairs with the highest error frequency in table 9a for CTA and table 9b for CPA.
-        We also cross checked those pairs in our samples abovementioned to see what might be the error types of each pair.
-        Pair might have multiple possible error types depending on the table being used. 
+        <b>Error Frequency for CTA
+        </b>
       </p>
       <p>  
-        In CTA top 5, we found that the most frequent errors were related to Hierarchical labels, and this aligned with the sample data. 
-        We assumed that this problem can be improved with more refinement in 2 step models.
-        While the model generally performed well in capturing the meaning of predicted values, there were still some inaccuracies, particularly with the addressRegion and addressLocality pair. 
-        We found that the schema defined addressRegion as the region of the country, while addressLocality represented a lower level of addressRegion that typically corresponded to the city. 
-        However, there were a lot of inconsistent labeling and mixed-up terms in tables, sometimes the columns may also contain region and city together which make it harder for model to identify and predict.
-        Therefore, to address this problem, preprocessing and deal with inconsistent labels might what we can do to improve in the future.
+        Upon analyzing CTA's Top 5 errors, we observed that the majority were related to Hierarchical Labels, which was consistent with the sampled data. We believe that refining the 2-step model could address this issue. Despite the model's overall effectiveness in capturing the meaning of predicted values, inaccuracies persisted, particularly with the addressRegion and addressLocality pair. We discovered that while the schema defines addressRegion as the country's region, addressLocality corresponds to a city within that region. Unfortunately, we encountered numerous inconsistent labeling and mixed-up terms in tables. Therefore, future work must focus on preprocessing to address this problem by handling inconsistent labels.
       </p>
-      <table class="tg">
-        <caption>
-          Table 9a: Top 5 Error Frequency for CTA
-        </caption>
-        <thead>
-          <tr>
-            <th class="tg-mkpc">Label</th>
-            <th class="tg-mkpc">Prediction</th>
-            <th class="tg-mkpc">Pair count</th>
-            <th class="tg-mkpc">Total count</th>
-            <th class="tg-mkpc">Error Frequency</th>
-            <th class="tg-mkpc">Correct Frequency</th>
-            <th class="tg-mkpc">Possible error types</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>MusicRecording</td>
-            <td>MusicRecording/name</td>
-            <td>4</td>
-            <td>14</td>
-            <td>0.286</td>
-            <td>0.571</td>
-            <td>Hierarchical label</td>
-          </tr>
-          <tr>
-            <td>ProductModel</td>
-            <td>IdentifierAT</td>
-            <td>60</td>
-            <td>268</td>
-            <td>0.224</td>
-            <td>0.496</td>
-            <td>Hierarchical label</td>
-          </tr>
-          <tr>
-            <td>faxNumber</td>
-            <td>telephone</td>
-            <td>34</td>
-            <td>172</td>
-            <td>0.198</td>
-            <td>0.791</td>
-            <td>Semantic label</td>
-          </tr>
-          <tr>
-            <td>addressRegion</td>
-            <td>addressLocality</td>
-            <td>43</td>
-            <td>221</td>
-            <td>0.195</td>
-            <td>0.738</td>
-            <td>Duplicate label, Bad prediction, Actual wrong label</td>
-          </tr>
-          <tr>
-            <td>MusicGroup</td>
-            <td>MusicArtistAT</td>
-            <td>2</td>
-            <td>11</td>
-            <td>0.182</td>
-            <td>0.818</td>
-            <td>Hierarchical label</td>
-          </tr>
-        </tbody>
-      </table>
+      <div style="text-align: center" class="tg-wrap">
+        <table class="tg">
+          <caption>
+            Table 9a: Top 5 Error Frequency for CTA
+          </caption>
+          <thead>
+            <tr>
+              <th class="tg-mkpc">Label</th>
+              <th class="tg-mkpc">Prediction</th>
+              <th class="tg-mkpc">Pair count</th>
+              <th class="tg-mkpc">Total count</th>
+              <th class="tg-mkpc">Error Frequency</th>
+              <th class="tg-mkpc">Correct Frequency</th>
+              <th class="tg-mkpc">Possible error types</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>MusicRecording</td>
+              <td>MusicRecording/name</td>
+              <td>4</td>
+              <td>14</td>
+              <td>0.286</td>
+              <td>0.571</td>
+              <td>Hierarchical label</td>
+            </tr>
+            <tr>
+              <td>ProductModel</td>
+              <td>IdentifierAT</td>
+              <td>60</td>
+              <td>268</td>
+              <td>0.224</td>
+              <td>0.496</td>
+              <td>Hierarchical label</td>
+            </tr>
+            <tr>
+              <td>faxNumber</td>
+              <td>telephone</td>
+              <td>34</td>
+              <td>172</td>
+              <td>0.198</td>
+              <td>0.791</td>
+              <td>Semantic label</td>
+            </tr>
+            <tr>
+              <td>addressRegion</td>
+              <td>addressLocality</td>
+              <td>43</td>
+              <td>221</td>
+              <td>0.195</td>
+              <td>0.738</td>
+              <td>Duplicate label, Bad prediction, Actual wrong label</td>
+            </tr>
+            <tr>
+              <td>MusicGroup</td>
+              <td>MusicArtistAT</td>
+              <td>2</td>
+              <td>11</td>
+              <td>0.182</td>
+              <td>0.818</td>
+              <td>Hierarchical label</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
       <p>
-        In CPA top 5, the most prevalent error type was related to semantic lable, 
-        which dominated the other possible error types. This highlights the challenges posed by accurately identifying 
-        and labeling the meaning of data values. Moreover, for these labeling and prediction pairs, the data format was consistent, 
-        which may make it challenging for humans to distinguish the difference between them without sufficient context or related information.
-        As a result, we suggested more columns included may help address this problem, for example in the case of the awayTeam and homeTeam pair, 
-        including information about the stadium could potentially help to disambiguate between them and improve the accuracy of the model's predictions. 
+        <b>Error Frequency for CPA
+        </b>
+      </p>
+      <p>
+        In CPA's top 5, the most common error type was related to semantic labeling, which highlights the challenges in accurately identifying and labeling the meaning of data values. Consistent data formats further complicate this issue, making it difficult for even humans to distinguish between them without contextual information. To address this issue, we propose including additional relevant columns, such as information about the stadium, to disambiguate between pairs of data like awayTeam and homeTeam, which can potentially improve the accuracy of the model's predictions.
       </p>
       
-      <table class="tg">
-        <caption>
-          Table 9b: Top 5 Error Frequency for CPA
-        </caption>
-        <thead>
-          <tr>
-            <th class="tg-mkpc">Label</th>
-            <th class="tg-mkpc">Prediction</th>
-            <th class="tg-mkpc">Pair count</th>
-            <th class="tg-mkpc">Total count</th>
-            <th class="tg-mkpc">Error Frequency</th>
-            <th class="tg-mkpc">Correct Frequency</th>
-            <th class="tg-mkpc">Possible error types</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>awayTeam</td>
-            <td>homeTeam</td>
-            <td>10</td>
-            <td>16</td>
-            <td>0.625</td>
-            <td>0.375</td>
-            <td>Semantic label</td>
-          </tr>
-          <tr>
-            <td>ratingCount</td>
-            <td>reviewCount</td>
-            <td>65</td>
-            <td>199</td>
-            <td>0.327</td>
-            <td>0.568</td>
-            <td>Semantic label</td>
-          </tr>
-          <tr>
-            <td>height</td>
-            <td>width</td>
-            <td>57</td>
-            <td>192</td>
-            <td>0.297</td>
-            <td>0.464</td>
-            <td>Semantic label</td>
-          </tr>
-          <tr>
-            <td>productID</td>
-            <td>sku</td>
-            <td>42</td>
-            <td>154</td>
-            <td>0.273</td>
-            <td>0.26</td>
-            <td>Semantic label, Duplicate label</td>
-          </tr>
-          <tr>
-            <td>dateCreated</td>
-            <td>datePublished</td>
-            <td>62</td>
-            <td>249</td>
-            <td>0.249</td>
-            <td>0.558</td>
-            <td>Semantic label</td>
-          </tr>
-        </tbody>
-      </table>
+      <div style="text-align: center" class="tg-wrap">
+        <table class="tg">
+          <caption>
+            Table 9b: Top 5 Error Frequency for CPA
+          </caption>
+          <thead>
+            <tr>
+              <th class="tg-mkpc">Label</th>
+              <th class="tg-mkpc">Prediction</th>
+              <th class="tg-mkpc">Pair count</th>
+              <th class="tg-mkpc">Total count</th>
+              <th class="tg-mkpc">Error Frequency</th>
+              <th class="tg-mkpc">Correct Frequency</th>
+              <th class="tg-mkpc">Possible error types</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>awayTeam</td>
+              <td>homeTeam</td>
+              <td>10</td>
+              <td>16</td>
+              <td>0.625</td>
+              <td>0.375</td>
+              <td>Semantic label</td>
+            </tr>
+            <tr>
+              <td>ratingCount</td>
+              <td>reviewCount</td>
+              <td>65</td>
+              <td>199</td>
+              <td>0.327</td>
+              <td>0.568</td>
+              <td>Semantic label</td>
+            </tr>
+            <tr>
+              <td>height</td>
+              <td>width</td>
+              <td>57</td>
+              <td>192</td>
+              <td>0.297</td>
+              <td>0.464</td>
+              <td>Semantic label</td>
+            </tr>
+            <tr>
+              <td>productID</td>
+              <td>sku</td>
+              <td>42</td>
+              <td>154</td>
+              <td>0.273</td>
+              <td>0.26</td>
+              <td>Semantic label, Duplicate label</td>
+            </tr>
+            <tr>
+              <td>dateCreated</td>
+              <td>datePublished</td>
+              <td>62</td>
+              <td>249</td>
+              <td>0.249</td>
+              <td>0.558</td>
+              <td>Semantic label</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
       <span id="toc7"></span>
       <h2>7. Discussion and Conclusion</h2>
 
@@ -3680,17 +3684,16 @@
       <p><b>WikiTable dataset</b></p>
       <p>
         In <i>Table 3a</i> and <i>Table 3b</i>, we can see that the best serialization
-        differs between the SOTAB and WikiTable datasets. One possible reason
-        for this difference is that the WikiTable dataset contains more tables
-        with few columns, such as some tables that only have 2 columns. The difference is significant as calculated in <i>Table 1</i>. This
+        differs between the SOTAB and WikiTable datasets. One reason for this discrepancy could be that the WikiTable dataset contains more tables
+        with fewer columns, such as tables having only 2 columns. The difference is significant as calculated in <i>Table 1</i>. This
         could cause the Neighboring Column method to perform less and result in a
         lower F1 score on the test set.
       </p>
       <p><b>Column-TaBERT</b></p>
       <p>
-        We had hypothesized that the Column-TaBERT method would be able to
-        encode more information within the same limited number of tokens as
-        TaBERT, and therefore produce better results. However, the results
+        We hypothesized that the Column-TaBERT method would be able to
+        encode more information with same token limit as
+        TaBERT, thus producing better results. However, the results
         indicate that the column datatype performed worse than the cell
         datatype. This may be due to the fact that the structural design did not
         effectively enable the attention mechanism. In TaBERT, the model has one
