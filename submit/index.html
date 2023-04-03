@@ -1077,17 +1077,14 @@
         where Q, K, and V are the query, key, and value vectors, respectively.
       </p>
       <p>
-        Transformer's attention mechanism can be used in the our tasks to help
-        the model identify which parts of a table are most relevant for
-        predicting the column types and relations.
+        A Transformer-based language model is ideal for the tasks due to its language understanding capabilities and
+        Transformer's attention mechanism that captures contextualized column
+        representations.
       </p>
       <span id="toc4"></span>
       <h2>4. Model</h2>
       <p>
-        A Transformer-based language model is ideal for tasks related to table
-        understanding due to its language understanding capabilities and
-        Transformer's attention mechanism that captures contextualized column
-        representations. These language models expect token (text) sequences as
+        A Transformer-based language models expect token (text) sequences as
         inputs. This translates to representing tables in text sequences,
         formally known as table serialization, for the tasks of CTA and CPA.
         Single-column serialization is an intuitive solution that concatenates
