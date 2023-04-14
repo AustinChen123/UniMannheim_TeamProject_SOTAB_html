@@ -801,12 +801,12 @@
       <h1 style="font-size: 250%">Table Annotation using Deep Learning</h1>
     </div>
     <div id="authors">
-      <a>Christian Bizer</a><br />
       <a>Chun-Yi Chen</a><br />
       <a>I-Chen Hsieh</a><br />
-      <a>Keti Korini</a><br />
       <a>Munir Abobaker</a><br />
       <a>Reng Chiz Der</a><br />
+      <a>Keti Korini (Supervisor)</a><br />
+      <a>Christian Bizer (Supervisor)</a><br />
     </div>
 
     <div id="content">
@@ -947,11 +947,11 @@
       <span id="toc1"></span>
       <h2>1. Introduction</h2>
       <p>
-        Table annotation is the process of adding descriptive labels to tables
-        in a large dataset using concepts from a knowledge graph or shared
-        vocabulary. This process is crucial for effective data search and
-        integration, especially since the web contains millions of high-quality
-        tables available on websites and public data portals such as Wikipedia.
+        <a href = "https://paperswithcode.com/task/column-type-annotation">Table annotation</a>
+        is the task of annotating a table with terms/concepts from knowledge graph, 
+        database schema or vocabulary. This process is crucial for effective data search and
+        integration, especially since the web contains millions of tables available 
+        on websites, public data portals, and encyclopedia such as Wikipedia.
         However, to utilize these tables, we need to understand their structure
         and schema, which can be challenging due to their heterogeneous or
         unknown headers and content. The objective of this project is to address
@@ -3140,7 +3140,7 @@
       <span id="toc6.3"></span>
       <h3>6.3 Error Analysis</h3>
       <p>
-        As error analysis is an on-going task, we analyzed the performance of
+        To evaluate the performance, we analyzed on our best results of 
         the Neighboring Column Serialization with window size of 2. The
         parameters utilized is a BERT model trained for 30 epochs with batch
         size of 16. We initially conducted statistic analysis on three different
@@ -3161,6 +3161,12 @@
         <strong>Recipe and Person</strong> are among the top 5 schemas for CTA,
         but are among the lowest 5 for CPA.
       </p>
+      <p> 
+        We attribute this discrepancy to the fact that CPA employs more comprehensive and detailed classification labels. 
+        For instance, the Recipe schema in CPA includes specific labels for fatContent, sugarContent, and proteinContent, 
+        whereas in CTA, they are all labeled as Mass. Additionally, cookingTime and prepTime in CPA are classified as Duration in CTA.
+        In Person schema, the CTA tasks are more straightforward such as Person/name, telephone, and Country. while CPA has more complicated tasks like
+        affiliation, memberOf, worksFor, alumniOf which can be ambiguous.
       <div style="text-align: center" class="tg-wrap">
         <table class="tg">
           <caption>
