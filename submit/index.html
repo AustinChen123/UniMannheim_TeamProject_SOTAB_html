@@ -1118,12 +1118,12 @@
           [<a href="#toc12">4</a>]
         </figcaption>
       </figure>
-      <p>
-        As shown in figure <b><a id="Fig2">Figure 2</a></b>,  TURL is designed around three main components:
+      <p> 
+        As shown in <a id="Fig2">Figure 2</a>,  TURL is designed around three main components:
          an embedding layer that converts input tables into embeddings, an N-stacked aware transformer
           layer that processes these embeddings, and a projection layer that generates predictions.
            To enhance its performance on a wide range of table-related tasks, TURL adopts a pre-training/finetuning paradigm.
-            During pretraining, TURL uses TinyBERT, a smaller, more computationally efficient version of the BERT language model.
+            During pretraining, TURL uses TinyBERT [<a href="#toc27">19</a>], a smaller, more computationally efficient version of the BERT language model.
             In addition to this, TURL uses two training objectives,
              the Masked Language Model (MLM) and the Masked Entity Recovery (MER).
       TURL has been evaluated on six key table-related tasks, including entity linking, column type annotation, relation extraction, row population, cell filling, and schema augmentation.
@@ -3945,6 +3945,10 @@
         [18] Chandra Sekhar Bhagavatula, Thanapon Noraset, and Doug Downey. 2015. TabEL:
         Entity Linking in Web Tables. In Proceedings of the 14th International Conference
         on The Semantic Web-ISWC 2015-Volume 9366. 425–441. <br />
+
+        <span id="toc27"></span>
+        [19] Xiaoqi Jiao, Y. Yin, Lifeng Shang, Xin Jiang, Xusong Chen, Linlin Li, Fang Wang,
+        and Qun Liu. 2019. TinyBERT: Distilling BERT for Natural Language Understanding. ArXiv abs/1909.10351 (2019). <br />
 
   
 
