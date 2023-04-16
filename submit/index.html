@@ -1106,7 +1106,7 @@
         between columns (CTA and CPA).
       </p>
 
-      <span id="toc3.1.Fig"></span>
+      <span id="toc3.2.Fig"></span>
       <figure>
         <img
           src="images/TURL.JPG"
@@ -1152,6 +1152,37 @@
       information contained in the table itself, without the need for external
       knowledge or context.
       <p></p>
+
+      <span id="toc3.4.Fig"></span>
+      <figure>
+        <img
+          src="images/DODUO.JPG"
+          alt="TURL framework"
+          class="center"
+        />
+        <figcaption class="center">
+          <b><a id="Fig3"></a>Figure 2:</b> How DODUO computes contextualized column embeddings using the Transformer layers.
+          [<a href="#toc15">7</a>]
+        </figcaption>
+      </figure>
+      <p>
+        To annotate a table with N columns, each of which with m 
+        values using pre-trained language models, the table is first serialized according to
+        the following schema by appending a [CLS] token to the beginning of each column and a [SEP] 
+        token at the end of this sequence:
+
+        <span class="math display"
+          >\[serialize(T)::= [CLS]\;v^1_1\;...[CLS]\; v^1_n...v^n_m\;[SEP]\]</span
+        >
+        
+        This creates a sequence of tokens that represents the entire table. For example, consider a table 
+        with three columns as  illustrated in <a id="Fig3">Figure 3</a>,the serialized input sequence would look like this: <br />
+         <!--style will override the class center width to increase it to be 40% instead of 30%-->
+        <p class="center" style="width: 40%">[CLS] Happy Feet, ... [CLS] George Miller, ... [CLS] USA, ...,France [SEP].</p> 
+        Next, a 12 layer BERT Base model [<a href="#toc22">14</a>] is fine-tuned on the serialized table to predict
+        labels for each [CLS] token. The number of labels predicted is equal to the number of columns in the table.
+         Although the paper used BERT, any other pre-trained language model such as RoBERTa [<a href="#toc23">15</a>] can be utilized.
+      </p>
 
       <span id="toc4"></span>
       <h2>4. Model</h2>
