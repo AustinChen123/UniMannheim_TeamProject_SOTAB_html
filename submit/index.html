@@ -993,7 +993,7 @@
         An example of CTA: An e-commerce website may have a table of products
         with columns such as "product name", "description", "price", "category",
         and "brand". By annotating the columns with entity types such as
-        "product name", "brand", and "category", a machine learning model can
+        <b>"product name"</b>, <b>"brand"</b>, and <b>"category"</b>, a machine learning model can
         better understand the semantic meaning of the data, and accurately
         categorize products into appropriate categories, recommend related
         products, and provide a more personalized shopping experience to the
@@ -1014,10 +1014,10 @@
       <h3>2.2 Columns Property Annotation (CPA)</h3>
       <p>
         CPA is a web data integration task and it plays a crucial role in
-        ensuring data quality control and schema matching[<a href="#toc17">7</a
+        ensuring data quality control and schema matching [<a href="#toc17">7</a
         >]. It aims to identify relationships between different columns in a
-        table. It can infer relationships that might not be immediately obvious,
-        as illustrated in <i>Figure 1</i>. Here, CPA can help to infer that the
+        table and can infer relationships that might not be immediately obvious.
+        As illustrated in <i>Figure 1</i>, CPA can help to infer that the
         <b>"address" </b>column refers to the hotel's location.
       </p>
 
@@ -1061,7 +1061,7 @@
         applications. They were first introduced in 2017 by Vaswani et al [<a
           href="#toc15"
           >5</a
-        >]. and have since become one of the most popular deep-learning models [<a
+        >] and have since become one of the most popular deep-learning models [<a
         href="#toc24">17</a>].
         Transformers are based on the concept of self-attention, which allows
         the model to focus on different parts of the input sequence at each
@@ -1096,7 +1096,7 @@
       <p>
         The paper [<a href="#toc12">4</a>] provides a cornerstone for table
         representation through the introduction of a framework for table
-        understanding called TURL. TURL achieves this by learning deep, 
+        understanding called TURL. TURL achieves this by learning deep 
         contextualized representations of relational tables in an unsupervised manner.
         TURL's unsupervised pre-training on a vast web table
         corpus derived from WikiTable [<a href="#toc26">18</a>] facilitates its application in various
@@ -1105,28 +1105,15 @@
         information about tables such as column types and the relationships
         between columns (CTA and CPA).
       </p>
-
-      <span id="toc3.2.Fig"></span>
-      <figure>
-        <img
-          src="images/TURL.JPG"
-          alt="TURL framework"
-          class="center"
-        />
-        <figcaption class="center">
-          <b><a id="Fig2"></a>Figure 2:</b> Overview of TURL framework.
-          [<a href="#toc12">4</a>]
-        </figcaption>
-      </figure>
       <p> 
-        As shown in <a id="Fig2">Figure 2</a>,  TURL is designed around three main components:
-         an embedding layer that converts input tables into embeddings, an N-stacked aware transformer
-          layer that processes these embeddings, and a projection layer that generates predictions.
-           To enhance its performance on a wide range of table-related tasks, TURL adopts a pre-training/finetuning paradigm.
-            During pretraining, TURL uses TinyBERT [<a href="#toc27">19</a>], a smaller, more computationally efficient version of the BERT language model.
-            In addition to this, TURL uses two training objectives,
-             the Masked Language Model (MLM) and the Masked Entity Recovery (MER).
-      TURL has been evaluated on six key table-related tasks, including entity linking, column type annotation, relation extraction, row population, cell filling, and schema augmentation.
+        The framework is composed of three main components:
+        an embedding layer that converts input tables into embeddings, an N-stacked aware transformer
+        layer that attends over these embeddings to capture useful information, and a projection layer for pre-training objectives.
+        To enhance its performance on a wide range of table-related tasks, TURL adopts a pre-training/finetuning paradigm.
+        During pretraining, it uses TinyBERT [<a href="#toc27">19</a>], a smaller, more computationally efficient version of the BERT language model.
+        In addition to this, it uses two training objectives,
+        the Masked Language Model (MLM) and the Masked Entity Recovery (MER).
+      TURL has been evaluated on six key table-related tasks such as entity linking, column type annotation, relation extraction, row population, cell filling, and schema augmentation.
 
       </p>
 
@@ -1168,13 +1155,13 @@
       <p>
         To annotate a table with N columns, each of which with m 
         values using pre-trained language models, the table is first serialized according to
-        the following schema by appending a [CLS] token to the beginning of each column and a [SEP] 
-        token at the end of this sequence:
+        the following schema:
 
         <span class="math display"
           >\[serialize(T)::= [CLS]\;v^1_1\;...[CLS]\; v^1_n...v^n_m\;[SEP]\]</span
         >
-        
+        It appends a [CLS] token to the beginning of each column, concatenates them and adds a [SEP] 
+        token at the end of this sequence.
         This creates a sequence of tokens that represents the entire table. For example, consider a table 
         with three columns as  illustrated in <a id="Fig3">Figure 3</a>,the serialized input sequence would look like this: <br />
          <!--style will override the class center width to increase it to be 40% instead of 30%-->
