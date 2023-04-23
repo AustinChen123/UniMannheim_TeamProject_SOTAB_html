@@ -1171,6 +1171,32 @@
          Although the paper used BERT, any other pre-trained language model such as RoBERTa [<a href="#toc23">15</a>] can be utilized.
       </p>
 
+      <span id="toc3.5"></span>
+      <h3>3.5 TaBERT</h3>
+      TaBERT is an advanced language model that can generate representations for both natural language sentences and 
+      structured tables jointly. It has been pre-trained on a large dataset consisting of 26 million tables 
+      and their associated English contexts.
+      <p>
+      As shown in <i>Figure 4</i>, TaBERT first generates a content 
+      snapshot of a table T based on an input utterance u and table T. The snapshot comprises of rows that contain 
+      the most relevant data from table T in relation to the input utterance u. In this Example in the <i>Figure 4.a</i>, 
+      rows R2, R3, R5 are the most relevant to the utterance. Next, each row within the snapshot 
+      is linearized and concatenated with the utterance u as shown in <i>Figure 4.b</i>. This resulting string is then processed by a Transformer model,
+      such as BERT (see: <i>Figure 4.c</i>), to produce encoding vectors for both the utterance tokens and table cells on a row-by-row basis [<a href="#toc28">20</a>].</p>
+
+      <span id="toc3.5.Fig"></span>
+      <figure>
+        <img
+          src="images/TaBERT.JPG"
+          alt="TaBERT framework"
+          class="center"
+        />
+        <figcaption class="center">
+          <b><a id="Fig4"></a>Figure 4:</b> Overview of TaBERT.
+          [<a href="#toc28">20</a>]
+        </figcaption>
+      </figure>
+
       <span id="toc4"></span>
       <h2>4. Model</h2>
       <p>
@@ -3967,6 +3993,10 @@
         <span id="toc27"></span>
         [19] Xiaoqi Jiao, Y. Yin, Lifeng Shang, Xin Jiang, Xusong Chen, Linlin Li, Fang Wang,
         and Qun Liu. 2019. TinyBERT: Distilling BERT for Natural Language Understanding. ArXiv abs/1909.10351 (2019). <br />
+
+        <span id="toc28"></span>
+        [20] Yin P, Neubig G, Yih WT, Riedel S. TaBERT: Pretraining for joint understanding of textual and tabular data.
+         arXiv preprint arXiv:2005.08314. 2020 May 17.
 
   
 
