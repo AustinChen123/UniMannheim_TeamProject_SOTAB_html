@@ -3348,16 +3348,15 @@
       <p>
         We observed that the <strong>Boolean</strong> data accounts for a very small portion of the overall test sets. 
         Therefore, any predictions made on this data can significantly impact the final score. 
-        For instance in CTA task, all 51 boolean data was correct predicted, resulting in a perfect F1 score.
-        However, in CPA task, although there were only 3 incorrect predictions out of a total of 20 Boolean data, the score notable decreased.
-        Upon further investigation, we found these errors were due to Actual wrong label of boolean data as height or gtin8.
-        In comparing the CPA and CTA tasks in other data types, it appears that the CPA tasks have lower scores. 
+        For instance, in CPA task, although there were only 3 incorrect predictions out of a total of 20 Boolean data, the score decreased notably.
+        Upon further investigation, we found these errors were due to wrong truth labels of boolean data as height or gtin8.
+        When comparing the CPA and CTA tasks in other data types, it appears that the CPA tasks have lower scores. 
         This could be due to the fact that the CPA tasks involve splitting the label spaces further, 
         which can make it more challenging to accurately assign the correct labels.
         For instance, in <strong>Numeric</strong> data, the CPA tasks have large numbers of incorrect predictions between gtin, gtin12, gtin13 and gtin14.
         Also in <strong>URL</strong> data, some URLs refer to the source of images. In CPA tasks, these URLs are further split into more specific categories
         such as logo, image, and photo which have high degree of similarity and make it more difficult for the model to distinguish between them.
-        The same issue also applies to <strong>short text</strong> and <strong>Long text</strong> data types.
+        The same issue also applies to <strong>Short Text</strong> and <strong>Long Text</strong> data types.
       </p>
       <div style="text-align: center" class="tg-wrap">
         <table class="tg">
