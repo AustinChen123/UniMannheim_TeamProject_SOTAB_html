@@ -984,7 +984,7 @@
         <b
           >"hotel/name", "streetAddress","addressLocality", "Country", and
           "currency" </b
-        >[<a href="#toc9">1</a>] as shown in <i>Figure 1</i>. While data types
+        >[<a href="#toc9">1</a>] as shown in <a id="Fig1">Figure 1</a>. While data types
         provide basic information about the type of data stored in a column,
         entity types capture domain-specific semantics that convey more meaning.
         For instance, labeling a column with <b>"hotel/name"</b> rather than
@@ -1022,7 +1022,7 @@
         understanding [<a href="#toc17">7</a>]. It aims to identify semantic
         relationships between different columns in a table and can infer
         relationships that might not be immediately obvious. As illustrated in
-        <i>Figure 1</i>, CPA can help to infer that the <b>"address" </b>column
+        <a id="Fig1">Figure 1</a>, CPA can help to infer that the <b>"address" </b>column
         refers to the hotel's location.
       </p>
 
@@ -1481,7 +1481,7 @@
         types in each cell, we introduce <em>Column-TaBERT Serialization</em>,
         which infers the data type for each column by majority count and
         includes the data types for each column only once. For the CTA task, the
-        resulting serialization is illustrated in <i>Figure 3</i> or:
+        resulting serialization is illustrated in <a id="Fig6">Figure 6</a> or:
         <span class="math display"
           >\[serialize_{col\_tabert}(C)::=
           [CLS]\;target\_col\_type\;target\_col\_data\;[SEP]\;context\_col\_1\_type\;context\_col\_2\_type\;...\;[SEP]\;row\_data\;[SEP]\]</span
