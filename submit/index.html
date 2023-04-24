@@ -1144,8 +1144,7 @@
         </figcaption>
       </figure>
       <p>
-
-      As shown in <a id="Fig2">Figure 2</a>, DODUO utilizes a pre-trained Transformer-based language model, particularly a BERT language model [<a href="#toc22">14</a>] and adopts multi-task learning into the model to "transfer" shared knowledge between CTA and CPA tasks. DODUO introduces table-wise serialization to incorporate table context into prediction. Particularly, the serialization method is: for a table of N columns of m rows, 
+        As shown in <a id="Fig2">Figure 2</a>, DODUO utilizes a pre-trained Transformer-based language model, particularly a BERT language model [<a href="#toc22">14</a>] and adopts multi-task learning into the model to "transfer" shared knowledge between CTA and CPA tasks. DODUO introduces table-wise serialization to incorporate table context into prediction. Particularly, the serialization method is: for a table of N columns of m rows, 
         <span class="math display"
           >\[serialize(T)::= [CLS]\;v^1_1\;...[CLS]\; v^1_n...v^n_m\;[SEP]\]</span
         > where a [CLS] token is appended to the beginning of each column, which its corresponding embeddings represent learned column representations for the column. The output layer on top of a column embedding, i.e. the [CLS] token, is used for the CTA task. Column embeddings of a column pair is used for the CPA task instead.
@@ -1154,15 +1153,11 @@
       <span id="toc3.5"></span>
       <h3>3.5 TaBERT</h3>
       <p>
-       TaBERT is an advanced language model that can generate representations for both natural language sentences and structured tables jointly. It has been pre-trained on a large dataset consisting of 26 million tables and their associated English contexts.
+        TaBERT [<a href="#toc28">20</a>] is a pretrained Language model built on top of BERT that jointly learns representations for natural language (NL) sentences and (semi-)structured tables. The contributions of TaBERT include linearization of the structure of tables to be compatible with Transformer-based BERT model, content snapshots to encode subset of relevant table content to cope with large tables, and vertical attention mechanism that share information across table rows. Lastly, TaBERT is pretrained on a corpus of 26 million tables and English paragraphs to capture the association between tabular data and related NL text.
   	  </p>
       <p>
-      As shown in <i>Figure 3</i>, TaBERT first generates a content 
-      snapshot of a table T based on an input utterance u and table T. The snapshot comprises of rows that contain 
-      the most relevant data from table T in relation to the input utterance u. In this Example in the <i>Figure 4.a</i>, 
-      rows R2, R3, R5 are the most relevant to the utterance. Next, each row within the snapshot 
-      is linearized and concatenated with the utterance u as shown in <i>Figure 4.b</i>. This resulting string is then processed by a Transformer model,
-      such as BERT (see: <i>Figure 4.c</i>), to produce encoding vectors for both the utterance tokens and table cells on a row-by-row basis [<a href="#toc28">20</a>].</p>
+        The overall architecture for TaBERT is shown in <a id="Fig3">Figure 3</a>. Firstly, a content snapshot of a table is created based on the input NL utterance. Row-wise encodings are produces for utterance tokens and cells. Lastly, all row-wise encodings are aligned and processed by vertical self-attention layers to generate utterance and column representations. These representations are then used for downstream tasks.
+      </p>
 
       <span id="toc3.5.Fig"></span>
       <figure>
