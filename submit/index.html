@@ -1097,25 +1097,14 @@
       <p>
         The paper [<a href="#toc12">4</a>] provides a cornerstone for table
         representation through the introduction of a framework for table
-        understanding called TURL. TURL achieves this by learning deep 
-        contextualized representations of relational tables in an unsupervised manner.
-        TURL's unsupervised pre-training on a vast web table
-        corpus derived from WikiTable [<a href="#toc26">18</a>] facilitates its application in various
-        downstream tasks, requiring only minimal task-specific modifications.
-        For example, the TURL framework can be used to infer valuable
-        information about tables such as column types and the relationships
-        between columns (CTA and CPA).
+        understanding called TURL. TURL achieves table understanding by learning deep 
+        contextualized representations of relational tables utilizing unsupervised pre-training on around 570K relational tables from Wikipedia. The pre-training data is constructed based on the WikiTable corpus [<a href="#toc26">18</a>], a corpus containing around 1.65M tables extracted from Wikipedia pages.
       </p>
       <p> 
-        The framework is composed of three main components:
-        an embedding layer that converts input tables into embeddings, an N-stacked aware transformer
-        layer that attends over these embeddings to capture useful information, and a projection layer for pre-training objectives.
-        To enhance its performance on a wide range of table-related tasks, TURL adopts a pre-training/finetuning paradigm.
-        During pretraining, it uses TinyBERT [<a href="#toc27">19</a>], a smaller, more computationally efficient version of the BERT language model.
-        In addition to this, it uses two training objectives,
-        the Masked Language Model (MLM) and the Masked Entity Recovery (MER).
-      TURL has been evaluated on six key table-related tasks such as entity linking, column type annotation, relation extraction, row population, cell filling, and schema augmentation.
-
+        The universal architecture of TURL facilitates its application in various downstream tasks, requiring only minimal task-specific modifications. For example, the TURL framework can be used to infer valuable information about tables such as column types and the relationships
+        between columns (CTA and CPA). The framework is composed of three main components:
+        an embedding layer that first converts input tables into embeddings, an N-stacked aware transformer
+        layer that attends over these embeddings to capture useful information, and a projection layer for pre-training objectives. In addition to a Masked Language Model (MLM) used by standard BERT language model [<a href="#toc22">14</a>] that can learn representations for tokens in table metadata, TURL proposes a Masked Entity Recovery (MER) objective to learn entity cell representations. Lastly, to perform the pre-training, TURL leverages a pre-trained TinyBERT model [<a href="#toc27">19</a>] and pre-trained the model for 80 epochs.
       </p>
 
       <span id="toc3.3"></span>
