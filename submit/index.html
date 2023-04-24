@@ -1114,8 +1114,7 @@
         various downstream tasks, requiring only minimal task-specific
         modifications. For example, the TURL framework can be used to infer
         valuable information about tables such as column types and the
-        relationships between columns (CTA and CPA). The framework is composed
-        of three main components: an embedding layer that first converts input
+        relationships between columns (CTA and CPA). The framework, as shown in <a id="Fig2">Figure 2</a>,is composed of three main components: an embedding layer that first converts input
         tables into embeddings, an N-stacked aware transformer layer that
         attends over these embeddings to capture useful information, and a
         projection layer for pre-training objectives. In addition to a Masked
@@ -1128,6 +1127,14 @@
         pre-trained TinyBERT model [<a href="#toc27">19</a>] and pre-trained the
         model for 80 epochs.
       </p>
+
+      <span id="toc3.2.Fig"></span>
+      <figure>
+        <img src="images/TURL.PNG" alt="TURL" class="center"/>
+        <figcaption class="center">
+          <b><a id="Fig2"></a>Figure 2:</b> Overview of TURL framework [<a href="#toc12">4</a>]
+        </figcaption>
+      </figure>
 
       <span id="toc3.3"></span>
       <h3>3.3 TUTA</h3>
@@ -1154,7 +1161,7 @@
  	    </p>
       
       <p>
-        As shown in <a id="Fig2">Figure 2</a>, DODUO utilizes a pre-trained Transformer-based language model, particularly a BERT language model [<a href="#toc22">14</a>] and adopts multi-task learning into the model to "transfer" shared knowledge between CTA and CPA tasks. DODUO introduces table-wise serialization to incorporate table context into prediction. Particularly, the serialization method is: for a table of N columns of m rows, 
+        As shown in <a id="Fig3">Figure 3</a>, DODUO utilizes a pre-trained Transformer-based language model, particularly a BERT language model [<a href="#toc22">14</a>] and adopts multi-task learning into the model to "transfer" shared knowledge between CTA and CPA tasks. DODUO introduces table-wise serialization to incorporate table context into prediction. Particularly, the serialization method is: for a table of N columns of m rows, 
         <span class="math display"
           >\[serialize(T)::= [CLS]\;v^1_1\;...[CLS]\; v^1_n...v^n_m\;[SEP]\]</span
         > where a [CLS] token is appended to the beginning of each column, which its corresponding embeddings represent learned column representations for the column. The output layer on top of a column embedding, i.e. the [CLS] token, is used for the CTA task. Column embeddings of a column pair is used for the CPA task instead.
@@ -1164,8 +1171,7 @@
       <figure>
         <img src="images/DODUO.PNG" alt="DODUO" class="center" />
         <figcaption class="center">
-          <b><a id="Fig2"></a>Figure 2:</b> Overview of DODUO's model
-          architecture [<a href="#toc15">7</a>]
+          <b><a id="Fig3"></a>Figure 3:</b> Overview of DODUO's model architecture [<a href="#toc15">7</a>]
         </figcaption>
       </figure>
 
@@ -1184,7 +1190,7 @@
       </p>
       <p>
         The overall architecture for TaBERT is shown in
-        <a id="Fig3">Figure 3</a>. Firstly, a content snapshot of a table is
+        <a id="Fig4">Figure 4</a>. Firstly, a content snapshot of a table is
         created based on the input NL utterance. Row-wise encodings are produces
         for utterance tokens and cells. Lastly, all row-wise encodings are
         aligned and processed by vertical self-attention layers to generate
@@ -1196,7 +1202,7 @@
       <figure>
         <img src="images/TaBERT.JPG" alt="TaBERT framework" class="center" />
         <figcaption class="center">
-          <b><a id="Fig3"></a>Figure 3:</b> Overview of TaBERT. [<a
+          <b><a id="Fig4"></a>Figure 4:</b> Overview of TaBERT [<a
             href="#toc28"
             >20</a
           >]
