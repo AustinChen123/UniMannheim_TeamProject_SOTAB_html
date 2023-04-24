@@ -2599,8 +2599,8 @@
       <p>
         This section describes the hyperparameter tuning results for selected
         serializations. We conducted preprocessing of fixing cell length in a
-        tables, implementing different data augmentation techniques and altering
-        the window size for Neighboring Column serialization.
+        tables, implementing different data augmentation techniques, altering
+        the window size for Neighboring Column serialization and changing the MP Ratio.
       </p>
       <p>
         <b> Preprocess and Augmentation</b>
@@ -3676,7 +3676,7 @@
                 strings, 'undefined', or contain erroneous data inputted by
                 humans.
               </td>
-              <td>Example given in <i>Figure 4a</i>.</td>
+              <td>Example given in <a id="Fig8a">Figure 8a</a>.</td>
             </tr>
             <tr>
               <td>Lack of info</td>
@@ -3685,7 +3685,7 @@
                 columns but contained in columns outside the windows.
               </td>
               <td>
-                Example given in <i>Figure 4b</i>. In CTA task, the target is to
+                Example given in <a id="Fig8b">Figure 8b</a>. In CTA task, the target is to
                 predict column 12, while the useful information is included in
                 first few columns.
               </td>
@@ -3702,7 +3702,7 @@
             width="820"
           />
           <figcaption>
-            <b><a id="Fig4a"></a>Figure 4a: </b>Example of bad tables
+            <b><a id="Fig8a"></a>Figure 8a: </b>Example of bad tables
           </figcaption>
         </figure>
 
@@ -3713,7 +3713,7 @@
             width="820"
           />
           <figcaption>
-            <b><a id="Fig4b"></a>Figure 4b: </b>Example of Lack of information
+            <b><a id="Fig8b"></a>Figure 8b: </b>Example of Lack of information
           </figcaption>
         </figure>
         <figure>
@@ -3728,7 +3728,7 @@
             width="45%"
           />
           <figcaption>
-            <b><a id=""></a>Figure 5:</b> CTA & CPA error types distribution in
+            <b><a id="Fig9"></a>Figure 9:</b> CTA & CPA error types distribution in
             samples.
           </figcaption>
         </figure>
@@ -3765,7 +3765,7 @@
         <b>Error Frequency for CTA </b>
       </p>
       <p>
-        Upon analyzing CTA's Top 5 errors, we observed that the majority were
+        Upon analyzing CTA's Top 5 errors, as shown in <em>Table 9a</em>, we observed that the majority were
         related to Hierarchical Labels, which was consistent with the sampled
         data. We believe that refining the 2-step model could address this
         issue. Despite the model's overall effectiveness in capturing the
@@ -3846,7 +3846,7 @@
         <b>Error Frequency for CPA </b>
       </p>
       <p>
-        In CPA's top 5, the most common error type was related to semantic
+        In CPA's top 5, shown in <em>Table 9a</em>, the most common error type was related to semantic
         labeling, which highlights the challenges in accurately identifying and
         labeling the meaning of data values. Consistent data formats further
         complicate this issue, making it difficult for even humans to
@@ -3925,7 +3925,7 @@
 
       <span id="toc6"></span>
       <h2>6. Discussion and Conclusion</h2>
-      This section is dedicated to the discussion of findings for the project. WE then conclude the project and provide potential implications for future
+      This section is dedicated to the discussion of findings for the project. We then conclude the project and provide potential implications for future
       research in the field of table annotation.
 
       <span id="toc6.1"></span>
