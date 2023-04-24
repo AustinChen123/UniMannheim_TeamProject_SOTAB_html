@@ -1352,6 +1352,7 @@
         In this work, we employ two distinct serialization techniques - Neighboring Column serialization and 
         TaBERT serialization. In the following, we present an explanation of these techniques.
       </p>
+
       <p>
         <b>(i) Neighboring Column:</b> The
         <em>Neighboring Column Serialization</em> technique utilizes adjacent
@@ -1401,8 +1402,10 @@
       </figure>
 
       <p>
-        <b>(ii) TaBERT:</b> In <em>TaBERT Serialization</em>, our goal is to
-        capture the relationship between the target column and the context
+        <b>(ii) TaBERT:</b> The <em>TaBERT Serialization</em> here uses the 
+        row-based idea from the thesis by Yin, P et al[<a href="#toc28">20</a>].
+        We implement the idea in a different way to solve our CTA/CPA task.
+        Our goal is to capture the relationship between the target column and the context
         columns by inputting the context data row-wise. To achieve this, we
         follow the approach proposed by TUTA [<a href="#toc16">8</a>], where we
         prepend a data type token to each cell. This row serialization approach
@@ -1437,7 +1440,18 @@
           <b><a id="Fig3"></a>Figure 3:</b> TaBERT Serialization
         </figcaption>
       </figure>
-
+      <span id="toc4.2.1.Fig"></span>
+      <figure>
+        <img
+          src="./images/example_table.jpg"
+          alt="Example table for serialization"
+          style="width: 70%; height: 40%"
+          class="center"
+        />
+        <figcaption class="center">
+          <b><a id="Fig2"></a>Figure 4:</b> illustration of serializations
+        </figcaption>
+      </figure>
       <span id="toc4.3"></span>
       <h3>4.3 Further Models</h3>
       <p>
@@ -4031,7 +4045,7 @@
         
         <span id="toc28"></span>
         [20] Yin, P., Neubig, G., Yih, W., & Riedel, S. (2020). 
-        <a href="https://www.semanticscholar.org/paper/TinyBERT%3A-Distilling-BERT-for-Natural-Language-Jiao-Yin/0cbf97173391b0430140117027edcaf1a37968c7"
+        <a href="https://www.semanticscholar.org/paper/TaBERT%3A-Pretraining-for-Joint-Understanding-of-and-Yin-Neubig/a5b1d1cab073cb746a990b37d42dc7b67763f881"
         > TaBERT: Pretraining for Joint Understanding of Textual and Tabular Data</a>. ArXiv, abs/2005.08314. <br />
       </p>
       <p>&nbsp;</p>
