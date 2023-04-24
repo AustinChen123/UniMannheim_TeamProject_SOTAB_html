@@ -845,11 +845,10 @@
         Chapter 2, we will provide an overview of the table annotation tasks.
         Subsequently, in Chapter 3, we will present the related work including,
         Transformer model. Moving on to Chapter 4, we will describe the models,
-        preprocessing steps, and serialization approaches. Additionally, in
-        Chapter 5, we will describe the experiment setup. Then, in Chapter 6, we
-        will delve into the experimental results and error analysis. Finally, in
-        Chapters 7 and 8, we will discuss the results and conclude the work,
-        respectively.
+        preprocessing steps, and serialization approaches and hyperparameter
+        tuning. Additionally, in Chapter 5, we will describe the experiment
+        setup, results and error analysis. Finally, in Chapters 6, we will
+        discuss the results and conclude the work.
       </p>
       <h2>Contents</h2>
       <ul>
@@ -899,7 +898,7 @@
           </ul>
         </li>
         <li class="toc-h2 toc-active">
-          <a href="#toc5"> 5. Experimental Approach </a>
+          <a href="#toc5"> 5. Experimental Approach and Evaluation </a>
           <ul>
             <li>
               <a href="#toc5.1">5.1 Dataset</a>
@@ -1130,7 +1129,13 @@
 
       <span id="toc3.2.Fig"></span>
       <figure>
-        <img src="images/TURL.PNG" alt="TURL" class="center" />
+        <img
+          src="images/TURL.PNG"
+          alt="TURL"
+          class="center"
+          width="100%"
+          height="auto"
+        />
         <figcaption class="center">
           <b><a id="Fig2"></a>Figure 2:</b> Overview of TURL framework [<a
             href="#toc12"
@@ -1186,7 +1191,13 @@
 
       <span id="toc3.4.Fig"></span>
       <figure>
-        <img src="images/DODUO.PNG" alt="DODUO" class="center" />
+        <img
+          src="images/DODUO.PNG"
+          alt="DODUO"
+          class="center"
+          width="100%"
+          height="auto"
+        />
         <figcaption class="center">
           <b><a id="Fig3"></a>Figure 3:</b> Overview of DODUO's model
           architecture [<a href="#toc15">7</a>]
@@ -1218,7 +1229,13 @@
 
       <span id="toc3.5.Fig"></span>
       <figure>
-        <img src="images/TaBERT.JPG" alt="TaBERT framework" class="center" />
+        <img
+          src="images/TaBERT.JPG"
+          alt="TaBERT framework"
+          class="center"
+          width="100%"
+          height="auto"
+        />
         <figcaption class="center">
           <b><a id="Fig4"></a>Figure 4:</b> Overview of TaBERT [<a href="#toc28"
             >20</a
@@ -1557,6 +1574,7 @@
         predict the schema type and then use the corresponding submodel to
         predict the final label for each column.
       </p>
+      <span id="toc4.4"></span>
       <h3>4.4 Hyperparameter Tuning</h3>
       <p>
         To investigate the impact of different window sizes for Neighboring
@@ -1575,7 +1593,7 @@
 
       <span id="toc5"></span>
       <h2>5. Experimental Approach and Evaluation</h2>
-      <span id="toc4.1"></span>
+      <span id="toc5.1"></span>
       <h3>5.1 Setup</h3>
       <p>
         For our experiments on both the SOTAB benchmark and WikiTables dataset,
@@ -2626,8 +2644,8 @@
         </table>
       </div>
 
-      <span id="toc5.2"></span>
-      <h3>5.2 Results of Different Hyperparameters</h3>
+      <span id="toc5.5"></span>
+      <h3>5.5 Results of Different Hyperparameters</h3>
       <p>
         This section describes the hyperparameter tuning results for selected
         serializations. We conducted preprocessing of fixing cell length in a
@@ -3313,8 +3331,8 @@
         </table>
       </div>
 
-      <span id="toc5.3"></span>
-      <h3>5.3 Error Analysis</h3>
+      <span id="toc5.6"></span>
+      <h3>5.6 Error Analysis</h3>
       <p>
         To evaluate the performance, we conducted error analysis on the
         Neighboring Column Serialization with window size of 2. We chose this
