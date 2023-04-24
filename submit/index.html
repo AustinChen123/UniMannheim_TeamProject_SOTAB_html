@@ -1143,14 +1143,21 @@
 
       <span id="toc3.4"></span>
       <h3>3.4 DODUO</h3>
+      <p>   
+      	DODUO, as described in [<a href="#toc15">7</a>], is the curent
+      state-of-the-art approach for the CTA and CPA tasks. This approach
+      utilizes a Transformer-based language model and takes the entire table as
+      input to predict column types and relationships between columns. What sets
+      DODUO apart to its predecessors is its ability to annotate table columns using only the
+      information contained in the table itself, without the need for external
+      knowledge or context.
+ 	    </p>
+      
       <p>
-        DODUO, as described in [<a href="#toc15">7</a>], is the curent
-        state-of-the-art approach for the CTA and CPA tasks. This approach
-        utilizes a Transformer-based language model and takes the entire table
-        as input to predict column types and relationships between columns. What
-        sets DODUO apart to its predecessors is its ability to annotate table
-        columns using only the information contained in the table itself,
-        without the need for external knowledge or context.
+        As shown in <a id="Fig2">Figure 2</a>, DODUO utilizes a pre-trained Transformer-based language model, particularly a BERT language model [<a href="#toc22">14</a>] and adopts multi-task learning into the model to "transfer" shared knowledge between CTA and CPA tasks. DODUO introduces table-wise serialization to incorporate table context into prediction. Particularly, the serialization method is: for a table of N columns of m rows, 
+        <span class="math display"
+          >\[serialize(T)::= [CLS]\;v^1_1\;...[CLS]\; v^1_n...v^n_m\;[SEP]\]</span
+        > where a [CLS] token is appended to the beginning of each column, which its corresponding embeddings represent learned column representations for the column. The output layer on top of a column embedding, i.e. the [CLS] token, is used for the CTA task. Column embeddings of a column pair is used for the CPA task instead.
       </p>
 
       <span id="toc3.4.Fig"></span>
@@ -1161,26 +1168,6 @@
           architecture [<a href="#toc15">7</a>]
         </figcaption>
       </figure>
-      <p>
-        As shown in <a id="Fig2">Figure 2</a>, DODUO utilizes a pre-trained
-        Transformer-based language model, particularly a BERT language model [<a
-          href="#toc22"
-          >14</a
-        >] and adopts multi-task learning into the model to "transfer" shared
-        knowledge between CTA and CPA tasks. DODUO introduces table-wise
-        serialization to incorporate table context into prediction.
-        Particularly, the serialization method is: for a table of N columns of m
-        rows,
-        <span class="math display"
-          >\[serialize(T)::= [CLS]\;v^1_1\;...[CLS]\;
-          v^1_n...v^n_m\;[SEP]\]</span
-        >
-        where a [CLS] token is appended to the beginning of each column, which
-        its corresponding embeddings represent learned column representations
-        for the column. The output layer on top of a column embedding, i.e. the
-        [CLS] token, is used for the CTA task. Column embeddings of a column
-        pair is used for the CPA task instead.
-      </p>
 
       <span id="toc3.5"></span>
       <h3>3.5 TaBERT</h3>
@@ -3928,16 +3915,17 @@
           </tbody>
         </table>
       </div>
+
       <span id="toc6"></span>
       <h2>6. Discussion and Conclusion</h2>
-      This section is dedicated to the discussion of the WikiTable dataset and a
-      Column-TaBERT serialization. The section concludes with a summary of the
-      key points of the discussion and the potential implications for future
+      This section is dedicated to the discussion of findings for the project. WE then conclude the project and provide potential implications for future
       research in the field of table annotation.
 
       <span id="toc6.1"></span>
       <h3>6.1 Discussion</h3>
-
+      <p>
+        We draw inference on the discrepency of results on the SOTAB and WikiTable datasets, followed by our analysis on why Column-TaBERT serialization performed wose than its counterpart, TaBERT serialization. 
+      </p>
       <p><b>WikiTable dataset</b></p>
       <p>
         In <i>Table 3a</i> and <i>Table 3b</i>, we can see that the best
