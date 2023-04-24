@@ -1316,8 +1316,8 @@
       <h2>4. Methodology</h2>
       <p>
         Chapter 4 describes the approaches introduced in this work. We give an
-        overview of the data preprocessing and augmentations performed, followed
-        by serialization methods and hyperparameter tuning.
+        overview of data preprocessing and augmentations performed, followed
+        by serialization methods to account for table content, and hyperparameter tuning. 
       </p>
       <span id="toc4.1"></span>
       <h3>4.1 Preprocessing and Augmentation</h3>
@@ -1341,6 +1341,8 @@
         deletion and column cell shuffling.
       </p>
 
+      <span id="toc4.2"></span>
+      <h3>4.2 Serialization</h3>
       <p>
         A Transformer-based language models expect token (text) sequences as
         inputs. This translates to representing tables in text sequences,
@@ -1365,23 +1367,17 @@
         have highlighted the importance of table context for the CTA task. At
         the other end of the spectrum for table serialization is DODUO, which
         represents a table as an aggregation of contextual information from all
-        column values. Our work's main focus and contributions include
-        experimenting with various serialization strategies, preprocessing
-        techniques, and augmentation methods to account for table context.
+        column values.
       </p>
-
-      <span id="toc4.2"></span>
-      <h3>4.2 Serialization</h3>
       <p>
         In this work, we employ two distinct serialization techniques -
         Neighboring Column serialization and TaBERT serialization. In the
-        following, we present an explanation of these techniques.
+        following, we present an explanation of these techniques, followed by an example for both serialization as shown in <a id="Fig7">Figure 7</a>.
       </p>
 
       <p>
         <b>(i) Neighboring Column:</b> The
-        <em>Neighboring Column Serialization</em> technique utilizes adjacent
-        columns as local context in a relational table. Previous research by
+        <em>Neighboring Column Serialization</em> technique, illustrated in <a id="Fig5">Figure 5</a>,  utilizes adjacent columns as local context in a relational table. Previous research by
         SATO [<a href="#toc19">11</a>] demonstrated that incorporating local
         context aids in resolving semantic type ambiguities in single-column
         predictions. To accomplish this, their approach incorporates the
@@ -1405,9 +1401,7 @@
         syntax summary for lengthy columns/tables as part of the local context.
       </p>
       <p>
-        However, for the CPA task, including the main column and its local
-        context in conjunction with the Neighboring Column Serialization
-        approach can lead to redundancy. Therefore, we transfer the Neighboring
+        However, for the CPA task, incorporating neighboring columns for both the main and target columns translates to doubling the number of total columns included in the serialization as compared to CTA. Therefore, we transfer the Neighboring
         Column Serialization technique from the CTA task to the CPA task,
         without including the main column, which we refer to as the
         <em>No-Main Neighboring Column Serialization</em>.
@@ -1422,13 +1416,12 @@
           class="center"
         />
         <figcaption class="center">
-          <b><a id="Fig2"></a>Figure 2:</b> Neighboring Column Serialization
+          <b><a id="Fig5"></a>Figure 5:</b> Neighboring Column Serialization
         </figcaption>
       </figure>
 
       <p>
-        <b>(ii) TaBERT:</b> The <em>TaBERT Serialization</em> here uses the
-        row-based idea from the thesis by Yin, P et al[<a href="#toc28">20</a>].
+        <b>(ii) TaBERT:</b> The <em>TaBERT Serialization</em>, illustrated in <a id="Fig6">Figure 6</a>, here uses the row-based idea from the thesis by Yin, P et al[<a href="#toc28">20</a>].
         We implement the idea in a different way to solve our CTA/CPA task. Our
         goal is to capture the relationship between the target column and the
         context columns by inputting the context data row-wise. To achieve this,
@@ -1457,15 +1450,15 @@
       <figure>
         <img
           src="./images/TaBERT.gif"
-          alt="Neighbor illustration GIF"
+          alt="TaBERT illustration GIF"
           style="width: 550px; height: 330px"
           class="center"
         />
         <figcaption class="center">
-          <b><a id="Fig3"></a>Figure 3:</b> TaBERT Serialization
+          <b><a id="Fig6"></a>Figure 6:</b> TaBERT Serialization
         </figcaption>
       </figure>
-      <span id="toc4.2.1.Fig"></span>
+      <span id="toc4.2.3.Fig"></span>
       <figure>
         <img
           src="./images/example_table.jpg"
@@ -1474,7 +1467,7 @@
           class="center"
         />
         <figcaption class="center">
-          <b><a id="Fig2"></a>Figure 4:</b> illustration of serializations
+          <b><a id="Fig7"></a>Figure 7:</b> Illustration of Different Serialization Methods
         </figcaption>
       </figure>
 
@@ -1483,19 +1476,29 @@
       <p>
         <b>BERT</b> (Bidirectional Encoder Representations from Transformers) is
         a natural language processing model based on Transformers, which was
-        proposed by Google.<a href="#toc22">[14]</a> It uses bidirectional
+        proposed by Google <a href="#toc22">[14]</a>. It uses bidirectional
         encoders to learn context-dependent word representations and has
         achieved outstanding performance in various NLP tasks, such as sentiment
         analysis, question answering, and natural language inference.
       </p>
       <p>
         <b>RoBERTa</b> (Robustly Optimized BERT approach) is an improved version
-        of the BERT model that was proposed by Facebook AI.<a href="#toc23"
+        of the BERT model that was proposed by Facebook AI <a href="#toc23"
           >[15]</a
-        >
+        >.
         RoBERTa is pre-trained on a massive amount of text data with longer
         training times and larger batches than BERT, which improves its
         performance in downstream NLP tasks.
+      </p>
+      <p>
+        <b>LongFormer</b> Transformer-based models suffer from a
+        limitation when it comes to processing long sequences which is a challenge in table annotation where long texts need to be processed. While models such as BERT or RoBERTa [<a href="#toc22">14</a
+        >, <a href="#toc23">15</a>] are limited to a sequence length of 512, [<a
+          href="#toc21"
+          >13</a
+        >] proposes Longformer, which has a linear attention mechanism that can
+        process longer sequences length. The maximum length is constrained by
+        the memory of GPU.
       </p>
       <p>
         We further explore different experimental models for the CPA task in
@@ -1524,21 +1527,7 @@
         predict the schema type and then use the corresponding submodel to
         predict the final label for each column.
       </p>
-      <p>
-        <b>(ii) LongFormer:</b> Transformer-based models suffer from a
-        limitation when it comes to processing long sequences. The
-        self-attention operation in transformers scales quadratically with the
-        sequence length, which restricts the ability to process long texts. This
-        is a challenge in table annotation where long texts need to be
-        processed. While models such as BERT or RoBERTa [<a href="#toc22">14</a
-        >, <a href="#toc23">15</a>] are limited to a sequence length of 512, [<a
-          href="#toc21"
-          >13</a
-        >] proposes Longformer, which has a linear attention mechanism that can
-        process longer sequences length. The maximum length is constrained by
-        the memory of GPU.
-      </p>
-      <h3>4.4 Hyperparameter tuning</h3>
+      <h3>4.4 Hyperparameter Tuning</h3>
       <p>
         We conducted hyperparameter tunings for both CTA and CPA tasks to
         investigate the impact of different window sizes for Neighboring Column
