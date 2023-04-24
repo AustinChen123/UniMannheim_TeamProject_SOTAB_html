@@ -1327,79 +1327,7 @@
         by serialization methods and hyperparameter tuning.
       </p>
       <span id="toc4.1"></span>
-      <h3>4.1 Experimental Settings</h3>
-      <p>
-        For our experiments on both the SOTAB benchmark and WikiTables dataset,
-        we trained a RoBERTa model with default settings: 30 epochs, 3 runs
-        (with seed 0-2), and a batch size of 32, if not specified. The initial
-        learning rate was set to 5e-5, and we used a linear decay scheduler with
-        no warmup. We set a maximum token length of 512, used a window size of
-        5, and a standard MP ratio of 0.5 for relevant serializations. We
-        identify single-column serialization as the baseline configuration. For
-        the SOTAB benchmark, we formulated the task as a multi-class prediction
-        problem and used Cross Entropy loss. For the WikiTable dataset, we
-        formulated the task as a multi-label prediction problem and used Binary
-        Cross Entropy loss. We evaluated the performance of our models using
-        micro F1 scores for both datasets.
-      </p>
-      <p>
-        To conduct our experiments, we utilized computing resources from the
-        University of Mannheim (dws-server) and bwHPC servers provided by the
-        state of Baden-Württemberg.
-      </p>
-
-      <span id="toc5.2"></span>
-      <h3>4.2 Experiments for SOTAB benchmark</h3>
-      <p>
-        For the SOTAB benchmark, we conducted extensive experiments on
-        serialization for both CTA and CPA tasks. Specifically, we tested
-        different variants of Neighboring Column Serialization and TaBERT
-        Serialization. For CPA, we also performed No-Main Neighboring Column
-        Serialization, which treats a CPA task as a CTA task.
-      </p>
-      <p>
-        In order to explore more possibilities for the challenging CPA task, we
-        further investigated Subtable, 2-Step, and Longformer models. For the
-        Subtable model, we trained a BERT model for 30 epochs with a batch size
-        of 16 and a maximum token length of 512 tokens. We utilized a
-        Neighboring Column Serialization of window size 2 for this model. For
-        the 2-Step model, we used default parameter settings, including a
-        RoBERTa model trained for 30 epochs. For the Longformer model, we used
-        single-column serialization with a batch size of 8 and maximum length of
-        1000.
-      </p>
-      <p>
-        We conducted hyperparameter tunings for both CTA and CPA tasks to
-        investigate the impact of different window sizes for Neighboring Column
-        Serializations. We also experimented with different preprocessing
-        methods, such as TUTA, median, and mean preprocessing for each promising
-        serialization. Additionally, we varied the proportions of the target
-        column and local context <i>(MP - Main Percentange Ratio)</i> to assess
-        the effect of context weight on different serializations, experimenting
-        with MP Ratios of 0.2, 0.5, and 0.8, respectively. For instance, the MP
-        Ratio of 0.8 for Neighboring Column Serialization, for the CPA task,
-        allocates 80% of the available token limit to the Main and Target
-        Columns and only 20% to their neighbors, Finally, in the early stages of
-        our workflow, we investigated the performance of augmentation strategies
-        on single-column serialization for the CPA task.
-      </p>
-
-      <span id="toc4.3"></span>
-      <h3>4.3 Experiments for WikiTables dataset</h3>
-      <p>
-        To test the generalizability of our findings for the SOTAB benchmark, we
-        transferred the serialization methods to the WikiTables dataset. For the
-        CTA task, we used only Column-TaBERT Serialization due to computational
-        limitations resulting from the dataset's size. For the CPA task, we
-        experimented with different serializations, including TaBERT,
-        Column-TaBERT, and No-Main Neighboring Column Serializations. We
-        utilized the default experimental parameters as described and following
-        Suhara et al. [<a href="#toc15">7</a>], we trained the model for 15
-        epochs.
-      </p>
-
-      <span id="toc4.4"></span>
-      <h3>4.4 Preprocessing and Augmentation</h3>
+      <h3>4.1 Preprocessing and Augmentation</h3>
       <p>
         To accommodate the token limit of 512 tokens for BERT-like language
         models, we trim cell values for longer textual data to fit more cells
@@ -1449,8 +1377,8 @@
         techniques, and augmentation methods to account for table context.
       </p>
 
-      <span id="toc4.5"></span>
-      <h3>4.5 Serialization</h3>
+      <span id="toc4.2"></span>
+      <h3>4.2 Serialization</h3>
       <p>
         In this work, we employ two distinct serialization techniques -
         Neighboring Column serialization and TaBERT serialization. In the
@@ -1492,7 +1420,7 @@
         <em>No-Main Neighboring Column Serialization</em>.
       </p>
 
-      <span id="toc4.5.1.Fig"></span>
+      <span id="toc4.2.1.Fig"></span>
       <figure>
         <img
           src="./images/Neighbor.gif"
@@ -1532,7 +1460,7 @@
         >
       </p>
 
-      <span id="toc4.5.2.Fig"></span>
+      <span id="toc4.2.2.Fig"></span>
       <figure>
         <img
           src="./images/TaBERT.gif"
@@ -1544,7 +1472,7 @@
           <b><a id="Fig3"></a>Figure 3:</b> TaBERT Serialization
         </figcaption>
       </figure>
-      <span id="toc4.5.1.Fig"></span>
+      <span id="toc4.2.1.Fig"></span>
       <figure>
         <img
           src="./images/example_table.jpg"
@@ -1556,8 +1484,26 @@
           <b><a id="Fig2"></a>Figure 4:</b> illustration of serializations
         </figcaption>
       </figure>
-      <span id="toc4.6"></span>
-      <h3>4.6 Further Models</h3>
+
+      <span id="toc4.3"></span>
+      <h3>4.3 Models</h3>
+      <p>
+        <b>BERT</b> (Bidirectional Encoder Representations from Transformers) is
+        a natural language processing model based on Transformers, which was
+        proposed by Google.<a href="#toc22">[14]</a> It uses bidirectional
+        encoders to learn context-dependent word representations and has
+        achieved outstanding performance in various NLP tasks, such as sentiment
+        analysis, question answering, and natural language inference.
+      </p>
+      <p>
+        <b>RoBERTa</b> (Robustly Optimized BERT approach) is an improved version
+        of the BERT model that was proposed by Facebook AI.<a href="#toc23"
+          >[15]</a
+        >
+        RoBERTa is pre-trained on a massive amount of text data with longer
+        training times and larger batches than BERT, which improves its
+        performance in downstream NLP tasks.
+      </p>
       <p>
         We further explore different experimental models for the CPA task in
         various iterations.
@@ -1599,12 +1545,83 @@
         process longer sequences length. The maximum length is constrained by
         the memory of GPU.
       </p>
+      <h3>4.4 Hyperparameter tuning</h3>
+      <p>
+        We conducted hyperparameter tunings for both CTA and CPA tasks to
+        investigate the impact of different window sizes for Neighboring Column
+        Serializations. We also experimented with different preprocessing
+        methods, such as TUTA, median, and mean preprocessing for each promising
+        serialization. Additionally, we varied the proportions of the target
+        column and local context <i>(MP - Main Percentange Ratio)</i> to assess
+        the effect of context weight on different serializations, experimenting
+        with MP Ratios of 0.2, 0.5, and 0.8, respectively. For instance, the MP
+        Ratio of 0.8 for Neighboring Column Serialization, for the CPA task,
+        allocates 80% of the available token limit to the Main and Target
+        Columns and only 20% to their neighbors, Finally, in the early stages of
+        our workflow, we investigated the performance of augmentation strategies
+        on single-column serialization for the CPA task.
+      </p>
 
       <span id="toc5"></span>
-      <h2>5. Experimental Results and Error Analysis</h2>
+      <h2>5. Experimental Evaluation</h2>
+      <span id="toc4.1"></span>
+      <h3>5.1 Setup</h3>
+      <p>
+        For our experiments on both the SOTAB benchmark and WikiTables dataset,
+        we trained a RoBERTa model with default settings: 30 epochs, 3 runs
+        (with seed 0-2), and a batch size of 32, if not specified. The initial
+        learning rate was set to 5e-5, and we used a linear decay scheduler with
+        no warmup. We set a maximum token length of 512, used a window size of
+        5, and a standard MP ratio of 0.5 for relevant serializations. We
+        identify single-column serialization as the baseline configuration. For
+        the SOTAB benchmark, we formulated the task as a multi-class prediction
+        problem and used Cross Entropy loss. For the WikiTable dataset, we
+        formulated the task as a multi-label prediction problem and used Binary
+        Cross Entropy loss. We evaluated the performance of our models using
+        micro F1 scores for both datasets.
+      </p>
+      <p>
+        To conduct our experiments, we utilized computing resources from the
+        University of Mannheim (dws-server) and bwHPC servers provided by the
+        state of Baden-Württemberg.
+      </p>
+      <span id="toc5.2"></span>
+      <h3>5.2 Experiments for SOTAB benchmark</h3>
+      <p>
+        For the SOTAB benchmark, we conducted extensive experiments on
+        serialization for both CTA and CPA tasks. Specifically, we tested
+        different variants of Neighboring Column Serialization and TaBERT
+        Serialization. For CPA, we also performed No-Main Neighboring Column
+        Serialization, which treats a CPA task as a CTA task.
+      </p>
+      <p>
+        In order to explore more possibilities for the challenging CPA task, we
+        further investigated Subtable, 2-Step, and Longformer models. For the
+        Subtable model, we trained a BERT model for 30 epochs with a batch size
+        of 16 and a maximum token length of 512 tokens. We utilized a
+        Neighboring Column Serialization of window size 2 for this model. For
+        the 2-Step model, we used default parameter settings, including a
+        RoBERTa model trained for 30 epochs. For the Longformer model, we used
+        single-column serialization with a batch size of 8 and maximum length of
+        1000.
+      </p>
 
-      <span id="toc5.1"></span>
-      <h3>5.1 Main Results</h3>
+      <span id="toc5.3"></span>
+      <h3>5.3 Experiments for WikiTables dataset</h3>
+      <p>
+        To test the generalizability of our findings for the SOTAB benchmark, we
+        transferred the serialization methods to the WikiTables dataset. For the
+        CTA task, we used only Column-TaBERT Serialization due to computational
+        limitations resulting from the dataset's size. For the CPA task, we
+        experimented with different serializations, including TaBERT,
+        Column-TaBERT, and No-Main Neighboring Column Serializations. We
+        utilized the default experimental parameters as described and following
+        Suhara et al. [<a href="#toc15">7</a>], we trained the model for 15
+        epochs.
+      </p>
+
+      <span id="toc5.4"></span>
+      <h3>5.4 Main Results</h3>
       <p>
         <b> SOTAB benchmark </b>
       </p>
@@ -2592,7 +2609,7 @@
       </div>
 
       <span id="toc5.2"></span>
-      <h3>5.2 Hyperparameter Tuning</h3>
+      <h3>5.2 Results of different hyperparameter</h3>
       <p>
         This section describes the hyperparameter tuning results for selected
         serializations. We conducted preprocessing of fixing cell length in a
