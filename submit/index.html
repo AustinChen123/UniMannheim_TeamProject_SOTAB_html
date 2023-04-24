@@ -1178,7 +1178,7 @@
       <span id="toc3.5"></span>
       <h3>3.5 TaBERT</h3>
       <p>
-        TaBERT [<a href="#toc28">20</a>] is a pretrained Language model built on
+        TaBERT [<a href="#toc28">20</a>] is a pretrained language model built on
         top of BERT that jointly learns representations for natural language
         (NL) sentences and (semi-)structured tables. The contributions of TaBERT
         include linearization of the structure of tables to be compatible with
@@ -1474,6 +1474,9 @@
       <span id="toc4.3"></span>
       <h3>4.3 Models</h3>
       <p>
+        Our approaches are built upon Transformer-based language models. We utilize mainly BERT and RoBERTa models and experimentally with the LongFormer model for the CPA task. 
+      </p>
+      <p>
         <b>BERT</b> (Bidirectional Encoder Representations from Transformers) is
         a natural language processing model based on Transformers, which was
         proposed by Google <a href="#toc22">[14]</a>. It uses bidirectional
@@ -1545,7 +1548,7 @@
       </p>
 
       <span id="toc5"></span>
-      <h2>5. Experimental Evaluation</h2>
+      <h2>5. Experimental Approach and Evaluation</h2>
       <span id="toc4.1"></span>
       <h3>5.1 Setup</h3>
       <p>
@@ -1608,7 +1611,7 @@
         <b> SOTAB benchmark </b>
       </p>
       <p>
-        Across both tasks, for all but one serializations implemented, we
+        <em>Table 2</em> reports the results for SOTAB benchmark. All serialization methods except DODUO and TURL utilize the RoBERTa model. Across both tasks, for all but one serializations implemented, we
         achieved significant improvement on Micro F1 against the single-column
         baseline serialization. For the CTA task, we are able to achieve a
         maximum increase of 7.62 point F1 score compared to the state-of-the-art
@@ -2316,10 +2319,11 @@
       </div>
 
       <p>
-        <b> Wikitables Dataset </b>
+        <b> WikiTables Dataset </b>
       </p>
       <p>
-        In the CTA task, our Column-TaBERT Serialization achieved a comparable
+        <em>Table 3</em> reports the results for WikiTables Dataset. Similarly to the SOTAB benchmark, all serialization methods utilize the RoBERTa model except for DODUO and TURL, which we report results measured in [<a href="#toc9">1</a
+        >]. In the CTA task, our Column-TaBERT Serialization achieved a comparable
         F1 score to the state-of-the-art DODUO, missing by only 1 point. This is
         a significant improvement over the TURL baseline, which we outperformed
         by 2.5 points. However, our results from SOTAB benchmark suggest that
@@ -2591,12 +2595,49 @@
       </div>
 
       <span id="toc5.2"></span>
-      <h3>5.2 Results of different hyperparameter</h3>
+      <h3>5.2 Results of Different Hyperparameters</h3>
       <p>
         This section describes the hyperparameter tuning results for selected
         serializations. We conducted preprocessing of fixing cell length in a
         tables, implementing different data augmentation techniques and altering
         the window size for Neighboring Column serialization.
+      </p>
+      <p>
+        <b> Preprocess and Augmentation</b>
+      </p>
+      <p>
+        Through our experiments, as shown in <em>Table 4a</em>, we found that preprocessing provides slight
+        improvement on the performance of different serialization methods. This
+        highlights the importance of providing structured input sequences to
+        Transformer models and using more columns whenever possible.
+        Furthermore, our initial experiments with data augmentation using
+        single-column serialization indicate that, for large datasets like the
+        SOTAB benchmark, the need for data augmentation may be limited. This is reported in <em>Table 4c</em>.
+      </p>
+
+      <p>
+        <b> Window Size</b>
+      </p>
+
+      <p>
+        For the SOTAB benchmark, we identified that the suitable window size for
+        Neighboring Column Serializations are window size of 4 - 6, as shown in <em>Table 4b</em>. This
+        indicates that a complete table structure with relevant columns is a
+        suitable input for language models in table annotation tasks. Notably,
+        we observed that the two main differences between Neighboring Column
+        Serialization and DODUO are the structure of the input sequence and the
+        pretrained language model used . Specifically, our approach places the
+        target column at the front of the input sequence to focus on it, while
+        DODUO takes the entire table as input. For model, We used RoBERTa model instead of
+        BERT model used by DODUO.
+      </p>
+
+      <p>
+        <b> MP Ratio</b>
+      </p>
+        MP (Main Percentage Ratio) played significant value for certain serializations such as Neighboring Column with Summary serialization. However, the results in <em>Table 2</em> confirms that different serialization requires different MP Ratio due to the nature of its serialization strategy. 
+      <p>
+
       </p>
       <div style="text-align: center" class="tg-wrap">
         <table class="tg">
@@ -3234,35 +3275,6 @@
           </tbody>
         </table>
       </div>
-      <p>
-        <b> Preprocess and Augmentation</b>
-      </p>
-      <p>
-        Through our experiments, we found that preprocessing provides slight
-        improvement on the performance of different serialization methods. This
-        highlights the importance of providing structured input sequences to
-        Transformer models and using more columns whenever possible.
-        Furthermore, our initial experiments with data augmentation using
-        single-column serialization indicate that, for large datasets like the
-        SOTAB benchmark, the need for data augmentation may be limited.
-      </p>
-
-      <p>
-        <b> Window Size</b>
-      </p>
-
-      <p>
-        For the SOTAB benchmark, we identified that the suitable window size for
-        Neighboring Column Serializations are window size of 4 - 6. This
-        indicates that a complete table structure with relevant columns is a
-        suitable input for Language models in table annotation tasks. Notably,
-        we observed that the two main differences between Neighboring Column
-        Serialization and DODUO are the structure of the input sequence and the
-        pretrained language model used. Specifically, our approach places the
-        target column at the front of the input sequence to focus on it, while
-        DODUO takes the entire table as input. We used RoBERTa model instead of
-        BERT model used by DODUO.
-      </p>
 
       <span id="toc5.3"></span>
       <h3>5.3 Error Analysis</h3>
