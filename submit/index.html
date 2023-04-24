@@ -1200,12 +1200,122 @@
         </figcaption>
       </figure>
 
-      <span id="toc4"></span>
-      <h2>4. Model</h2>
+      <span id="toc3.6"></span>
+      <h3>3.6 Dataset</h3>
       <p>
-        Chapter 4 of this paper provides an overview of the deep learning models used for table annotation, 
-        as well as the data preprocessing, augmentation, and serialization techniques.
+        We evaluated our solutions primarily on the
+        <a href="https://webdatacommons.org/structureddata/sotab/"
+          >WDC Schema.org Table Annotation Benchmark (SOTAB)</a
+        >[<a href="#toc9">1</a>] benchmark dataset. To ensure the
+        generalizability of our approach, we test our best serialization approaches on the 
+        <a href="https://github.com/sunlab-osu/TURL/"
+          >WikiTables dataset by TURL</a
+        >[<a href="#toc12">3</a>]. The SOTAB benchmark is a collection of tables
+        extracted from the Schema.org Table Corpus, which is maintained by the
+        Data and Web Science Research Group at the University of Mannheim. The
+        corpus comprises over 4.2 million web relational tables covering 43
+        schema.org classes. The dataset defines both CTA and CPA labels for
+        tables from 17 schema.org classes/domains. For the CTA task, the SOTAB
+        dataset provides annotations for 162,351 columns from 59,548 tables,
+        with a label space of 91 type labels. For the CPA task, it provides
+        annotations for 174,998 column pairs from 48,379 tables, with a label
+        space of 176 property labels. We used the provided train/valid/test
+        splits for both tasks.
       </p>
+      <p>
+        The WikiTables dataset [<a href="#toc12">3</a>] is a collection of
+        tables extracted from the WikiTable corpus, which contains over 1.54
+        million tables extracted from Wikipedia pages. The dataset defines both
+        CTA and CPA labels. For the CTA task, the dataset provides annotations
+        of 628,254 columns from 397,098 tables, with a label space of 255 type
+        labels for training, and 13,025 (13,391) columns from 4,764 (4,844)
+        tables for test and validation, respectively. For the CPA task, it
+        provides annotations of 62,954 column pairs from 52,943 tables, with a
+        label space of 121 relation labels for traning, and 2,072 (2,175) column
+        pairs from 1,467 (1,560) tables for test (validation).
+      </p>
+
+      <div style="text-align: center" class="tg-wrap">
+        <table class="tg">
+          <caption>
+            Table 1: Statistics for WikiTable Dataset
+          </caption>
+          <thead>
+            <tr>
+              <th class="tg-mkpc"></th>
+              <th class="tg-mkpc" colspan="3">CTA</th>
+              <th class="tg-mkpc" colspan="3">CPA</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="tg-mkpc"><br /></td>
+              <td class="tg-mkpc">mean</td>
+              <td class="tg-mkpc">median</td>
+              <td class="tg-mkpc">mode</td>
+              <td class="tg-mkpc">mean</td>
+              <td class="tg-mkpc">median</td>
+              <td class="tg-mkpc">mode</td>
+            </tr>
+            <tr>
+              <td class="tg-mkpc">Train columns</td>
+              <td class="tg-9wq8">1.58</td>
+              <td class="tg-9wq8">1</td>
+              <td class="tg-9wq8">1</td>
+              <td class="tg-9wq8">2.18</td>
+              <td class="tg-9wq8">2</td>
+              <td class="tg-9wq8">2</td>
+            </tr>
+            <tr>
+              <td class="tg-mkpc">Val columns</td>
+              <td class="tg-9wq8">2.76</td>
+              <td class="tg-9wq8">3</td>
+              <td class="tg-9wq8">3</td>
+              <td class="tg-9wq8">2.39</td>
+              <td class="tg-9wq8">2</td>
+              <td class="tg-9wq8">2</td>
+            </tr>
+            <tr>
+              <td class="tg-mkpc">Test columns</td>
+              <td class="tg-9wq8">2.73</td>
+              <td class="tg-9wq8">3</td>
+              <td class="tg-9wq8">3</td>
+              <td class="tg-9wq8">2.41</td>
+              <td class="tg-9wq8">2</td>
+              <td class="tg-9wq8">2</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <span id="toc4"></span>
+      <h2>4. Methodology</h2>
+      <p>
+      	Chapter 4 describes the approaches introduced in this work. We give an overview of the data preprocessing and augmentations performed, followed by serialization methods and hyperparameter tuning.
+      </p>
+
+      <span id="toc4.1"></span>
+      <h3>4.1 Preprocessing and Augmentation</h3>
+      <p>
+        To accommodate the token limit of 512 tokens for BERT-like language
+        models, we trim cell values for longer textual data to fit more cells
+        from a table. Following Wang et al. [<a href="#toc16">8</a>]'s empirical
+        studies, we retain at most 8 tokens from a cell. This is because long
+        textual strings often introduce noise and disrupt the structure of a
+        table input. Additionally, we experiment with different threshold cell
+        lengths, i.e., <em>median</em> and <em>mean</em> cell length computed
+        per column basis. The rational being a long textual column contains
+        strings of different length.
+      </p>
+      <p>
+        To enhance our data processing, we perform data augmentation (DA) at
+        both the cell and table level during the earlier stages of our workflow.
+        Specifically, we apply standard textual DA techniques, such as word
+        swapping, word replacement, word deletion, and column cell value
+        shuffling, at the cell level. At the table level, we perform random cell
+        deletion and column cell shuffling.
+      </p>
+
       <p>
         A Transformer-based language models expect token (text) sequences as
         inputs. This translates to representing tables in text sequences,
@@ -1235,27 +1345,7 @@
         techniques, and augmentation methods to account for table context.
       </p>
 
-      <span id="toc4.1"></span>
-      <h3>4.1 Preprocessing and Augmentation</h3>
-      <p>
-        To accommodate the token limit of 512 tokens for BERT-like language
-        models, we trim cell values for longer textual data to fit more cells
-        from a table. Following Wang et al. [<a href="#toc16">8</a>]'s empirical
-        studies, we retain at most 8 tokens from a cell. This is because long
-        textual strings often introduce noise and disrupt the structure of a
-        table input. Additionally, we experiment with different threshold cell
-        lengths, i.e., <em>median</em> and <em>mean</em> cell length computed
-        per column basis. The rational being a long textual column contains
-        strings of different length.
-      </p>
-      <p>
-        To enhance our data processing, we perform data augmentation (DA) at
-        both the cell and table level during the earlier stages of our workflow.
-        Specifically, we apply standard textual DA techniques, such as word
-        swapping, word replacement, word deletion, and column cell value
-        shuffling, at the cell level. At the table level, we perform random cell
-        deletion and column cell shuffling.
-      </p>
+
 
       <span id="toc4.2"></span>
       <h3>4.2 Serialization</h3>
@@ -1401,93 +1491,7 @@
         state of Baden-Württemberg.
       </p>
 
-      <span id="toc5.1"></span>
-      <h3>5.1 Dataset</h3>
-      <p>
-        We evaluated our solutions primarily on the
-        <a href="https://webdatacommons.org/structureddata/sotab/"
-          >WDC Schema.org Table Annotation Benchmark (SOTAB)</a
-        >[<a href="#toc9">1</a>] benchmark dataset. To ensure the
-        generalizability of our approach, we test our best serialization approaches on the 
-        <a href="https://github.com/sunlab-osu/TURL/"
-          >WikiTables dataset by TURL</a
-        >[<a href="#toc12">3</a>]. The SOTAB benchmark is a collection of tables
-        extracted from the Schema.org Table Corpus, which is maintained by the
-        Data and Web Science Research Group at the University of Mannheim. The
-        corpus comprises over 4.2 million web relational tables covering 43
-        schema.org classes. The dataset defines both CTA and CPA labels for
-        tables from 17 schema.org classes/domains. For the CTA task, the SOTAB
-        dataset provides annotations for 162,351 columns from 59,548 tables,
-        with a label space of 91 type labels. For the CPA task, it provides
-        annotations for 174,998 column pairs from 48,379 tables, with a label
-        space of 176 property labels. We used the provided train/valid/test
-        splits for both tasks.
-      </p>
-      <p>
-        The WikiTables dataset [<a href="#toc12">3</a>] is a collection of
-        tables extracted from the WikiTable corpus, which contains over 1.54
-        million tables extracted from Wikipedia pages. The dataset defines both
-        CTA and CPA labels. For the CTA task, the dataset provides annotations
-        of 628,254 columns from 397,098 tables, with a label space of 255 type
-        labels for training, and 13,025 (13,391) columns from 4,764 (4,844)
-        tables for test and validation, respectively. For the CPA task, it
-        provides annotations of 62,954 column pairs from 52,943 tables, with a
-        label space of 121 relation labels for traning, and 2,072 (2,175) column
-        pairs from 1,467 (1,560) tables for test (validation).
-      </p>
-
-      <div style="text-align: center" class="tg-wrap">
-        <table class="tg">
-          <caption>
-            Table 1: Statistics for WikiTable Dataset
-          </caption>
-          <thead>
-            <tr>
-              <th class="tg-mkpc"></th>
-              <th class="tg-mkpc" colspan="3">CTA</th>
-              <th class="tg-mkpc" colspan="3">CPA</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="tg-mkpc"><br /></td>
-              <td class="tg-mkpc">mean</td>
-              <td class="tg-mkpc">median</td>
-              <td class="tg-mkpc">mode</td>
-              <td class="tg-mkpc">mean</td>
-              <td class="tg-mkpc">median</td>
-              <td class="tg-mkpc">mode</td>
-            </tr>
-            <tr>
-              <td class="tg-mkpc">Train columns</td>
-              <td class="tg-9wq8">1.58</td>
-              <td class="tg-9wq8">1</td>
-              <td class="tg-9wq8">1</td>
-              <td class="tg-9wq8">2.18</td>
-              <td class="tg-9wq8">2</td>
-              <td class="tg-9wq8">2</td>
-            </tr>
-            <tr>
-              <td class="tg-mkpc">Val columns</td>
-              <td class="tg-9wq8">2.76</td>
-              <td class="tg-9wq8">3</td>
-              <td class="tg-9wq8">3</td>
-              <td class="tg-9wq8">2.39</td>
-              <td class="tg-9wq8">2</td>
-              <td class="tg-9wq8">2</td>
-            </tr>
-            <tr>
-              <td class="tg-mkpc">Test columns</td>
-              <td class="tg-9wq8">2.73</td>
-              <td class="tg-9wq8">3</td>
-              <td class="tg-9wq8">3</td>
-              <td class="tg-9wq8">2.41</td>
-              <td class="tg-9wq8">2</td>
-              <td class="tg-9wq8">2</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      
 
       <span id="toc5.2"></span>
       <h3>5.2 Experimental Settings</h3>
@@ -3220,7 +3224,7 @@
       <span id="toc6.3"></span>
       <h3>6.3 Error Analysis</h3>
       <p>
-        To evaluate the performance, we conducted error analysis on the Neighboring Column Serialization with window size of 2. We chose this approach because it is the promising serialization method. The
+        To evaluate the performance, we conducted error analysis on the Neighboring Column Serialization with window size of 2. We chose this approach because it represents the promising serialization method. The
         parameters utilized is a BERT model trained for 30 epochs with batch
         size of 16. We initially conducted statistic analysis on three different
         aspects: (i) schema type, (ii) data type, and (iii) specific challenges.
