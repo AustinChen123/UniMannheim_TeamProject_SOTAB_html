@@ -1196,7 +1196,7 @@
       <span id="toc3.5"></span>
       <h3>3.5 TaBERT</h3>
       <p>
-        TaBERT [<a href="#toc28">20</a>] is a pretrained Language model built on
+        TaBERT [<a href="#toc28">20</a>] is a pretrained language model built on
         top of BERT that jointly learns representations for natural language
         (NL) sentences and (semi-)structured tables. The contributions of TaBERT
         include linearization of the structure of tables to be compatible with
@@ -1501,6 +1501,11 @@
       <span id="toc4.3"></span>
       <h3>4.3 Models</h3>
       <p>
+        Our approaches are built upon Transformer-based language models. We
+        utilize mainly BERT and RoBERTa models and experimentally with the
+        LongFormer model for the CPA task.
+      </p>
+      <p>
         <b>BERT</b> (Bidirectional Encoder Representations from Transformers) is
         a natural language processing model based on Transformers, which was
         proposed by Google <a href="#toc22">[14]</a>. It uses bidirectional
@@ -1570,7 +1575,7 @@
       </p>
 
       <span id="toc5"></span>
-      <h2>5. Experimental Evaluation</h2>
+      <h2>5. Experimental Approach and Evaluation</h2>
       <span id="toc4.1"></span>
       <h3>5.1 Setup</h3>
       <p>
@@ -1633,6 +1638,8 @@
         <b> SOTAB benchmark </b>
       </p>
       <p>
+        <em>Table 2</em> reports the results for SOTAB benchmark. All
+        serialization methods except DODUO and TURL utilize the RoBERTa model.
         Across both tasks, for all but one serializations implemented, we
         achieved significant improvement on Micro F1 against the single-column
         baseline serialization. For the CTA task, we are able to achieve a
@@ -2341,19 +2348,24 @@
       </div>
 
       <p>
-        <b> Wikitables Dataset </b>
+        <b> WikiTables Dataset </b>
       </p>
       <p>
-        In the CTA task, our Column-TaBERT Serialization achieved a comparable
-        F1 score to the state-of-the-art DODUO, missing by only 1 point. This is
-        a significant improvement over the TURL baseline, which we outperformed
-        by 2.5 points. However, our results from SOTAB benchmark suggest that
-        there may be rooms for improvement using more performant serialization
-        methods. For the CPA task, our TaBERT Serialization outperformed
-        existing methods by 1.5 points in terms of F1 score. These results
-        demonstrate that our serialization approaches can achieve comparable
-        performance on different real-world datasets. Overall, our findings
-        suggest that careful selection of serialization methods can
+        <em>Table 3</em> reports the results for WikiTables Dataset. Similarly
+        to the SOTAB benchmark, all serialization methods utilize the RoBERTa
+        model except for DODUO and TURL, which we report results measured in [<a
+          href="#toc9"
+          >1</a
+        >]. In the CTA task, our Column-TaBERT Serialization achieved a
+        comparable F1 score to the state-of-the-art DODUO, missing by only 1
+        point. This is a significant improvement over the TURL baseline, which
+        we outperformed by 2.5 points. However, our results from SOTAB benchmark
+        suggest that there may be rooms for improvement using more performant
+        serialization methods. For the CPA task, our TaBERT Serialization
+        outperformed existing methods by 1.5 points in terms of F1 score. These
+        results demonstrate that our serialization approaches can achieve
+        comparable performance on different real-world datasets. Overall, our
+        findings suggest that careful selection of serialization methods can
         significantly improve the performance of table annotation tasks.
       </p>
       <div style="text-align: center" class="tg-wrap">
@@ -2616,13 +2628,55 @@
       </div>
 
       <span id="toc5.2"></span>
-      <h3>5.2 Results of different hyperparameter</h3>
+      <h3>5.2 Results of Different Hyperparameters</h3>
       <p>
         This section describes the hyperparameter tuning results for selected
         serializations. We conducted preprocessing of fixing cell length in a
-        tables, implementing different data augmentation techniques and altering
-        the window size for Neighboring Column serialization.
+        tables, implementing different data augmentation techniques, altering
+        the window size for Neighboring Column serialization and changing the MP
+        Ratio.
       </p>
+      <p>
+        <b> Preprocess and Augmentation</b>
+      </p>
+      <p>
+        Through our experiments, as shown in <em>Table 4a</em>, we found that
+        preprocessing provides slight improvement on the performance of
+        different serialization methods. This highlights the importance of
+        providing structured input sequences to Transformer models and using
+        more columns whenever possible. Furthermore, our initial experiments
+        with data augmentation using single-column serialization indicate that,
+        for large datasets like the SOTAB benchmark, the need for data
+        augmentation may be limited. This is reported in <em>Table 4c</em>.
+      </p>
+
+      <p>
+        <b> Window Size</b>
+      </p>
+
+      <p>
+        For the SOTAB benchmark, we identified that the suitable window size for
+        Neighboring Column Serializations are window size of 4 - 6, as shown in
+        <em>Table 4b</em>. This indicates that a complete table structure with
+        relevant columns is a suitable input for language models in table
+        annotation tasks. Notably, we observed that the two main differences
+        between Neighboring Column Serialization and DODUO are the structure of
+        the input sequence and the pretrained language model used .
+        Specifically, our approach places the target column at the front of the
+        input sequence to focus on it, while DODUO takes the entire table as
+        input. For model, We used RoBERTa model instead of BERT model used by
+        DODUO.
+      </p>
+
+      <p>
+        <b> MP Ratio</b>
+      </p>
+      MP (Main Percentage Ratio) played significant value for certain
+      serializations such as Neighboring Column with Summary serialization.
+      However, the results in <em>Table 2</em> confirms that different
+      serialization requires different MP Ratio due to the nature of its
+      serialization strategy.
+      <p></p>
       <div style="text-align: center" class="tg-wrap">
         <table class="tg">
           <caption>
@@ -3259,35 +3313,6 @@
           </tbody>
         </table>
       </div>
-      <p>
-        <b> Preprocess and Augmentation</b>
-      </p>
-      <p>
-        Through our experiments, we found that preprocessing provides slight
-        improvement on the performance of different serialization methods. This
-        highlights the importance of providing structured input sequences to
-        Transformer models and using more columns whenever possible.
-        Furthermore, our initial experiments with data augmentation using
-        single-column serialization indicate that, for large datasets like the
-        SOTAB benchmark, the need for data augmentation may be limited.
-      </p>
-
-      <p>
-        <b> Window Size</b>
-      </p>
-
-      <p>
-        For the SOTAB benchmark, we identified that the suitable window size for
-        Neighboring Column Serializations are window size of 4 - 6. This
-        indicates that a complete table structure with relevant columns is a
-        suitable input for Language models in table annotation tasks. Notably,
-        we observed that the two main differences between Neighboring Column
-        Serialization and DODUO are the structure of the input sequence and the
-        pretrained language model used. Specifically, our approach places the
-        target column at the front of the input sequence to focus on it, while
-        DODUO takes the entire table as input. We used RoBERTa model instead of
-        BERT model used by DODUO.
-      </p>
 
       <span id="toc5.3"></span>
       <h3>5.3 Error Analysis</h3>
@@ -3689,7 +3714,7 @@
                 strings, 'undefined', or contain erroneous data inputted by
                 humans.
               </td>
-              <td>Example given in <i>Figure 4a</i>.</td>
+              <td>Example given in <a id="Fig8a">Figure 8a</a>.</td>
             </tr>
             <tr>
               <td>Lack of info</td>
@@ -3698,9 +3723,9 @@
                 columns but contained in columns outside the windows.
               </td>
               <td>
-                Example given in <i>Figure 4b</i>. In CTA task, the target is to
-                predict column 12, while the useful information is included in
-                first few columns.
+                Example given in <a id="Fig8b">Figure 8b</a>. In CTA task, the
+                target is to predict column 12, while the useful information is
+                included in first few columns.
               </td>
             </tr>
           </tbody>
@@ -3715,7 +3740,7 @@
             width="820"
           />
           <figcaption>
-            <b><a id="Fig4a"></a>Figure 4a: </b>Example of bad tables
+            <b><a id="Fig8a"></a>Figure 8a: </b>Example of bad tables
           </figcaption>
         </figure>
 
@@ -3726,7 +3751,7 @@
             width="820"
           />
           <figcaption>
-            <b><a id="Fig4b"></a>Figure 4b: </b>Example of Lack of information
+            <b><a id="Fig8b"></a>Figure 8b: </b>Example of Lack of information
           </figcaption>
         </figure>
         <figure>
@@ -3741,8 +3766,8 @@
             width="45%"
           />
           <figcaption>
-            <b><a id=""></a>Figure 5:</b> CTA & CPA error types distribution in
-            samples.
+            <b><a id="Fig9"></a>Figure 9:</b> CTA & CPA error types distribution
+            in samples.
           </figcaption>
         </figure>
       </div>
@@ -3778,17 +3803,17 @@
         <b>Error Frequency for CTA </b>
       </p>
       <p>
-        Upon analyzing CTA's Top 5 errors, we observed that the majority were
-        related to Hierarchical Labels, which was consistent with the sampled
-        data. We believe that refining the 2-step model could address this
-        issue. Despite the model's overall effectiveness in capturing the
-        meaning of predicted values, inaccuracies persisted, particularly with
-        the addressRegion and addressLocality pair. We discovered that while the
-        schema defines addressRegion as the country's region, addressLocality
-        corresponds to a city within that region. Unfortunately, we encountered
-        numerous inconsistent labeling and mixed-up terms in tables. Therefore,
-        future work must focus on preprocessing to address this problem by
-        handling inconsistent labels.
+        Upon analyzing CTA's Top 5 errors, as shown in <em>Table 9a</em>, we
+        observed that the majority were related to Hierarchical Labels, which
+        was consistent with the sampled data. We believe that refining the
+        2-step model could address this issue. Despite the model's overall
+        effectiveness in capturing the meaning of predicted values, inaccuracies
+        persisted, particularly with the addressRegion and addressLocality pair.
+        We discovered that while the schema defines addressRegion as the
+        country's region, addressLocality corresponds to a city within that
+        region. Unfortunately, we encountered numerous inconsistent labeling and
+        mixed-up terms in tables. Therefore, future work must focus on
+        preprocessing to address this problem by handling inconsistent labels.
       </p>
       <div style="text-align: center" class="tg-wrap">
         <table class="tg">
@@ -3859,15 +3884,15 @@
         <b>Error Frequency for CPA </b>
       </p>
       <p>
-        In CPA's top 5, the most common error type was related to semantic
-        labeling, which highlights the challenges in accurately identifying and
-        labeling the meaning of data values. Consistent data formats further
-        complicate this issue, making it difficult for even humans to
-        distinguish between them without contextual information. To address this
-        issue, we propose including additional relevant columns, such as
-        information about the stadium, to disambiguate between pairs of data
-        like awayTeam and homeTeam, which can potentially improve the accuracy
-        of the model's predictions.
+        In CPA's top 5, shown in <em>Table 9a</em>, the most common error type
+        was related to semantic labeling, which highlights the challenges in
+        accurately identifying and labeling the meaning of data values.
+        Consistent data formats further complicate this issue, making it
+        difficult for even humans to distinguish between them without contextual
+        information. To address this issue, we propose including additional
+        relevant columns, such as information about the stadium, to disambiguate
+        between pairs of data like awayTeam and homeTeam, which can potentially
+        improve the accuracy of the model's predictions.
       </p>
 
       <div style="text-align: center" class="tg-wrap">
@@ -3939,7 +3964,7 @@
       <span id="toc6"></span>
       <h2>6. Discussion and Conclusion</h2>
       This section is dedicated to the discussion of findings for the project.
-      WE then conclude the project and provide potential implications for future
+      We then conclude the project and provide potential implications for future
       research in the field of table annotation.
 
       <span id="toc6.1"></span>
