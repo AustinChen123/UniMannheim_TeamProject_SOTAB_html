@@ -1053,7 +1053,7 @@
       <p>
         Chapter 3 provides an overview of relevant literature on table
         annotation tasks and a Transformer-based language model, which is
-        currently the state-of-the-art approach for these tasks.
+        currently the state-of-the-art approach for these tasks. We also describe the datasets used to evaluate our approaches.
       </p>
       <h3>3.1 Transformer</h3>
       <p>
@@ -1157,7 +1157,7 @@
        TaBERT is an advanced language model that can generate representations for both natural language sentences and structured tables jointly. It has been pre-trained on a large dataset consisting of 26 million tables and their associated English contexts.
   	  </p>
       <p>
-      As shown in <i>Figure 4</i>, TaBERT first generates a content 
+      As shown in <i>Figure 3</i>, TaBERT first generates a content 
       snapshot of a table T based on an input utterance u and table T. The snapshot comprises of rows that contain 
       the most relevant data from table T in relation to the input utterance u. In this Example in the <i>Figure 4.a</i>, 
       rows R2, R3, R5 are the most relevant to the utterance. Next, each row within the snapshot 
@@ -1187,12 +1187,15 @@
         generalizability of our approach, we test our best serialization approaches on the 
         <a href="https://github.com/sunlab-osu/TURL/"
           >WikiTables dataset by TURL</a
-        >[<a href="#toc12">3</a>]. The SOTAB benchmark is a collection of tables
-        extracted from the Schema.org Table Corpus, which is maintained by the
+        >[<a href="#toc12">4</a>]. The SOTAB benchmark is a collection of tables
+        extracted from the  <a
+          href="http://webdatacommons.org/structureddata/schemaorgtables/"
+          >Schema.org Table Corpus</a
+        >, which is maintained by the
         Data and Web Science Research Group at the University of Mannheim. The
         corpus comprises over 4.2 million web relational tables covering 43
-        schema.org classes. The dataset defines both CTA and CPA labels for
-        tables from 17 schema.org classes/domains. For the CTA task, the SOTAB
+        <a href='https://schema.org/'>Schema.org</a> classes. The dataset defines both CTA and CPA labels for
+        tables from 17 schema.org classes/domains. The authors obtained the CPA labels from Schema.org terms used as column headers in a table. The CTA label for a column is instead derived from its CPA label using the Schema.org vocabulary definition. For the CTA task, the SOTAB
         dataset provides annotations for 162,351 columns from 59,548 tables,
         with a label space of 91 type labels. For the CPA task, it provides
         annotations for 174,998 column pairs from 48,379 tables, with a label
@@ -1200,10 +1203,10 @@
         splits for both tasks.
       </p>
       <p>
-        The WikiTables dataset [<a href="#toc12">3</a>] is a collection of
-        tables extracted from the WikiTable corpus, which contains over 1.54
+        The WikiTables dataset [<a href="#toc12">4</a>] is a collection of
+        tables extracted from the WikiTable corpus [<a href="#toc26">18</a>], which contains over 1.54
         million tables extracted from Wikipedia pages. The dataset defines both
-        CTA and CPA labels. For the CTA task, the dataset provides annotations
+        CTA and CPA labels. To derive the labels for both tasks, the authors referred to Freebase [<a href="#toc28">21</a>] to obtain semantic types and relations respectively. For each column, the CTA labels are the common types of its entities. For each object column in a table, it is paired with the subject column to identify the relations shared by more than half of the entity pairs in the two columns and thus function as the CPA labels. For the CTA task, the dataset provides annotations
         of 628,254 columns from 397,098 tables, with a label space of 255 type
         labels for training, and 13,025 (13,391) columns from 4,764 (4,844)
         tables for test and validation, respectively. For the CPA task, it
@@ -3964,8 +3967,6 @@
         <a href="https://www.semanticscholar.org/paper/Sato%3A-Contextual-Semantic-Type-Detection-in-Tables-Zhang-Suhara/0983f358acd88e3559f4a763c90281d35768787e"
         > Sato: Contextual Semantic Type Detection in Tables</a>. 
         Proc. VLDB Endow., 13, 1835-1848. <br />
-
-        
         
         <span id="toc20"></span>
         [12] Brugman, S. <a href="https://github.com/pandas-profiling/"
@@ -4011,6 +4012,10 @@
         [20] Yin, P., Neubig, G., Yih, W., & Riedel, S. (2020). 
         <a href="https://www.semanticscholar.org/paper/TinyBERT%3A-Distilling-BERT-for-Natural-Language-Jiao-Yin/0cbf97173391b0430140117027edcaf1a37968c7"
         > TaBERT: Pretraining for Joint Understanding of Textual and Tabular Data</a>. ArXiv, abs/2005.08314. <br />
+
+        <span id="toc29"></span>
+        [21] Google (2015).
+        <a href="https://developers.google.com/freebase/data"> Freebase Data Dumps. </a> <br />
       </p>
       <p>&nbsp;</p>
 
