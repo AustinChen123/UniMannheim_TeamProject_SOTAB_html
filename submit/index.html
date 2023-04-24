@@ -1015,9 +1015,8 @@
       <span id="toc2.2"></span>
       <h3>2.2 Columns Property Annotation (CPA)</h3>
       <p>
-        CPA is a web data integration task and it plays a crucial role in
-        ensuring data quality control and schema matching [<a href="#toc17">7</a
-        >]. It aims to identify relationships between different columns in a
+        CPA is a web data integration task and it plays a crucial role in providing understanding in the semanntics of a table for better table understanding [<a href="#toc17">7</a
+        >]. It aims to identify semantic relationships between different columns in a
         table and can infer relationships that might not be immediately obvious.
         As illustrated in <i>Figure 1</i>, CPA can help to infer that the
         <b>"address" </b>column refers to the hotel's location.
@@ -1098,25 +1097,14 @@
       <p>
         The paper [<a href="#toc12">4</a>] provides a cornerstone for table
         representation through the introduction of a framework for table
-        understanding called TURL. TURL achieves this by learning deep 
-        contextualized representations of relational tables in an unsupervised manner.
-        TURL's unsupervised pre-training on a vast web table
-        corpus derived from WikiTable [<a href="#toc26">18</a>] facilitates its application in various
-        downstream tasks, requiring only minimal task-specific modifications.
-        For example, the TURL framework can be used to infer valuable
-        information about tables such as column types and the relationships
-        between columns (CTA and CPA).
+        understanding called TURL. TURL achieves table understanding by learning deep 
+        contextualized representations of relational tables utilizing unsupervised pre-training on around 570K relational tables from Wikipedia. The pre-training data is constructed based on the WikiTable corpus [<a href="#toc26">18</a>], a corpus containing around 1.65M tables extracted from Wikipedia pages.
       </p>
       <p> 
-        The framework is composed of three main components:
-        an embedding layer that converts input tables into embeddings, an N-stacked aware transformer
-        layer that attends over these embeddings to capture useful information, and a projection layer for pre-training objectives.
-        To enhance its performance on a wide range of table-related tasks, TURL adopts a pre-training/finetuning paradigm.
-        During pretraining, it uses TinyBERT [<a href="#toc27">19</a>], a smaller, more computationally efficient version of the BERT language model.
-        In addition to this, it uses two training objectives,
-        the Masked Language Model (MLM) and the Masked Entity Recovery (MER).
-      TURL has been evaluated on six key table-related tasks such as entity linking, column type annotation, relation extraction, row population, cell filling, and schema augmentation.
-
+        The universal architecture of TURL facilitates its application in various downstream tasks, requiring only minimal task-specific modifications. For example, the TURL framework can be used to infer valuable information about tables such as column types and the relationships
+        between columns (CTA and CPA). The framework is composed of three main components:
+        an embedding layer that first converts input tables into embeddings, an N-stacked aware transformer
+        layer that attends over these embeddings to capture useful information, and a projection layer for pre-training objectives. In addition to a Masked Language Model (MLM) used by standard BERT language model [<a href="#toc22">14</a>] that can learn representations for tokens in table metadata, TURL proposes a Masked Entity Recovery (MER) objective to learn entity cell representations. Lastly, to perform the pre-training, TURL leverages a pre-trained TinyBERT model [<a href="#toc27">19</a>] and pre-trained the model for 80 epochs.
       </p>
 
       <span id="toc3.3"></span>
@@ -1133,51 +1121,41 @@
 
       <span id="toc3.4"></span>
       <h3>3.4 DODUO</h3>
-      DODUO, as described in [<a href="#toc15">7</a>], is the ccurent
+      <p>   
+      	DODUO, as described in [<a href="#toc15">7</a>], is the curent
       state-of-the-art approach for the CTA and CPA tasks. This approach
       utilizes a Transformer-based language model and takes the entire table as
       input to predict column types and relationships between columns. What sets
-      DODUO apart is its ability to annotate table columns using only the
+      DODUO apart to its predecessors is its ability to annotate table columns using only the
       information contained in the table itself, without the need for external
       knowledge or context.
-      <p></p>
+ 	  </p>
 
       <span id="toc3.4.Fig"></span>
       <figure>
         <img
-          src="images/DODUO.JPG"
-          alt="TURL framework"
+          src="images/DODUO.PNG"
+          alt="DODUO"
           class="center"
         />
         <figcaption class="center">
-          <b><a id="Fig3"></a>Figure 3:</b> How DODUO computes contextualized column embeddings using the Transformer layers.
+          <b><a id="Fig2"></a>Figure 2:</b> Overview of DODUO's model architecture
           [<a href="#toc15">7</a>]
         </figcaption>
       </figure>
       <p>
-        To annotate a table with N columns, each of which with m 
-        values using pre-trained language models, the table is first serialized according to
-        the following schema:
 
+      As shown in <a id="Fig2">Figure 2</a>, DODUO utilizes a pre-trained Transformer-based language model, particularly a BERT language model [<a href="#toc22">14</a>] and adopts multi-task learning into the model to "transfer" shared knowledge between CTA and CPA tasks. DODUO introduces table-wise serialization to incorporate table context into prediction. Particularly, the serialization method is: for a table of N columns of m rows, 
         <span class="math display"
           >\[serialize(T)::= [CLS]\;v^1_1\;...[CLS]\; v^1_n...v^n_m\;[SEP]\]</span
-        >
-        It appends a [CLS] token to the beginning of each column, concatenates them and adds a [SEP] 
-        token at the end of this sequence.
-        This creates a sequence of tokens that represents the entire table. For example, consider a table 
-        with three columns as  illustrated in <a id="Fig3">Figure 3</a>,the serialized input sequence would look like this: <br />
-         <!--style will override the class center width to increase it to be 40% instead of 30%-->
-        <p class="center" style="width: 40%">[CLS] Happy Feet, ... [CLS] George Miller, ... [CLS] USA, ...,France [SEP].</p> 
-        Next, a 12 layer BERT Base model [<a href="#toc22">14</a>] is fine-tuned on the serialized table to predict
-        labels for each [CLS] token. The number of labels predicted is equal to the number of columns in the table.
-         Although the paper used BERT, any other pre-trained language model such as RoBERTa [<a href="#toc23">15</a>] can be utilized.
+        > where a [CLS] token is appended to the beginning of each column, which its corresponding embeddings represent learned column representations for the column. The output layer on top of a column embedding, i.e. the [CLS] token, is used for the CTA task. Column embeddings of a column pair is used for the CPA task instead.
       </p>
 
       <span id="toc3.5"></span>
       <h3>3.5 TaBERT</h3>
-      TaBERT is an advanced language model that can generate representations for both natural language sentences and 
-      structured tables jointly. It has been pre-trained on a large dataset consisting of 26 million tables 
-      and their associated English contexts.
+      <p>
+       TaBERT is an advanced language model that can generate representations for both natural language sentences and structured tables jointly. It has been pre-trained on a large dataset consisting of 26 million tables and their associated English contexts.
+  	  </p>
       <p>
       As shown in <i>Figure 4</i>, TaBERT first generates a content 
       snapshot of a table T based on an input utterance u and table T. The snapshot comprises of rows that contain 
@@ -1194,7 +1172,7 @@
           class="center"
         />
         <figcaption class="center">
-          <b><a id="Fig4"></a>Figure 4:</b> Overview of TaBERT.
+          <b><a id="Fig3"></a>Figure 3:</b> Overview of TaBERT.
           [<a href="#toc28">20</a>]
         </figcaption>
       </figure>
