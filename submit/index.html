@@ -830,9 +830,9 @@
         and
         <a href="https://paperswithcode.com/task/columns-property-annotation"
           >Columns Property Annotation (CPA)</a
-        >. CTA involves predicting the column type, while CPA involves identifying 
-        semantic column relationships between different column pairs in a table. All of our experiments
-        and code are available in our
+        >. CTA involves predicting the column type, while CPA involves
+        identifying semantic column relationships between different column pairs
+        in a table. All of our experiments and code are available in our
         <a
           href="https://github.com/wbsg-uni-mannheim-students/table-annotation-using-deep-learning"
           >GitHub repository.</a
@@ -930,36 +930,40 @@
           </ul>
         </li>
         <li class="toc-h2 toc-active">
-          <a href="#toc7"> 7. Discussion and Conclusion </a>
+          <a href="#toc6"> 7. Discussion and Conclusion </a>
           <ul>
             <li>
-              <a href="#toc7.1">7.1 Discussion</a>
+              <a href="#toc6.1">6.1 Discussion</a>
             </li>
             <li>
-              <a href="#toc7.2">7.2 Conclusion</a>
+              <a href="#toc6.2">6.2 Conclusion</a>
             </li>
             <li>
-              <a href="#toc7.3">7.3 Acknowledgments</a>
+              <a href="#toc6.3">6.3 Acknowledgments</a>
             </li>
           </ul>
         </li>
         <li class="toc-h2 toc-active">
-          <a href="#toc8"> 8. References </a>
+          <a href="#toc8"> 7. References </a>
         </li>
       </ul>
       <span id="toc1"></span>
       <h2>1. Introduction</h2>
       <p>
-        <a href = "https://paperswithcode.com/task/column-type-annotation">Table annotation</a>
-        is the task of annotating a table with terms/concepts from knowledge graph, 
-        database schema or vocabulary. This process is crucial for data management including data quality control, data discovery, and schema matching process [<a href="#toc17">7</a>], especially since the web contains millions of tables available 
-        on websites, public data portals, and encyclopedia such as Wikipedia.
-        However, to utilize these tables, we need to understand their structure
-        and schema, which can be challenging due to their heterogeneous or
-        unknown headers and content. The objective of this project is to address
-        the aforementioned challenges by proficiently utilizing diverse deep
-        learning methods for both Column Type Annotation and Columns Property
-        Annotation tasks.
+        <a href="https://paperswithcode.com/task/column-type-annotation"
+          >Table annotation</a
+        >
+        is the task of annotating a table with terms/concepts from knowledge
+        graph, database schema or vocabulary. This process is crucial for data
+        management including data quality control, data discovery, and schema
+        matching process [<a href="#toc17">7</a>], especially since the web
+        contains millions of tables available on websites, public data portals,
+        and encyclopedia such as Wikipedia. However, to utilize these tables, we
+        need to understand their structure and schema, which can be challenging
+        due to their heterogeneous or unknown headers and content. The objective
+        of this project is to address the aforementioned challenges by
+        proficiently utilizing diverse deep learning methods for both Column
+        Type Annotation and Columns Property Annotation tasks.
       </p>
 
       <span id="toc2"></span>
@@ -975,31 +979,30 @@
       <h3>2.1 Column Type Annotation (CTA)</h3>
       <p>
         Column Type Annotation (CTA) is a critical task in data integration and
-        knowledge discovery [<a href="#toc14">4</a>] that involves assigning 
-        labels to each column in a table based on the types of entities it contains
-         such as
+        knowledge discovery [<a href="#toc14">4</a>] that involves assigning
+        labels to each column in a table based on the types of entities it
+        contains such as
         <b
           >"hotel/name", "streetAddress","addressLocality", "Country", and
-          "currency"
-        </b>[<a href="#toc8">1</a>]
-        as shown in <i>Figure 1</i>. While data types provide basic information
-        about the type of data stored in a column, entity types capture
-        domain-specific semantics that convey more meaning. For instance,
-        labeling a column with <b>"hotel/name"</b> rather than just
-        <b>"String" </b> provides valuable information about the specific type
-        of data stored in that column, which is crucial for downstream tasks
-        such as data analysis and retrieval [<a href="#toc24">16</a>].
+          "currency" </b
+        >[<a href="#toc9">1</a>] as shown in <i>Figure 1</i>. While data types
+        provide basic information about the type of data stored in a column,
+        entity types capture domain-specific semantics that convey more meaning.
+        For instance, labeling a column with <b>"hotel/name"</b> rather than
+        just <b>"String" </b> provides valuable information about the specific
+        type of data stored in that column, which is crucial for downstream
+        tasks such as data analysis and retrieval [<a href="#toc24">16</a>].
       </p>
 
       <p>
         An example of CTA: An e-commerce website may have a table of products
         with columns such as "product name", "description", "price", "category",
         and "brand". By annotating the columns with entity types such as
-        <b>"product name"</b>, <b>"brand"</b>, and <b>"category"</b>, a machine learning model can
-        better understand the semantic meaning of the data, and accurately
-        categorize products into appropriate categories, recommend related
-        products, and provide a more personalized shopping experience to the
-        user.
+        <b>"product name"</b>, <b>"brand"</b>, and <b>"category"</b>, a machine
+        learning model can better understand the semantic meaning of the data,
+        and accurately categorize products into appropriate categories,
+        recommend related products, and provide a more personalized shopping
+        experience to the user.
       </p>
 
       <p>
@@ -1015,11 +1018,13 @@
       <span id="toc2.2"></span>
       <h3>2.2 Columns Property Annotation (CPA)</h3>
       <p>
-        CPA is a web data integration task and it plays a crucial role in providing understanding in the semanntics of a table for better table understanding [<a href="#toc17">7</a
-        >]. It aims to identify semantic relationships between different columns in a
-        table and can infer relationships that might not be immediately obvious.
-        As illustrated in <i>Figure 1</i>, CPA can help to infer that the
-        <b>"address" </b>column refers to the hotel's location.
+        CPA is a web data integration task and it plays a crucial role in
+        providing understanding in the semanntics of a table for better table
+        understanding [<a href="#toc17">7</a>]. It aims to identify semantic
+        relationships between different columns in a table and can infer
+        relationships that might not be immediately obvious. As illustrated in
+        <i>Figure 1</i>, CPA can help to infer that the <b>"address" </b>column
+        refers to the hotel's location.
       </p>
 
       <p>
@@ -1042,7 +1047,7 @@
           <b><a id="Fig1"></a>Figure 1:</b> Example of table annotation. The CTA
           labels are placed on the top of the columns, while the CPA labels are
           placed between the main column (leftmost column) and another column
-          [<a href="#toc8">1</a>]
+          [<a href="#toc9">1</a>]
         </figcaption>
       </figure>
 
@@ -1062,11 +1067,10 @@
         applications. They were first introduced in 2017 by Vaswani et al [<a
           href="#toc15"
           >5</a
-        >] and have since become one of the most popular deep-learning models [<a
-        href="#toc24">17</a>].
-        Transformers are based on the concept of self-attention, which allows
-        the model to focus on different parts of the input sequence at each
-        step.
+        >] and have since become one of the most popular deep-learning models
+        [<a href="#toc24">17</a>]. Transformers are based on the concept of
+        self-attention, which allows the model to focus on different parts of
+        the input sequence at each step.
       </p>
 
       <p>
@@ -1097,14 +1101,31 @@
       <p>
         The paper [<a href="#toc12">4</a>] provides a cornerstone for table
         representation through the introduction of a framework for table
-        understanding called TURL. TURL achieves table understanding by learning deep 
-        contextualized representations of relational tables utilizing unsupervised pre-training on around 570K relational tables from Wikipedia. The pre-training data is constructed based on the WikiTable corpus [<a href="#toc26">18</a>], a corpus containing around 1.65M tables extracted from Wikipedia pages.
+        understanding called TURL. TURL achieves table understanding by learning
+        deep contextualized representations of relational tables utilizing
+        unsupervised pre-training on around 570K relational tables from
+        Wikipedia. The pre-training data is constructed based on the WikiTable
+        corpus [<a href="#toc26">18</a>], a corpus containing around 1.65M
+        tables extracted from Wikipedia pages.
       </p>
-      <p> 
-        The universal architecture of TURL facilitates its application in various downstream tasks, requiring only minimal task-specific modifications. For example, the TURL framework can be used to infer valuable information about tables such as column types and the relationships
-        between columns (CTA and CPA). The framework is composed of three main components:
-        an embedding layer that first converts input tables into embeddings, an N-stacked aware transformer
-        layer that attends over these embeddings to capture useful information, and a projection layer for pre-training objectives. In addition to a Masked Language Model (MLM) used by standard BERT language model [<a href="#toc22">14</a>] that can learn representations for tokens in table metadata, TURL proposes a Masked Entity Recovery (MER) objective to learn entity cell representations. Lastly, to perform the pre-training, TURL leverages a pre-trained TinyBERT model [<a href="#toc27">19</a>] and pre-trained the model for 80 epochs.
+      <p>
+        The universal architecture of TURL facilitates its application in
+        various downstream tasks, requiring only minimal task-specific
+        modifications. For example, the TURL framework can be used to infer
+        valuable information about tables such as column types and the
+        relationships between columns (CTA and CPA). The framework is composed
+        of three main components: an embedding layer that first converts input
+        tables into embeddings, an N-stacked aware transformer layer that
+        attends over these embeddings to capture useful information, and a
+        projection layer for pre-training objectives. In addition to a Masked
+        Language Model (MLM) used by standard BERT language model [<a
+          href="#toc22"
+          >14</a
+        >] that can learn representations for tokens in table metadata, TURL
+        proposes a Masked Entity Recovery (MER) objective to learn entity cell
+        representations. Lastly, to perform the pre-training, TURL leverages a
+        pre-trained TinyBERT model [<a href="#toc27">19</a>] and pre-trained the
+        model for 80 epochs.
       </p>
 
       <span id="toc3.3"></span>
@@ -1121,59 +1142,76 @@
 
       <span id="toc3.4"></span>
       <h3>3.4 DODUO</h3>
-      <p>   
-      	DODUO, as described in [<a href="#toc15">7</a>], is the curent
-      state-of-the-art approach for the CTA and CPA tasks. This approach
-      utilizes a Transformer-based language model and takes the entire table as
-      input to predict column types and relationships between columns. What sets
-      DODUO apart to its predecessors is its ability to annotate table columns using only the
-      information contained in the table itself, without the need for external
-      knowledge or context.
- 	  </p>
+      <p>
+        DODUO, as described in [<a href="#toc15">7</a>], is the curent
+        state-of-the-art approach for the CTA and CPA tasks. This approach
+        utilizes a Transformer-based language model and takes the entire table
+        as input to predict column types and relationships between columns. What
+        sets DODUO apart to its predecessors is its ability to annotate table
+        columns using only the information contained in the table itself,
+        without the need for external knowledge or context.
+      </p>
 
       <span id="toc3.4.Fig"></span>
       <figure>
-        <img
-          src="images/DODUO.PNG"
-          alt="DODUO"
-          class="center"
-        />
+        <img src="images/DODUO.PNG" alt="DODUO" class="center" />
         <figcaption class="center">
-          <b><a id="Fig2"></a>Figure 2:</b> Overview of DODUO's model architecture
-          [<a href="#toc15">7</a>]
+          <b><a id="Fig2"></a>Figure 2:</b> Overview of DODUO's model
+          architecture [<a href="#toc15">7</a>]
         </figcaption>
       </figure>
       <p>
-
-      As shown in <a id="Fig2">Figure 2</a>, DODUO utilizes a pre-trained Transformer-based language model, particularly a BERT language model [<a href="#toc22">14</a>] and adopts multi-task learning into the model to "transfer" shared knowledge between CTA and CPA tasks. DODUO introduces table-wise serialization to incorporate table context into prediction. Particularly, the serialization method is: for a table of N columns of m rows, 
+        As shown in <a id="Fig2">Figure 2</a>, DODUO utilizes a pre-trained
+        Transformer-based language model, particularly a BERT language model [<a
+          href="#toc22"
+          >14</a
+        >] and adopts multi-task learning into the model to "transfer" shared
+        knowledge between CTA and CPA tasks. DODUO introduces table-wise
+        serialization to incorporate table context into prediction.
+        Particularly, the serialization method is: for a table of N columns of m
+        rows,
         <span class="math display"
-          >\[serialize(T)::= [CLS]\;v^1_1\;...[CLS]\; v^1_n...v^n_m\;[SEP]\]</span
-        > where a [CLS] token is appended to the beginning of each column, which its corresponding embeddings represent learned column representations for the column. The output layer on top of a column embedding, i.e. the [CLS] token, is used for the CTA task. Column embeddings of a column pair is used for the CPA task instead.
+          >\[serialize(T)::= [CLS]\;v^1_1\;...[CLS]\;
+          v^1_n...v^n_m\;[SEP]\]</span
+        >
+        where a [CLS] token is appended to the beginning of each column, which
+        its corresponding embeddings represent learned column representations
+        for the column. The output layer on top of a column embedding, i.e. the
+        [CLS] token, is used for the CTA task. Column embeddings of a column
+        pair is used for the CPA task instead.
       </p>
 
       <span id="toc3.5"></span>
       <h3>3.5 TaBERT</h3>
       <p>
-       TaBERT is an advanced language model that can generate representations for both natural language sentences and structured tables jointly. It has been pre-trained on a large dataset consisting of 26 million tables and their associated English contexts.
-  	  </p>
+        TaBERT is an advanced language model that can generate representations
+        for both natural language sentences and structured tables jointly. It
+        has been pre-trained on a large dataset consisting of 26 million tables
+        and their associated English contexts.
+      </p>
       <p>
-      As shown in <i>Figure 4</i>, TaBERT first generates a content 
-      snapshot of a table T based on an input utterance u and table T. The snapshot comprises of rows that contain 
-      the most relevant data from table T in relation to the input utterance u. In this Example in the <i>Figure 4.a</i>, 
-      rows R2, R3, R5 are the most relevant to the utterance. Next, each row within the snapshot 
-      is linearized and concatenated with the utterance u as shown in <i>Figure 4.b</i>. This resulting string is then processed by a Transformer model,
-      such as BERT (see: <i>Figure 4.c</i>), to produce encoding vectors for both the utterance tokens and table cells on a row-by-row basis [<a href="#toc28">20</a>].</p>
+        As shown in <i>Figure 4</i>, TaBERT first generates a content snapshot
+        of a table T based on an input utterance u and table T. The snapshot
+        comprises of rows that contain the most relevant data from table T in
+        relation to the input utterance u. In this Example in the
+        <i>Figure 4.a</i>, rows R2, R3, R5 are the most relevant to the
+        utterance. Next, each row within the snapshot is linearized and
+        concatenated with the utterance u as shown in <i>Figure 4.b</i>. This
+        resulting string is then processed by a Transformer model, such as BERT
+        (see: <i>Figure 4.c</i>), to produce encoding vectors for both the
+        utterance tokens and table cells on a row-by-row basis [<a href="#toc28"
+          >20</a
+        >].
+      </p>
 
       <span id="toc3.5.Fig"></span>
       <figure>
-        <img
-          src="images/TaBERT.JPG"
-          alt="TaBERT framework"
-          class="center"
-        />
+        <img src="images/TaBERT.JPG" alt="TaBERT framework" class="center" />
         <figcaption class="center">
-          <b><a id="Fig3"></a>Figure 3:</b> Overview of TaBERT.
-          [<a href="#toc28">20</a>]
+          <b><a id="Fig3"></a>Figure 3:</b> Overview of TaBERT. [<a
+            href="#toc28"
+            >20</a
+          >]
         </figcaption>
       </figure>
 
@@ -1184,7 +1222,8 @@
         <a href="https://webdatacommons.org/structureddata/sotab/"
           >WDC Schema.org Table Annotation Benchmark (SOTAB)</a
         >[<a href="#toc9">1</a>] benchmark dataset. To ensure the
-        generalizability of our approach, we test our best serialization approaches on the 
+        generalizability of our approach, we test our best serialization
+        approaches on the
         <a href="https://github.com/sunlab-osu/TURL/"
           >WikiTables dataset by TURL</a
         >[<a href="#toc12">3</a>]. The SOTAB benchmark is a collection of tables
@@ -1209,7 +1248,8 @@
         tables for test and validation, respectively. For the CPA task, it
         provides annotations of 62,954 column pairs from 52,943 tables, with a
         label space of 121 relation labels for traning, and 2,072 (2,175) column
-        pairs from 1,467 (1,560) tables for test (validation).
+        pairs from 1,467 (1,560) tables for test (validation). The statistics of
+        WikiTable dataset are shown in <i>Table 1</i>.
       </p>
 
       <div style="text-align: center" class="tg-wrap">
@@ -1268,11 +1308,84 @@
       <span id="toc4"></span>
       <h2>4. Methodology</h2>
       <p>
-      	Chapter 4 describes the approaches introduced in this work. We give an overview of the data preprocessing and augmentations performed, followed by serialization methods and hyperparameter tuning.
+        Chapter 4 describes the approaches introduced in this work. We give an
+        overview of the data preprocessing and augmentations performed, followed
+        by serialization methods and hyperparameter tuning.
+      </p>
+      <span id="toc4.1"></span>
+      <h3>4.1 Experimental Settings</h3>
+      <p>
+        For our experiments on both the SOTAB benchmark and WikiTables dataset,
+        we trained a RoBERTa model with default settings: 30 epochs, 3 runs
+        (with seed 0-2), and a batch size of 32, if not specified. The initial
+        learning rate was set to 5e-5, and we used a linear decay scheduler with
+        no warmup. We set a maximum token length of 512, used a window size of
+        5, and a standard MP ratio of 0.5 for relevant serializations. We
+        identify single-column serialization as the baseline configuration. For
+        the SOTAB benchmark, we formulated the task as a multi-class prediction
+        problem and used Cross Entropy loss. For the WikiTable dataset, we
+        formulated the task as a multi-label prediction problem and used Binary
+        Cross Entropy loss. We evaluated the performance of our models using
+        micro F1 scores for both datasets.
+      </p>
+      <p>
+        To conduct our experiments, we utilized computing resources from the
+        University of Mannheim (dws-server) and bwHPC servers provided by the
+        state of Baden-Württemberg.
       </p>
 
-      <span id="toc4.1"></span>
-      <h3>4.1 Preprocessing and Augmentation</h3>
+      <span id="toc5.2"></span>
+      <h3>4.2 Experiments for SOTAB benchmark</h3>
+      <p>
+        For the SOTAB benchmark, we conducted extensive experiments on
+        serialization for both CTA and CPA tasks. Specifically, we tested
+        different variants of Neighboring Column Serialization and TaBERT
+        Serialization. For CPA, we also performed No-Main Neighboring Column
+        Serialization, which treats a CPA task as a CTA task.
+      </p>
+      <p>
+        In order to explore more possibilities for the challenging CPA task, we
+        further investigated Subtable, 2-Step, and Longformer models. For the
+        Subtable model, we trained a BERT model for 30 epochs with a batch size
+        of 16 and a maximum token length of 512 tokens. We utilized a
+        Neighboring Column Serialization of window size 2 for this model. For
+        the 2-Step model, we used default parameter settings, including a
+        RoBERTa model trained for 30 epochs. For the Longformer model, we used
+        single-column serialization with a batch size of 8 and maximum length of
+        1000.
+      </p>
+      <p>
+        We conducted hyperparameter tunings for both CTA and CPA tasks to
+        investigate the impact of different window sizes for Neighboring Column
+        Serializations. We also experimented with different preprocessing
+        methods, such as TUTA, median, and mean preprocessing for each promising
+        serialization. Additionally, we varied the proportions of the target
+        column and local context <i>(MP - Main Percentange Ratio)</i> to assess
+        the effect of context weight on different serializations, experimenting
+        with MP Ratios of 0.2, 0.5, and 0.8, respectively. For instance, the MP
+        Ratio of 0.8 for Neighboring Column Serialization, for the CPA task,
+        allocates 80% of the available token limit to the Main and Target
+        Columns and only 20% to their neighbors, Finally, in the early stages of
+        our workflow, we investigated the performance of augmentation strategies
+        on single-column serialization for the CPA task.
+      </p>
+
+      <span id="toc4.3"></span>
+      <h3>4.3 Experiments for WikiTables dataset</h3>
+      <p>
+        To test the generalizability of our findings for the SOTAB benchmark, we
+        transferred the serialization methods to the WikiTables dataset. For the
+        CTA task, we used only Column-TaBERT Serialization due to computational
+        limitations resulting from the dataset's size. For the CPA task, we
+        experimented with different serializations, including TaBERT,
+        Column-TaBERT, and No-Main Neighboring Column Serializations. We
+        utilized the default experimental parameters as described and following
+        Suhara et al. [<a href="#toc15">7</a>], we trained the model for 15
+        epochs.
+      </p>
+
+      <span id="toc4.4"></span>
+      <h3>4.4 Preprocessing and Augmentation</h3>
       <p>
         To accommodate the token limit of 512 tokens for BERT-like language
         models, we trim cell values for longer textual data to fit more cells
@@ -1322,13 +1435,12 @@
         techniques, and augmentation methods to account for table context.
       </p>
 
-
-
-      <span id="toc4.2"></span>
-      <h3>4.2 Serialization</h3>
+      <span id="toc4.5"></span>
+      <h3>4.5 Serialization</h3>
       <p>
-        In this work, we employ two distinct serialization techniques - Neighboring Column serialization and 
-        TaBERT serialization. In the following, we present an explanation of these techniques.
+        In this work, we employ two distinct serialization techniques -
+        Neighboring Column serialization and TaBERT serialization. In the
+        following, we present an explanation of these techniques.
       </p>
 
       <p>
@@ -1366,7 +1478,7 @@
         <em>No-Main Neighboring Column Serialization</em>.
       </p>
 
-      <span id="toc4.2.1.Fig"></span>
+      <span id="toc4.5.1.Fig"></span>
       <figure>
         <img
           src="./images/Neighbor.gif"
@@ -1380,15 +1492,15 @@
       </figure>
 
       <p>
-        <b>(ii) TaBERT:</b> The <em>TaBERT Serialization</em> here uses the 
+        <b>(ii) TaBERT:</b> The <em>TaBERT Serialization</em> here uses the
         row-based idea from the thesis by Yin, P et al[<a href="#toc28">20</a>].
-        We implement the idea in a different way to solve our CTA/CPA task.
-        Our goal is to capture the relationship between the target column and the context
-        columns by inputting the context data row-wise. To achieve this, we
-        follow the approach proposed by TUTA [<a href="#toc16">8</a>], where we
-        prepend a data type token to each cell. This row serialization approach
-        helps the Transformer's attention mechanism better capture the table
-        structure while maintaining constant intervals for each column.
+        We implement the idea in a different way to solve our CTA/CPA task. Our
+        goal is to capture the relationship between the target column and the
+        context columns by inputting the context data row-wise. To achieve this,
+        we follow the approach proposed by TUTA [<a href="#toc16">8</a>], where
+        we prepend a data type token to each cell. This row serialization
+        approach helps the Transformer's attention mechanism better capture the
+        table structure while maintaining constant intervals for each column.
         Moreover, by including data types, the language model can learn the
         relationships between the cells of the target column and the prediction
         label. For instance, a URL data for company, label, or hotel photos may
@@ -1406,7 +1518,7 @@
         >
       </p>
 
-      <span id="toc4.2.2.Fig"></span>
+      <span id="toc4.5.2.Fig"></span>
       <figure>
         <img
           src="./images/TaBERT.gif"
@@ -1418,7 +1530,7 @@
           <b><a id="Fig3"></a>Figure 3:</b> TaBERT Serialization
         </figcaption>
       </figure>
-      <span id="toc4.2.1.Fig"></span>
+      <span id="toc4.5.1.Fig"></span>
       <figure>
         <img
           src="./images/example_table.jpg"
@@ -1430,8 +1542,8 @@
           <b><a id="Fig2"></a>Figure 4:</b> illustration of serializations
         </figcaption>
       </figure>
-      <span id="toc4.3"></span>
-      <h3>4.3 Further Models</h3>
+      <span id="toc4.6"></span>
+      <h3>4.6 Further Models</h3>
       <p>
         We further explore different experimental models for the CPA task in
         various iterations.
@@ -1475,88 +1587,59 @@
       </p>
 
       <span id="toc5"></span>
-      <h2>5. Experiment</h2>
-      <p>
-        To conduct our experiments, we utilized computing resources from the
-        University of Mannheim (dws-server) and bwHPC servers provided by the
-        state of Baden-Württemberg.
-      </p>
+      <h2>5. Experimental Results and Error Analysis</h2>
 
-      
-
-      <span id="toc5.2"></span>
-      <h3>5.2 Experimental Settings</h3>
+      <span id="toc5.1"></span>
+      <h3>5.1 Main Results</h3>
       <p>
-        For our experiments on both the SOTAB benchmark and WikiTables dataset,
-        we trained a RoBERTa model with default settings: 30 epochs, 3 runs
-        (with seed 0-2), and a batch size of 32, if not specified. The initial
-        learning rate was set to 5e-5, and we used a linear decay scheduler with
-        no warmup. We set a maximum token length of 512, used a window size of
-        5, and a standard MP ratio of 0.5 for relevant serializations. We
-        identify single-column serialization as the baseline configuration. For
-        the SOTAB benchmark, we formulated the task as a multi-class prediction
-        problem and used Cross Entropy loss. For the WikiTable dataset, we
-        formulated the task as a multi-label prediction problem and used Binary
-        Cross Entropy loss. We evaluated the performance of our models using
-        micro F1 scores for both datasets.
-      </p>
-
-      <span id="toc5.3"></span>
-      <h3>5.3 Experiments for SOTAB benchmark</h3>
-      <p>
-        For the SOTAB benchmark, we conducted extensive experiments on
-        serialization for both CTA and CPA tasks. Specifically, we tested
-        different variants of Neighboring Column Serialization and TaBERT
-        Serialization. For CPA, we also performed No-Main Neighboring Column
-        Serialization, which treats a CPA task as a CTA task.
+        <b> SOTAB benchmark </b>
       </p>
       <p>
-        In order to explore more possibilities for the challenging CPA task, we
-        further investigated Subtable, 2-Step, and Longformer models. For the
-        Subtable model, we trained a BERT model for 30 epochs with a batch size
-        of 16 and a maximum token length of 512 tokens. We utilized a
-        Neighboring Column Serialization of window size 2 for this model. For
-        the 2-Step model, we used default parameter settings, including a
-        RoBERTa model trained for 30 epochs. For the Longformer model, we used
-        single-column serialization with a batch size of 8 and maximum length of
-        1000.
+        Across both tasks, for all but one serializations implemented, we
+        achieved significant improvement on Micro F1 against the single-column
+        baseline serialization. For the CTA task, we are able to achieve a
+        maximum increase of 7.62 point F1 score compared to the state-of-the-art
+        DODUO model, with Neighboring Column Serialization of window size of 5
+        and a MP Ratio of 0.2. Similar results are achieved by TaBERT and
+        Neighoring Column Serialization indicating the importance of context
+        ratio and certain structure for input sequence. The lower F1 score of
+        Column-TaBERT compared to its counterpart of TaBERT, and like-wise for
+        Neighboring Column with Summary, by roughly 3 points suggests the
+        inability of Transformer's attention mechanism to identify significant
+        positions in a input sequence.
       </p>
       <p>
-        We conducted hyperparameter tunings for both CTA and CPA tasks to investigate
-        the impact of different window sizes for Neighboring Column
-        Serializations. We also experimented with different preprocessing
-        methods, such as TUTA, median, and mean preprocessing for each promising
-        serialization. Additionally, we varied the proportions of the target
-        column and local context <i>(MP - Main Percentange Ratio)</i> to assess
-        the effect of context weight on different serializations, experimenting
-        with MP Ratios of 0.2, 0.5, and 0.8, respectively. For instance, the MP
-        Ratio of 0.8 for Neighboring Column Serialization, for the CPA task,
-        allocates 80% of the available token limit to the Main and Target
-        Columns and only 20% to their neighbors, Finally, in the early stages of
-        our workflow, we investigated the performance of augmentation strategies
-        on single-column serialization for the CPA task.
+        For the CPA task, different variances of Neighboring Column
+        Serialization achieve 6 point higher F1 score than the existing methods.
+        Once again, Neighboring Column Serialization of window size of 5 and MP
+        Ratio of 0.2 achieves the highest F1 score. TaBERT variances score 2.5
+        point lower F1 score indicating less suitability of row serialization
+        for a column pair prediction. Once again, less structured serialization
+        solutions achieve lower F1 scores (Column TaBERT and Neighboring Column
+        with Summary). Lastly, only Neighboring Column with Summary with MP
+        Ratio of 0.8 achieves lower F1 score than Single-Column. Overall, our
+        results highlight the importance of carefully selecting the appropriate
+        serialization method to achieve optimal performance in table annotation
+        tasks.
       </p>
 
-      <span id="toc5.4"></span>
-      <h3>5.4 Experiments for WikiTables dataset</h3>
       <p>
-        To test the generalizability of our findings for the SOTAB benchmark, we
-        transferred the serialization methods to the WikiTables dataset. For the
-        CTA task, we used only Column-TaBERT Serialization due to computational
-        limitations resulting from the dataset's size. For the CPA task, we
-        experimented with different serializations, including TaBERT,
-        Column-TaBERT, and No-Main Neighboring Column Serializations. We
-        utilized the default experimental parameters as described and following
-        Suhara et al. [<a href="#toc15">7</a>], we trained the model for 15
-        epochs.
+        Longformer's performance in comparison to BERT is lower, and one
+        possible reason for this is that the Longformer model employs a
+        different attention mechanism, which may not converge well with the
+        current set of parameters
       </p>
-
-      <span id="toc6"></span>
-      <h2>6. Experimental Results and Error Analysis</h2>
-
-      <span id="toc6.1"></span>
-      <h3>6.1 Main Results</h3>
-
+      <p>
+        For the additional experiments, we did not achieve improvement on Test
+        F1 score. Notably for LongFormer model, further modifications on the
+        model setup should be investigated. For the 2-step model, we achieve a
+        Test F1 Score of 96.73 for the schema type prediction model. Building on
+        top of this model, the final ensembly of submodels by schema class
+        achieved a Test F1 Score of 84.34. Upon further investigating,
+        decoupling the first model and inserting test data with correct schema
+        labels into respective submodel merely increased the final Test F1 score
+        to 84.81.
+      </p>
       <div style="text-align: center" class="tg-wrap">
         <table class="tg tg-top">
           <thead>
@@ -2220,54 +2303,21 @@
       </div>
 
       <p>
-        <b> SOTAB benchmark </b>
+        <b> Wikitables Dataset </b>
       </p>
       <p>
-        Across both tasks, for all but one serializations implemented, we
-        achieved significant improvement on Micro F1 against the single-column
-        baseline serialization. For the CTA task, we are able to achieve a
-        maximum increase of 7.62 point F1 score compared to the state-of-the-art
-        DODUO model, with Neighboring Column Serialization of window size of 5
-        and a MP Ratio of 0.2. Similar results are achieved by TaBERT and
-        Neighoring Column Serialization indicating the importance of context
-        ratio and certain structure for input sequence. The lower F1 score of
-        Column-TaBERT compared to its counterpart of TaBERT, and like-wise for
-        Neighboring Column with Summary, by roughly 3 points suggests the
-        inability of Transformer's attention mechanism to identify significant
-        positions in a input sequence.
+        In the CTA task, our Column-TaBERT Serialization achieved a comparable
+        F1 score to the state-of-the-art DODUO, missing by only 1 point. This is
+        a significant improvement over the TURL baseline, which we outperformed
+        by 2.5 points. However, our results from SOTAB benchmark suggest that
+        there may be rooms for improvement using more performant serialization
+        methods. For the CPA task, our TaBERT Serialization outperformed
+        existing methods by 1.5 points in terms of F1 score. These results
+        demonstrate that our serialization approaches can achieve comparable
+        performance on different real-world datasets. Overall, our findings
+        suggest that careful selection of serialization methods can
+        significantly improve the performance of table annotation tasks.
       </p>
-      <p>
-        For the CPA task, different variances of Neighboring Column
-        Serialization achieve 6 point higher F1 score than the existing methods.
-        Once again, Neighboring Column Serialization of window size of 5 and MP
-        Ratio of 0.2 achieves the highest F1 score. TaBERT variances score 2.5
-        point lower F1 score indicating less suitability of row serialization
-        for a column pair prediction. Once again, less structured serialization
-        solutions achieve lower F1 scores (Column TaBERT and Neighboring Column
-        with Summary). Lastly, only Neighboring Column with Summary with MP
-        Ratio of 0.8 achieves lower F1 score than Single-Column. Overall, our
-        results highlight the importance of carefully selecting the appropriate
-        serialization method to achieve optimal performance in table annotation
-        tasks.
-      </p>
-
-      <p>
-        Longformer's performance in comparison to BERT is lower, and one
-        possible reason for this is that the Longformer model employs a
-        different attention mechanism, which may not converge well with the
-        current set of parameters
-      </p>
-      <p>
-        For the additional experiments, we did not achieve improvement on Test
-        F1 score. Notably for LongFormer model, further modifications on the
-        model setup should be investigated. For the 2-step model, we achieve a
-        Test F1 Score of 96.73 for the schema type prediction model. Building on top of this model,
-        the final ensembly of submodels by schema class achieved a Test F1 Score of
-        84.34. Upon further investigating, decoupling the first model and
-        inserting test data with correct schema labels into respective submodel
-        merely increased the final Test F1 score to 84.81.
-      </p>
-
       <div style="text-align: center" class="tg-wrap">
         <table class="tg">
           <caption>
@@ -2526,26 +2576,14 @@
           </tbody>
         </table>
       </div>
+
+      <span id="toc5.2"></span>
+      <h3>5.2 Hyperparameter Tuning</h3>
       <p>
-        <b> Wikitables Dataset </b>
-      </p>
-      <p>
-        In the CTA task, our Column-TaBERT Serialization achieved a comparable
-        F1 score to the state-of-the-art DODUO, missing by only 1 point. This is
-        a significant improvement over the TURL baseline, which we outperformed
-        by 2.5 points. However, our results from SOTAB benchmark suggest that
-        there may be rooms for improvement using more performant serialization
-        methods. For the CPA task, our TaBERT Serialization outperformed
-        existing methods by 1.5 points in terms of F1 score. These results
-        demonstrate that our serialization approaches can achieve comparable
-        performance on different real-world datasets. Overall, our findings
-        suggest that careful selection of serialization methods can
-        significantly improve the performance of table annotation tasks.
-      </p>
-      <span id="toc6.2"></span>
-      <h3>6.2 Hyperparameter Tuning</h3>
-      <p>
-      	This section describes the hyperparameter tuning results for selected serializations. We conducted preprocessing of fixing cell length in a tables, implementing different data augmentation techniques and altering the window size for Neighboring Column serialization.
+        This section describes the hyperparameter tuning results for selected
+        serializations. We conducted preprocessing of fixing cell length in a
+        tables, implementing different data augmentation techniques and altering
+        the window size for Neighboring Column serialization.
       </p>
       <div style="text-align: center" class="tg-wrap">
         <table class="tg">
@@ -3206,16 +3244,19 @@
         indicates that a complete table structure with relevant columns is a
         suitable input for Language models in table annotation tasks. Notably,
         we observed that the two main differences between Neighboring Column
-        Serialization and DODUO are the structure of the input sequence and the pretrained language model used.
-        Specifically, our approach places the target column at the front of the
-        input sequence to focus on it, while DODUO takes the entire table as
-        input. We used RoBERTa model instead of BERT model used by DODUO.
+        Serialization and DODUO are the structure of the input sequence and the
+        pretrained language model used. Specifically, our approach places the
+        target column at the front of the input sequence to focus on it, while
+        DODUO takes the entire table as input. We used RoBERTa model instead of
+        BERT model used by DODUO.
       </p>
 
-      <span id="toc6.3"></span>
-      <h3>6.3 Error Analysis</h3>
+      <span id="toc5.3"></span>
+      <h3>5.3 Error Analysis</h3>
       <p>
-        To evaluate the performance, we conducted error analysis on the Neighboring Column Serialization with window size of 2. We chose this approach because it represents the promising serialization method. The
+        To evaluate the performance, we conducted error analysis on the
+        Neighboring Column Serialization with window size of 2. We chose this
+        approach because it represents the promising serialization method. The
         parameters utilized is a BERT model trained for 30 epochs with batch
         size of 16. We initially conducted statistic analysis on three different
         aspects: (i) schema type, (ii) data type, and (iii) specific challenges.
@@ -3235,12 +3276,18 @@
         <strong>Recipe and Person</strong> are among the top 5 schemas for CTA,
         but are among the lowest 5 for CPA.
       </p>
-      <p> 
-        We attribute this discrepancy to the fact that CPA employs more comprehensive and detailed classification labels. 
-        For instance, the Recipe schema in CPA includes specific labels for fatContent, sugarContent, and proteinContent, 
-        whereas in CTA, they are all labeled as Mass. Additionally, cookingTime and prepTime in CPA are classified as Duration in CTA.
-        In Person schema, the CTA tasks are more straightforward such as Person/name, telephone, and Country. while CPA has more complicated tasks like
-        affiliation, memberOf, worksFor, alumniOf which can be ambiguous.
+      <p>
+        We attribute this discrepancy to the fact that CPA employs more
+        comprehensive and detailed classification labels. For instance, the
+        Recipe schema in CPA includes specific labels for fatContent,
+        sugarContent, and proteinContent, whereas in CTA, they are all labeled
+        as Mass. Additionally, cookingTime and prepTime in CPA are classified as
+        Duration in CTA. In Person schema, the CTA tasks are more
+        straightforward such as Person/name, telephone, and Country. while CPA
+        has more complicated tasks like affiliation, memberOf, worksFor,
+        alumniOf which can be ambiguous.
+      </p>
+
       <div style="text-align: center" class="tg-wrap">
         <table class="tg">
           <caption>
@@ -3349,21 +3396,29 @@
         Numeric columns contain only numbers, and URL columns contain web
         addresses. All other columns are classified as text, and if the token in
         the value is less than five, it is considered Short Text, otherwise, it
-        is Long Text. The results of each data type with micro-F1 score and distribution are
-        summarized in <i>Table 6a</i> for CTA and <i>Table 6b</i> for CPA.
+        is Long Text. The results of each data type with micro-F1 score and
+        distribution are summarized in <i>Table 6a</i> for CTA and
+        <i>Table 6b</i> for CPA.
       </p>
       <p>
-        We observed that the <strong>Boolean</strong> data accounts for a very small portion of the overall test sets. 
-        Therefore, any predictions made on this data can significantly impact the final score. 
-        For instance, in CPA task, although there were only 3 incorrect predictions out of a total of 20 Boolean data, the score decreased notably.
-        Upon further investigation, we found these errors were due to wrong truth labels of boolean data as height or gtin8.
-        When comparing the CPA and CTA tasks in other data types, it appears that the CPA tasks have lower scores. 
-        This could be due to the fact that the CPA tasks involve splitting the label spaces further, 
-        which can make it more challenging to accurately assign the correct labels.
-        For instance, in <strong>Numeric</strong> data, the CPA tasks have large numbers of incorrect predictions between gtin, gtin12, gtin13 and gtin14.
-        Also in <strong>URL</strong> data, some URLs refer to the source of images. In CPA tasks, these URLs are further split into more specific categories
-        such as logo, image, and photo which have high degree of similarity and make it more difficult for the model to distinguish between them.
-        The same issue also applies to <strong>Short Text</strong> and <strong>Long Text</strong> data types.
+        We observed that the <strong>Boolean</strong> data accounts for a very
+        small portion of the overall test sets. Therefore, any predictions made
+        on this data can significantly impact the final score. For instance, in
+        CPA task, although there were only 3 incorrect predictions out of a
+        total of 20 Boolean data, the score decreased notably. Upon further
+        investigation, we found these errors were due to wrong truth labels of
+        boolean data as height or gtin8. When comparing the CPA and CTA tasks in
+        other data types, it appears that the CPA tasks have lower scores. This
+        could be due to the fact that the CPA tasks involve splitting the label
+        spaces further, which can make it more challenging to accurately assign
+        the correct labels. For instance, in <strong>Numeric</strong> data, the
+        CPA tasks have large numbers of incorrect predictions between gtin,
+        gtin12, gtin13 and gtin14. Also in <strong>URL</strong> data, some URLs
+        refer to the source of images. In CPA tasks, these URLs are further
+        split into more specific categories such as logo, image, and photo which
+        have high degree of similarity and make it more difficult for the model
+        to distinguish between them. The same issue also applies to
+        <strong>Short Text</strong> and <strong>Long Text</strong> data types.
       </p>
       <div style="text-align: center" class="tg-wrap">
         <table class="tg">
@@ -3842,14 +3897,15 @@
           </tbody>
         </table>
       </div>
-      <span id="toc7"></span>
-      <h2>7. Discussion and Conclusion</h2>
-      This section is dedicated to the discussion of the WikiTable dataset and a Column-TaBERT serialization. 
-      The section concludes with a summary of the key points of the discussion and the potential implications 
-      for future research in the field of table annotation.
+      <span id="toc6"></span>
+      <h2>6. Discussion and Conclusion</h2>
+      This section is dedicated to the discussion of the WikiTable dataset and a
+      Column-TaBERT serialization. The section concludes with a summary of the
+      key points of the discussion and the potential implications for future
+      research in the field of table annotation.
 
-      <span id="toc7.1"></span>
-      <h3>7.1 Discussion</h3>
+      <span id="toc6.1"></span>
+      <h3>6.1 Discussion</h3>
 
       <p><b>WikiTable dataset</b></p>
       <p>
@@ -3866,8 +3922,8 @@
         We hypothesized that the Column-TaBERT method would be able to encode
         more information with same token limit as TaBERT, thus producing better
         results. However, the results indicate that the column data type
-        performed worse than the cell data type. This may be due to the fact that
-        the structural design did not effectively enable the attention
+        performed worse than the cell data type. This may be due to the fact
+        that the structural design did not effectively enable the attention
         mechanism. In TaBERT, the model has one data type token placed just
         before the cell value. In contrast, Column-TaBERT obtains the dat type
         only once and structures it as a normal cell value. Future experiments
@@ -3875,8 +3931,8 @@
         design.
       </p>
 
-      <span id="toc7.2"></span>
-      <h3>7.2 Conclusion</h3>
+      <span id="toc6.2"></span>
+      <h3>6.2 Conclusion</h3>
 
       <p>
         Drawing a conclusion, we have achieved significant improvement on
@@ -3906,125 +3962,189 @@
         Models like ChatGPT.
       </p>
 
-      <span id="toc7.3"></span>
-      <h3>7.3 Acknowledgments</h3>
+      <span id="toc6.3"></span>
+      <h3>6.3 Acknowledgments</h3>
       <p>
-      	The authors acknowledge support by the state of Baden-Württemberg through bwHPC.
+        The authors acknowledge support by the state of Baden-Württemberg
+        through bwHPC.
       </p>
 
-      <span id="toc8"></span>
-      <h2>8. References</h2>
+      <span id="toc7"></span>
+      <h2>7. References</h2>
 
       <p>
         <span id="toc9"></span>
-        [1] Korini, K., Peeters, R., & Bizer, C. (2022). 
-        <a href="https://www.semanticscholar.org/paper/SOTAB%3A-The-WDC-Schema.org-Table-Annotation-Korini-Peeters/4d76a2ed9115e5fb2abe3a2b43baf77bc3b4ac6d"
-        >SOTAB: The WDC Schema.org 
-        Table Annotation Benchmark</a>. SemTab@ISWC.<br />
+        [1] Korini, K., Peeters, R., & Bizer, C. (2022).
+        <a
+          href="https://www.semanticscholar.org/paper/SOTAB%3A-The-WDC-Schema.org-Table-Annotation-Korini-Peeters/4d76a2ed9115e5fb2abe3a2b43baf77bc3b4ac6d"
+          >SOTAB: The WDC Schema.org Table Annotation Benchmark</a
+        >. SemTab@ISWC.<br />
 
         <span id="toc10"></span>
         [2] Ritze, D., Lehmberg, O., Oulabi, Y., & Bizer, C. (2016).
-        <a href="https://www.semanticscholar.org/paper/Profiling-the-Potential-of-Web-Tables-for-Knowledge-Ritze-Lehmberg/221fae16210697dd430e0c3c5be138704d0943f1"
-        > Profiling the Potential of Web Tables for Augmenting Cross-domain Knowledge Bases</a>. 
-        Proceedings of the 25th International Conference on World Wide Web. <br />
+        <a
+          href="https://www.semanticscholar.org/paper/Profiling-the-Potential-of-Web-Tables-for-Knowledge-Ritze-Lehmberg/221fae16210697dd430e0c3c5be138704d0943f1"
+        >
+          Profiling the Potential of Web Tables for Augmenting Cross-domain
+          Knowledge Bases</a
+        >. Proceedings of the 25th International Conference on World Wide Web.
+        <br />
 
         <span id="toc11"></span>
-        [3] Rahm, E., & Bernstein, P.A. (2001). 
-        <a href="https://www.semanticscholar.org/paper/A-survey-of-approaches-to-automatic-schema-matching-Rahm-Bernstein/580221d63ae75bdc7d68829916cf608e44a56b27"
-        > A survey of approaches to automatic schema matching</a>. 
-        The VLDB Journal, 10, 334-350. <br />
+        [3] Rahm, E., & Bernstein, P.A. (2001).
+        <a
+          href="https://www.semanticscholar.org/paper/A-survey-of-approaches-to-automatic-schema-matching-Rahm-Bernstein/580221d63ae75bdc7d68829916cf608e44a56b27"
+        >
+          A survey of approaches to automatic schema matching</a
+        >. The VLDB Journal, 10, 334-350. <br />
 
         <span id="toc12"></span>
-        [4] Deng, X., Sun, H., Lees, A., Wu, Y., & Yu, C. (2020). 
-        <a href="https://www.semanticscholar.org/paper/TURL%3A-Table-Understanding-through-Representation-Deng-Sun/5b3d791caf682998bbd96ce08a98bfc95a86b3a6"
-        > TURL: Table Understanding through Representation Learning</a>. ArXiv, abs/2006.14806. <br />
+        [4] Deng, X., Sun, H., Lees, A., Wu, Y., & Yu, C. (2020).
+        <a
+          href="https://www.semanticscholar.org/paper/TURL%3A-Table-Understanding-through-Representation-Deng-Sun/5b3d791caf682998bbd96ce08a98bfc95a86b3a6"
+        >
+          TURL: Table Understanding through Representation Learning</a
+        >. ArXiv, abs/2006.14806. <br />
 
         <span id="toc13"></span>
-        [5] Vaswani, A., Shazeer, N.M., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A.N., Kaiser, L., & Polosukhin, I. 
-        (2017). <a href="https://www.semanticscholar.org/paper/Attention-is-All-you-Need-Vaswani-Shazeer/204e3073870fae3d05bcbc2f6a8e263d9b72e776"
-        > Attention is All you Need</a>. ArXiv, abs/1706.03762. <br />
+        [5] Vaswani, A., Shazeer, N.M., Parmar, N., Uszkoreit, J., Jones, L.,
+        Gomez, A.N., Kaiser, L., & Polosukhin, I. (2017).
+        <a
+          href="https://www.semanticscholar.org/paper/Attention-is-All-you-Need-Vaswani-Shazeer/204e3073870fae3d05bcbc2f6a8e263d9b72e776"
+        >
+          Attention is All you Need</a
+        >. ArXiv, abs/1706.03762. <br />
 
         <span id="toc14"></span>
-        [6] Hulsebos, M., Demiralp, C., & Groth, P. (2021). 
-        <a href="https://www.semanticscholar.org/paper/GitTables%3A-A-Large-Scale-Corpus-of-Relational-Hulsebos-Demiralp/0a63aecfed066c3c69babba501738e88c0709a4c"
-        > GitTables: A Large-Scale Corpus of Relational Tables</a> ArXiv, abs/2106.07258. <br />
+        [6] Hulsebos, M., Demiralp, C., & Groth, P. (2021).
+        <a
+          href="https://www.semanticscholar.org/paper/GitTables%3A-A-Large-Scale-Corpus-of-Relational-Hulsebos-Demiralp/0a63aecfed066c3c69babba501738e88c0709a4c"
+        >
+          GitTables: A Large-Scale Corpus of Relational Tables</a
+        >
+        ArXiv, abs/2106.07258. <br />
 
         <span id="toc15"></span>
-        [7] Suhara, Y., Li, J., Li, Y., Zhang, D., Demiralp, C., Chen, C., & Tan, W.C. (2021). 
-        <a href="https://www.semanticscholar.org/paper/Annotating-Columns-with-Pre-trained-Language-Models-Suhara-Li/1dbc9bc05805f799be4a5d20394767a01a8358de"
-        > Annotating Columns with Pre-trained Language Models</a>. Proceedings of the 2022 International Conference 
-        on Management of Data. <br />
+        [7] Suhara, Y., Li, J., Li, Y., Zhang, D., Demiralp, C., Chen, C., &
+        Tan, W.C. (2021).
+        <a
+          href="https://www.semanticscholar.org/paper/Annotating-Columns-with-Pre-trained-Language-Models-Suhara-Li/1dbc9bc05805f799be4a5d20394767a01a8358de"
+        >
+          Annotating Columns with Pre-trained Language Models</a
+        >. Proceedings of the 2022 International Conference on Management of
+        Data. <br />
 
         <span id="toc16"></span>
-        [8] Wang, Z., Dong, H., Jia, R., Li, J., Fu, Z., Han, S., & Zhang, D. (2020). 
-        <a href="https://www.semanticscholar.org/paper/TUTA%3A-Tree-based-Transformers-for-Generally-Table-Wang-Dong/24a12899ce97bd4a56f7c6b49d3979b9465f0190"
-        > TUTA: Tree-based Transformers for Generally Structured Table Pre-training</a>. 
-        Proceedings of the 27th ACM SIGKDD Conference on Knowledge Discovery & Data Mining. <br />
+        [8] Wang, Z., Dong, H., Jia, R., Li, J., Fu, Z., Han, S., & Zhang, D.
+        (2020).
+        <a
+          href="https://www.semanticscholar.org/paper/TUTA%3A-Tree-based-Transformers-for-Generally-Table-Wang-Dong/24a12899ce97bd4a56f7c6b49d3979b9465f0190"
+        >
+          TUTA: Tree-based Transformers for Generally Structured Table
+          Pre-training</a
+        >. Proceedings of the 27th ACM SIGKDD Conference on Knowledge Discovery
+        & Data Mining. <br />
 
         <span id="toc17"></span>
-        [9] Chen, J., Jiménez-Ruiz, E., Horrocks, I., & Sutton, C. (2019). 
-        <a href="https://www.semanticscholar.org/paper/Learning-Semantic-Annotations-for-Tabular-Data-Chen-Jim%C3%A9nez-Ruiz/e33e897ca9646c57438378b6de935d44f6aaa4d6"
-        > Learning Semantic Annotations for Tabular Data</a>. 
-        ArXiv, abs/1906.00781. <br />
+        [9] Chen, J., Jiménez-Ruiz, E., Horrocks, I., & Sutton, C. (2019).
+        <a
+          href="https://www.semanticscholar.org/paper/Learning-Semantic-Annotations-for-Tabular-Data-Chen-Jim%C3%A9nez-Ruiz/e33e897ca9646c57438378b6de935d44f6aaa4d6"
+        >
+          Learning Semantic Annotations for Tabular Data</a
+        >. ArXiv, abs/1906.00781. <br />
 
         <span id="toc18"></span>
-        [10] Khurana, U., & Galhotra, S. (2021). 
-        <a href="https://www.semanticscholar.org/paper/Semantic-Concept-Annotation-for-Tabular-Data-Khurana-Galhotra/f3012cc98e65e5fcc8acc782b4726452cd0bdd9d"
-        > Semantic Concept Annotation for Tabular Data</a>.
-         Proceedings of the 30th ACM International Conference on Information & Knowledge Management.<br />
+        [10] Khurana, U., & Galhotra, S. (2021).
+        <a
+          href="https://www.semanticscholar.org/paper/Semantic-Concept-Annotation-for-Tabular-Data-Khurana-Galhotra/f3012cc98e65e5fcc8acc782b4726452cd0bdd9d"
+        >
+          Semantic Concept Annotation for Tabular Data</a
+        >. Proceedings of the 30th ACM International Conference on Information &
+        Knowledge Management.<br />
 
         <span id="toc19"></span>
-        [11] Zhang, D., Suhara, Y., Li, J., Hulsebos, M., Demiralp, C., & Tan, W.C. (2019). 
-        <a href="https://www.semanticscholar.org/paper/Sato%3A-Contextual-Semantic-Type-Detection-in-Tables-Zhang-Suhara/0983f358acd88e3559f4a763c90281d35768787e"
-        > Sato: Contextual Semantic Type Detection in Tables</a>. 
-        Proc. VLDB Endow., 13, 1835-1848. <br />
+        [11] Zhang, D., Suhara, Y., Li, J., Hulsebos, M., Demiralp, C., & Tan,
+        W.C. (2019).
+        <a
+          href="https://www.semanticscholar.org/paper/Sato%3A-Contextual-Semantic-Type-Detection-in-Tables-Zhang-Suhara/0983f358acd88e3559f4a763c90281d35768787e"
+        >
+          Sato: Contextual Semantic Type Detection in Tables</a
+        >. Proc. VLDB Endow., 13, 1835-1848. <br />
 
-        
-        
         <span id="toc20"></span>
-        [12] Brugman, S. <a href="https://github.com/pandas-profiling/"
-        > pandas-profiling: Exploratory Data Analysis for Python</a><br />
+        [12] Brugman, S.
+        <a href="https://github.com/pandas-profiling/">
+          pandas-profiling: Exploratory Data Analysis for Python</a
+        ><br />
 
         <span id="toc21"></span>
-        [13] Beltagy, I., Peters, M.E., & Cohan, A. (2020). 
-        <a href="https://www.semanticscholar.org/paper/Longformer%3A-The-Long-Document-Transformer-Beltagy-Peters/71b6394ad5654f5cd0fba763768ba4e523f7bbca"
-        > Longformer: The Long-Document Transformer</a>. ArXiv, abs/2004.05150.<br />
-        
+        [13] Beltagy, I., Peters, M.E., & Cohan, A. (2020).
+        <a
+          href="https://www.semanticscholar.org/paper/Longformer%3A-The-Long-Document-Transformer-Beltagy-Peters/71b6394ad5654f5cd0fba763768ba4e523f7bbca"
+        >
+          Longformer: The Long-Document Transformer</a
+        >. ArXiv, abs/2004.05150.<br />
+
         <span id="toc22"></span>
-        [14] Devlin, J., Chang, M., Lee, K., & Toutanova, K. (2019). 
-        <a href="https://www.semanticscholar.org/paper/BERT%3A-Pre-training-of-Deep-Bidirectional-for-Devlin-Chang/df2b0e26d0599ce3e70df8a9da02e51594e0e992"
-        > BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding</a>. ArXiv, abs/1810.04805. <br/>
+        [14] Devlin, J., Chang, M., Lee, K., & Toutanova, K. (2019).
+        <a
+          href="https://www.semanticscholar.org/paper/BERT%3A-Pre-training-of-Deep-Bidirectional-for-Devlin-Chang/df2b0e26d0599ce3e70df8a9da02e51594e0e992"
+        >
+          BERT: Pre-training of Deep Bidirectional Transformers for Language
+          Understanding</a
+        >. ArXiv, abs/1810.04805. <br />
 
         <span id="toc23"></span>
-        [15] Liu, Y., Ott, M., Goyal, N., Du, J., Joshi, M., Chen, D., Levy, O., Lewis, M., Zettlemoyer, L., & Stoyanov,
-        V. (2019). 
-        <a href="https://www.semanticscholar.org/paper/RoBERTa%3A-A-Robustly-Optimized-BERT-Pretraining-Liu-Ott/077f8329a7b6fa3b7c877a57b81eb6c18b5f87de"
-        > RoBERTa: A Robustly Optimized BERT Pretraining Approach</a>. ArXiv, abs/1907.11692. <br />
+        [15] Liu, Y., Ott, M., Goyal, N., Du, J., Joshi, M., Chen, D., Levy, O.,
+        Lewis, M., Zettlemoyer, L., & Stoyanov, V. (2019).
+        <a
+          href="https://www.semanticscholar.org/paper/RoBERTa%3A-A-Robustly-Optimized-BERT-Pretraining-Liu-Ott/077f8329a7b6fa3b7c877a57b81eb6c18b5f87de"
+        >
+          RoBERTa: A Robustly Optimized BERT Pretraining Approach</a
+        >. ArXiv, abs/1907.11692. <br />
 
         <span id="toc24"></span>
         [16] Nguyen, P., Kertkeidkachorn, N., Ichise, R., & Takeda, H. (2020).
-        <a href="https://www.semanticscholar.org/paper/MTab4DBpedia%3A-Semantic-Annotation-for-Tabular-Data-Nguyen-Kertkeidkachorn/619241c8d29884b04269fa2b9251527eab7814e6"
-        > MTab4DBpedia: Semantic Annotation for Tabular Data with DBpedia</a>.
+        <a
+          href="https://www.semanticscholar.org/paper/MTab4DBpedia%3A-Semantic-Annotation-for-Tabular-Data-Nguyen-Kertkeidkachorn/619241c8d29884b04269fa2b9251527eab7814e6"
+        >
+          MTab4DBpedia: Semantic Annotation for Tabular Data with DBpedia</a
+        >.
         <br />
 
         <span id="toc25"></span>
-        [17] Lin, T., Wang, Y., Liu, X., & Qiu, X. (2021). <a href="https://www.semanticscholar.org/paper/A-Survey-of-Transformers-Lin-Wang/d8d2e574965fe733eb1416e03df2b5c2914fc530"
-        > A Survey of Transformers</a>. AI Open, 3, 111-132. <br />
-        
+        [17] Lin, T., Wang, Y., Liu, X., & Qiu, X. (2021).
+        <a
+          href="https://www.semanticscholar.org/paper/A-Survey-of-Transformers-Lin-Wang/d8d2e574965fe733eb1416e03df2b5c2914fc530"
+        >
+          A Survey of Transformers</a
+        >. AI Open, 3, 111-132. <br />
+
         <span id="toc26"></span>
-        [18] Bhagavatula, C., Noraset, T., & Downey, D. (2015). 
-        <a href="https://www.semanticscholar.org/paper/TabEL%3A-Entity-Linking-in-Web-Tables-Bhagavatula-Noraset/8ffcad9346c4978a211566fde6807d6fb4bfa5ed"
-        > TabEL: Entity Linking in Web Tables</a>. International Workshop on the Semantic Web. <br />
+        [18] Bhagavatula, C., Noraset, T., & Downey, D. (2015).
+        <a
+          href="https://www.semanticscholar.org/paper/TabEL%3A-Entity-Linking-in-Web-Tables-Bhagavatula-Noraset/8ffcad9346c4978a211566fde6807d6fb4bfa5ed"
+        >
+          TabEL: Entity Linking in Web Tables</a
+        >. International Workshop on the Semantic Web. <br />
 
         <span id="toc27"></span>
-        [19] Jiao, X., Yin, Y., Shang, L., Jiang, X., Chen, X., Li, L., Wang, F., & Liu, Q. (2019). 
-        <a href="https://www.semanticscholar.org/paper/TinyBERT%3A-Distilling-BERT-for-Natural-Language-Jiao-Yin/0cbf97173391b0430140117027edcaf1a37968c7"
-        > TinyBERT: Distilling BERT for Natural Language Understanding</a>. Findings. <br />
-        
+        [19] Jiao, X., Yin, Y., Shang, L., Jiang, X., Chen, X., Li, L., Wang,
+        F., & Liu, Q. (2019).
+        <a
+          href="https://www.semanticscholar.org/paper/TinyBERT%3A-Distilling-BERT-for-Natural-Language-Jiao-Yin/0cbf97173391b0430140117027edcaf1a37968c7"
+        >
+          TinyBERT: Distilling BERT for Natural Language Understanding</a
+        >. Findings. <br />
+
         <span id="toc28"></span>
-        [20] Yin, P., Neubig, G., Yih, W., & Riedel, S. (2020). 
-        <a href="https://www.semanticscholar.org/paper/TaBERT%3A-Pretraining-for-Joint-Understanding-of-and-Yin-Neubig/a5b1d1cab073cb746a990b37d42dc7b67763f881"
-        > TaBERT: Pretraining for Joint Understanding of Textual and Tabular Data</a>. ArXiv, abs/2005.08314. <br />
+        [20] Yin, P., Neubig, G., Yih, W., & Riedel, S. (2020).
+        <a
+          href="https://www.semanticscholar.org/paper/TaBERT%3A-Pretraining-for-Joint-Understanding-of-and-Yin-Neubig/a5b1d1cab073cb746a990b37d42dc7b67763f881"
+        >
+          TaBERT: Pretraining for Joint Understanding of Textual and Tabular
+          Data</a
+        >. ArXiv, abs/2005.08314. <br />
       </p>
       <p>&nbsp;</p>
 
