@@ -831,7 +831,7 @@
         <a href="https://paperswithcode.com/task/columns-property-annotation"
           >Columns Property Annotation (CPA)</a
         >. CTA involves predicting the column type, while CPA  involves identifying 
-        relationships between different columns in a table . All of our experiments
+        relationships between different column pairs in a table. All of our experiments
         and code are available in our
         <a
           href="https://github.com/wbsg-uni-mannheim-students/table-annotation-using-deep-learning"
@@ -2550,7 +2550,7 @@
       <span id="toc6.2"></span>
       <h3>6.2 Hyperparameter Tuning</h3>
       <p>
-
+      	This section describes the hyperparameter tuning results for selected serializations. We conducted preprocessing of fixing cell length in a tables, implementing different data augmentation techniques and altering the window size for Neighboring Column serialization.
       </p>
       <div style="text-align: center" class="tg-wrap">
         <table class="tg">
@@ -3220,8 +3220,7 @@
       <span id="toc6.3"></span>
       <h3>6.3 Error Analysis</h3>
       <p>
-        To evaluate the performance, we analyzed on our best results of 
-        the Neighboring Column Serialization with window size of 2. The
+        To evaluate the performance, we conducted error analysis on the Neighboring Column Serialization with window size of 2. We chose this approach because it is the promising serialization method. The
         parameters utilized is a BERT model trained for 30 epochs with batch
         size of 16. We initially conducted statistic analysis on three different
         aspects: (i) schema type, (ii) data type, and (iii) specific challenges.
