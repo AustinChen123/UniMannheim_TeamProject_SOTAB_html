@@ -1058,7 +1058,8 @@
       <p>
         Chapter 3 provides an overview of relevant literature on table
         annotation tasks and a Transformer-based language model, which is
-        currently the state-of-the-art approach for these tasks.
+        currently the state-of-the-art approach for these tasks. We also
+        describe the datasets used to evaluate our approaches.
       </p>
       <h3>3.1 Transformer</h3>
       <p>
@@ -1184,24 +1185,24 @@
       <span id="toc3.5"></span>
       <h3>3.5 TaBERT</h3>
       <p>
-        TaBERT is an advanced language model that can generate representations
-        for both natural language sentences and structured tables jointly. It
-        has been pre-trained on a large dataset consisting of 26 million tables
-        and their associated English contexts.
+        TaBERT [<a href="#toc28">20</a>] is a pretrained Language model built on
+        top of BERT that jointly learns representations for natural language
+        (NL) sentences and (semi-)structured tables. The contributions of TaBERT
+        include linearization of the structure of tables to be compatible with
+        Transformer-based BERT model, content snapshots to encode subset of
+        relevant table content to cope with large tables, and vertical attention
+        mechanism that share information across table rows. Lastly, TaBERT is
+        pretrained on a corpus of 26 million tables and English paragraphs to
+        capture the association between tabular data and related NL text.
       </p>
       <p>
-        As shown in <i>Figure 4</i>, TaBERT first generates a content snapshot
-        of a table T based on an input utterance u and table T. The snapshot
-        comprises of rows that contain the most relevant data from table T in
-        relation to the input utterance u. In this Example in the
-        <i>Figure 4.a</i>, rows R2, R3, R5 are the most relevant to the
-        utterance. Next, each row within the snapshot is linearized and
-        concatenated with the utterance u as shown in <i>Figure 4.b</i>. This
-        resulting string is then processed by a Transformer model, such as BERT
-        (see: <i>Figure 4.c</i>), to produce encoding vectors for both the
-        utterance tokens and table cells on a row-by-row basis [<a href="#toc28"
-          >20</a
-        >].
+        The overall architecture for TaBERT is shown in
+        <a id="Fig3">Figure 3</a>. Firstly, a content snapshot of a table is
+        created based on the input NL utterance. Row-wise encodings are produces
+        for utterance tokens and cells. Lastly, all row-wise encodings are
+        aligned and processed by vertical self-attention layers to generate
+        utterance and column representations. These representations are then
+        used for downstream tasks.
       </p>
 
       <span id="toc3.5.Fig"></span>
@@ -1226,30 +1227,43 @@
         approaches on the
         <a href="https://github.com/sunlab-osu/TURL/"
           >WikiTables dataset by TURL</a
-        >[<a href="#toc12">3</a>]. The SOTAB benchmark is a collection of tables
-        extracted from the Schema.org Table Corpus, which is maintained by the
-        Data and Web Science Research Group at the University of Mannheim. The
-        corpus comprises over 4.2 million web relational tables covering 43
-        schema.org classes. The dataset defines both CTA and CPA labels for
-        tables from 17 schema.org classes/domains. For the CTA task, the SOTAB
-        dataset provides annotations for 162,351 columns from 59,548 tables,
-        with a label space of 91 type labels. For the CPA task, it provides
-        annotations for 174,998 column pairs from 48,379 tables, with a label
-        space of 176 property labels. We used the provided train/valid/test
-        splits for both tasks.
+        >[<a href="#toc12">4</a>]. The SOTAB benchmark is a collection of tables
+        extracted from the
+        <a href="http://webdatacommons.org/structureddata/schemaorgtables/"
+          >Schema.org Table Corpus</a
+        >, which is maintained by the Data and Web Science Research Group at the
+        University of Mannheim. The corpus comprises over 4.2 million web
+        relational tables covering 43
+        <a href="https://schema.org/">Schema.org</a> classes. The dataset
+        defines both CTA and CPA labels for tables from 17 schema.org
+        classes/domains. The authors obtained the CPA labels from Schema.org
+        terms used as column headers in a table. The CTA label for a column is
+        instead derived from its CPA label using the Schema.org vocabulary
+        definition. For the CTA task, the SOTAB dataset provides annotations for
+        162,351 columns from 59,548 tables, with a label space of 91 type
+        labels. For the CPA task, it provides annotations for 174,998 column
+        pairs from 48,379 tables, with a label space of 176 property labels. We
+        used the provided train/valid/test splits for both tasks.
       </p>
       <p>
-        The WikiTables dataset [<a href="#toc12">3</a>] is a collection of
-        tables extracted from the WikiTable corpus, which contains over 1.54
-        million tables extracted from Wikipedia pages. The dataset defines both
-        CTA and CPA labels. For the CTA task, the dataset provides annotations
-        of 628,254 columns from 397,098 tables, with a label space of 255 type
-        labels for training, and 13,025 (13,391) columns from 4,764 (4,844)
-        tables for test and validation, respectively. For the CPA task, it
-        provides annotations of 62,954 column pairs from 52,943 tables, with a
-        label space of 121 relation labels for traning, and 2,072 (2,175) column
-        pairs from 1,467 (1,560) tables for test (validation). The statistics of
-        WikiTable dataset are shown in <i>Table 1</i>.
+        The WikiTables dataset [<a href="#toc12">4</a>] is a collection of
+        tables extracted from the WikiTable corpus [<a href="#toc26">18</a>],
+        which contains over 1.54 million tables extracted from Wikipedia pages.
+        The dataset defines both CTA and CPA labels. To derive the labels for
+        both tasks, the authors referred to Freebase [<a href="#toc28">21</a>]
+        to obtain semantic types and relations respectively. For each column,
+        the CTA labels are the common types of its entities. For each object
+        column in a table, it is paired with the subject column to identify the
+        relations shared by more than half of the entity pairs in the two
+        columns and thus function as the CPA labels. For the CTA task, the
+        dataset provides annotations of 628,254 columns from 397,098 tables,
+        with a label space of 255 type labels for training, and 13,025 (13,391)
+        columns from 4,764 (4,844) tables for test and validation, respectively.
+        For the CPA task, it provides annotations of 62,954 column pairs from
+        52,943 tables, with a label space of 121 relation labels for traning,
+        and 2,072 (2,175) column pairs from 1,467 (1,560) tables for test
+        (validation). The statistics of WikiTable dataset are shown in
+        <i>Table 1</i>.
       </p>
 
       <div style="text-align: center" class="tg-wrap">
@@ -4145,6 +4159,13 @@
           TaBERT: Pretraining for Joint Understanding of Textual and Tabular
           Data</a
         >. ArXiv, abs/2005.08314. <br />
+
+        <span id="toc29"></span>
+        [21] Google (2015).
+        <a href="https://developers.google.com/freebase/data">
+          Freebase Data Dumps.
+        </a>
+        <br />
       </p>
       <p>&nbsp;</p>
 
