@@ -1121,51 +1121,41 @@
 
       <span id="toc3.4"></span>
       <h3>3.4 DODUO</h3>
-      DODUO, as described in [<a href="#toc15">7</a>], is the ccurent
+      <p>   
+      	DODUO, as described in [<a href="#toc15">7</a>], is the curent
       state-of-the-art approach for the CTA and CPA tasks. This approach
       utilizes a Transformer-based language model and takes the entire table as
       input to predict column types and relationships between columns. What sets
-      DODUO apart is its ability to annotate table columns using only the
+      DODUO apart to its predecessors is its ability to annotate table columns using only the
       information contained in the table itself, without the need for external
       knowledge or context.
-      <p></p>
+ 	  </p>
 
       <span id="toc3.4.Fig"></span>
       <figure>
         <img
-          src="images/DODUO.JPG"
-          alt="TURL framework"
+          src="images/DODUO.PNG"
+          alt="DODUO"
           class="center"
         />
         <figcaption class="center">
-          <b><a id="Fig3"></a>Figure 3:</b> How DODUO computes contextualized column embeddings using the Transformer layers.
+          <b><a id="Fig2"></a>Figure 2:</b> Overview of DODUO's model architecture
           [<a href="#toc15">7</a>]
         </figcaption>
       </figure>
       <p>
-        To annotate a table with N columns, each of which with m 
-        values using pre-trained language models, the table is first serialized according to
-        the following schema:
 
+      As shown in <a id="Fig2">Figure 2</a>, DODUO utilizes a pre-trained Transformer-based language model, particularly a BERT language model [<a href="#toc22">14</a>] and adopts multi-task learning into the model to "transfer" shared knowledge between CTA and CPA tasks. DODUO introduces table-wise serialization to incorporate table context into prediction. Particularly, the serialization method is: for a table of N columns of m rows, 
         <span class="math display"
           >\[serialize(T)::= [CLS]\;v^1_1\;...[CLS]\; v^1_n...v^n_m\;[SEP]\]</span
-        >
-        It appends a [CLS] token to the beginning of each column, concatenates them and adds a [SEP] 
-        token at the end of this sequence.
-        This creates a sequence of tokens that represents the entire table. For example, consider a table 
-        with three columns as  illustrated in <a id="Fig3">Figure 3</a>,the serialized input sequence would look like this: <br />
-         <!--style will override the class center width to increase it to be 40% instead of 30%-->
-        <p class="center" style="width: 40%">[CLS] Happy Feet, ... [CLS] George Miller, ... [CLS] USA, ...,France [SEP].</p> 
-        Next, a 12 layer BERT Base model [<a href="#toc22">14</a>] is fine-tuned on the serialized table to predict
-        labels for each [CLS] token. The number of labels predicted is equal to the number of columns in the table.
-         Although the paper used BERT, any other pre-trained language model such as RoBERTa [<a href="#toc23">15</a>] can be utilized.
+        > where a [CLS] token is appended to the beginning of each column, which its corresponding embeddings represent learned column representations for the column. The output layer on top of a column embedding, i.e. the [CLS] token, is used for the CTA task. Column embeddings of a column pair is used for the CPA task instead.
       </p>
 
       <span id="toc3.5"></span>
       <h3>3.5 TaBERT</h3>
-      TaBERT is an advanced language model that can generate representations for both natural language sentences and 
-      structured tables jointly. It has been pre-trained on a large dataset consisting of 26 million tables 
-      and their associated English contexts.
+      <p>
+       TaBERT is an advanced language model that can generate representations for both natural language sentences and structured tables jointly. It has been pre-trained on a large dataset consisting of 26 million tables and their associated English contexts.
+  	  </p>
       <p>
       As shown in <i>Figure 4</i>, TaBERT first generates a content 
       snapshot of a table T based on an input utterance u and table T. The snapshot comprises of rows that contain 
@@ -1182,7 +1172,7 @@
           class="center"
         />
         <figcaption class="center">
-          <b><a id="Fig4"></a>Figure 4:</b> Overview of TaBERT.
+          <b><a id="Fig3"></a>Figure 3:</b> Overview of TaBERT.
           [<a href="#toc28">20</a>]
         </figcaption>
       </figure>
